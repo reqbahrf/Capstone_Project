@@ -1,8 +1,8 @@
 <?php
 session_start();
-include("database.php");
+//include("database.php");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+/*if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $login_username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
   $login_password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     error_log("User not found: " . $login_username);
     echo "Invalid username or password";
   }
-}
+}*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,17 +41,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
   <script src="/assets/js/bootstrap.min.js"></script>
+  <script>
+    function togglePasswordVisibility() {
+      let passwordInput = document.querySelector('#password');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+      } else {
+        passwordInput.type = 'password';
+      }
+    }
+
+    document.querySelector('input[type="checkbox"]').addEventListener('click', togglePasswordVisibility);
+
+    function validateForm() {
+      let usernameInput = document.getElementById('username');
+      let passwordInput = document.getElementById('password');
+
+      if (usernameInput.value === '') {
+        alert('Please enter a username.');
+        return false;
+      }
+
+      if (passwordInput.value === '') {
+        alert('Please enter a password.');
+        return false;
+      }
+
+      // Additional custom validation checks
+
+      return true;
+    }
+  </script>
 </head>
 <body>
-  <div class="container mt-5">
-    <div class="row justify-content-end" >
-      <div class="col-auto p-4 bg-light rounded-5" style="border: 1px solid #000;">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="form-group">
-          <label for="username">Username:</label>
-          <input type="text" name="username" id="username" class="form-control" required maxlength="50"><br>
-          <label for="password">Password:</label>
-          <input type="password" name="password" id="password" class="form-control" required maxlength="50"><br>
-          <input type="submit" name="login" value="Login" class="btn btn-primary">
+  <?php include("header.php"); ?>
+  <div class="container mt-4">
+    <div class="row justify-content-center mt-3" >
+      <div class="col-4 p-4 bg-light rounded-5 border border-3 border-border-primary-subtle">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="form-group" onsubmit="return validateForm()">
+          <h4 class="fw-bold">Login </h4>
+          <input type="text" name="username" id="username" class="form-control" maxlength="50" placeholder="Username"><br>
+          <input type="password" name="password" id="password" class="form-control" maxlength="50" placeholder="Password">
+          <div class="d-flex justify-content-end mt-2">
+            <div>
+              <input type="checkbox" id="show-password">
+              <label for="show-password">Show Password</label><br>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center mt-3">
+             <input type="submit" name="login" value="Login" class="btn btn-primary w-100">
+          </div>
         </form>
       </div>
     </div>
