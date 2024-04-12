@@ -39,8 +39,8 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 
-  <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
-  <script src="/assets/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+  <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script>
     function togglePasswordVisibility() {
       let passwordInput = document.querySelector('#password');
