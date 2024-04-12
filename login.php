@@ -75,7 +75,7 @@ session_start();
 </head>
 <body>
   <?php include("header.php"); ?>
-  <div class="container mt-4">
+  <div class="container mt-4 mb-5">
     <div class="row justify-content-center mt-3" >
       <div class="col-4 p-4 bg-light rounded-5 border border-3 border-border-primary-subtle">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="form-group" onsubmit="return validateForm()">
@@ -95,5 +95,6 @@ session_start();
       </div>
     </div>
   </div>
+ <?php include("footer.php"); ?>
 </body>
 </html>
