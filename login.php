@@ -80,8 +80,8 @@ session_start();
       <div class="col-4 p-4 bg-light rounded-5 border border-3 border-border-primary-subtle">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="form-group" onsubmit="return validateForm()">
           <h4 class="fw-bold">Login </h4>
-          <input type="text" name="username" id="username" class="form-control" maxlength="50" placeholder="Username"><br>
-          <input type="password" name="password" id="password" class="form-control" maxlength="50" placeholder="Password">
+          <input type="text" name="username" id="username" class="form-control" maxlength="50" placeholder="Username" required><br>
+          <input type="password" name="password" id="password" class="form-control" maxlength="50" placeholder="Password" required>
           <div class="d-flex justify-content-end mt-2">
             <div>
               <input type="checkbox" id="show-password">
