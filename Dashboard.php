@@ -6,30 +6,21 @@
   <title>Document</title>
   <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
   <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <style>
-    .main-content {
-    margin-left: 200px; /* Same as the width of the sidebar */
-    padding: 0px;
-  }
-  </style>
+
 </head>
-<body>
- 
-<section class="main-content">
+<body class=" overflow-hidden">
   <div class="container-fluid px-0">
-    <div>
       <div class="d-flex align-items-center bg-primary">
-        <img src="./assets/img/74px-DOST_seal.svg.png" alt="DOST logo" class="me-3 ms-3 mt-3 mb-3" style="width: 80px; height: 80px; border-radius: 25%; border: 1px solid white; background-color: white; object-fit: cover; object-position: center;">
-        <p><H2>DOST-SETUP Funding Monitoring System</H2></p>
+        <img src="./assets/img/74px-DOST_seal.svg.png" alt="DOST logo" class="me-3 ms-3 mt-3 mb-3" style="width: 30px; height: 30px; border-radius: 25%; border: 1px solid white; background-color: white; object-fit: cover; object-position: center;">
+        <p><H4 class=" text-white ">DOST-SETUP Funding Monitoring System</H4></p>
       </div>
       <div>
-      <?php include("nav.php"); ?>
-       <main>
-
+      <div class=" overflow-y-auto">
+        <?php include("nav.php"); ?>
+      </div>
+       <main class="scrollable-main">
        </main>
       </div>
-    </div>
   </div>
-</section>
 </body>
 </html>
