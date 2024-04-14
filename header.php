@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
- <div class="p-2">
-  <div class="container-flex p-4">
-      <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+
+ <div class="p-1">
+  <div class="container-flex p-1">
+      <header class="d-flex flex-wrap justify-content-center py-3 mb-2 border-bottom">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
           <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
           <span class="fs-4">Simple header</span>
@@ -23,5 +16,3 @@
       </header>
     </div>
  </div>
-</body>
-</html>
