@@ -56,7 +56,124 @@
   <button type="submit" name="submit" class="btn btn-primary">Submit</button>
 </div>
 
-
   </form>
+
+  <script>
+    function validateForm() {
+      var firstName = document.getElementById("f_name").value;
+      var lastName = document.getElementById("l_name").value;
+      var mobileNumber = document.getElementById("Mobile_no").value;
+      var emailAddress = document.getElementById("email_add").value;
+      var landline = document.getElementById("landline").value;
+      var firmName = document.getElementById("firm_name").value;
+      var address = document.getElementById("Address").value;
+      var assetCategory = document.querySelector('input[name="asset_category"]:checked');
+
+      if (firstName === "") {
+        alert("First name is required");
+        return false;
+      }
+
+      if (lastName === "") {
+        alert("Last name is required");
+        return false;
+      }
+
+      if (mobileNumber === "") {
+        alert("Mobile number is required");
+        return false;
+      }
+
+      if (emailAddress === "") {
+        alert("Email address is required");
+        return false;
+      }
+
+      if (landline === "") {
+        alert("Landline is required");
+        return false;
+      }
+
+      if (firmName === "") {
+        alert("Firm name is required");
+        return false;
+      }
+
+      if (address === "") {
+        alert("Address is required");
+        return false;
+      }
+
+      if (!assetCategory) {
+        alert("Asset category is required");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
 </body>
 </html>
+
+<?php
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Validate first name
+    $f_name = $_POST["f_name"];
+    if (empty($f_name)) {
+      echo "First name is required";
+      exit;
+    }
+
+    // Validate last name
+    $l_name = $_POST["l_name"];
+    if (empty($l_name)) {
+      echo "Last name is required";
+      exit;
+    }
+
+    // Validate mobile number
+    $mobile_no = $_POST["Mobile_no"];
+    if (empty($mobile_no)) {
+      echo "Mobile number is required";
+      exit;
+    }
+
+    // Validate email address
+    $email_add = $_POST["email_add"];
+    if (empty($email_add)) {
+      echo "Email address is required";
+      exit;
+    }
+
+    // Validate landline
+    $landline = $_POST["landline"];
+    if (empty($landline)) {
+      echo "Landline is required";
+      exit;
+    }
+
+    // Validate firm name
+    $firm_name = $_POST["firm_name"];
+    if (empty($firm_name)) {
+      echo "Firm name is required";
+      exit;
+    }
+
+    // Validate address
+    $address = $_POST["Address"];
+    if (empty($address)) {
+      echo "Address is required";
+      exit;
+    }
+
+    // Validate asset category
+    $asset_category = $_POST["asset_category"];
+    if (empty($asset_category)) {
+      echo "Asset category is required";
+      exit;
+    }
+
+    // All inputs are valid, continue with further processing
+    // ...
+  }
+  ?>
