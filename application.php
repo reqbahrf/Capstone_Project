@@ -132,17 +132,19 @@
          var userClickedOk = confirm(confirmationMessage);
 
          if (userClickedOk) {
-          $.ajax({
-            type: 'POST',
-            url: window.location.href,
-            data: $('form').serialize(),
-            success: function() {
-                alert('Form successfully submitted!');
-            }
-        });
+          // User clicked OK, submit the form
+           $.ajax({
+             type: 'POST',
+             url: window.location.href,
+             data: $('form').serialize(),
+             success: function() {
+                 alert('Form successfully submitted!');
+             }
+         });
          } else {
             // User clicked Cancel, do nothing
             return false;
          }
  } </script>
+
 

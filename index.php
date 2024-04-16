@@ -251,7 +251,7 @@
     <div class="container text-center text-md-left" data-aos="fade-up">
       <h1>Welcome to <span>SETUP</span></h1>
       <h2>We provide fund assistance to any Micro, Small, Medium Businesses</h2>
-      <a href="#about" class="btn-get-started scrollto">Apply Now</a>
+      <a href="application.php" class="btn-get-started scrollto">Apply Now</a>
     </div>
 </section>
 <section id="what-we-do" class="what-we-do">
