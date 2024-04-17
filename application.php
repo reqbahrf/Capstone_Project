@@ -12,7 +12,6 @@
 
 <body>
   <?php include("header.php"); ?>
-  
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="row g-3 mt-5 ms-5 me-5 mb-2 p-5 border border-black rounded">
     <H4>Personal Info:</H4>
     <div class="col-md-4">
