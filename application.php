@@ -92,29 +92,30 @@
 </body>
 </html>
 <script>
-      function clearFields() {
-        document.getElementById("f_name").value = "";
-        document.getElementById("l_name").value = "";
-        document.getElementById("Mobile_no").value = "";
-        document.getElementById("email_add").value = "";
-        document.getElementById("landline").value = "";
-        document.getElementById("firm_name").value = "";
-        document.getElementById("Address").value = "";
-        document.querySelector('input[name="asset_category"]:checked').checked = false;
-      }
-      document.querySelector('form').addEventListener('submit', function(event) {
-    // Prevent the form from submitting immediately
-       event.preventDefault();
+  function clearFields() {
+    $("#f_name").val("");
+    $("#l_name").val("");
+    $("#Mobile_no").val("");
+    $("#email_add").val("");
+    $("#landline").val("");
+    $("#firm_name").val("");
+    $("#Address").val("");
+    $('input[name="asset_category"]:checked').prop('checked', false);
+}
+    $('form').on('submit', function(event) {
+      // Prevent the form from submitting immediately
+      event.preventDefault();
+    });
 
     // Check if all required fields are filled out and input matches required patterns
-          var firstName = document.getElementById("f_name").value;
-          var lastName = document.getElementById("l_name").value;
-          var mobileNumber = document.getElementById("Mobile_no").value;
-          var emailAddress = document.getElementById("email_add").value;
-          var landline = document.getElementById("landline").value;
-          var firmName = document.getElementById("firm_name").value;
-          var address = document.getElementById("Address").value;
-          var assetCategory = document.querySelector('input[name="asset_category"]:checked').value;
+    var firstName = $("#f_name").val();
+    var lastName = $("#l_name").val();
+    var mobileNumber = $("#Mobile_no").val();
+    var emailAddress = $("#email_add").val();
+    var landline = $("#landline").val();
+    var firmName = $("#firm_name").val();
+    var address = $("#Address").val();
+    var assetCategory = $('input[name="asset_category"]:checked').val();
 
     // Add your validation logic here. For example:
           if (!firstName || !lastName || !mobileNumber || !emailAddress || !landline || !firmName || !address || !assetCategory) {
@@ -124,37 +125,32 @@
 
     // If everything is valid, show the confirmation dialog
     showConfirmation();
-});
 
-       function showConfirmation() {
-         var firstName = document.getElementById("f_name").value;
-         var lastName = document.getElementById("l_name").value;
-         var mobileNumber = document.getElementById("Mobile_no").value;
-         var emailAddress = document.getElementById("email_add").value;
-         var landline = document.getElementById("landline").value;
-         var firmName = document.getElementById("firm_name").value;
-         var address = document.getElementById("Address").value;
-         var assetCategory = document.querySelector('input[name="asset_category"]:checked').value;
+  function showConfirmation() {
+    var firstName = $("#f_name").val();
+    var lastName = $("#l_name").val();
+    var mobileNumber = $("#Mobile_no").val();
+    var emailAddress = $("#email_add").val();
+    var landline = $("#landline").val();
+    var firmName = $("#firm_name").val();
+    var address = $("#Address").val();
+    var assetCategory = $('input[name="asset_category"]:checked').val();
 
-         var confirmationMessage = "<H5>We are about to receive the following:</H5><br>";
-          confirmationMessage += "<strong>First Name:</strong> " + firstName + "<br>";
-          confirmationMessage += "<strong>Last Name:</strong> " + lastName + "<br>";
-          confirmationMessage += "<strong>Mobile Number:</strong> " + mobileNumber + "<br>";
-          confirmationMessage += "<strong>Email Address:</strong> " + emailAddress + "<br>";
-          confirmationMessage += "<strong>Landline:</strong> " + landline + "<br>";
-          confirmationMessage += "<strong>Firm Name:</strong> " + firmName + "<br>";
-          confirmationMessage += "<strong>Address:</strong> " + address + "<br>";
-          confirmationMessage += "<strong>Asset Category:</strong> " + assetCategory + "<br>";
+    var confirmationMessage = "<H5>We are about to receive the following:</H5><br>";
+    confirmationMessage += "<strong>First Name:</strong> " + firstName + "<br>";
+    confirmationMessage += "<strong>Last Name:</strong> " + lastName + "<br>";
+    confirmationMessage += "<strong>Mobile Number:</strong> " + mobileNumber + "<br>";
+    confirmationMessage += "<strong>Email Address:</strong> " + emailAddress + "<br>";
+    confirmationMessage += "<strong>Landline:</strong> " + landline + "<br>";
+    confirmationMessage += "<strong>Firm Name:</strong> " + firmName + "<br>";
+    confirmationMessage += "<strong>Address:</strong> " + address + "<br>";
+    confirmationMessage += "<strong>Asset Category:</strong> " + assetCategory + "<br>";
 
-          document.getElementById("confirmationMessage").innerHTML = confirmationMessage;
+    $("#confirmationMessage").html(confirmationMessage);
     $('#confirmationModal').modal('show');
 
-    // Get the buttons
-    var confirmButton = document.getElementById("confirmButton");
-    var cancelButton = $('.btn-danger[data-dismiss="modal"]');
-
     // When the user clicks on the confirm button, submit the form
-    confirmButton.onclick = function() {
+    $("#confirmButton").click(function() {
         $('#confirmationModal').modal('hide');
         $.ajax({
             type: 'POST',
@@ -164,11 +160,11 @@
                 alert('Form successfully submitted!');
             }
         });
-    }
+    });
 
     // When the user clicks on the cancel button, close the modal
     $('.btn-secondary[data-dismiss="modal"]').click(function() {
-    $('#confirmationModal').modal('hide');
+        $('#confirmationModal').modal('hide');
     });
 }
 </script>

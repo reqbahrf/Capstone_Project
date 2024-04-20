@@ -67,7 +67,7 @@ session_start();
         return false;
       }
 
-      // Additional custom validation checks
+     
 
       return true;
     }
