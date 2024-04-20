@@ -6,12 +6,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Application Form</title>
   <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
-  <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </head>
 
 <body>
   <?php include("header.php"); ?>
+  <!-- Modal -->
+  <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmationModalTitle">Verify Info</h5>
+        </div>
+        <div class="modal-body">
+          <p id="confirmationMessage"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Edit</button>
+          <button type="button" id="confirmButton" class="btn btn-primary">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="row g-3 mt-5 ms-5 me-5 mb-2 p-5 border border-black rounded">
     <H4>Personal Info:</H4>
     <div class="col-md-4">
@@ -64,10 +82,10 @@
         <label for="agree_terms" class="form-check-label">Agree to Terms and Conditions</label>
       </div>
     </div>
+    <hr>
     <div class="col-12 d-flex justify-content-end">
-      <button type="submit" name="submit" class= "btn btn-primary">Submit</button>
-      <div class="mx-2"></div>
-      <button type="button" class="btn btn-danger" onclick="clearFields()">Clear</button>
+      <button type="submit" name="submit" class= "btn btn-primary w-25 mx-2">Submit</button>
+      <button type="button" class="btn btn-danger w-25" onclick="clearFields()">Clear</button>
     </div>
   </form>
   <?php include("footer.php"); ?>
@@ -118,32 +136,41 @@
          var address = document.getElementById("Address").value;
          var assetCategory = document.querySelector('input[name="asset_category"]:checked').value;
 
-         var confirmationMessage = "Confirmation:\n\n";
-         confirmationMessage += "First Name: " + firstName + "\n";
-         confirmationMessage += "Last Name: " + lastName + "\n";
-         confirmationMessage += "Mobile Number: " + mobileNumber + "\n";
-         confirmationMessage += "Email Address: " + emailAddress + "\n";
-         confirmationMessage += "Landline: " + landline + "\n";
-         confirmationMessage += "Firm Name: " + firmName + "\n";
-         confirmationMessage += "Address: " + address + "\n";
-         confirmationMessage += "Asset Category: " + assetCategory + "\n";
+         var confirmationMessage = "<H5>We are about to receive the following:</H5><br>";
+          confirmationMessage += "<strong>First Name:</strong> " + firstName + "<br>";
+          confirmationMessage += "<strong>Last Name:</strong> " + lastName + "<br>";
+          confirmationMessage += "<strong>Mobile Number:</strong> " + mobileNumber + "<br>";
+          confirmationMessage += "<strong>Email Address:</strong> " + emailAddress + "<br>";
+          confirmationMessage += "<strong>Landline:</strong> " + landline + "<br>";
+          confirmationMessage += "<strong>Firm Name:</strong> " + firmName + "<br>";
+          confirmationMessage += "<strong>Address:</strong> " + address + "<br>";
+          confirmationMessage += "<strong>Asset Category:</strong> " + assetCategory + "<br>";
 
-         var userClickedOk = confirm(confirmationMessage);
+          document.getElementById("confirmationMessage").innerHTML = confirmationMessage;
+    $('#confirmationModal').modal('show');
 
-         if (userClickedOk) {
-          // User clicked OK, submit the form
-           $.ajax({
-             type: 'POST',
-             url: window.location.href,
-             data: $('form').serialize(),
-             success: function() {
-                 alert('Form successfully submitted!');
-             }
-         });
-         } else {
-            // User clicked Cancel, do nothing
-            return false;
-         }
- } </script>
+    // Get the buttons
+    var confirmButton = document.getElementById("confirmButton");
+    var cancelButton = $('.btn-danger[data-dismiss="modal"]');
+
+    // When the user clicks on the confirm button, submit the form
+    confirmButton.onclick = function() {
+        $('#confirmationModal').modal('hide');
+        $.ajax({
+            type: 'POST',
+            url: window.location.href,
+            data: $('form').serialize(),
+            success: function() {
+                alert('Form successfully submitted!');
+            }
+        });
+    }
+
+    // When the user clicks on the cancel button, close the modal
+    $('.btn-secondary[data-dismiss="modal"]').click(function() {
+    $('#confirmationModal').modal('hide');
+    });
+}
+</script>
 
 
