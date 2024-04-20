@@ -1,32 +1,11 @@
 
 <style>
-   .sidenav {
-      display: inline-flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      height: 93vh;
-      width: auto;
-      min-width: 4rem;
-      max-width: 15rem;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      background-color: #111;
-      overflow-x: hidden;
-      overflow-y: hidden;
-      padding-top: 20px;
-      transition: width 200ms ease;
-    }
 
     .navbar-nav {
       width: auto;
       margin: 5px;
       height: 100%;
       padding-left: 10px;
-    }
-
-    .sidenav ul li:last-child {
-      margin-top: auto;
     }
 
     .color {
@@ -52,10 +31,6 @@
       fill: #FFFFFF;
     }
 
-    .nav-text{
-      width: auto;
-    }
-
     .hide-text {
       letter-spacing: -10px;
       display: none;
@@ -66,14 +41,72 @@
     transition: transform 0.3s ease;
   }
 
+  @media only screen and (max-width: 600px) {
+    nav.sidenav {
+      position: fixed;
+      bottom: 0;
+      width: 100vw;
+      height: 5rem;
+      overflow: hidden;
+      background-color: #111;
+    }
 
+    li.minimize {
+    display: none;
+  }
+      .navbar-nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
 
+    .nav-item a {
+      justify-content: center;
+    }
+    span {
+      letter-spacing: -10px;
+      display: none;
+    }
+    nav.sidenav .navbar-nav li {
+    flex-grow: 1;
+    text-align: center;
+  }
+  }
+
+  /* Large screens */
+  @media only screen and (min-width: 600px) {
+    nav.sidenav {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      height: 93vh;
+      width: auto;
+      min-width: 4rem;
+      max-width: 15rem;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      padding-top: 20px;
+      transition: width 200ms ease;
+    }
+
+    .sidenav ul li:last-child {
+      margin-top: auto;
+    }
+
+    .nav-text{
+      width: auto;
+    }
+  }
 
 </style>
 
 <nav class="sidenav">
    <ul class="navbar-nav">
-    <li class="nav-item mb-2">
+    <li class="nav-item mb-2 minimize">
       <a href="#" onclick="toggleSidebar()">
         <svg id="hover-link" class=" bg-secondary rounded-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
           <path d="M16.113281 6.2050781L13.064453 8.7949219L31.578125 32.003906L13.0625 55.308594L16.115234 57.892578L37.701172 33.9375L39.451172 31.996094L37.697266 30.056641L16.113281 6.2050781 z M 33.113281 6.2050781L30.064453 8.7949219L48.578125 32.003906L30.0625 55.308594L33.115234 57.892578L54.701172 33.9375L56.451172 31.996094L54.697266 30.056641L33.113281 6.2050781 z" fill="#FFFFFF" />

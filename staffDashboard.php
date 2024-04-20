@@ -19,6 +19,7 @@
     }
     .nav-column {
       width: auto;
+      order: 2;
    }
     .main-column {
       flex-grow: 1;
@@ -26,7 +27,23 @@
       margin-left: 2rem;
       margin-right: 2rem;
       width: 80%;
+      order: 1;
   }
+
+  @media (min-width: 768px) {
+  .flex-container {
+    flex-direction: row;
+  }
+  .nav-column {
+    order: 1;
+  }
+
+  .main-column {
+    order: 2;
+  }
+
+  
+}
   </style>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -37,7 +54,7 @@
         <p><H4 class="text-white">DOST-SETUP Funding Monitoring System</H4></p>
       </div>
   </div>
-  <div class="flex-container">
+  <div class="flex-container d-flex flex-column flex-md-row mobileView">
     <div class="nav-column">
       <?php include("navStaff.php"); ?>
     </div>
