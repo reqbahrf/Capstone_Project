@@ -40,6 +40,7 @@
 
   .main-column {
     order: 2;
+    width: auto;
   }
 
   

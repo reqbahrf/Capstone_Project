@@ -1,4 +1,4 @@
-<div class="container-fluid px-5 mx-4 py-5">
+<div class="container-fluid px-sm-3 mx-sm-2 py-sm-3 flex-grow-1">
   <div class="row">
     <div class="col-md-4">
       <div class="card border-primary mb-3" style="max-width: 24rem; height: 15rem">
