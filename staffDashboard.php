@@ -11,7 +11,9 @@
   <style>
     .scrollable-main {
       overflow-y: auto;
+      overflow-x: hidden;
       width: 100%;
+      height: 1009px;
     }
     .flex-container {
        display: flex;
@@ -37,13 +39,6 @@
   .nav-column {
     order: 1;
   }
-
-  .main-column {
-    order: 2;
-    width: auto;
-  }
-
-  
 }
   </style>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
