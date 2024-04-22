@@ -19,7 +19,7 @@
       overflow-y: auto;
       overflow-x: hidden;
       width: 100%;
-      height: 500px;
+      height: 80vh;
     }
     .flex-container {
        display: flex;
@@ -61,7 +61,19 @@
       <?php include("navStaff.php"); ?>
     </div>
     <main class="main-column scrollable-main">
-      <?php include("staffPageDashboard.php"); ?>
+      <?php
+          $page = $_GET['page'] ?? 'dashboard';
+
+          switch ($page) {
+              case 'applicant':
+                  include("staffApplicantTab.php");
+                  break;
+              case 'dashboard':
+              default:
+                  include("staffDashboardTab.php");
+                  break;
+          }
+      ?>
     </main>
   </div>
 </body>
