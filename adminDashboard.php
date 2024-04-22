@@ -9,7 +9,35 @@
   <style>
     .scrollable-main {
       overflow-y: auto;
+      overflow-x: hidden;
+      width: 100%;
+      height: 80vh;
     }
+    .flex-container {
+       display: flex;
+       background-color: #EEEEEE;
+    }
+    .nav-column {
+      width: auto;
+      order: 2;
+   }
+    .main-column {
+      flex-grow: 1;
+      margin-top: 3rem;
+      margin-left: 2rem;
+      margin-right: 2rem;
+      width: 80%;
+      order: 1;
+  }
+
+  @media (min-width: 768px) {
+  .flex-container {
+    flex-direction: row;
+  }
+  .nav-column {
+    order: 1;
+  }
+}
   </style>
 </head>
 <body class="overflow-hidden">
@@ -18,13 +46,13 @@
         <img src="./assets/img/74px-DOST_seal.svg.png" alt="DOST logo" class="me-3 ms-3 mt-3 mb-3" style="width: 30px; height: 30px; border-radius: 25%; border: 1px solid white; background-color: white; object-fit: cover; object-position: center;">
         <p><H4 class="text-white">DOST-SETUP Funding Monitoring System</H4></p>
       </div>
-      <div>
-      <div class="overflow-y-auto">
-        <?php include("navAdmin.php"); ?>
-      </div>
-      <main class="scrollable-main">
-      </main>
-      </div>
   </div>
+  <div class="flex-container d-flex flex-column flex-md-row mobileView">
+        <div class="nav-column">
+          <?php include("navAdmin.php"); ?>
+        </div>
+        <main class="main-column scrollable-main">
+        </main>
+ </div>
 </body>
 </html>

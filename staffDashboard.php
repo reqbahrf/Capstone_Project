@@ -58,23 +58,38 @@
   </div>
   <div class="flex-container d-flex flex-column flex-md-row mobileView">
     <div class="nav-column">
-      <?php include("navStaff.php"); ?>
+    <?php include("navStaff.php"); ?>
     </div>
-    <main class="main-column scrollable-main">
+    <main class="main-column scrollable-main" id="main-content">
       <?php
-          $page = $_GET['page'] ?? 'dashboard';
+        // $page = $_GET['page'] ?? 'dashboard';
 
-          switch ($page) {
-              case 'applicant':
-                  include("staffApplicantTab.php");
-                  break;
-              case 'dashboard':
-              default:
-                  include("staffDashboardTab.php");
-                  break;
-          }
+        // switch ($page) {
+        //     case 'applicant':
+        //         include("staffApplicantTab.php");
+        //         break;
+        //     case 'dashboard':
+        //     default:
+        //         include("staffDashboardTab.php");
+        //         break;
+        // }
       ?>
     </main>
   </div>
+  <script>
+    function loadPage(url) {
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: function(response) {
+            // Replace '#content' with the selector for the element where you want to load the content
+            $('#main-content').html(response);
+        },
+        error: function(error) {
+            console.log('Error: ' + error);
+        },
+    });
+}
+  </script>
 </body>
 </html>
