@@ -61,22 +61,13 @@
     <?php include("navStaff.php"); ?>
     </div>
     <main class="main-column scrollable-main" id="main-content">
-      <?php
-        // $page = $_GET['page'] ?? 'dashboard';
 
-        // switch ($page) {
-        //     case 'applicant':
-        //         include("staffApplicantTab.php");
-        //         break;
-        //     case 'dashboard':
-        //     default:
-        //         include("staffDashboardTab.php");
-        //         break;
-        // }
-      ?>
     </main>
   </div>
   <script>
+    $(document).ready(function() {
+    loadPage('staffdashboardTab.php');
+   });
     function loadPage(url) {
     $.ajax({
         url: url,
