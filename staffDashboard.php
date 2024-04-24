@@ -66,15 +66,15 @@
   </div>
   <script>
     $(document).ready(function() {
-    loadPage('staffdashboardTab.php');
-   });
-    function loadPage(url) {
+    loadPage('staffDashboardTab.php', 'dashboardLink');
+  });
+   function loadPage(url, activeLink) {
     $.ajax({
         url: url,
         type: 'GET',
         success: function(response) {
-            // Replace '#content' with the selector for the element where you want to load the content
             $('#main-content').html(response);
+            setActiveLink(activeLink);
         },
         error: function(error) {
             console.log('Error: ' + error);
