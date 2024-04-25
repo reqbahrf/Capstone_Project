@@ -64,16 +64,16 @@
   </div>
 </body>
 <script>
-  //   $(document).ready(function() {
-  //   loadPage('adminDashboardTab.php');
-  //  });
-    function loadPage(url) {
+  $(document).ready(function() {
+    loadPage('clientInformationTab.php', 'InformationTab');
+});
+  function loadPage(url, activeLink) {
     $.ajax({
         url: url,
         type: 'GET',
         success: function(response) {
-            // Replace '#content' with the selector for the element where you want to load the content
             $('#main-content').html(response);
+            setActiveLink(activeLink);
         },
         error: function(error) {
             console.log('Error: ' + error);
