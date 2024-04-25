@@ -54,6 +54,10 @@
   text-align:left;
   vertical-align:middle
 }
+.form-group {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+  }
 @media screen and (max-width: 767px) {
   .tg {
     width: auto !important;}

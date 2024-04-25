@@ -51,45 +51,53 @@
       <?php include("ProjectDataSheetTable.php"); ?>
     </div>
     <div class="tab-pane fade" id="Client-tab-pane" role="tabpanel" aria-labelledby="Client-tab" tabindex="0">
-      <div >
+
          <!-- where the client's information will be displayed. -->
-        <form action="" class="row g-3 mt-5 ms-5 me-5 mb-2 p-5">
+        <div class="row g-3 mt-5 ms-5 me-5 mb-2 p-5">
           <h2>Client Info:</h2>
-          <div class="col-md-12">
-            <label for="projectTitle" class="form-label">Project Title</label>
-            <input type="text" class="form-control" id="projectTitle">
+          <div class="form-group row">
+            <span for="project_title" class="col-sm-2 col-form-label"><strong>Project Title:</strong></span>
+            <div class="col-sm-10">
+              <p class="" id="project_title"><u>[Project Title Value]</u></p>
+            </div>
           </div>
-          <div class="col-md-12">
-            <label for="firmName" class="form-label">Name of Firm:</label>
-            <input type="text" class="form-control" id="firmName">
+          <div class="form-group row">
+            <span for="firm_name" class="col-sm-2 col-form-label"> <strong>Name of Firm:</strong></span>
+            <div class="col-sm-10">
+              <p class="" id="firm_name"><u>[Firm Name Value]</u></p>
+            </div>
           </div>
-          <div class="col-md-12">
-            <label for="address" class="form-label">Address:</label>
-            <input type="text" class="form-control" id="address">
+          <div class="form-group row">
+            <span for="address" class="col-sm-2 col-form-label"><strong>Address:</strong></span>
+            <div class="col-sm-10">
+              <p class="" id="address"><u>[Address Value]</u></p>
+            </div>
           </div>
-          <div class="col-md-12">
-            <label for="contactPerson" class="form-label">Contact Person:</label>
-            <input type="text" class="form-control" id="contactPerson">
+          <div class="form-group row">
+            <span class="col-sm-2 col-form-label"><strong>Contact Person:</strong></span>
+            <div class="col-sm-4">
+              <p class="" id="contact_person"><u>[Contact Person Value]</u></p>
+            </div>
+            <span class="col-sm-2 col-form-label"><strong>Designation:</strong></span>
+            <div class="col-sm-4">
+              <p class="" id="designation"><u>[Designation Value]</u></p>
+            </div>
           </div>
-          <h3>Contact Info:</h3>
-          <div class="col-md-12">
-            <label for="designation" class="form-label">Designation:</label>
-            <input type="text" class="form-control" id="designation">
+          <div class="form-group row">
+            <span class="col-sm-2 col-form-label"><strong>Landline:</strong></span>
+            <div class="col-sm-2">
+              <p class="" id="landline"><u>[Landline Value]</u></p>
+            </div>
+            <span class="col-sm-2 col-form-label"><strong>Mobile Phone:</strong></span>
+            <div class="col-sm-2">
+              <p class="" id="mobile_phone"><u>[Mobile Phone Value]</u></p>
+            </div>
+            <span class="col-sm-2 col-form-label"><strong>Email Address:</strong></span>
+            <div class="col-sm-2">
+              <p class="" id="email"><u>[Email Address Value]</u></p>
+            </div>
           </div>
-          <div class="col-md-12">
-            <label for="landline" class="form-label">Landline:</label>
-            <input type="text" class="form-control" id="landline">
-          </div>
-          <div class="col-md-12">
-            <label for="mobilePhone" class="form-label">Mobile Phone:</label>
-            <input type="text" class="form-control" id="mobilePhone">
-          </div>
-          <div class="col-md-12">
-            <label for="emailAddress" class="form-label">Email Address:</label>
-            <input type="text" class="form-control" id="emailAddress">
-          </div>
-        </form>
-      </div>
+        </div>
     </div>
   </div>
 </div>
