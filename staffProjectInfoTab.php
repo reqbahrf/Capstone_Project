@@ -178,6 +178,7 @@
       <Div class="m-2 p-5">
         <!-- TODO: add a line connection with the checkboxes -->
         <form action="">
+
           <div>
             <div class="checkbox-wrapper-26 mb-3 ms-3">
               <div class="d-flex align-items-center justify-content-start">
@@ -221,7 +222,72 @@
     </div>
     <div class="tab-pane fade" id="Project-tab-pane" role="tabpanel" aria-labelledby="Project-tab" tabindex="0">
       <!-- Where the project infomation sheets will be displayed. -->
-      <?php include("ProjectInformationSheetTable.php"); ?>
+      <div class="p-5">
+        <form action="">
+          <!-- create a textfield for the following; Project title:, Name of the Firm:, line break then h5{Owner Contact Person} line break, then another textfield for Name:, Gender:, Age:, Type of Organization/Enterprise:, Business address: line break h5{Contact Details} line break, then another tectfield for landline:, Fax:, Mobile Phone:, and Email Address. not that the textfields should utilize bootstrap form-floating  -->
+          <div class="ps-4 pe-2 pt-2">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="projectTitle" placeholder="Project Title">
+              <label for="projectTitle">Project Title:</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="firmName" placeholder="Name of the Firm">
+              <label for="firmName">Name of the Firm:</label>
+            </div>
+          </div>
+          <h5>OWNER CONTACT PERSON</h5>
+          <div class="ps-4 pe-2 pt-2">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="name" placeholder="Name">
+              <label for="name">Name:</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="gender" placeholder="Gender">
+              <label for="gender">Gender:</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="age" placeholder="Age">
+              <label for="age">Age:</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="organizationType" placeholder="Type of Organization/Enterprise">
+              <label for="organizationType">Type of Organization/Enterprise:</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="businessAddress" placeholder="Business Address">
+              <label for="businessAddress">Business Address:</label>
+            </div>
+          </div>
+          <h5>CONTACT DETAILS</h5>
+          <div class="ps-4 pe-2 pt-2">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="landline" placeholder="Landline">
+              <label for="landline">Landline:</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="fax" placeholder="Fax">
+              <label for="fax">Fax:</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="mobilePhone" placeholder="Mobile Phone">
+              <label for="mobilePhone">Mobile Phone:</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="emailAddress" placeholder="Email Address">
+              <label for="emailAddress">Email Address:</label>
+            </div>
+          </div>
+        </form>
+      </div>
+
     </div>
     <div class="tab-pane fade" id="ProjectData-tab-pane" role="tabpanel" aria-labelledby="ProjectData-tab" tabindex="0">
       <!-- Where the project Data sheets will be displayed. -->
@@ -310,7 +376,7 @@
           </div>
           <hr>
           <h4>1.0 ASSETS</h4>
-          <div class="row mb-3">
+          <div class="row ms-4 mb-3">
             <div class="col">
               <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="BuildingAsset" name="Building" placeholder="Building">
@@ -353,22 +419,61 @@
           </div>
           <hr>
           <h4>2.0 TOTAL EMPLOYMENT FOR THE QUARTER</h4>
-          <div>
-            <h5 class="mt-4">2.1 Direct Labor(Production)</h5>
+          <div class="row ms-2 mb-3">
+            <h5>2.1 Direct Labor(Production)</h5>
+            <div class="row ms-2">
+              <h6>2.1a Direct Labor</h6>
+              <div class="col-md-3 form-floating mb-3">
+                <input type="text" class="form-control" id="maleInput" placeholder="Male">
+                <label for="maleInput">Male</label>
+              </div>
+              <div class="col-md-3 form-floating mb-3">
+                <input type="text" class="form-control" id="femaleInput" placeholder="Female">
+                <label for="femaleInput">Female</label>
+              </div>
+              <div class="col-md-3 form-floating mb-3">
+                <input type="text" class="form-control" id="workdayInput" placeholder="Workday">
+                <label for="workdayInput">Workday</label>
+              </div>
+              <div class="col-md-3 mb-3">
+                <p>{Total}</p>
+              </div>
+            </div>
+
+            <div class="row ms-2">
+              <h6>2.1b Part-time</h6>
+              <div class="col-md-3 form-floating mb-3">
+                <input type="text" class="form-control" id="parttimeMaleInput" placeholder="Male">
+                <label for="parttimeMaleInput">Male</label>
+              </div>
+              <div class="col-md-3 form-floating mb-3">
+                <input type="text" class="form-control" id="parttimeFemaleInput" placeholder="Female">
+                <label for="parttimeFemaleInput">Female</label>
+              </div>
+              <div class="col-md-3 form-floating mb-3">
+                <input type="text" class="form-control" id="parttimeWorkdayInput" placeholder="Workday">
+                <label for="parttimeWorkdayInput">Workday</label>
+              </div>
+              <div class="col-md-3 mb-3">
+                <p>{Total}</p>
+              </div>
+            </div>
+            <h5>2.2 Indirect Labor(Admin and Marketing)</h5>
             <div class="container mt-2">
-              <h6>2.1 Direct Labor</h6>
-              <div class="row">
+
+              <div class="row ms-2">
+                <h6>2.2a Regular</h6>
                 <div class="col-md-3 form-floating mb-3">
-                  <input type="text" class="form-control" id="maleInput" placeholder="Male">
-                  <label for="maleInput">Male</label>
+                  <input type="text" class="form-control" id="parttimeMaleInput" placeholder="Male">
+                  <label for="parttimeMaleInput">Male</label>
                 </div>
                 <div class="col-md-3 form-floating mb-3">
-                  <input type="text" class="form-control" id="femaleInput" placeholder="Female">
-                  <label for="femaleInput">Female</label>
+                  <input type="text" class="form-control" id="parttimeFemaleInput" placeholder="Female">
+                  <label for="parttimeFemaleInput">Female</label>
                 </div>
                 <div class="col-md-3 form-floating mb-3">
-                  <input type="text" class="form-control" id="workdayInput" placeholder="Workday">
-                  <label for="workdayInput">Workday</label>
+                  <input type="text" class="form-control" id="parttimeWorkdayInput" placeholder="Workday">
+                  <label for="parttimeWorkdayInput">Workday</label>
                 </div>
                 <div class="col-md-3 mb-3">
                   <p>{Total}</p>
@@ -376,8 +481,9 @@
               </div>
             </div>
             <div class="container mt-2">
-              <h6>2.1b Part-time</h6>
-              <div class="row">
+
+              <div class="row ms-2">
+                <h6>2.2b Part-time</h6>
                 <div class="col-md-3 form-floating mb-3">
                   <input type="text" class="form-control" id="parttimeMaleInput" placeholder="Male">
                   <label for="parttimeMaleInput">Male</label>
@@ -396,64 +502,21 @@
               </div>
             </div>
           </div>
-          <div>
-            <h5>2.2 Indirect Labor(Admin and Marketing)</h5>
-            <div class="container mt-2">
-              <h6>2.2a Regular</h6>
-              <div class="row">
-                <div class="col-md-3 form-floating mb-3">
-                  <input type="text" class="form-control" id="parttimeMaleInput" placeholder="Male">
-                  <label for="parttimeMaleInput">Male</label>
-                </div>
-                <div class="col-md-3 form-floating mb-3">
-                  <input type="text" class="form-control" id="parttimeFemaleInput" placeholder="Female">
-                  <label for="parttimeFemaleInput">Female</label>
-                </div>
-                <div class="col-md-3 form-floating mb-3">
-                  <input type="text" class="form-control" id="parttimeWorkdayInput" placeholder="Workday">
-                  <label for="parttimeWorkdayInput">Workday</label>
-                </div>
-                <div class="col-md-3 mb-3">
-                  <p>{Total}</p>
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <h6>Total Employment for this Quarter:</h6>
+              </div>
+              <div class="col">
+                <div class="mb-3 form-floating">
+                  <input type="text" class="form-control" id="regularEmployees" name="regularEmployees" min="0" placeholder="No. of Regular Employees" required>
+                  <label for="regularEmployees">No. of Regular Employees:</label>
                 </div>
               </div>
-            </div>
-            <div class="container mt-2">
-              <h6>2.2b Part-time</h6>
-              <div class="row">
-                <div class="col-md-3 form-floating mb-3">
-                  <input type="text" class="form-control" id="parttimeMaleInput" placeholder="Male">
-                  <label for="parttimeMaleInput">Male</label>
-                </div>
-                <div class="col-md-3 form-floating mb-3">
-                  <input type="text" class="form-control" id="parttimeFemaleInput" placeholder="Female">
-                  <label for="parttimeFemaleInput">Female</label>
-                </div>
-                <div class="col-md-3 form-floating mb-3">
-                  <input type="text" class="form-control" id="parttimeWorkdayInput" placeholder="Workday">
-                  <label for="parttimeWorkdayInput">Workday</label>
-                </div>
-                <div class="col-md-3 mb-3">
-                  <p>{Total}</p>
-                </div>
-              </div>
-            </div>
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col-auto">
-                  <h6>Total Employment for this Quarter:</h6>
-                </div>
-                <div class="col">
-                  <div class="mb-3 form-floating">
-                    <input type="text" class="form-control" id="regularEmployees" name="regularEmployees" min="0" placeholder="No. of Regular Employees" required>
-                    <label for="regularEmployees">No. of Regular Employees:</label>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="mb-3 form-floating">
-                    <input type="text" class="form-control" id="manMonths" name="manMonths" placeholder="No. of Man-Months" required>
-                    <label for="manMonths">No. of Man-Months:</label>
-                  </div>
+              <div class="col">
+                <div class="mb-3 form-floating">
+                  <input type="text" class="form-control" id="manMonths" name="manMonths" placeholder="No. of Man-Months" required>
+                  <label for="manMonths">No. of Man-Months:</label>
                 </div>
               </div>
             </div>
@@ -461,10 +524,10 @@
           <hr>
           <h4>3.0 PRODUCTION AND SALES DATA FOR THE QUARTER</h4>
           <div>
-            <h5>3.1 Export Market</h5>
+            <h5 class="ms-2">3.1 Export Market</h5>
             <!-- FIXME: Improve the textfield format -->
             <div id="productExport" class="productExport">
-              <div class="row">
+              <div class="row ms-4">
                 <hr>
                 <div class="col-md-4">
                   <div class="form-floating mb-3">
@@ -511,10 +574,10 @@
             <div class="mt-2">
               <button id="addButtonExport" class="btn btn-primary">Add</button>
             </div>
-            <h5>3.2 Local Market</h5>
+            <h5 class="ms-2">3.2 Local Market</h5>
             <!-- FIXME: Improve the textfield format -->
             <div id="productLocal" class="productLocal">
-              <div class="row">
+              <div class="row ms-4">
                 <hr>
                 <div class="col-md-4">
                   <div class="form-floating mb-3">
@@ -572,15 +635,15 @@
           <h4>4.0 MARKET OUTLETS</h4>
           <div>
             <div>
-              <h5>4.1 Export</h5>
-              <div class="form-floating">
+              <h5 class="ms-2">4.1 Export</h5>
+              <div class="form-floating ms-4">
                 <textarea class="form-control" placeholder="Export" id="exportTextarea"></textarea>
                 <label for="exportTextarea">Export</label>
               </div>
             </div>
             <div>
-              <h5>4.2 Local</h5>
-              <div class="form-floating">
+              <h5 class="ms-2">4.2 Local</h5>
+              <div class="form-floating ms-4">
                 <textarea class="form-control" placeholder="Local" id="localTextarea"></textarea>
                 <label for="localTextarea">Local</label>
               </div>
@@ -588,8 +651,9 @@
           </div>
           <h3>TO BE ACCOMPLISHED BY DOST XI</h3>
           <div>
-            <div class="row">
-              <h5>Gross Sales Generated</h5>
+            <h5 class="ms-2">Gross Sales Generated</h5>
+            <div class="row ms-4">
+
               <div class="col-md-4">
                 <div class="form-floating mb-3">
                   <input type="text" class="form-control" id="grossSalesPeriod1" name="grossSalesPeriod1" placeholder="Gross Sales {period1}">
@@ -613,8 +677,9 @@
                 </div>
               </div>
             </div>
-            <div class="row">
-              <h5>Employment Generated</h5>
+            <h5 class="ms-2">Employment Generated</h5>
+            <div class="row ms-4">
+
               <div class="col-md-4">
                 <div class="form-floating mb-3">
                   <input type="text" class="form-control" id="TotalEmployment2" name="TotalEmployment2" placeholder="Gross Sales {period1}">
