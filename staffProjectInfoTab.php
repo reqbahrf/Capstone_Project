@@ -11,6 +11,15 @@
     /* Change the text color to black for better contrast */
   }
 
+  .checkbox-wrapper-26 {
+    /* Temporary, for debugging */
+
+
+    position: relative;
+    /* Ensure this is set to contain absolutely positioned children */
+    padding-bottom: 40px;
+  }
+
   .checkbox-wrapper-26 span {
     margin-left: 10px;
     /* Adjust the spacing to your preference */
@@ -151,6 +160,24 @@
   .productLocal:first-of-type .deleteButtonLocal {
     display: none;
   }
+
+  .line {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 30px;
+    background-color: #000;
+    visibility: hidden;
+    z-index: 10;
+  }
+
+  .checkbox-wrapper-26 span {
+    font-weight: bolder;
+    min-width: 60%;
+    max-width: 70%;
+  }
 </style>
 <div>
   <div>
@@ -180,7 +207,7 @@
         <form action="">
 
           <div>
-            <div class="checkbox-wrapper-26 mb-3 ms-3">
+            <div class="checkbox-wrapper-26 ms-3">
               <div class="d-flex align-items-center justify-content-start">
                 <input type="checkbox" id="_checkbox-TNA" value="TNA" onclick="checkOrder(this, null)">
                 <label for="_checkbox-TNA" class="me-2">
@@ -188,8 +215,9 @@
                 </label>
                 <span>TNA</span>
               </div>
+              <div class="line position-absolute"></div>
             </div>
-            <div class="checkbox-wrapper-26 mb-3 ms-3">
+            <div class="checkbox-wrapper-26 ms-3">
               <div class="d-flex align-items-center justify-content-start">
                 <input type="checkbox" id="_checkbox-PDA" value="Project Deliberation Approval" onclick="checkOrder(this, '_checkbox-TNA')" disabled>
                 <label for="_checkbox-PDA" class="me-2">
@@ -197,8 +225,9 @@
                 </label>
                 <span>Project Deliberation Approval</span>
               </div>
+              <div class="line position-absolute"></div>
             </div>
-            <div class="checkbox-wrapper-26 mb-3 ms-3">
+            <div class="checkbox-wrapper-26 ms-3">
               <div class="d-flex align-items-center justify-content-start">
                 <input type="checkbox" id="_checkbox-PDC" value="PDC-post Dated Cheque" onclick="checkOrder(this, '_checkbox-PDA')" disabled>
                 <label for="_checkbox-PDC" class="me-2">
@@ -206,8 +235,9 @@
                 </label>
                 <span>PDC-post Dated Cheque</span>
               </div>
+              <div class="line position-absolute"></div>
             </div>
-            <div class="checkbox-wrapper-26 mb-3 ms-3">
+            <div class="checkbox-wrapper-26 ms-3">
               <div class="d-flex align-items-center justify-content-start">
                 <input type="checkbox" id="_checkbox-FR" value="Fund release" onclick="checkOrder(this, '_checkbox-PDC')" disabled>
                 <label for="_checkbox-FR" class="me-2">
@@ -761,22 +791,44 @@
 
   <script>
     (function() {
+      function enableNextCheckbox(currentCheckbox) {
+        let parentDiv = currentCheckbox.closest('.checkbox-wrapper-26');
+        let nextProgressBar = parentDiv.querySelector('.line'); // Select the progress bar within the same wrapper
+        let nextDiv = parentDiv.nextElementSibling; // Select the next checkbox wrapper
+        let nextCheckbox = nextDiv ? nextDiv.querySelector('input[type="checkbox"]') : null;
+
+        if (nextCheckbox) {
+          nextCheckbox.disabled = false; // Enable the next checkbox
+          //Calculate the height of the progress bar based on the position of the checkboxes
+          let currentCheckboxBottom = parentDiv.getBoundingClientRect().bottom;
+          let nextCheckboxTop = nextDiv.getBoundingClientRect().top;
+          let height = nextCheckboxTop - currentCheckboxBottom;
+          nextProgressBar.style.height = `68px`; // Set the height of the progress bar
+          nextProgressBar.style.visibility = 'visible'; // Make the progress bar visible
+          nextProgressBar.style.backgroundColor = '#07D410'; // Change the color of the progress bar
+          nextProgressBar.style.bottom = '-10px'; // Align the progress bar to the bottom of the checkbox
+          nextProgressBar.style.left = '1.3%'; // Align the progress bar to the center of the checkbox
+          nextProgressBar.style.width = '10px'; // Set the width of the progress bar
+          nextProgressBar.style.zIndex = '0';
+
+        }
+      }
+
       window.checkOrder = function(currentCheckbox, previousCheckboxId) {
         if (previousCheckboxId) {
           let previousCheckbox = document.getElementById(previousCheckboxId);
           if (!previousCheckbox.checked) {
             currentCheckbox.checked = false;
             alert('Please check the previous item first.');
-          } else {
-            enableNextCheckbox(currentCheckbox);
+            return; // Stop further execution
           }
-        } else {
-          enableNextCheckbox(currentCheckbox);
         }
 
-        // If unchecking, uncheck and disable all subsequent checkboxes
-        if (!currentCheckbox.checked) {
+        if (currentCheckbox.checked) {
+          enableNextCheckbox(currentCheckbox);
+        } else {
           let parentDiv = currentCheckbox.closest('.checkbox-wrapper-26');
+          let nextProgressBar = parentDiv.querySelector('.line');
           let nextDiv = parentDiv.nextElementSibling;
           while (nextDiv) {
             let nextCheckbox = nextDiv.querySelector('input[type="checkbox"]');
@@ -784,18 +836,16 @@
               nextCheckbox.checked = false;
               nextCheckbox.disabled = true;
             }
+            disableProgressBar(nextProgressBar); // Reset the progress bar for each unchecked checkbox
+            nextProgressBar = nextDiv.querySelector('.line');
             nextDiv = nextDiv.nextElementSibling;
           }
         }
       }
 
-      function enableNextCheckbox(currentCheckbox) {
-        let parentDiv = currentCheckbox.closest('.checkbox-wrapper-26');
-        let nextDiv = parentDiv.nextElementSibling;
-        let nextCheckbox = nextDiv ? nextDiv.querySelector('input[type="checkbox"]') : null;
-
-        if (nextCheckbox) {
-          nextCheckbox.disabled = false; // Enable the next checkbox
+      function disableProgressBar(progressBar) {
+        if (progressBar) {
+          progressBar.style.height = '0'; // Reset progress bar height
         }
       }
 
