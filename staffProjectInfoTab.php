@@ -252,7 +252,12 @@
     </div>
     <div class="tab-pane fade" id="Project-tab-pane" role="tabpanel" aria-labelledby="Project-tab" tabindex="0">
       <!-- Where the project infomation sheets will be displayed. -->
-      <div class="p-5">
+      <button type="button" id="BackInformation" class="btn btn-secondary">Back</button>
+      <div id="InformationSheets">
+
+      </div>
+      <div class="p-5" id="InfoSheetForm">
+
         <form action="">
           <!-- create a textfield for the following; Project title:, Name of the Firm:, line break then h5{Owner Contact Person} line break, then another textfield for Name:, Gender:, Age:, Type of Organization/Enterprise:, Business address: line break h5{Contact Details} line break, then another tectfield for landline:, Fax:, Mobile Phone:, and Email Address. not that the textfields should utilize bootstrap form-floating  -->
           <div class="ps-4 pe-2 pt-2">
@@ -315,13 +320,14 @@
               <label for="emailAddress">Email Address:</label>
             </div>
           </div>
+          <button type="submit" id="createSheetButtonInfo" class="btn btn-primary">Create Sheet</button>
         </form>
       </div>
 
     </div>
     <div class="tab-pane fade" id="ProjectData-tab-pane" role="tabpanel" aria-labelledby="ProjectData-tab" tabindex="0">
       <!-- Where the project Data sheets will be displayed. -->
-      <button type="button" id="resetButton" class="btn btn-secondary">Reset</button>
+      <button type="button" id="BackData" class="btn btn-secondary">Back</button>
       <div id="dataSheets">
 
       </div>
@@ -899,9 +905,32 @@
         });
       });
       $(document).ready(function() {
-        $('#resetButton').click(function() {
+        $('#BackData').click(function() {
           $('#dataSheets').empty(); // Clear the content of the div
           $('#dataSheets-form').show(); // Unhide the form
+        });
+      });
+      $(document).ready(function() {
+        $('#createSheetButtonInfo').click(function(e) {
+          e.preventDefault(); // Prevent the default form submission
+
+          $.ajax({
+            url: 'ProjectInformationSheetTable.php', // URL of the PHP file you want to load
+            type: 'GET', // GET or POST
+            success: function(response) {
+              $('#InformationSheets').html(response); // Load the response into the div
+              $('#InfoSheetForm').hide(); // Hide the form
+            },
+            error: function() {
+              alert('Error loading the file');
+            }
+          });
+        });
+      });
+      $(document).ready(function() {
+        $('#BackInformation').click(function() {
+          $('#InformationSheets').empty(); // Clear the content of the div
+          $('#InfoSheetForm').show(); // Unhide the form
         });
       });
     })();
