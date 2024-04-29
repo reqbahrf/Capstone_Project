@@ -321,7 +321,11 @@
     </div>
     <div class="tab-pane fade" id="ProjectData-tab-pane" role="tabpanel" aria-labelledby="ProjectData-tab" tabindex="0">
       <!-- Where the project Data sheets will be displayed. -->
-      <div class="container p-5">
+      <button type="button" id="resetButton" class="btn btn-secondary">Reset</button>
+      <div id="dataSheets">
+
+      </div>
+      <div class="container p-5" id="dataSheets-form">
         <form>
           <div class="container">
             <div class="row mb-3">
@@ -539,13 +543,13 @@
               </div>
               <div class="col">
                 <div class="mb-3 form-floating">
-                  <input type="text" class="form-control" id="regularEmployees" name="regularEmployees" min="0" placeholder="No. of Regular Employees" required>
+                  <input type="text" class="form-control" id="regularEmployees" name="regularEmployees" min="0" placeholder="No. of Regular Employees">
                   <label for="regularEmployees">No. of Regular Employees:</label>
                 </div>
               </div>
               <div class="col">
                 <div class="mb-3 form-floating">
-                  <input type="text" class="form-control" id="manMonths" name="manMonths" placeholder="No. of Man-Months" required>
+                  <input type="text" class="form-control" id="manMonths" name="manMonths" placeholder="No. of Man-Months">
                   <label for="manMonths">No. of Man-Months:</label>
                 </div>
               </div>
@@ -733,7 +737,7 @@
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary">Create Sheet</button>
+            <button type="submit" id="createSheetButton" class="btn btn-primary">Create Sheet</button>
           </div>
         </form>
       </div>
@@ -876,6 +880,29 @@
 
         // Hide the delete buttons initially
         $('.deleteButtonExport, .deleteButtonLocal').hide();
+      });
+      $(document).ready(function() {
+        $('#createSheetButton').click(function(e) {
+          e.preventDefault(); // Prevent the default form submission
+
+          $.ajax({
+            url: 'ProjectDataSheetTable.php', // URL of the PHP file you want to load
+            type: 'GET', // GET or POST
+            success: function(response) {
+              $('#dataSheets').html(response); // Load the response into the div
+              $('#dataSheets-form').hide(); // Hide the form
+            },
+            error: function() {
+              alert('Error loading the file');
+            }
+          });
+        });
+      });
+      $(document).ready(function() {
+        $('#resetButton').click(function() {
+          $('#dataSheets').empty(); // Clear the content of the div
+          $('#dataSheets-form').show(); // Unhide the form
+        });
       });
     })();
   </script>
