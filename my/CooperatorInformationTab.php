@@ -1,5 +1,3 @@
-# create a client information sheet with the client's name, address, landline phone number, email, as will as the project title, project description, project cost also include a table with the due date of client payments and the amount due. also include the payment history of the client from the previous months. 
-# the client information sheet should be responsive and should be able to be viewed on a mobile device.
 <?php
 // Your PHP code here
 
@@ -25,26 +23,21 @@ $paymentHistory = [
   // Add more payment history entries as needed
 ];
 ?>
+<style>
+  /* Add your CSS styles here */
+  /* Example styles for responsive design */
+  @media only screen and (max-width: 600px) {
+    /* Styles for mobile devices */
+  }
 
-<!DOCTYPE html>
-<html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    /* Add your CSS styles here */
-    /* Example styles for responsive design */
-    @media only screen and (max-width: 600px) {
-      /* Styles for mobile devices */
-    }
-    
-    @media only screen and (min-width: 601px) {
-      /* Styles for larger devices */
-    }
-  </style>
+  @media only screen and (min-width: 601px) {
+    /* Styles for larger devices */
+  }
+</style>
 </head>
-<div class="container">
+<div class="container-fluid p-0 m-0">
   <div class=" bg-dark text-white p-2">
-  <h1>Client Information Sheet</h1>
+    <h1>Client Information Sheet</h1>
   </div>
   <div class="row">
     <div class="col-md-12">
@@ -74,7 +67,7 @@ $paymentHistory = [
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($duePayments as $payment): ?>
+          <?php foreach ($duePayments as $payment) : ?>
             <tr>
               <td><?php echo $payment['dueDate']; ?></td>
               <td><?php echo $payment['amountDue']; ?></td>
@@ -95,7 +88,7 @@ $paymentHistory = [
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($paymentHistory as $payment): ?>
+          <?php foreach ($paymentHistory as $payment) : ?>
             <tr>
               <td><?php echo $payment['date']; ?></td>
               <td><?php echo $payment['amount']; ?></td>
@@ -106,4 +99,5 @@ $paymentHistory = [
     </div>
   </div>
 </div>
+
 </html>

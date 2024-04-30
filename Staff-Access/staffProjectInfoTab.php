@@ -892,7 +892,7 @@
           e.preventDefault(); // Prevent the default form submission
 
           $.ajax({
-            url: 'ProjectDataSheetTable.php', // URL of the PHP file you want to load
+            url: 'outputs/ProjectDataSheetTable.php', // URL of the PHP file you want to load
             type: 'GET', // GET or POST
             success: function(response) {
               $('#dataSheets').html(response); // Load the response into the div
@@ -915,7 +915,7 @@
           e.preventDefault(); // Prevent the default form submission
 
           $.ajax({
-            url: 'ProjectInformationSheetTable.php', // URL of the PHP file you want to load
+            url: 'outputs/ProjectInformationSheetTable.php', // URL of the PHP file you want to load
             type: 'GET', // GET or POST
             success: function(response) {
               $('#InformationSheets').html(response); // Load the response into the div

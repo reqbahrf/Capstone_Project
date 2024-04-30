@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personal Dashboard</title>
+  <title>Dashboard</title>
   <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
   <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -21,14 +22,17 @@
       width: 100%;
       height: 80vh;
     }
+
     .flex-container {
-       display: flex;
-       background-color: #EEEEEE;
+      display: flex;
+      background-color: #EEEEEE;
     }
+
     .nav-column {
       width: auto;
       order: 2;
-   }
+    }
+
     .main-column {
       flex-grow: 1;
       margin-top: 3rem;
@@ -36,49 +40,67 @@
       margin-right: 2rem;
       width: 80%;
       order: 1;
-  }
+    }
 
-  @media (min-width: 768px) {
-  .flex-container {
-    flex-direction: row;
-  }
-  .nav-column {
-    order: 1;
-  }
-}
+    .logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 25%;
+      border: 1px solid white;
+      background-color: white;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    @media (min-width: 768px) {
+      .flex-container {
+        flex-direction: row;
+      }
+
+      .nav-column {
+        order: 1;
+      }
+    }
   </style>
 </head>
+
 <body class="overflow-hidden">
   <div class="container-fluid px-0">
-      <div class="d-flex align-items-center bg-primary">
-        <img src="./assets/img/74px-DOST_seal.svg.png" alt="DOST logo" class="me-3 ms-3 mt-3 mb-3" style="width: 30px; height: 30px; border-radius: 25%; border: 1px solid white; background-color: white; object-fit: cover; object-position: center;">
-        <p><H4 class="text-white">DOST-SETUP Funding Monitoring System</H4></p>
-      </div>
+    <div class="d-flex align-items-center bg-primary">
+      <img src="../assets/img/74px-DOST_seal.svg.png" alt="DOST logo" class="me-3 ms-3 mt-3 mb-3 logo">
+      <p>
+      <H4 class="text-white">DOST-SETUP Funding Monitoring System</H4>
+      </p>
+    </div>
   </div>
   <div class="flex-container d-flex flex-column flex-md-row mobileView">
-  <div class="overflow-y-auto">
-        <?php include("navClient.php"); ?>
-      </div>
-       <main class="main-column scrollable-main" id="main-content">
-       </main>
+    <div class="nav-column">
+      <?php include("navStaff.php"); ?>
+    </div>
+    <main class="main-column scrollable-main" id="main-content">
+
+    </main>
   </div>
-</body>
-<script>
-  $(document).ready(function() {
-    loadPage('clientInformationTab.php', 'InformationTab');
-});
-  function loadPage(url, activeLink) {
-    $.ajax({
+  <script>
+    $(document).ready(function() {
+      loadPage('staffDashboardTab.php', 'dashboardLink');
+    });
+
+    function loadPage(url, activeLink) {
+      $.ajax({
         url: url,
         type: 'GET',
         success: function(response) {
-            $('#main-content').html(response);
-            setActiveLink(activeLink);
+          $('#main-content').html(response);
+          setActiveLink(activeLink);
         },
         error: function(error) {
-            console.log('Error: ' + error);
+          console.log('Error: ' + error);
         },
-    });
-}
+        
+      });
+    }
   </script>
+</body>
+
 </html>

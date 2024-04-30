@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
+  <title>Personal Dashboard</title>
   <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
   <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -16,6 +16,16 @@
   <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
   <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
   <style>
+    .logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 25%;
+      border: 1px solid white;
+      background-color: white;
+      object-fit: cover;
+      object-position: center;
+    }
+
     .scrollable-main {
       overflow-y: auto;
       overflow-x: hidden;
@@ -42,16 +52,6 @@
       order: 1;
     }
 
-    .logo {
-      width: 30px;
-      height: 30px;
-      border-radius: 25%;
-      border: 1px solid white;
-      background-color: white;
-      object-fit: cover;
-      object-position: center;
-    }
-
     @media (min-width: 768px) {
       .flex-container {
         flex-direction: row;
@@ -67,40 +67,38 @@
 <body class="overflow-hidden">
   <div class="container-fluid px-0">
     <div class="d-flex align-items-center bg-primary">
-      <img src="./assets/img/74px-DOST_seal.svg.png" alt="DOST logo" class="me-3 ms-3 mt-3 mb-3 logo">
+      <img src="../assets/img/74px-DOST_seal.svg.png" alt="DOST logo" class="me-3 ms-3 mt-3 mb-3 logo">
       <p>
       <H4 class="text-white">DOST-SETUP Funding Monitoring System</H4>
       </p>
     </div>
   </div>
   <div class="flex-container d-flex flex-column flex-md-row mobileView">
-    <div class="nav-column">
-      <?php include("navStaff.php"); ?>
+    <div class="overflow-y-auto">
+      <?php include("navCooperator.php"); ?>
     </div>
     <main class="main-column scrollable-main" id="main-content">
-
     </main>
   </div>
-  <script>
-    $(document).ready(function() {
-      loadPage('staffDashboardTab.php', 'dashboardLink');
-    });
-
-    function loadPage(url, activeLink) {
-      $.ajax({
-        url: url,
-        type: 'GET',
-        success: function(response) {
-          $('#main-content').html(response);
-          setActiveLink(activeLink);
-        },
-        error: function(error) {
-          console.log('Error: ' + error);
-        },
-      });
-    }
-    
-  </script>
 </body>
+<script>
+  $(document).ready(function() {
+    loadPage('CooperatorInformationTab.php', 'InformationTab');
+  });
+
+  function loadPage(url, activeLink) {
+    $.ajax({
+      url: url,
+      type: 'GET',
+      success: function(response) {
+        $('#main-content').html(response);
+        setActiveLink(activeLink);
+      },
+      error: function(error) {
+        console.log('Error: ' + error);
+      },
+    });
+  }
+</script>
 
 </html>

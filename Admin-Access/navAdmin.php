@@ -1,40 +1,40 @@
 <style>
   .navbar-nav {
-      width: auto;
-      margin: 5px;
-      height: -webkit-fill-available;
-      padding-left: 10px;
-    }
+    width: auto;
+    margin: 5px;
+    height: -webkit-fill-available;
+    padding-left: 10px;
+  }
 
-    .color {
-      fill:#f1f1f1;
-    }
+  .color {
+    fill: #f1f1f1;
+  }
 
-    .sidenav a {
-      padding: 6px 8px 6px 0px;
-      text-decoration: none;
-      font-size: 20px;
-      color: #818181;
-      display: block;
-      filter: grayscale(100%) opacity(0.9);
+  .sidenav a {
+    padding: 6px 8px 6px 0px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    filter: grayscale(100%) opacity(0.9);
 
-    }
+  }
 
-    .sidenav a:hover {
-      filter: grayscale(0%) opacity(1);
-      color: white;
-    }
+  .sidenav a:hover {
+    filter: grayscale(0%) opacity(1);
+    color: white;
+  }
 
-    .sidenav a:hover svg path{
-      fill: #FFFFFF;
-    }
+  .sidenav a:hover svg path {
+    fill: #FFFFFF;
+  }
 
-    .hide-text {
-      letter-spacing: -10px;
-      display: none;
-    }
+  .hide-text {
+    letter-spacing: -10px;
+    display: none;
+  }
 
-    .rotate-icon {
+  .rotate-icon {
     transform: rotate(-180deg);
     transition: transform 0.3s ease;
   }
@@ -44,15 +44,16 @@
       position: fixed;
       bottom: 0;
       width: 100vw;
-      height: 5rem;
+      height: 3.5rem;
       overflow: hidden;
       background-color: #111;
     }
 
     li.minimize {
-    display: none;
-  }
-      .navbar-nav {
+      display: none;
+    }
+
+    .navbar-nav {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -61,14 +62,16 @@
     .nav-item a {
       justify-content: center;
     }
+
     span {
       letter-spacing: -10px;
       display: none;
     }
+
     nav.sidenav .navbar-nav li {
-    flex-grow: 1;
-    text-align: center;
-  }
+      flex-grow: 1;
+      text-align: center;
+    }
   }
 
   /* Large screens */
@@ -95,30 +98,28 @@
       margin-top: auto;
     }
 
-    .nav-text{
+    .nav-text {
       width: auto;
     }
   }
-
-
 </style>
 
 <nav class="sidenav">
-   <ul class="navbar-nav">
+  <ul class="navbar-nav">
     <li class="nav-item mb-2 minimize">
       <a href="#" class="mb-2 d-flex align-items-center" onclick="toggleSidebar()">
         <svg id="hover-link" class=" bg-secondary rounded-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
-         <path d="M16.113281 6.2050781L13.064453 8.7949219L31.578125 32.003906L13.0625 55.308594L16.115234 57.892578L37.701172 33.9375L39.451172 31.996094L37.697266 30.056641L16.113281 6.2050781 z M 33.113281 6.2050781L30.064453 8.7949219L48.578125 32.003906L30.0625 55.308594L33.115234 57.892578L54.701172 33.9375L56.451172 31.996094L54.697266 30.056641L33.113281 6.2050781 z" fill="#FFFFFF" />
-       </svg>
-       <span class="nav-text ml-2">Minimize</span>
+          <path d="M16.113281 6.2050781L13.064453 8.7949219L31.578125 32.003906L13.0625 55.308594L16.115234 57.892578L37.701172 33.9375L39.451172 31.996094L37.697266 30.056641L16.113281 6.2050781 z M 33.113281 6.2050781L30.064453 8.7949219L48.578125 32.003906L30.0625 55.308594L33.115234 57.892578L54.701172 33.9375L56.451172 31.996094L54.697266 30.056641L33.113281 6.2050781 z" fill="#FFFFFF" />
+        </svg>
+        <span class="nav-text ml-2">Minimize</span>
       </a>
     </li>
     <li class="nav-item mb-2">
-      <a href="#" onclick="loadPage('adminDashboardTab.php');"  class="mb-2 d-flex align-items-center">
+      <a href="#" onclick="loadPage('adminDashboardTab.php');" class="mb-2 d-flex align-items-center">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
           <path d="M26 8 A 3 3 0 0 0 23.033203 10.574219L17.054688 14.560547L19.273438 17.888672L25.251953 13.902344 A 3 3 0 0 0 26 14 A 3 3 0 0 0 26 8 z M 50 12 A 3 3 0 0 0 47.117188 14.171875L40.957031 18.488281L43.251953 21.761719L48.916016 17.794922 A 3 3 0 0 0 50 18 A 3 3 0 0 0 50 12 z M 30.992188 13.164062L28.164062 15.992188L35.007812 22.835938 A 3 3 0 0 0 38 26 A 3 3 0 0 0 38 20 A 3 3 0 0 0 37.835938 20.007812L30.992188 13.164062 z M 14 16 A 3 3 0 0 0 14 22 A 3 3 0 0 0 14 16 z M 22 27L22 52L18 52L18 35L10 35L10 52L8 52L8 56L56 56L56 52L54 52L54 31L46 31L46 52L42 52L42 39L34 39L34 52L30 52L30 27L22 27 z" fill="#5B5B5B" />
         </svg>
-        <span class="nav-text ml-2">dashboard</span> 
+        <span class="nav-text ml-2">dashboard</span>
       </a>
     </li>
     <li class="nav-item mb-2">
@@ -131,9 +132,9 @@
     </li>
     <li class="nav-item mb-2">
       <a href="#" onclick="loadPage('adminUsersTab.php');" class="mb-2 d-flex align-items-center">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
-        <path d="M53,10c-13,0-19-4-19-4h-4c0,0-6,4-19,4l-2,2v20c0,19,23,26,23,26s23-7,23-26V12L53,10z M27,22c0-2.76,2.24-5,5-5s5,2.24,5,5v0.71c0,2.77-2.14,5.72-5,5.72s-5-2.95-5-5.72V22z M32,43c-4.46,0-8.42-2.09-10.98-5.33l0.41-2.12c0.19-0.97,0.89-1.75,1.82-2.07C25.06,32.87,28.3,32,32,32s6.94,0.87,8.75,1.48c0.94,0.32,1.63,1.11,1.82,2.07l0.41,2.11C40.42,40.91,36.46,43,32,43z" fill="#5B5B5B" />
-      </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
+          <path d="M53,10c-13,0-19-4-19-4h-4c0,0-6,4-19,4l-2,2v20c0,19,23,26,23,26s23-7,23-26V12L53,10z M27,22c0-2.76,2.24-5,5-5s5,2.24,5,5v0.71c0,2.77-2.14,5.72-5,5.72s-5-2.95-5-5.72V22z M32,43c-4.46,0-8.42-2.09-10.98-5.33l0.41-2.12c0.19-0.97,0.89-1.75,1.82-2.07C25.06,32.87,28.3,32,32,32s6.94,0.87,8.75,1.48c0.94,0.32,1.63,1.11,1.82,2.07l0.41,2.11C40.42,40.91,36.46,43,32,43z" fill="#5B5B5B" />
+        </svg>
         <span class="link-text ml-2">Users</span>
       </a>
     </li>
@@ -142,7 +143,7 @@
         <span class="nav-text">UserName</span>
       </a>
     </li>
-   </ul>
+  </ul>
 </nav>
 
 <script>
@@ -150,7 +151,7 @@
     //side bar minimize
     var spans = document.querySelectorAll('.sidenav a span');
     spans.forEach(function(span) {
-        span.classList.toggle('hide-text');
+      span.classList.toggle('hide-text');
     });
     //size bar minimize rotation
 

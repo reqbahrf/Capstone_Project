@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,20 +17,33 @@
   <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
 
   <style>
+    .logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 25%;
+      border: 1px solid white;
+      background-color: white;
+      object-fit: cover;
+      object-position: center;
+    }
+
     .scrollable-main {
       overflow-y: auto;
       overflow-x: hidden;
       width: 100%;
       height: 80vh;
     }
+
     .flex-container {
-       display: flex;
-       background-color: #EEEEEE;
+      display: flex;
+      background-color: #EEEEEE;
     }
+
     .nav-column {
       width: auto;
       order: 2;
-   }
+    }
+
     .main-column {
       flex-grow: 1;
       margin-top: 3rem;
@@ -37,49 +51,55 @@
       margin-right: 2rem;
       width: 80%;
       order: 1;
-  }
+    }
 
-  @media (min-width: 768px) {
-  .flex-container {
-    flex-direction: row;
-  }
-  .nav-column {
-    order: 1;
-  }
-}
+    @media (min-width: 768px) {
+      .flex-container {
+        flex-direction: row;
+      }
+
+      .nav-column {
+        order: 1;
+      }
+    }
   </style>
 </head>
+
 <body class="overflow-hidden">
   <div class="container-fluid px-0">
-      <div class="d-flex align-items-center bg-primary">
-        <img src="./assets/img/74px-DOST_seal.svg.png" alt="DOST logo" class="me-3 ms-3 mt-3 mb-3" style="width: 30px; height: 30px; border-radius: 25%; border: 1px solid white; background-color: white; object-fit: cover; object-position: center;">
-        <p><H4 class="text-white">DOST-SETUP Funding Monitoring System</H4></p>
-      </div>
+    <div class="d-flex align-items-center bg-primary">
+      <img src="../assets/img/74px-DOST_seal.svg.png" alt="DOST logo" class="me-3 ms-3 mt-3 mb-3 logo">
+      <p>
+      <H4 class="text-white">DOST-SETUP Funding Monitoring System</H4>
+      </p>
+    </div>
   </div>
   <div class="flex-container d-flex flex-column flex-md-row mobileView">
-        <div class="nav-column">
-          <?php include("navAdmin.php"); ?>
-        </div>
-        <main class="main-column scrollable-main" id="main-content">
-        </main>
- </div>
+    <div class="nav-column">
+      <?php include("navAdmin.php"); ?>
+    </div>
+    <main class="main-column scrollable-main" id="main-content">
+    </main>
+  </div>
 </body>
 <script>
-    $(document).ready(function() {
+  $(document).ready(function() {
     loadPage('adminDashboardTab.php');
-   });
-    function loadPage(url) {
+  });
+
+  function loadPage(url) {
     $.ajax({
-        url: url,
-        type: 'GET',
-        success: function(response) {
-            // Replace '#content' with the selector for the element where you want to load the content
-            $('#main-content').html(response);
-        },
-        error: function(error) {
-            console.log('Error: ' + error);
-        },
+      url: url,
+      type: 'GET',
+      success: function(response) {
+        // Replace '#content' with the selector for the element where you want to load the content
+        $('#main-content').html(response);
+      },
+      error: function(error) {
+        console.log('Error: ' + error);
+      },
     });
-}
-  </script>
+  }
+</script>
+
 </html>
