@@ -8,50 +8,56 @@
   <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
   <style>
     #container {
       max-width: 60%;
     }
 
-    .step-container {
-      position: relative;
-      text-align: center;
-      transform: translateY(-43%);
-    }
-
-    .step-circle {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background-color: #fff;
-      border: 2px solid #007bff;
-      line-height: 30px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-      cursor: pointer;
-      /* Added cursor pointer */
-    }
-
-    .step-line {
-      position: absolute;
-      top: 16px;
-      left: 50px;
-      width: calc(100% - 100px);
-      height: 2px;
-      background-color: #007bff;
-      z-index: -1;
-    }
-
-    #multi-step-form {
-      overflow-x: hidden;
+    .mt-200 {
+      margin-top: 200px
     }
 
     .radioButton {
       width: 60%;
       /* Adjust the width as needed */
+    }
+
+
+    fieldset legend {
+      position: absolute;
+      /* Set position to absolute */
+      top: -20px;
+      /* Adjust this value to move legend up */
+      background-color: #fff;
+      /* Match the background color to your form or page background */
+      color: #495057;
+      border-radius: 0.25rem;
+      padding: 0.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      left: 10px;
+      /* Adjust horizontally if needed */
+    }
+
+
+    /* Additional styling to ensure the fieldset and its contents look integrated */
+    fieldset {
+      position: relative;
+      /* Added position relative */
+      padding: 2rem;
+      border: 2px solid #dee2e6;
+      border-radius: 0.25rem;
+    }
+
+    .form-label {
+      font-weight: bold;
+    }
+
+    #step-3 span {
+      color: red;
     }
   </style>
 
@@ -59,159 +65,164 @@
 
 <body>
   <?php include("header.php"); ?>
-  <!-- Modal -->
-  <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="confirmationModalTitle">Verify Info</h5>
-        </div>
-        <div class="modal-body">
-          <p id="confirmationMessage"></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Edit</button>
-          <button type="button" id="confirmButton" class="btn btn-primary">Confirm</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="container" class="container mt-5">
-    <div class="progress px-1" style="height: 3px;">
-      <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
-    <div class="step-container d-flex justify-content-between">
-      <div class="step-circle" onclick="displayStep(1)">1</div>
-      <div class="step-circle" onclick="displayStep(2)">2</div>
-      <div class="step-circle" onclick="displayStep(3)">3</div>
-    </div>
-
-    <form id="multi-step-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class=" g-3 mt-5 ms-5 me-5 mb-2 p-5 border border-black rounded">
-      <div class="step step-1">
-        <!-- Step 1 form fields here -->
-        <h3>Personal Info:</h3>
-        <div class="row mb-3">
-          <div class="col-md-6 p-3">
-            <div class="form-floating">
-              <input type="text" name="f_name" id="f_name" class="form-control" placeholder="John" required>
-              <label for="f_name">First Name:</label>
-            </div>
-          </div>
-          <div class="col-md-6 p-3">
-            <div class="form-floating">
-              <input type="text" name="l_name" id="l_name" class="form-control" placeholder="Doe" required>
-              <label for="l_name">Last Name:</label>
-            </div>
-          </div>
-          <div class="col-md-6 p-3">
-            <div class="form-floating">
-              <input type="text" name="Mobile_no" id="Mobile_no" class="form-control" placeholder="0965-453-5432" pattern="\d{4}-\d{3}-\d{4}" title="Please enter a valid landline number in the format XXXX-XXX-XXXX" required>
-              <label for="Mobile_no">Mobile Number:</label>
-            </div>
-          </div>
-          <div class="col-md-6 p-3">
-            <div class="form-floating">
-              <input type="email" name="email_add" id="email_add" class="form-control" placeholder="example@example.com" required>
-              <label for="email_add">Email Address:</label>
-            </div>
-          </div>
-          <div class="col-md-6 p-3">
-            <div class="form-floating">
-              <input type="text" name="landline" id="landline" class="form-control" placeholder="(XX) YYY ZZZZ">
-              <label for="landline">Landline:</label>
-            </div>
-          </div>
-        </div>
-        <div class=" d-flex justify-content-end">
-          <button type="button" class="btn btn-primary next-step">Next</button>
-        </div>
-      </div>
-
-      <div class="step step-2">
-        <!-- Step 2 form fields here -->
-        <h3>Business Info:</h3>
-        <div class="row mb-12">
-          <div class="col-md-6">
-            <div class="form-floating mb-3">
-              <input type="text" name="firm_name" id="firm_name" class="form-control" placeholder="ABC Company" required>
-              <label for="firm_name">Name of firm:</label>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-floating mb-3">
-              <input type="text" name="Address" id="Address" class="form-control" placeholder="123 Main St" required>
-              <label for="Address">Address:</label>
-            </div>
-          </div>
-          <div class="row mb-12">
-            <div class="col-md-4">
-              <h6>Assets:</h6>
-              <div class="form-floating mb-3">
-                <input type="text" name="buildings" id="buildings" class="form-control" placeholder="Value in USD" required>
-                <label for="buildings">Buildings:</label>
+  <div class="container mt-5">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="g-3 p-5">
+      <div id="smartwizard">
+        <ul>
+          <li><a href="#step-1">Step 1<br /><small>Personal Info</small></a></li>
+          <li><a href="#step-2">Step 2<br /><small>Business Info</small></a></li>
+          <li><a href="#step-3">Step 3<br /><small>Requirements</small></a></li>
+          <li><a href="#step-4">Step 4<br /><small>Confirm details</small></a></li>
+        </ul>
+        <div class="mt-4">
+          <div id="step-1">
+            <!-- Include Personal Info fields here -->
+            <h3>Personal Info:</h3>
+            <div class="row mb-3">
+              <div class="col-md-6 p-3">
+                <div class="form-floating">
+                  <input type="text" name="f_name" id="f_name" class="form-control" placeholder="John" required>
+                  <label for="f_name">First Name:</label>
+                </div>
               </div>
-              <div class="form-floating mb-3">
-                <input type="text" name="equipments" id="equipments" class="form-control" placeholder="Value in USD" required>
-                <label for="equipments">Equipments:</label>
+              <div class="col-md-6 p-3">
+                <div class="form-floating">
+                  <input type="text" name="l_name" id="l_name" class="form-control" placeholder="Doe" required>
+                  <label for="l_name">Last Name:</label>
+                </div>
               </div>
-              <div class="form-floating mb-3">
-                <input type="text" name="working_capital" id="working_capital" class="form-control" placeholder="Value in USD" required>
-                <label for="working_capital">Working Capital:</label>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <h6>Number of Personnel:</h6>
-              <div class="form-floating mb-3">
-                <input type="number" name="male_personnel" id="male_personnel" class="form-control" placeholder="Number of Male Personnel" required>
-                <label for="male_personnel">Male:</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input type="number" name="female_personnel" id="female_personnel" class="form-control" placeholder="Number of Female Personnel" required>
-                <label for="female_personnel">Female:</label>
+              <div class="col-md-12 p-3">
+                <h6>Contact Info:</h6>
+                <div class="row"> <!-- Ensure there is a 'row' class here -->
+                  <div class="col-md-4 p-2">
+                    <div class="form-floating">
+                      <input type="text" name="Mobile_no" id="Mobile_no" class="form-control" placeholder="0965-453-5432" pattern="\d{4}-\d{3}-\d{4}" title="Please enter a valid landline number in the format XXXX-XXX-XXXX" required>
+                      <label for="Mobile_no">Mobile Number:</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4 p-2">
+                    <div class="form-floating">
+                      <input type="email" name="email_add" id="email_add" class="form-control" placeholder="example@example.com" required>
+                      <label for="email_add">Email Address:</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4 p-2">
+                    <div class="form-floating">
+                      <input type="text" name="landline" id="landline" class="form-control" placeholder="(XX) YYY ZZZZ">
+                      <label for="landline">Landline:</label>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="d-flex justify-content-end">
-          <button type="button" class="btn btn-primary prev-step">Previous</button>
-          <button type="button" class="btn btn-primary next-step mx-3">Next</button>
-        </div>
-      </div>
-
-      <div class="step step-3">
-        <!-- Step 3 form fields here -->
-        <h3>Assets Category:</h3>
-        <div class="row mb-12 ">
-          <div class="col-md-4 p-4 justify-content-start radioButton">
-            <div class="form-check form-check-inline">
-              <input type="radio" id="micro" name="asset_category" value="Micro" class="form-check-input">
-              <label for="micro" class="form-check-label">Micro (assets less than 3M)</label>
+          <div id="step-2">
+            <!-- Include Business Info fields here -->
+            <h3>Business Info:</h3>
+            <div class="row mb-12">
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  <input type="text" name="firm_name" id="firm_name" class="form-control" placeholder="ABC Company" required>
+                  <label for="firm_name">Name of firm:</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  <input type="text" name="Address" id="Address" class="form-control" placeholder="123 Main St" required>
+                  <label for="Address">Address:</label>
+                </div>
+              </div>
+              <div class="row mb-12 mt-3">
+                <div class="col-md-4 mx-4">
+                  <fieldset>
+                    <legend class="w-auto">
+                      Assets:
+                    </legend>
+                    <div class="form-floating mb-3">
+                      <input type="text" name="buildings" id="buildings" class="form-control" placeholder="Value in USD" required>
+                      <label for="buildings">Buildings:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input type="text" name="equipments" id="equipments" class="form-control" placeholder="Value in USD" required>
+                      <label for="equipments">Equipments:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input type="text" name="working_capital" id="working_capital" class="form-control" placeholder="Value in USD" required>
+                      <label for="working_capital">Working Capital:</label>
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="col-md-4 mx-4">
+                  <fieldset>
+                    <legend class="w-auto">
+                      Number of Personnel:
+                    </legend>
+                    <div class="form-floating mb-3">
+                      <input type="number" name="male_personnel" id="male_personnel" class="form-control" placeholder="Number of Male Personnel" required>
+                      <label for="male_personnel">Male:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input type="number" name="female_personnel" id="female_personnel" class="form-control" placeholder="Number of Female Personnel" required>
+                      <label for="female_personnel">Female:</label>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
             </div>
-            <div class="form-check form-check-inline">
-              <input type="radio" id="small" name="asset_category" value="Small" class="form-check-input">
-              <label for="small" class="form-check-label">Small (assets of 3M to 15M)</label>
+          </div>
+          <div id="step-3">
+            <!-- Include Assets Category fields here -->
+            <h3>Upload the Following Requirments:</h3>
+            <div class="row mb-12 p-5">
+              <div class="mb-3">
+                <label for="IntentFile" class="form-label">Letter of Intent:<span>*</span></label>
+                <input class="form-control" type="file" id="IntentFile">
+              </div>
+              <div class="mb-3">
+                <label for="dtiFile" class="form-label">DTI/SEC/CDA: <span>*</span></label>
+                <input class="form-control" type="file" id="dtiFile">
+              </div>
+              <div class="mb-3">
+                <label for="businessPermitFile" class="form-label">Business Permit: <span>*</span></label>
+                <input class="form-control" type="file" id="businessPermitFile">
+              </div>
+              <div class="mb-3">
+                <label for="fdaLtoFile" class="form-label">FDA/LTO:(Optional)</label>
+                <input class="form-control" type="file" id="fdaLtoFile">
+              </div>
+              <div class="mb-3">
+                <label for="receiptFile" class="form-label">Official Receipt of the Business: <span>*</span></label>
+                <input class="form-control" type="file" id="receiptFile">
+              </div>
+              <div class="mb-3">
+                <label for="govIdFile" class="form-label">Copy of Government Valid ID: <span>*</span></label>
+                <input class="form-control" type="file" id="govIdFile">
+              </div>
             </div>
-            <div class="form-check form-check-inline">
-              <input type="radio" id="medium" name="asset_category" value="Medium" class="form-check-input">
-              <label for="medium" class="form-check-label">Medium (assets of 15M to 100M)</label>
+            <div class="col-md-12 px-5">
+              <div class="form-check">
+                <input type="checkbox" name="agree_terms" id="agree_terms" class="form-check-input" required>
+                <label for="agree_terms" class="form-check-label">Agree to Terms and Conditions</label>
+              </div>
+            </div>
+          </div>
+          <div id="step-4">
+            <!-- Confirmation message or summary -->
+            <div class="row">
+              <div class="col-md-12">
+                <span>Review and confirm the details provided before submission.</span>
+                <div class="col-12 d-flex justify-content-end">
+                  <button type="submit" name="submit" class="btn btn-success w-25 mx-2">Submit</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-md-12">
-          <div class="form-check">
-            <input type="checkbox" name="agree_terms" id="agree_terms" class="form-check-input" required>
-            <label for="agree_terms" class="form-check-label">Agree to Terms and Conditions</label>
-          </div>
-          <div class="col-12 d-flex justify-content-end">
-            <button type="button" class="btn btn-primary prev-step">Previous</button>
-            <button type="submit" name="submit" class="btn btn-success w-25 mx-2">Submit</button>
-          </div>
-        </div>
+        <!-- Include your step content here as in the modal -->
       </div>
     </form>
   </div>
-  <div>
-    <?php include("footer.php"); ?>
+  <?php include("footer.php"); ?>
   </div>
 
 </body>
@@ -295,48 +306,68 @@
   }
 </script>
 <script>
-  var currentStep = 1;
-  var updateProgressBar;
-
-  function displayStep(stepNumber) {
-    if (stepNumber >= 1 && stepNumber <= 3) {
-      $(".step-" + currentStep).hide();
-      $(".step-" + stepNumber).show();
-      currentStep = stepNumber;
-      updateProgressBar();
-    }
-  }
-
   $(document).ready(function() {
-    $('#multi-step-form').find('.step').slice(1).hide();
-
-    $(".next-step").click(function() {
-      if (currentStep < 3) {
-        $(".step-" + currentStep).addClass("animate__animated animate__fadeOutLeft");
-        currentStep++;
-        setTimeout(function() {
-          $(".step").removeClass("animate__animated animate__fadeOutLeft").hide();
-          $(".step-" + currentStep).show().addClass("animate__animated animate__fadeInRight");
-          updateProgressBar();
-        }, 500);
+    // Initialize the smartWizard
+    $('#smartwizard').smartWizard({
+      selected: 0,
+      theme: 'arrows',
+      autoAdjustHeight: true,
+      transitionEffect: 'fade',
+      showStepURLhash: false,
+      toolbarSettings: {
+        toolbarPosition: 'bottom',
+        toolbarButtonPosition: 'end',
+        showNextButton: true, // show next button
+        showPreviousButton: true // show previous button
       }
     });
 
-    $(".prev-step").click(function() {
-      if (currentStep > 1) {
-        $(".step-" + currentStep).addClass("animate__animated animate__fadeOutRight");
-        currentStep--;
-        setTimeout(function() {
-          $(".step").removeClass("animate__animated animate__fadeOutRight").hide();
-          $(".step-" + currentStep).show().addClass("animate__animated animate__fadeInLeft");
-          updateProgressBar();
-        }, 500);
+    // Move to the next step
+    $(".sw-btn-next").on("click", function() {
+      var currentStep = $('#smartwizard').smartWizard("getStepIndex");
+      if (!validateStep(currentStep)) {
+        return false; // prevent moving to the next step if validation fails
       }
     });
 
-    updateProgressBar = function() {
-      var progressPercentage = ((currentStep - 1) / 2) * 100;
-      $(".progress-bar").css("width", progressPercentage + "%");
+    // Move to the previous step
+    $(".sw-btn-prev").on("click", function() {
+      // Additional actions can be performed here when moving to the previous step
+    });
+
+    // Custom validation logic for each step
+    function validateStep(stepIndex) {
+      switch (stepIndex) {
+        case 1:
+          return validatePersonalInfo();
+        case 2:
+          return validateBusinessInfo();
+        case 3:
+          return validateAssetsCategory();
+        default:
+          return true;
+      }
+    }
+
+    // Example validation function for Personal Info step
+    function validatePersonalInfo() {
+      // Implement validation logic here
+      // Return true if valid, false otherwise
+      return true;
+    }
+
+    // Example validation function for Business Info step
+    function validateBusinessInfo() {
+      // Implement validation logic here
+      // Return true if valid, false otherwise
+      return true;
+    }
+
+    // Example validation function for Assets Category step
+    function validateAssetsCategory() {
+      // Implement validation logic here
+      // Return true if valid, false otherwise
+      return true;
     }
   });
 </script>
