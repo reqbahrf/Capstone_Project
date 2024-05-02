@@ -97,7 +97,7 @@
         error: function(error) {
           console.log('Error: ' + error);
         },
-        
+
       });
     }
   </script>

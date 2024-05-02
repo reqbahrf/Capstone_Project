@@ -6,84 +6,52 @@
     }
 
     .cards {
-    transition: transform 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out;
     }
 
     .cards:hover {
-     transform: scale(1.05);
-     font-weight: bolder;
-   }
-
+        transform: scale(1.05);
+        font-weight: bolder;
+    }
 </style>
+
+<!-- HTML -->
+
 <div>
-  <div>
-      <h1 class=" bg-dark text-white p-4 m-2">Dashboard</h1>
-  </div>
-  <div>
-      <div class="container-fluid px-sm-3 mx-sm-2 py-sm-3 flex-grow-1 d-flex justify-content-center">
-          <div class="row">
-              <div class="col-md-4">
-                 <a href="#">
-                    <div class="card border-primary mb-3 cards">
-                      <div class="card-header">Applicants</div>
-                      <div class="card-body text-primary bg-primary">
-                          <h5 class="card-title text-light">Primary card title</h5>
-                      </div>
-                    </div>
-                 </a>
-              </div>
-              <div class="col-md-4">
-                <a href="#">
-                    <div class="card border-success mb-3 cards">
-                      <div class="card-header">Ongoing</div>
-                      <div class="card-body text-success bg-success">
-                          <h5 class="card-title text-light">Success card title</h5>
-                      </div>
-                   </div>
-                </a>
-              </div>
-              <div class="col-md-4">
-                <a href="">
-                    <div class="card border-secondary mb-3 cards">
-                      <div class="card-header">Completed Projects</div>
-                      <div class="card-body text-secondary bg-secondary">
-                          <h5 class="card-title text-light">Secondary card title</h5>
-                      </div>
-                  </div>
-                </a>
-              </div>
-          </div>
-      </div>
-  </div>
-  <div>
-      <!-- <table class="table table-hover">
-      <thead>
-          <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
-          </tr>
-      </thead>
-      <tbody class="table-group-divider">
-          <tr>
-          <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-          </tr>
-          <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-          </tr>
-          <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-          </tr>
-      </tbody>
-  </table> -->
-  </div>
+
+    <div>
+        <h1 class=" bg-dark text-white p-4 m-2">Dashboard</h1>
+    </div>
+    <div class="container mt-4">
+        <fieldset>
+            <legend class="w-auto">
+                <h3>Project</h3>
+            </legend>
+            <div class="row mt-2">
+                <div class="col">
+                    <fieldset>
+                        <legend class="w-auto">Applicants</legend>
+                        <!-- Add content for Applicants fieldset here -->
+                    </fieldset>
+                </div>
+                <div class="col">
+                    <fieldset>
+                        <legend class="w-auto">Ongoing</legend>
+                        <!-- Add content for Ongoing fieldset here -->
+                    </fieldset>
+                </div>
+                <div class="col">
+                    <fieldset>
+                        <legend class="w-auto">Completed</legend>
+                        <!-- Add content for Completed fieldset here -->
+                    </fieldset>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div id="pieChart">
+</div>
+<div id="barChart">
+</div>
 </div>

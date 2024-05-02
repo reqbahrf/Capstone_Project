@@ -15,8 +15,30 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
   <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
+  <script src="../dist/apexcharts.min.js"></script>
+  <link rel="stylesheet" href="/dist/apexcharts.css">
+
 
   <style>
+    fieldset legend {
+      position: absolute;
+      top: -20px;
+      color: #495057;
+      border-radius: 0.25rem;
+      padding: 0.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      left: 10px;
+    }
+
+    fieldset {
+      position: relative;
+      padding: 2rem;
+      border: 2px solid #dee2e6;
+      border-radius: 0.25rem;
+      background-color: #fff
+    }
+
     .logo {
       width: 30px;
       height: 30px;
@@ -84,21 +106,80 @@
 </body>
 <script>
   $(document).ready(function() {
-    loadPage('adminDashboardTab.php');
+    loadPage('adminDashboardTab.php', 'dashboardLink', function() {
+      initializePieChart();
+      initializeBarChart();
+    });
   });
 
-  function loadPage(url) {
+  function loadPage(url, activeLink, callback) {
     $.ajax({
       url: url,
       type: 'GET',
       success: function(response) {
-        // Replace '#content' with the selector for the element where you want to load the content
         $('#main-content').html(response);
+        setActiveLink(activeLink);
+        if (callback) {
+          callback();
+        }
       },
       error: function(error) {
         console.log('Error: ' + error);
       },
     });
+  }
+
+  function initializePieChart() {
+    var options = {
+      series: [44, 55, 13, 43, 22],
+      chart: {
+        width: 380,
+        type: 'pie',
+      },
+      labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+      responsive: [{
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }]
+    };
+
+    var chart = new ApexCharts(document.querySelector("#pieChart"), options);
+    chart.render();
+  }
+
+  function initializeBarChart() {
+    var options = {
+      series: [{
+        data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+      }],
+      chart: {
+        type: 'bar',
+        height: 350
+      },
+      plotOptions: {
+        bar: {
+          borderRadius: 4,
+          borderRadiusApplication: 'end',
+          horizontal: true,
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      xaxis: {
+        categories: ['Tagum City', 'Panabo City', 'Island Garden City of Samal', 'Braulio E. Dujali', 'Carmen', 'Kapalong', 'New Corella', 'San Isidro', 'Santo Tomas', 'Talaingod'],
+      }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#barChart"), options);
+    chart.render();
   }
 </script>
 
