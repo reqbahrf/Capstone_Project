@@ -839,50 +839,56 @@
     <div class="tab-pane fade" id="Client-tab-pane" role="tabpanel" aria-labelledby="Client-tab" tabindex="0">
 
       <!-- where the client's information will be displayed. -->
-      <div class="row g-3 mt-5 ms-5 me-5 mb-2 p-5">
-        <h2>Client Info:</h2>
-        <div class="form-group row">
-          <span for="project_title" class="col-sm-2 col-form-label"><strong>Project Title:</strong></span>
-          <div class="col-sm-10">
-            <p class="" id="project_title"><u>[Project Title Value]</u></p>
+      <div class="row g-3 mt-3 ms-3 me-3 mb-2 p-3">
+        <fieldset>
+          <legend class="w-auto">
+            <h2>Client Info:</h2>
+          </legend>
+          <div class="p-3">
+            <div class="form-group row">
+              <span for="project_title" class="col-sm-2 col-form-label"><strong>Project Title:</strong></span>
+              <div class="col-sm-10">
+                <p class="" id="project_title"><u>[Project Title Value]</u></p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <span for="firm_name" class="col-sm-2 col-form-label"> <strong>Name of Firm:</strong></span>
+              <div class="col-sm-10">
+                <p class="" id="firm_name"><u>[Firm Name Value]</u></p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <span for="address" class="col-sm-2 col-form-label"><strong>Address:</strong></span>
+              <div class="col-sm-10">
+                <p class="" id="address"><u>[Address Value]</u></p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <span class="col-sm-2 col-form-label"><strong>Contact Person:</strong></span>
+              <div class="col-sm-4">
+                <p class="" id="contact_person"><u>[Contact Person Value]</u></p>
+              </div>
+              <span class="col-sm-2 col-form-label"><strong>Designation:</strong></span>
+              <div class="col-sm-4">
+                <p class="" id="designation"><u>[Designation Value]</u></p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <span class="col-sm-2 col-form-label"><strong>Landline:</strong></span>
+              <div class="col-sm-2">
+                <p class="" id="landline"><u>[Landline Value]</u></p>
+              </div>
+              <span class="col-sm-2 col-form-label"><strong>Mobile Phone:</strong></span>
+              <div class="col-sm-2">
+                <p class="" id="mobile_phone"><u>[Mobile Phone Value]</u></p>
+              </div>
+              <span class="col-sm-2 col-form-label"><strong>Email Address:</strong></span>
+              <div class="col-sm-2">
+                <p class="" id="email"><u>[Email Address Value]</u></p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <span for="firm_name" class="col-sm-2 col-form-label"> <strong>Name of Firm:</strong></span>
-          <div class="col-sm-10">
-            <p class="" id="firm_name"><u>[Firm Name Value]</u></p>
-          </div>
-        </div>
-        <div class="form-group row">
-          <span for="address" class="col-sm-2 col-form-label"><strong>Address:</strong></span>
-          <div class="col-sm-10">
-            <p class="" id="address"><u>[Address Value]</u></p>
-          </div>
-        </div>
-        <div class="form-group row">
-          <span class="col-sm-2 col-form-label"><strong>Contact Person:</strong></span>
-          <div class="col-sm-4">
-            <p class="" id="contact_person"><u>[Contact Person Value]</u></p>
-          </div>
-          <span class="col-sm-2 col-form-label"><strong>Designation:</strong></span>
-          <div class="col-sm-4">
-            <p class="" id="designation"><u>[Designation Value]</u></p>
-          </div>
-        </div>
-        <div class="form-group row">
-          <span class="col-sm-2 col-form-label"><strong>Landline:</strong></span>
-          <div class="col-sm-2">
-            <p class="" id="landline"><u>[Landline Value]</u></p>
-          </div>
-          <span class="col-sm-2 col-form-label"><strong>Mobile Phone:</strong></span>
-          <div class="col-sm-2">
-            <p class="" id="mobile_phone"><u>[Mobile Phone Value]</u></p>
-          </div>
-          <span class="col-sm-2 col-form-label"><strong>Email Address:</strong></span>
-          <div class="col-sm-2">
-            <p class="" id="email"><u>[Email Address Value]</u></p>
-          </div>
-        </div>
+        </fieldset>
       </div>
     </div>
 

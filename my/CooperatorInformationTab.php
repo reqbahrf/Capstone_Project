@@ -1,103 +1,72 @@
-<?php
-// Your PHP code here
-
-// Retrieve client information from database or any other source
-$clientName = "John Doe";
-$address = "123 Main St, City";
-$landline = "123-456-7890";
-$email = "john.doe@example.com";
-$projectTitle = "Project X";
-$projectDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
-$projectCost = "$10,000";
-
-// Retrieve payment information from database or any other source
-$duePayments = [
-  ["dueDate" => "2022-09-30", "amountDue" => "$2,000"],
-  ["dueDate" => "2022-10-31", "amountDue" => "$3,000"],
-  // Add more payment entries as needed
-];
-
-$paymentHistory = [
-  ["date" => "2022-08-31", "amount" => "$1,500"],
-  ["date" => "2022-07-31", "amount" => "$2,000"],
-  // Add more payment history entries as needed
-];
-?>
-<style>
-  /* Add your CSS styles here */
-  /* Example styles for responsive design */
-  @media only screen and (max-width: 600px) {
-    /* Styles for mobile devices */
-  }
-
-  @media only screen and (min-width: 601px) {
-    /* Styles for larger devices */
-  }
-</style>
-</head>
-<div class="container-fluid p-0 m-0">
-  <div class=" bg-dark text-white p-2">
-    <h1>Client Information Sheet</h1>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <h2>Client Details</h2>
-      <p>Name: <?php echo $clientName; ?></p>
-      <p>Address: <?php echo $address; ?></p>
-      <p>Landline: <?php echo $landline; ?></p>
-      <p>Email: <?php echo $email; ?></p>
+<h1 class=" bg-dark text-white p-4 m-2">Dashboard</h1>
+<div class="row g-3 mt-3 ms-3 me-3 mb-2 p-3 bg-white">
+  <fieldset>
+    <legend class="w-auto">
+      <h2>Client Info:</h2>
+    </legend>
+    <div class="p-3">
+      <div class="form-group row">
+        <span for="project_title" class="col-12 col-sm-2 "><strong>Project Title:</strong></span>
+        <div class="col-12 col-sm-10">
+          <p class="" id="project_title"><u>[Project Title Value]</u></p>
+        </div>
+      </div>
+      <div class="form-group row">
+        <span for="firm_name" class="col-12 col-sm-2 "> <strong>Name of Firm:</strong></span>
+        <div class="col-12 col-sm-10">
+          <p class="" id="firm_name"><u>[Firm Name Value]</u></p>
+        </div>
+      </div>
+      <div class="form-group row">
+        <span for="address" class="col-12 col-sm-2 "><strong>Address:</strong></span>
+        <div class="col-12 col-sm-10">
+          <p class="" id="address"><u>[Address Value]</u></p>
+        </div>
+      </div>
+      <div class="form-group row">
+        <span class="col-12 col-sm-2 "><strong>Contact Person:</strong></span>
+        <div class="col-12 col-sm-4">
+          <p class="" id="contact_person"><u>[Contact Person Value]</u></p>
+        </div>
+        <span class="col-12 col-sm-2 "><strong>Designation:</strong></span>
+        <div class="col-12 col-sm-4">
+          <p class="" id="designation"><u>[Designation Value]</u></p>
+        </div>
+      </div>
+      <div class="form-group row">
+        <span class="col-12 col-sm-2 "><strong>Landline:</strong></span>
+        <div class="col-12 col-sm-2">
+          <p class="" id="landline"><u>[Landline Value]</u></p>
+        </div>
+        <span class="col-12 col-sm-2 "><strong>Mobile Phone:</strong></span>
+        <div class="col-12 col-sm-2">
+          <p class="" id="mobile_phone"><u>[Mobile Phone Value]</u></p>
+        </div>
+        <span class="col-12 col-sm-2 "><strong>Email Address:</strong></span>
+        <div class="col-12 col-sm-2">
+          <p class="" id="email"><u>[Email Address Value]</u></p>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <h2>Project Details</h2>
-      <p>Title: <?php echo $projectTitle; ?></p>
-      <p>Description: <?php echo $projectDescription; ?></p>
-      <p>Cost: <?php echo $projectCost; ?></p>
+  </fieldset>
+  <fieldset class="mt-4">
+    <legend class="w-auto">
+      <h2>Progress:</h2>
+    </legend>
+    <div class="container">
+      <div class="row">
+        <div class="col" id="ProgressPer">
+          <!-- Add content for ProgressPer div here -->
+        </div>
+        <div class="col">
+          <!-- Add content for the second div here -->
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <h2>Payment Information</h2>
-      <table class="table table-responsive">
-        <thead>
-          <tr>
-            <th>Due Date</th>
-            <th>Amount Due</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach ($duePayments as $payment) : ?>
-            <tr>
-              <td><?php echo $payment['dueDate']; ?></td>
-              <td><?php echo $payment['amountDue']; ?></td>
-            </tr>
-          <?php endforeach; ?>
-        </tbody>
-      </table>
+
+    <div id="stackColumnChartPercent">
+
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <h2>Payment History</h2>
-      <table class="table table-responsive">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach ($paymentHistory as $payment) : ?>
-            <tr>
-              <td><?php echo $payment['date']; ?></td>
-              <td><?php echo $payment['amount']; ?></td>
-            </tr>
-          <?php endforeach; ?>
-        </tbody>
-      </table>
-    </div>
-  </div>
+
+  </fieldset>
 </div>
-
-</html>

@@ -106,10 +106,7 @@
 </body>
 <script>
   $(document).ready(function() {
-    loadPage('adminDashboardTab.php', 'dashboardLink', function() {
-      initializePieChart();
-      initializeBarChart();
-    });
+    loadPage('adminDashboardTab.php', 'dashboardLink');
   });
 
   function loadPage(url, activeLink, callback) {
@@ -119,8 +116,9 @@
       success: function(response) {
         $('#main-content').html(response);
         setActiveLink(activeLink);
-        if (callback) {
-          callback();
+        if (url === 'adminDashboardTab.php') {
+          initializePieChart();
+          initializeBarChart();
         }
       },
       error: function(error) {
