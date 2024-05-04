@@ -20,6 +20,10 @@
 
 
   <style>
+    .headerlogo {
+      background-color: #48c4d3;
+      color: white;
+    }
     fieldset legend {
       position: absolute;
       top: -20px;
@@ -88,11 +92,11 @@
 </head>
 
 <body class="overflow-hidden">
-  <div class="container-fluid px-0">
-    <div class="d-flex align-items-center bg-primary">
+  <div class="container-fluid px-0 headerlogo">
+    <div class="d-flex align-items-center">
       <img src="../assets/img/74px-DOST_seal.svg.png" alt="DOST logo" class="me-3 ms-3 mt-3 mb-3 logo">
       <p>
-      <H4 class="text-white">DOST-SETUP Funding Monitoring System</H4>
+      <H4 class=" text-white">DOST-SETUP Funding Monitoring System</H4>
       </p>
     </div>
   </div>

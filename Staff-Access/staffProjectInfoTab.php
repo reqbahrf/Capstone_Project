@@ -25,6 +25,11 @@
     border-radius: 0.25rem;
   }
 
+  * label {
+    font-weight: 500;
+    opacity: 0.7;
+  }
+
   .nav-link {
     background-color: black;
     color: white;
@@ -517,15 +522,15 @@
                     <div class="col ms-2">
                       <h6>2.1a Direct Labor</h6>
                       <div class="col-md-12 form-floating mb-3">
-                        <input type="text" class="form-control" id="maleInput" placeholder="Male">
+                        <input type="text" class="form-control " id="maleInput" placeholder="Male">
                         <label for="maleInput">Male</label>
                       </div>
                       <div class="col-md-12 form-floating mb-3">
-                        <input type="text" class="form-control" id="femaleInput" placeholder="Female">
+                        <input type="text" class="form-control " id="femaleInput" placeholder="Female">
                         <label for="femaleInput">Female</label>
                       </div>
                       <div class="col-md-12 form-floating mb-3">
-                        <input type="text" class="form-control" id="workdayInput" placeholder="Workday">
+                        <input type="text" class="form-control " id="workdayInput" placeholder="Workday">
                         <label for="workdayInput">Workday</label>
                       </div>
                       <div class="col-md-3 mb-3">
@@ -535,15 +540,15 @@
                     <div class="col ms-2">
                       <h6>2.1b Part-time</h6>
                       <div class="col-md-12 form-floating mb-3">
-                        <input type="text" class="form-control" id="parttimeMaleInput" placeholder="Male">
+                        <input type="text" class="form-control " id="parttimeMaleInput" placeholder="Male">
                         <label for="parttimeMaleInput">Male</label>
                       </div>
                       <div class="col-md-12 form-floating mb-3">
-                        <input type="text" class="form-control" id="parttimeFemaleInput" placeholder="Female">
+                        <input type="text" class="form-control " id="parttimeFemaleInput" placeholder="Female">
                         <label for="parttimeFemaleInput">Female</label>
                       </div>
                       <div class="col-md-12 form-floating mb-3">
-                        <input type="text" class="form-control" id="parttimeWorkdayInput" placeholder="Workday">
+                        <input type="text" class="form-control " id="parttimeWorkdayInput" placeholder="Workday">
                         <label for="parttimeWorkdayInput">Workday</label>
                       </div>
                       <div class="col-md-3 mb-3">
@@ -642,7 +647,7 @@
                       </div>
                       <div class="col-md-4">
                         <div class="form-floating mb-3">
-                          <input type="text" class="form-control" id="packingDetails" name="packingDetails" placeholder="Packing Details">
+                          <textarea class="form-control" id="packingDetails" name="packingDetails" placeholder="Packing Details" style="height: 100px;"></textarea>
                           <label for="packingDetails">Packing Details:</label>
                         </div>
                       </div>
@@ -696,7 +701,7 @@
                       </div>
                       <div class="col-md-4">
                         <div class="form-floating mb-3">
-                          <input type="text" class="form-control" id="packingDetails" name="packingDetails" placeholder="Packing Details">
+                          <textarea class="form-control" id="packingDetails" name="packingDetails" placeholder="Packing Details" style="height: 100px;"></textarea>
                           <label for="packingDetails">Packing Details:</label>
                         </div>
                       </div>
@@ -752,14 +757,14 @@
                 <div>
                   <h5 class="ms-2">4.1 Export</h5>
                   <div class="form-floating ms-4">
-                    <textarea class="form-control" placeholder="Export" id="exportTextarea"></textarea>
+                    <textarea class="form-control" placeholder="Export" id="exportTextarea" style="height: 100px;"></textarea>
                     <label for="exportTextarea">Export</label>
                   </div>
                 </div>
                 <div>
                   <h5 class="ms-2">4.2 Local</h5>
                   <div class="form-floating ms-4">
-                    <textarea class="form-control" placeholder="Local" id="localTextarea"></textarea>
+                    <textarea class="form-control" placeholder="Local" id="localTextarea" style="height: 100px;"></textarea>
                     <label for="localTextarea">Local</label>
                   </div>
                 </div>

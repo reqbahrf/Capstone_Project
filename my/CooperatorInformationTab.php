@@ -1,4 +1,6 @@
-<h1 class=" bg-dark text-white p-4 m-2">Dashboard</h1>
+<div>
+  <h1 class=" bg-dark text-white p-4 m-2">Dashboard</h1>
+</div>
 <div class="row g-3 mt-3 ms-3 me-3 mb-2 p-3 bg-white">
   <fieldset>
     <legend class="w-auto">

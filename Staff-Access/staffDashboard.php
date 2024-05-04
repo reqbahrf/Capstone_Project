@@ -16,6 +16,10 @@
   <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
   <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
   <style>
+     .headerlogo {
+      background-color: #48c4d3;
+      color: white;
+    }
     .scrollable-main {
       overflow-y: auto;
       overflow-x: hidden;
@@ -65,7 +69,7 @@
 </head>
 
 <body class="overflow-hidden">
-  <div class="container-fluid px-0">
+  <div class="container-fluid px-0 headerlogo">
     <div class="d-flex align-items-center bg-primary">
       <img src="../assets/img/74px-DOST_seal.svg.png" alt="DOST logo" class="me-3 ms-3 mt-3 mb-3 logo">
       <p>
