@@ -19,6 +19,31 @@
   <link rel="stylesheet" href="/dist/apexcharts.css">
 
   <style>
+    fieldset legend {
+    position: absolute;
+    /* Set position to absolute */
+    top: -20px;
+    /* Adjust this value to move legend up */
+    background-color: #fff;
+    /* Match the background color to your form or page background */
+    color: #495057;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    left: 10px;
+    /* Adjust horizontally if needed */
+  }
+
+
+  /* Additional styling to ensure the fieldset and its contents look integrated */
+  fieldset {
+    position: relative;
+    /* Added position relative */
+    padding: 2rem;
+    border: 2px solid #dee2e6;
+    border-radius: 0.25rem;
+  }
     .headerlogo {
       background-color: #48c4d3;
       color: white;
@@ -147,7 +172,7 @@
           opacity: 1,
         },
         series: [{
-          name: 'Sales',
+          name: 'Applicants',
           data: randomizeArray(sparklineData)
         }],
         labels: [...Array(24).keys()].map(n => `2018-09-0${n+1}`),
@@ -159,7 +184,7 @@
         },
         colors: ['#008FFB'],
         title: {
-          text: '$424,652',
+          text: '52',
           offsetX: 30,
           style: {
             fontSize: '24px',
@@ -167,7 +192,7 @@
           }
         },
         subtitle: {
-          text: 'Application',
+          text: 'Applicants',
           offsetX: 30,
           style: {
             fontSize: '14px',
@@ -192,7 +217,7 @@
           opacity: 1,
         },
         series: [{
-          name: 'Expenses',
+          name: 'Ongoing',
           data: randomizeArray(sparklineData)
         }],
         labels: [...Array(24).keys()].map(n => `2018-09-0${n+1}`),
@@ -204,7 +229,7 @@
         },
         colors: ['#008FFB'],
         title: {
-          text: '$235,312',
+          text: '312',
           offsetX: 30,
           style: {
             fontSize: '24px',
@@ -237,7 +262,7 @@
           opacity: 1,
         },
         series: [{
-          name: 'Profits',
+          name: 'Completed',
           data: randomizeArray(sparklineData)
         }],
         labels: [...Array(24).keys()].map(n => `2018-09-0${n+1}`),
@@ -250,7 +275,7 @@
         colors: ['#008FFB'],
         //colors: ['#5564BE'],
         title: {
-          text: '$135,965',
+          text: '13',
           offsetX: 30,
           style: {
             fontSize: '24px',
