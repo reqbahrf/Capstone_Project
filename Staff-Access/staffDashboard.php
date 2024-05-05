@@ -15,11 +15,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
   <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
+  <script src="../dist/apexcharts.min.js"></script>
+  <link rel="stylesheet" href="/dist/apexcharts.css">
+
   <style>
-     .headerlogo {
+    .headerlogo {
       background-color: #48c4d3;
       color: white;
     }
+
     .scrollable-main {
       overflow-y: auto;
       overflow-x: hidden;
@@ -97,12 +101,176 @@
         success: function(response) {
           $('#main-content').html(response);
           setActiveLink(activeLink);
+          if (url == 'staffDashboardTab.php') {
+            InitdashboardChar();
+          }
         },
         error: function(error) {
           console.log('Error: ' + error);
         },
 
       });
+    }
+
+    function InitdashboardChar() {
+      var randomizeArray = function(arg) {
+        var array = arg.slice();
+        var currentIndex = array.length,
+          temporaryValue, randomIndex;
+
+        while (0 !== currentIndex) {
+
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+      }
+      var sparklineData = [47, 45, 54, 38, 56, 24, 65, 31, 37, 39, 62, 51, 35, 41, 35, 27, 93, 53, 61, 27, 54, 43, 19, 46];
+      var applicationChar = {
+        chart: {
+          id: 'Applicant',
+          type: 'area',
+          height: 160,
+          sparkline: {
+            enabled: true
+          },
+        },
+        stroke: {
+          curve: 'straight'
+        },
+        fill: {
+          opacity: 1,
+        },
+        series: [{
+          name: 'Sales',
+          data: randomizeArray(sparklineData)
+        }],
+        labels: [...Array(24).keys()].map(n => `2018-09-0${n+1}`),
+        yaxis: {
+          min: 0
+        },
+        xaxis: {
+          type: 'datetime',
+        },
+        colors: ['#008FFB'],
+        title: {
+          text: '$424,652',
+          offsetX: 30,
+          style: {
+            fontSize: '24px',
+            cssClass: 'apexcharts-yaxis-title'
+          }
+        },
+        subtitle: {
+          text: 'Application',
+          offsetX: 30,
+          style: {
+            fontSize: '14px',
+            cssClass: 'apexcharts-yaxis-title'
+          }
+        }
+      }
+
+      var OngoingChar = {
+        chart: {
+          id: 'Ongoing',
+          type: 'area',
+          height: 160,
+          sparkline: {
+            enabled: true
+          },
+        },
+        stroke: {
+          curve: 'straight'
+        },
+        fill: {
+          opacity: 1,
+        },
+        series: [{
+          name: 'Expenses',
+          data: randomizeArray(sparklineData)
+        }],
+        labels: [...Array(24).keys()].map(n => `2018-09-0${n+1}`),
+        yaxis: {
+          min: 0
+        },
+        xaxis: {
+          type: 'datetime',
+        },
+        colors: ['#008FFB'],
+        title: {
+          text: '$235,312',
+          offsetX: 30,
+          style: {
+            fontSize: '24px',
+            cssClass: 'apexcharts-yaxis-title'
+          }
+        },
+        subtitle: {
+          text: 'Ongoing',
+          offsetX: 30,
+          style: {
+            fontSize: '14px',
+            cssClass: 'apexcharts-yaxis-title'
+          }
+        }
+      }
+
+      var completedChar = {
+        chart: {
+          id: 'Completed',
+          type: 'area',
+          height: 160,
+          sparkline: {
+            enabled: true
+          },
+        },
+        stroke: {
+          curve: 'straight'
+        },
+        fill: {
+          opacity: 1,
+        },
+        series: [{
+          name: 'Profits',
+          data: randomizeArray(sparklineData)
+        }],
+        labels: [...Array(24).keys()].map(n => `2018-09-0${n+1}`),
+        xaxis: {
+          type: 'datetime',
+        },
+        yaxis: {
+          min: 0
+        },
+        colors: ['#008FFB'],
+        //colors: ['#5564BE'],
+        title: {
+          text: '$135,965',
+          offsetX: 30,
+          style: {
+            fontSize: '24px',
+            cssClass: 'apexcharts-yaxis-title'
+          }
+        },
+        subtitle: {
+          text: 'Completed',
+          offsetX: 30,
+          style: {
+            fontSize: '14px',
+            cssClass: 'apexcharts-yaxis-title'
+          }
+        }
+      }
+      new ApexCharts(document.querySelector("#Applicant"), applicationChar).render();
+      new ApexCharts(document.querySelector("#Ongoing"), OngoingChar).render();
+      new ApexCharts(document.querySelector("#Completed"), completedChar).render();
+      // initialize datatable
+      new DataTable("#handledProject");
     }
   </script>
 </body>

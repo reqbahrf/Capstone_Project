@@ -64,8 +64,7 @@
               </td>
               <td>
                 <button class="btn btn-primary" onclick="loadPage('staffProjectInfoTab.php');">Create</button>
-                <button class="btn btn-secondary">Edit</button>
-                <button class="btn btn-danger">Delete</button>
+                <button class="btn btn-secondary">View</button>
               </td>
             </tr>
             <tr>
@@ -80,8 +79,7 @@
               </td>
               <td>
                 <button class="btn btn-primary" onclick="loadPage('staffProjectInfoTab.php');">Create</button>
-                <button class="btn btn-secondary">Edit</button>
-                <button class="btn btn-danger">Delete</button>
+                <button class="btn btn-secondary">View</button>
               </td>
             </tr>
           </tbody>
@@ -128,8 +126,7 @@
                 </td>
                 <td>
                   <button class="btn btn-primary" id="dashboardLink" onclick="loadPage('staffProjectInfoTab.php','projectLink');">View</button>
-                  <button class="btn btn-secondary">Edit</button>
-                  <button class="btn btn-danger">Delete</button>
+                  <button class="btn btn-secondary">View</button>
                 </td>
               </tr>
               <tr>

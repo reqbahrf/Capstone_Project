@@ -6,84 +6,92 @@
     }
 
     .cards {
-    transition: transform 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out;
     }
 
     .cards:hover {
-     transform: scale(1.05);
-     font-weight: bolder;
-   }
-
+        transform: scale(1.05);
+        font-weight: bolder;
+    }
 </style>
 <div>
-  <div>
-      <h1 class=" bg-dark text-white p-4 m-2">Dashboard</h1>
-  </div>
-  <div>
-      <div class="container-fluid px-sm-3 mx-sm-2 py-sm-3 flex-grow-1 d-flex justify-content-center">
-          <div class="row">
-              <div class="col-md-4">
-                 <a href="#">
-                    <div class="card border-primary mb-3 cards">
-                      <div class="card-header">Applicants</div>
-                      <div class="card-body text-primary bg-primary">
-                          <h5 class="card-title text-light">Primary card title</h5>
-                      </div>
-                    </div>
-                 </a>
-              </div>
-              <div class="col-md-4">
-                <a href="#">
-                    <div class="card border-success mb-3 cards">
-                      <div class="card-header">Ongoing</div>
-                      <div class="card-body text-success bg-success">
-                          <h5 class="card-title text-light">Success card title</h5>
-                      </div>
-                   </div>
-                </a>
-              </div>
-              <div class="col-md-4">
-                <a href="">
-                    <div class="card border-secondary mb-3 cards">
-                      <div class="card-header">Completed Projects</div>
-                      <div class="card-body text-secondary bg-secondary">
-                          <h5 class="card-title text-light">Secondary card title</h5>
-                      </div>
-                  </div>
-                </a>
-              </div>
-          </div>
-      </div>
-  </div>
-  <div>
-      <!-- <table class="table table-hover">
-      <thead>
-          <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
-          </tr>
-      </thead>
-      <tbody class="table-group-divider">
-          <tr>
-          <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-          </tr>
-          <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-          </tr>
-          <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-          </tr>
-      </tbody>
-  </table> -->
-  </div>
+    <div>
+        <h1 class="bg-dark text-white p-4">Dashboard</h1>
+    </div>
+    <div class="row sparkboxes m-4">
+        <div class="col-md-4">
+            <div class="box box1 pt-2 bg-white">
+                <div id="Applicant"></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="box box2 pt-2  bg-white">
+                <div id="Ongoing"></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="box box3 pt-2 bg-white">
+                <div id="Completed"></div>
+            </div>
+        </div>
+    </div>
+    <div class="m-4">
+        <h3 class="p-4 bg-black text-white">Handle Projects</h3>
+        <table id="handledProject" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Project Title</th>
+                    <th>Firm Name</th>
+                    <th>Firm Info</th>
+                    <th>Owner Info</th>
+                    <th>Refund Progress</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Imploving the Business.....</td>
+                    <td>XYZ Company</td>
+                    <td>
+                        <p><strong>Business Address:</strong> tagum, Davao Del Norte <br> <strong>Type of Enterprise:</strong> Sole Proprietorship</p>
+                        <p>
+                            <Strong>
+                                Assets:
+                            </Strong> <br>
+                            <span class="ps-2">Land: 100,000</span><br>
+                            <span class="ps-2">Building: 100,000</span> <br>
+                            <span class="ps-2">Equipment: 100,000</span>
+                        </p>
+
+                    </td>
+                    <td>
+                        <strong>Contact Details:</strong>
+                        <p><strong class="p-2">Landline:</strong> 1234567 <br><Strong class="p-2">Mobile Phone:</Strong> 09123456789</p>
+                    </td>
+                    <td>500,000/1,000,000</td>
+                    <td>On-going</td>
+                    <td>
+                        <button class="btn btn-primary" id="dashboardLink" onclick="loadPage('staffProjectInfoTab.php','projectLink');">View</button>
+                        <button class="btn btn-secondary">Edit</button>
+                    </td>
+                </tr>
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th>Project Title</th>
+                    <th>Firm Name</th>
+                    <th>Firm Info</th>
+                    <th>Owner Info</th>
+                    <th>Refund Progress</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
