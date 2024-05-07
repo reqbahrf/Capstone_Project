@@ -125,7 +125,7 @@
                   <p><strong>Landline:</strong> 1234567 <br><Strong>Mobile Phone:</Strong> 09123456789</p>
                 </td>
                 <td>
-                  <button class="btn btn-primary" id="dashboardLink" onclick="loadPage('staffProjectInfoTab.php','projectLink');">View</button>
+                  <button class="btn btn-primary" id="dashboardLink" onclick="loadPage('/org-access/viewCooperatorInfo.php','projectLink');">View</button>
                   <button class="btn btn-secondary">View</button>
                 </td>
               </tr>

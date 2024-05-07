@@ -19,17 +19,16 @@
   <link rel="stylesheet" href="/dist/apexcharts.css">
 
   <style>
-     .headerlogo {
+    .headerlogo {
       background-color: #48c4d3;
       color: white;
     }
+
     fieldset legend {
       position: absolute;
       /* Set position to absolute */
       top: -20px;
       /* Adjust this value to move legend up */
-      background-color: #fff;
-      /* Match the background color to your form or page background */
       color: #495057;
       border-radius: 0.25rem;
       padding: 0.5rem;
@@ -44,6 +43,7 @@
     fieldset {
       position: relative;
       /* Added position relative */
+      background-color: #fff;
       padding: 2rem;
       border: 2px solid #dee2e6;
       border-radius: 0.25rem;
@@ -158,6 +158,9 @@
           setActiveLink(activeLink);
           if (url == 'staffDashboardTab.php') {
             InitdashboardChar();
+          }
+          if (url == '/org-access/viewCooperatorInfo.php') {
+            InitializeviewCooperatorProgress()
           }
         },
         error: function(error) {
@@ -327,7 +330,209 @@
       // initialize datatable
       new DataTable("#handledProject");
     }
+
+    function makeData() {
+      var data = [];
+      for (var i = 0; i < 10; i++) {
+        data.push(Math.floor(Math.random() * 100)); // Generates random numbers between 0 and 99
+      }
+      console.log(data);
+      return data;
+    }
+
+
+    function InitializeviewCooperatorProgress() {
+      var options = {
+          series: [75],
+          chart: {
+          height: 250,
+          type: 'radialBar',
+          toolbar: {
+            show: true
+          }
+        },
+        plotOptions: {
+          radialBar: {
+            startAngle: -135,
+            endAngle: 225,
+             hollow: {
+              margin: 0,
+              size: '70%',
+              background: '#fff',
+              image: undefined,
+              imageOffsetX: 0,
+              imageOffsetY: 0,
+              position: 'front',
+              dropShadow: {
+                enabled: true,
+                top: 3,
+                left: 0,
+                blur: 4,
+                opacity: 0.24
+              }
+            },
+            track: {
+              background: '#fff',
+              strokeWidth: '67%',
+              margin: 0, // margin is in pixels
+              dropShadow: {
+                enabled: true,
+                top: -3,
+                left: 0,
+                blur: 4,
+                opacity: 0.35
+              }
+            },
+        
+            dataLabels: {
+              show: true,
+              name: {
+                offsetY: -10,
+                show: true,
+                color: '#888',
+                fontSize: '17px'
+              },
+              value: {
+                formatter: function(val) {
+                  return parseInt(val);
+                },
+                color: '#111',
+                fontSize: '36px',
+                show: true,
+              }
+            }
+          }
+        },
+        fill: {
+          type: 'gradient',
+          gradient: {
+            shade: 'dark',
+            type: 'horizontal',
+            shadeIntensity: 0.5,
+            gradientToColors: ['#ABE5A1'],
+            inverseColors: true,
+            opacityFrom: 1,
+            opacityTo: 1,
+            stops: [0, 100]
+          }
+        },
+        stroke: {
+          lineCap: 'round'
+        },
+        labels: ['Percent'],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#progressBar"), options);
+        chart.render();
+
+        // Production Generated Chart
+        var options = {
+          series: [{
+            name: 'Growth',
+            data: [10, 15, 7, -12] 
+          }],
+          chart: {
+          type: 'bar',
+          height: 350
+        },
+        plotOptions: {
+          bar: {
+            colors: {
+              ranges: [{
+                from: -100,
+                to: -46,
+                color: '#F15B46'
+              }, {
+                from: -45,
+                to: 0,
+                color: '#FEB019'
+              }]
+            },
+            columnWidth: '80%',
+          }
+        },
+        dataLabels: {
+          enabled: false,
+        },
+        yaxis: {
+          title: {
+            text: 'Growth',
+          },
+          labels: {
+            formatter: function (y) {
+              return y.toFixed(0) + "%";
+            }
+          }
+        },
+        xaxis: {
+          categories: [
+            'Quarter 1', 'Quarter 2', 'Quarter 3', 'Quarter 4'
+          ],
+          labels: {
+            rotate: -90
+          }
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#productionGeneChart"), options);
+        chart.render();
+
+         // Employment Generated Chart
+         var options = {
+          series: [{
+            name: 'Growth',
+            data: [2, -2, 4, 5] 
+          }],
+          chart: {
+          type: 'bar',
+          height: 350
+        },
+        plotOptions: {
+          bar: {
+            colors: {
+              ranges: [{
+                from: -100,
+                to: -46,
+                color: '#F15B46'
+              }, {
+                from: -45,
+                to: 0,
+                color: '#FEB019'
+              }]
+            },
+            columnWidth: '80%',
+          }
+        },
+        dataLabels: {
+          enabled: false,
+        },
+        yaxis: {
+          title: {
+            text: 'Growth',
+          },
+          labels: {
+            formatter: function (y) {
+              return y.toFixed(0) + "%";
+            }
+          }
+        },
+        xaxis: {
+          categories: [
+            'Quarter 1', 'Quarter 2', 'Quarter 3', 'Quarter 4'
+          ],
+          labels: {
+            rotate: -90
+          }
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#employmentGeneChart"), options);
+        chart.render();
+
+    }
+
   </script>
+
 </body>
 
 </html>
