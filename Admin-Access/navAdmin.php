@@ -16,7 +16,6 @@
     font-size: 20px;
     color: #818181;
     display: block;
-    filter: grayscale(100%) opacity(0.9);
 
   }
 
@@ -37,6 +36,12 @@
   .rotate-icon {
     transform: rotate(-180deg);
     transition: transform 0.3s ease;
+  }
+
+  .my-profile {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
   }
 
 
@@ -73,13 +78,14 @@
       flex-grow: 1;
       text-align: center;
     }
-    .nav-item a.active svg path {
-    fill: #FFFFFF;
-  }
 
-  .nav-item a.active {
-    color: #FFFFFF;
-  }
+    .nav-item a.active svg path {
+      fill: #FFFFFF;
+    }
+
+    .nav-item a.active {
+      color: #FFFFFF;
+    }
   }
 
   /* Large screens */
@@ -88,7 +94,7 @@
       display: inline-flex;
       flex-direction: column;
       justify-content: flex-start;
-      height: calc(100vh - 60px);
+      height: calc(100vh - 80px);
       width: auto;
       min-width: 4rem;
       max-width: 15rem;
@@ -109,34 +115,35 @@
     .nav-text {
       width: auto;
     }
+
     .nav-item a.active {
-    color: #000000;
-    background-color: #FFFFFF;
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-    position: relative;
-    filter: grayscale(0%) opacity(1);
+      color: #000000;
+      background-color: #FFFFFF;
+      border-top-left-radius: 25px;
+      border-bottom-left-radius: 25px;
+      border-top-right-radius: 50px;
+      border-bottom-right-radius: 50px;
+      position: relative;
+      filter: opacity(1);
 
-  }
+    }
 
-  .nav-item a.active::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -25px;
-    width: 50px;
-    height: 100%;
-    background-color: #FFFFFF;
-    border-radius: 0 50px 50px 0;
-    z-index: -1;
-  }
+    .nav-item a.active::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -25px;
+      width: 50px;
+      height: 100%;
+      background-color: #FFFFFF;
+      border-radius: 0 50px 50px 0;
+      z-index: -1;
+    }
 
-  .nav-item a.active svg path {
-    fill: #000000;
-  }
-  
+    .nav-item a.active svg path {
+      fill: #000000;
+    }
+
   }
 </style>
 
@@ -163,7 +170,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
           <path d="M8,8v48h48V8H8z M19,47c-1.657,0-3-1.343-3-3s1.343-3,3-3s3,1.343,3,3S20.657,47,19,47z M19,35c-1.657,0-3-1.343-3-3s1.343-3,3-3s3,1.343,3,3S20.657,35,19,35z M19,23c-1.657,0-3-1.343-3-3s1.343-3,3-3s3,1.343,3,3S20.657,23,19,23z M49,46H28v-4h21V46z M49,34H28v-4h21V34z M49,22H28v-4h21V22z" fill="#5B5B5B" />
         </svg>
-        <span class="link-text ml-2">Project List</span>
+        <span class="nav-text ml-2">Project List</span>
       </a>
     </li>
     <li class="nav-item mb-2">
@@ -171,12 +178,13 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
           <path d="M53,10c-13,0-19-4-19-4h-4c0,0-6,4-19,4l-2,2v20c0,19,23,26,23,26s23-7,23-26V12L53,10z M27,22c0-2.76,2.24-5,5-5s5,2.24,5,5v0.71c0,2.77-2.14,5.72-5,5.72s-5-2.95-5-5.72V22z M32,43c-4.46,0-8.42-2.09-10.98-5.33l0.41-2.12c0.19-0.97,0.89-1.75,1.82-2.07C25.06,32.87,28.3,32,32,32s6.94,0.87,8.75,1.48c0.94,0.32,1.63,1.11,1.82,2.07l0.41,2.11C40.42,40.91,36.46,43,32,43z" fill="#5B5B5B" />
         </svg>
-        <span class="link-text ml-2">Users</span>
+        <span class="nav-text ml-2">Users</span>
       </a>
     </li>
     <li class="nav-item">
       <a href="#">
-        <span class="nav-text">UserName</span>
+        <img src="../assets/img/raf,360x360,075,t,fafafa_ca443f4786.jpg" class="rounded-circle border border-1 border-white my-profile">
+        <span class="nav-text ps-2">Account</span>
       </a>
     </li>
   </ul>
