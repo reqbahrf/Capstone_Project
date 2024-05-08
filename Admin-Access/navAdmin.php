@@ -11,7 +11,7 @@
   }
 
   .sidenav a {
-    padding: 6px 8px 6px 0px;
+    padding: 6px 8px 6px 6px;
     text-decoration: none;
     font-size: 20px;
     color: #818181;
@@ -39,13 +39,6 @@
     transition: transform 0.3s ease;
   }
 
-  .nav-item a.active svg path {
-    fill: #FFFFFF;
-  }
-
-  .nav-item a.active {
-    color: #FFFFFF;
-  }
 
   @media only screen and (max-width: 600px) {
     nav.sidenav {
@@ -80,6 +73,13 @@
       flex-grow: 1;
       text-align: center;
     }
+    .nav-item a.active svg path {
+    fill: #FFFFFF;
+  }
+
+  .nav-item a.active {
+    color: #FFFFFF;
+  }
   }
 
   /* Large screens */
@@ -109,6 +109,34 @@
     .nav-text {
       width: auto;
     }
+    .nav-item a.active {
+    color: #000000;
+    background-color: #FFFFFF;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    position: relative;
+    filter: grayscale(0%) opacity(1);
+
+  }
+
+  .nav-item a.active::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -25px;
+    width: 50px;
+    height: 100%;
+    background-color: #FFFFFF;
+    border-radius: 0 50px 50px 0;
+    z-index: -1;
+  }
+
+  .nav-item a.active svg path {
+    fill: #000000;
+  }
+  
   }
 </style>
 
