@@ -161,35 +161,44 @@
   //FIXME: Improve the logic of the following code
   $(document).on('DocLoaded', function() {
     $('#applicantChart').off('click').on('click', function() {
+      let pieChartAppli, barChartAppli;
       setTimeout(function() {
 
-        initializePieChart('pieChartApp');
-        initializeBarChart('barChartApp');
+        pieChartAppli = initializePieChart('pieChartApp');
+        barChartAppli = initializeBarChart('barChartApp');
+        $('#closeApplicant').click(function() {
+          if (pieChartAppli) pieChartAppli.destroy();
+          if (barChartAppli) barChartAppli.destroy();
+        });
       }, 1000);
     });
     $('#ongoingChart').off('click').on('click', function() {
+      let pieChartOngoing, barChartOngoing;
       setTimeout(function() {
 
-        initializePieChart('pieChartOngo');
-        initializeBarChart('barChartOngo');
+        pieChartOngoing = initializePieChart('pieChartOngo');
+        barChartOngoing = initializeBarChart('barChartOngo');
+        $('#closeOngoing').click(function() {
+          if (pieChartOngoing) pieChartOngoing.destroy();
+          if (barChartOngoing) barChartOngoing.destroy();
+        });
       }, 1000);
     });
     $('#completedChart').off('click').on('click', function() {
+      let pieChartComple, barChartComple;
       setTimeout(function() {
 
-        initializePieChart('pieChartComp');
-        initializeBarChart('barChartComp');
+        pieChartComple = initializePieChart('pieChartComp');
+        barChartComple = initializeBarChart('barChartComp');
+        $('#closeComple').click(function() {
+          if (pieChartComple) pieChartComple.destroy();
+          if (barChartComple) barChartComple.destroy();
+        });
       }, 1000);
     });
-    $('#applicationModal .close').on('click', function() {
-      console.log('close');
-    });
-    $('#ongoingModal .close').on('click', function() {
-      console.log('close');
-    });
-    $('#completedModal .close').on('click', function() {
-      console.log('close');
-    });
+
+    // Optionally reinitialize the charts or perform other cleanup
+
   });
 
   //TODO: Charts for Applicant, Ongoing and Completed Projects
@@ -376,6 +385,7 @@
 
     var chart = new ApexCharts(document.querySelector("#" + chartID), options);
     chart.render();
+    return chart;
   }
 
   function initializeBarChart(chartID) {
@@ -404,6 +414,7 @@
 
     var chart = new ApexCharts(document.querySelector("#" + chartID), options);
     chart.render();
+    return chart;
   }
 </script>
 

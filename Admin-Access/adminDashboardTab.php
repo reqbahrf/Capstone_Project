@@ -51,7 +51,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="myModalLabel">Applicant</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button id="closeApplicant" type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -72,7 +72,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="ongoingModalLabel">Ongoing</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button id="closeOngoing" type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -94,7 +94,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="completedModalLabel">Completed</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button id="closeComple" type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
