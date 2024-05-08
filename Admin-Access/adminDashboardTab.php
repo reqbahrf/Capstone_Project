@@ -25,33 +25,88 @@
     <div class="container mt-4">
         <fieldset>
             <legend class="w-auto">
-                <h3>Project</h3>
+                <h3>Project:</h3>
             </legend>
-            <div class="row mt-2">
-                <div class="col">
-                    <fieldset>
-                        <legend class="w-auto">Applicants</legend>
-                        <!-- Add content for Applicants fieldset here -->
-                    </fieldset>
+            <div class="row sparkboxes m-4">
+                <div class="col-md-4 z-3" id="applicantChart" data-toggle="modal" data-target="#applicationModal">
+                    <div class="box box1 pt-2 bg-white shadow rounded-3">
+                        <div id="Applicant"></div>
+                    </div>
                 </div>
-                <div class="col">
-                    <fieldset>
-                        <legend class="w-auto">Ongoing</legend>
-                        <!-- Add content for Ongoing fieldset here -->
-                    </fieldset>
+                <div class="col-md-4 z-3" id="ongoingChart" data-toggle="modal" data-target="#ongoingModal">
+                    <div class="box box2 pt-2  bg-white shadow rounded-3">
+                        <div id="Ongoing"></div>
+                    </div>
                 </div>
-                <div class="col">
-                    <fieldset>
-                        <legend class="w-auto">Completed</legend>
-                        <!-- Add content for Completed fieldset here -->
-                    </fieldset>
+                <div class="col-md-4 z-3" id="completedChart" data-toggle="modal" data-target="#completedModal">
+                    <div class="box box3 pt-2 bg-white shadow rounded-3">
+                        <div id="Completed"></div>
+                    </div>
                 </div>
             </div>
         </fieldset>
+        <!-- Modal -->
+        <div class="modal fade" id="applicationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel">Applicant</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <div id="pieChartApp">
+                            </div>
+                            <div id="barChartApp">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Ongoing Modal -->
+        <div class="modal fade" id="ongoingModal" tabindex="-1" role="dialog" aria-labelledby="ongoingModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ongoingModalLabel">Ongoing</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Your content here -->
+                        <div id="pieChartOngo">
+                        </div>
+                        <div id="barChartOngo">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Completed Modal -->
+        <div class="modal fade" id="completedModal" tabindex="-1" role="dialog" aria-labelledby="completedModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="completedModalLabel">Completed</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Your content here -->
+                        <div id="pieChartComp">
+                        </div>
+                        <div id="barChartComp">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<div id="pieChart">
-</div>
-<div id="barChart">
-</div>
 </div>

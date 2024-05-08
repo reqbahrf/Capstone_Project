@@ -170,6 +170,8 @@
       });
     }
 
+//TODO: Charts for Applicant, Ongoing and Completed Projects
+
     function InitdashboardChar() {
       var randomizeArray = function(arg) {
         var array = arg.slice();
@@ -425,7 +427,7 @@
         var chart = new ApexCharts(document.querySelector("#progressBar"), options);
         chart.render();
 
-        // Production Generated Chart
+//TODO: Production Generated Chart
         var options = {
           series: [{
             name: 'Growth',
@@ -477,7 +479,8 @@
         var chart = new ApexCharts(document.querySelector("#productionGeneChart"), options);
         chart.render();
 
-         // Employment Generated Chart
+//TODO: Employment Generated Chart
+
          var options = {
           series: [{
             name: 'Growth',

@@ -13,15 +13,16 @@
     --------------------------------------------------------------*/
     #hero {
       width: 100%;
-      height: 60vh;
-      background: url("../img/hero-bg.jpg") center center;
+      height: 90vh;
+      background-image: url('assets/svg/herobackground.svg');
       background-size: cover;
+      background-position: center;
       position: relative;
       padding: 0;
     }
 
     #hero:before {
-      content: "";
+      content: "0";
       background: rgba(56, 64, 70, 0.7);
       position: absolute;
       bottom: 0;

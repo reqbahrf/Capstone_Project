@@ -1,4 +1,4 @@
-<div class="row g-3 mt-3 ms-2 me-2 mb-2 p-3">
+<div class="row g-3 mt-3 ms-1 me-1 mb-2 p-3">
   <fieldset>
     <legend class="w-auto">
       <h2>Cooperator Info:</h2>

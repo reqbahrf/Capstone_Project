@@ -95,7 +95,7 @@
 <body class="overflow-hidden">
   <div class="container-fluid px-0 headerlogo">
     <div class="d-flex align-items-center">
-    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 74.488 75.079" enable-background="new 0 0 74.488 75.079" xml:space="preserve" class="m-3 logo">
+      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 74.488 75.079" enable-background="new 0 0 74.488 75.079" xml:space="preserve" class="m-3 logo">
         <g>
           <rect x="19.235" y="19.699" width="36" height="36" />
           <circle fill="#48C4D3" cx="19.235" cy="19.699" r="18" />
@@ -139,6 +139,7 @@
     loadPage('adminDashboardTab.php', 'dashboardLink');
   });
 
+
   function loadPage(url, activeLink, callback) {
     $.ajax({
       url: url,
@@ -147,8 +148,8 @@
         $('#main-content').html(response);
         setActiveLink(activeLink);
         if (url === 'adminDashboardTab.php') {
-          initializePieChart();
-          initializeBarChart();
+          InitdashboardChar()
+          $(document).trigger('DocLoaded');
         }
       },
       error: function(error) {
@@ -157,14 +158,209 @@
     });
   }
 
-  function initializePieChart() {
+  //FIXME: Improve the logic of the following code
+  $(document).on('DocLoaded', function() {
+    $('#applicantChart').off('click').on('click', function() {
+      setTimeout(function() {
+
+        initializePieChart('pieChartApp');
+        initializeBarChart('barChartApp');
+      }, 1000);
+    });
+    $('#ongoingChart').off('click').on('click', function() {
+      setTimeout(function() {
+
+        initializePieChart('pieChartOngo');
+        initializeBarChart('barChartOngo');
+      }, 1000);
+    });
+    $('#completedChart').off('click').on('click', function() {
+      setTimeout(function() {
+
+        initializePieChart('pieChartComp');
+        initializeBarChart('barChartComp');
+      }, 1000);
+    });
+    $('#applicationModal .close').on('click', function() {
+      console.log('close');
+    });
+    $('#ongoingModal .close').on('click', function() {
+      console.log('close');
+    });
+    $('#completedModal .close').on('click', function() {
+      console.log('close');
+    });
+  });
+
+  //TODO: Charts for Applicant, Ongoing and Completed Projects
+
+  function InitdashboardChar() {
+    var randomizeArray = function(arg) {
+      var array = arg.slice();
+      var currentIndex = array.length,
+        temporaryValue, randomIndex;
+
+      while (0 !== currentIndex) {
+
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+
+      return array;
+    }
+    var sparklineData = [47, 45, 54, 38, 56, 24, 65, 31, 37, 39, 62, 51, 35, 41, 35, 27, 93, 53, 61, 27, 54, 43, 19, 46];
+    var applicationChar = {
+      chart: {
+        id: 'Applicant',
+        type: 'area',
+        height: 160,
+        sparkline: {
+          enabled: true
+        },
+      },
+      stroke: {
+        curve: 'straight'
+      },
+      fill: {
+        opacity: 1,
+      },
+      series: [{
+        name: 'Applicants',
+        data: randomizeArray(sparklineData)
+      }],
+      labels: [...Array(24).keys()].map(n => `2018-09-0${n+1}`),
+      yaxis: {
+        min: 0
+      },
+      xaxis: {
+        type: 'datetime',
+      },
+      colors: ['#008FFB'],
+      title: {
+        text: '52',
+        offsetX: 30,
+        style: {
+          fontSize: '24px',
+          cssClass: 'apexcharts-yaxis-title'
+        }
+      },
+      subtitle: {
+        text: 'Applicants',
+        offsetX: 30,
+        style: {
+          fontSize: '14px',
+          cssClass: 'apexcharts-yaxis-title'
+        }
+      }
+    }
+
+    var OngoingChar = {
+      chart: {
+        id: 'Ongoing',
+        type: 'area',
+        height: 160,
+        sparkline: {
+          enabled: true
+        },
+      },
+      stroke: {
+        curve: 'straight'
+      },
+      fill: {
+        opacity: 1,
+      },
+      series: [{
+        name: 'Ongoing',
+        data: randomizeArray(sparklineData)
+      }],
+      labels: [...Array(24).keys()].map(n => `2018-09-0${n+1}`),
+      yaxis: {
+        min: 0
+      },
+      xaxis: {
+        type: 'datetime',
+      },
+      colors: ['#008FFB'],
+      title: {
+        text: '312',
+        offsetX: 30,
+        style: {
+          fontSize: '24px',
+          cssClass: 'apexcharts-yaxis-title'
+        }
+      },
+      subtitle: {
+        text: 'Ongoing',
+        offsetX: 30,
+        style: {
+          fontSize: '14px',
+          cssClass: 'apexcharts-yaxis-title'
+        }
+      }
+    }
+
+    var completedChar = {
+      chart: {
+        id: 'Completed',
+        type: 'area',
+        height: 160,
+        sparkline: {
+          enabled: true
+        },
+      },
+      stroke: {
+        curve: 'straight'
+      },
+      fill: {
+        opacity: 1,
+      },
+      series: [{
+        name: 'Completed',
+        data: randomizeArray(sparklineData)
+      }],
+      labels: [...Array(24).keys()].map(n => `2018-09-0${n+1}`),
+      xaxis: {
+        type: 'datetime',
+      },
+      yaxis: {
+        min: 0
+      },
+      colors: ['#008FFB'],
+      //colors: ['#5564BE'],
+      title: {
+        text: '13',
+        offsetX: 30,
+        style: {
+          fontSize: '24px',
+          cssClass: 'apexcharts-yaxis-title'
+        }
+      },
+      subtitle: {
+        text: 'Completed',
+        offsetX: 30,
+        style: {
+          fontSize: '14px',
+          cssClass: 'apexcharts-yaxis-title'
+        }
+      }
+    }
+    new ApexCharts(document.querySelector("#Applicant"), applicationChar).render();
+    new ApexCharts(document.querySelector("#Ongoing"), OngoingChar).render();
+    new ApexCharts(document.querySelector("#Completed"), completedChar).render();
+  }
+
+  function initializePieChart(chartID) {
     var options = {
-      series: [44, 55, 13, 43, 22],
+      series: [42, 55, 13],
       chart: {
         width: 380,
         type: 'pie',
       },
-      labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+      labels: ['Micro Enterprise', 'Small Enterprise', 'Medium Enterprise'],
       responsive: [{
         breakpoint: 480,
         options: {
@@ -178,11 +374,11 @@
       }]
     };
 
-    var chart = new ApexCharts(document.querySelector("#pieChart"), options);
+    var chart = new ApexCharts(document.querySelector("#" + chartID), options);
     chart.render();
   }
 
-  function initializeBarChart() {
+  function initializeBarChart(chartID) {
     var options = {
       series: [{
         data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
@@ -206,7 +402,7 @@
       }
     };
 
-    var chart = new ApexCharts(document.querySelector("#barChart"), options);
+    var chart = new ApexCharts(document.querySelector("#" + chartID), options);
     chart.render();
   }
 </script>
