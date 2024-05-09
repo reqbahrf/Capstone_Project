@@ -28,7 +28,7 @@
                 <h3>Project:</h3>
             </legend>
             <div class="row sparkboxes m-4">
-                <div class="col-md-4 z-3" id="applicantChart" data-bs-toggle="modal" data-bs-target="#applicationModal">
+                <div class="col-md-4 z-3" id="applicantChart" data-bs-toggle="modal" data-bs-target="#applicantModal">
                     <div class="box box1 pt-2 bg-white shadow rounded-3">
                         <div id="Applicant"></div>
                     </div>
@@ -46,7 +46,7 @@
             </div>
         </fieldset>
         <!-- Modal -->
-        <div class="modal fade" id="applicationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="applicantModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header d-flex justify-content-between">

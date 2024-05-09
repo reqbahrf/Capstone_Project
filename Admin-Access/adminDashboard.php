@@ -156,47 +156,56 @@
   }
 
   //FIXME: Improve the logic of the following code
+
   $(document).on('DocLoaded', function() {
-    $('#applicantChart').off('click').on('click', function() {
-      let pieChartAppli, barChartAppli;
+    $(document).on('shown.bs.modal', '#applicantModal', function() {
       setTimeout(function() {
+        console.log('Initializing charts for applicantModal');
+        let pieChartAppli, barChartAppli;
 
         pieChartAppli = initializePieChart('pieChartApp');
         barChartAppli = initializeBarChart('barChartApp');
+
         $('#closeApplicant').click(function() {
           if (pieChartAppli) pieChartAppli.destroy();
           if (barChartAppli) barChartAppli.destroy();
         });
-      }, 1000);
+      }, 500);
     });
-    $('#ongoingChart').off('click').on('click', function() {
-      let pieChartOngoing, barChartOngoing;
+
+    $(document).on('shown.bs.modal', '#ongoingModal', function() {
       setTimeout(function() {
+        console.log('Initializing charts for ongoingModal');
+        let pieChartOngoing, barChartOngoing;
 
         pieChartOngoing = initializePieChart('pieChartOngo');
         barChartOngoing = initializeBarChart('barChartOngo');
+
         $('#closeOngoing').click(function() {
           if (pieChartOngoing) pieChartOngoing.destroy();
           if (barChartOngoing) barChartOngoing.destroy();
         });
-      }, 1000);
+      }, 500);
     });
-    $('#completedChart').off('click').on('click', function() {
-      let pieChartComple, barChartComple;
+
+    $(document).on('shown.bs.modal', '#completedModal', function() {
       setTimeout(function() {
+        console.log('Initializing charts for completedModal');
+        let pieChartComple, barChartComple;
 
         pieChartComple = initializePieChart('pieChartComp');
         barChartComple = initializeBarChart('barChartComp');
+
         $('#closeComple').click(function() {
           if (pieChartComple) pieChartComple.destroy();
           if (barChartComple) barChartComple.destroy();
         });
-      }, 1000);
+      }, 500);
     });
-
-    // Optionally reinitialize the charts or perform other cleanup
-
   });
+
+
+  // Optionally reinitialize the charts or perform other cleanup
 
   //TODO: Charts for Applicant, Ongoing and Completed Projects
 
