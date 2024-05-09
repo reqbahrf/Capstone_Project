@@ -1,74 +1,86 @@
 <div>
-  <div class="">
-      <h1 class=" bg-dark text-white p-4 m-2">Applicant:</h1>
-  </div>
-  <div>
-      <table id="example" class="table table-striped mb-5" style="width:100%;">
-          <thead>
-              <tr>
-                  <th>Id</th>
-                  <th>Applicant Name</th>
-                  <th>Firm Name</th>
-                  <th>Firm Address</th>
-                  <th>Age</th>
-                  <th>Date Applied</th>
-                  <th>Action</th>
-              </tr>
-          </thead>
-          <tbody id="tableBody">
-          </tbody>
-          <tfoot>
-              <tr>
-                  <th>Id</th>
-                  <th>Applicant Name</th>
-                  <th>Firm Name</th>
-                  <th>Firm Address</th>
-                  <th>Age</th>
-                  <th>Date Applied</th>
-                  <th>Action</th>
-              </tr>
-          </tfoot>
-      </table>
-  </div>
+    <div class="">
+        <h1 class=" bg-dark text-white p-4 m-2">Applicant:</h1>
+    </div>
+    <!-- Where the applicant table start -->
+    <div>
+        <table id="applicant" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Client Name</th>
+                    <th>Designation</th>
+                    <th>Firm Name</th>
+                    <th>Additional Info</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr>
+                    <td>1</td>
+                    <td>John Doe</td>
+                    <td>Manager</td>
+                    <td>XYZ company</td>
+                    <td>
+                        <p><strong>Business Address:</strong> tagum, Davao Del Norte <br> <strong>Type of Enterprise:</strong> Sole Proprietorship</p>
+                        <p>
+                            <Strong>
+                                Assets:
+                            </Strong> <br>
+                            <span class="ps-2">Land: 100,000</span><br>
+                            <span class="ps-2">Building: 100,000</span> <br>
+                            <span class="ps-2">Equipment: 100,000</span>
+                        </p>
+                        <strong>Contact Details:</strong>
+                        <p><strong class="p-2">Landline:</strong> 1234567 <br><Strong class="p-2">Mobile Phone:</Strong> 09123456789</p>
+                    </td>
+                    <td>To be review</td>
+                    <td>
+                        <button class="btn btn-primary">Review</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Sam Son</td>
+                    <td>Owner</td>
+                    <td>XYZ company</td>
+                    <td>
+                        <p><strong>Business Address:</strong> Carmen, Davao Del Norte <br> <strong>Type of Enterprise:</strong> Sole Proprietorship</p>
+                        <p>
+                            <Strong>
+                                Assets:
+                            </Strong> <br>
+                            <span class="ps-2">Land: 144,000</span><br>
+                            <span class="ps-2">Building: 122,000</span> <br>
+                            <span class="ps-2">Equipment: 143,000</span>
+                        </p>
+                        <strong>Contact Details:</strong>
+                        <p><strong class="p-2">Landline:</strong> 1234567 <br><Strong class="p-2">Mobile Phone:</Strong> 09123456789</p>
+                    </td>
+                    <td>waiting for approval</td>
+                    <td>
+                        <button class="btn btn-primary" disabled>Review</button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>id</th>
+                    <th>Client Name</th>
+                    <th>Designation</th>
+                    <th>Firm Name</th>
+                    <th>Additional Info</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- Where the applicant table end -->
 </div>
 <script>
-  function generateRandomData() {
-      const names = ["Alice", "Bob", "Charlie", "David", "Eve"];
-      const firms = ["Acme Corp", "Globex", "Initech", "Umbrella", "Vehement"];
-      const addresses = ["123 Elm St", "456 Oak St", "789 Pine St", "101 Maple St", "202 Birch St"];
-      const actions = ["Review"];
-
-      return {
-          id: Math.floor(Math.random() * 1000),
-          name: names[Math.floor(Math.random() * names.length)],
-          firm: firms[Math.floor(Math.random() * firms.length)],
-          address: addresses[Math.floor(Math.random() * addresses.length)],
-          age: Math.floor(Math.random() * 100),
-          dateApplied: new Date().toISOString().slice(0, 10),
-          action: actions[Math.floor(Math.random() * actions.length)]
-      };
-  }
-
-  function populateTable(rows = 10) {
-      const tbody = document.getElementById('tableBody');
-      for (let i = 0; i < rows; i++) {
-          const data = generateRandomData();
-          const tr = document.createElement('tr');
-          tr.innerHTML = `
-              <td>${data.id}</td>
-              <td>${data.name}</td>
-              <td>${data.firm}</td>
-              <td>${data.address}</td>
-              <td>${data.age}</td>
-              <td>${data.dateApplied}</td>
-              <td><button class="btn btn-primary" onclick="alert('${data.action}');">${data.action}</button></td>
-          `;
-          tbody.appendChild(tr);
-      }
-  }
-
-  $(document).ready(function() {
-      populateTable(100); // Populate the table first
-      new DataTable('#example'); // Then initialize DataTables
-  });
+    $(document).ready(function() {
+        new DataTable('#applicant'); // Then initialize DataTables
+    });
 </script>

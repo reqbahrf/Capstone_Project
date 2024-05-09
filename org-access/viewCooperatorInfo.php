@@ -55,7 +55,7 @@
     <div class="bg-white bg-white d-flex justify-content-start">
       <div id="progressBar"></div>
     </div>
-    <div class="row px-4">
+    <div class="row px-2">
       <div class="col">
         <fieldset>
           <legend>
