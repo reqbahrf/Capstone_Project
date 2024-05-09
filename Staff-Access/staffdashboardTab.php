@@ -68,6 +68,7 @@
 
                     </td>
                     <td>
+                        <p><strong>Name:</strong> Jorge Walt</p>
                         <strong>Contact Details:</strong>
                         <p><strong class="p-2">Landline:</strong> 1234567 <br><Strong class="p-2">Mobile Phone:</Strong> 09123456789</p>
                     </td>

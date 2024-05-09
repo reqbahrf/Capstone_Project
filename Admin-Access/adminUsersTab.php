@@ -1,80 +1,63 @@
-
 <div>
-<div class="">
-      <h1 class=" bg-dark text-white p-4 m-2">User Access</h1>
+  <div class="">
+    <h1 class=" bg-dark text-white p-4 m-2">User Access</h1>
   </div>
-  <div>
-  <table id="example" class="table table-striped" style="width:100%">
+  <div class="px-3">
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-primary">Add User</button>
+    </div>
+    <div>
+      <table id="user_staff" class="table table-striped" style="width:100%">
         <thead>
-            <tr>
-              <th>id</th>
-              <th>Name</th>
-              <th>Position</th>
-              <th>userName</th>
-              <th>password</th>
-              <th>Action</th>
-            </tr>
+          <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>userName</th>
+            <th>password</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
         </thead>
         <tbody id="tableBody">
-            
+          <tr>
+            <td>1</td>
+            <td>Pol You</td>
+            <td>DOST_SETUP-Polyo</td>
+            <td>43y5uiy3uiy88t78uiqy58yuikjqhjkhjkhq475y78uhjhfhwfg74792jtg8934258uihg</td>
+            <td><strong>has access</strong></td>
+            <td>
+              <button class="btn btn-primary">Toggle Acess</button>
+              <button class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Michele Sam</td>
+            <td>DOST_SETUP-MicheleSam</td>
+            <td>fhjkahhu4uhfhjhjhajshjfhuu4888qkkffhbqjjeruuakkfjeueuqiogkhadhgjhjhue</td>
+            <td><strong>no access</strong></td>
+            <td>
+              <button class="btn btn-primary">Toggle Access</button>
+              <button class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
         </tbody>
         <tfoot>
-            <tr>
-              <th>id</th>
-              <th>Name</th>
-              <th>Position</th>
-              <th>userName</th>
-              <th>password</th>
-              <th>Action</th>
-            </tr>
+          <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>userName</th>
+            <th>password</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
         </tfoot>
-    </table>
+      </table>
+    </div>
   </div>
 </div>
-
 <script>
-function generateRandomData() {
-  const names = ["Alice", "Bob", "Charlie", "David", "Eve"];
-  const positions = ["Manager", "Assistant", "Clerk", "Supervisor"];
-  const usernames = ["alice123", "bob234", "charlie345", "david456", "eve567"];
-  const passwords = ["pass1", "pass2", "pass3", "pass4", "pass5"];
-  const randomHashes = passwords.map(() => {
-    // Generate random bytes and convert to hex
-    return crypto.getRandomValues(new Uint8Array(16)).join("");
+  $(document).ready(function() {
+    $('#user_staff').DataTable(); // Then initialize DataTables
   });
-
-  const actions = ["Permit Access"];
-
-  return {
-    id: Math.floor(Math.random() * 1000),
-    name: names[Math.floor(Math.random() * names.length)],
-    position: positions[Math.floor(Math.random() * positions.length)],
-    username: usernames[Math.floor(Math.random() * usernames.length)],
-    password: randomHashes[Math.floor(Math.random() * randomHashes.length)],
-    action: actions[Math.floor(Math.random() * actions.length)]
-  };
-}
-
-function populateTable(rows = 10) {
-  const tbody = document.getElementById('tableBody');
-  tbody.innerHTML = ''; // Clear existing rows
-  for (let i = 0; i < rows; i++) {
-    const data = generateRandomData();
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${data.id}</td>
-      <td>${data.name}</td>
-      <td>${data.position}</td>
-      <td>${data.username}</td>
-      <td>${data.password}</td>
-      <td><button class="btn btn-primary" onclick="alert('Action: ${data.action}');">${data.action}</button></td>
-    `;
-    tbody.appendChild(tr);
-  }
-}
-
-$(document).ready(function() {
-  populateTable(15); // Populate the table first
-  $('#example').DataTable(); // Then initialize DataTables
-});
 </script>

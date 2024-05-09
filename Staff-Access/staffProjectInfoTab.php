@@ -7,16 +7,17 @@
   }
 
   .nav-link {
-    background-color: black;
-    color: white;
-    /* Change the text color to white for better contrast */
-  }
+        background-color: black;
+        color: white;
+        /* Change the text color to white for better contrast */
+    }
 
-  .nav-link.active {
-    background-color: white;
-    color: black;
-    /* Change the text color to black for better contrast */
-  }
+    .nav-link.active {
+        font-weight: bold;
+        background-color: white;
+        color: black;
+        border-top: 6px solid;
+    }
 
   .checkbox-wrapper-26 {
     /* Temporary, for debugging */
