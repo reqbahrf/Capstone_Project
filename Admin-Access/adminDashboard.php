@@ -158,32 +158,33 @@
   //FIXME: Improve the logic of the following code
 
   $(document).on('DocLoaded', function() {
+    let pieChartAppli, barChartAppli, pieChartOngoing, barChartOngoing, pieChartComple, barChartComple;
     $(document).on('shown.bs.modal', '#applicantModal', function() {
       setTimeout(function() {
         console.log('Initializing charts for applicantModal');
-        let pieChartAppli, barChartAppli;
 
         pieChartAppli = initializePieChart('pieChartApp');
         barChartAppli = initializeBarChart('barChartApp');
+        console.log(pieChartAppli, barChartAppli)
 
-        $('#closeApplicant').click(function() {
-          if (pieChartAppli) pieChartAppli.destroy();
-          if (barChartAppli) barChartAppli.destroy();
+        $('#closeApplicant').off('click').click(function() {
+          if (pieChartAppli) pieChartAppli?.destroy();
+          if (barChartAppli) barChartAppli?.destroy();
         });
+
       }, 500);
     });
 
     $(document).on('shown.bs.modal', '#ongoingModal', function() {
       setTimeout(function() {
         console.log('Initializing charts for ongoingModal');
-        let pieChartOngoing, barChartOngoing;
 
         pieChartOngoing = initializePieChart('pieChartOngo');
         barChartOngoing = initializeBarChart('barChartOngo');
 
-        $('#closeOngoing').click(function() {
-          if (pieChartOngoing) pieChartOngoing.destroy();
-          if (barChartOngoing) barChartOngoing.destroy();
+        $('#closeOngoing').off('click').click(function() {
+          if (pieChartOngoing) pieChartOngoing?.destroy();
+          if (barChartOngoing) barChartOngoing?.destroy();
         });
       }, 500);
     });
@@ -191,14 +192,13 @@
     $(document).on('shown.bs.modal', '#completedModal', function() {
       setTimeout(function() {
         console.log('Initializing charts for completedModal');
-        let pieChartComple, barChartComple;
 
         pieChartComple = initializePieChart('pieChartComp');
         barChartComple = initializeBarChart('barChartComp');
 
-        $('#closeComple').click(function() {
-          if (pieChartComple) pieChartComple.destroy();
-          if (barChartComple) barChartComple.destroy();
+        $('#closeComple').off('click').click(function() {
+          if (pieChartComple) pieChartComple?.destroy();
+          if (barChartComple) barChartComple?.destroy();
         });
       }, 500);
     });
@@ -254,7 +254,7 @@
       xaxis: {
         type: 'datetime',
       },
-      colors: ['#008FFB'],
+      colors: ['#48C4D3'],
       title: {
         text: '52',
         offsetX: 30,
@@ -299,7 +299,7 @@
       xaxis: {
         type: 'datetime',
       },
-      colors: ['#008FFB'],
+      colors: ['#48C4D3'],
       title: {
         text: '312',
         offsetX: 30,
@@ -344,7 +344,7 @@
       yaxis: {
         min: 0
       },
-      colors: ['#008FFB'],
+      colors: ['#48C4D3'],
       //colors: ['#5564BE'],
       title: {
         text: '13',
@@ -366,6 +366,54 @@
     new ApexCharts(document.querySelector("#Applicant"), applicationChar).render();
     new ApexCharts(document.querySelector("#Ongoing"), OngoingChar).render();
     new ApexCharts(document.querySelector("#Completed"), completedChar).render();
+    // staff handled projects chart
+    var handledBusiness = {
+      series: [{
+        data: [21, 22, 10, 28, 16, 21, 13, 30]
+      }],
+      chart: {
+        height: 350,
+        type: 'bar',
+        events: {
+          click: function(chart, w, e) {
+            // console.log(chart, w, e)
+          }
+        }
+      },
+      colors: ['#48C4D3'],
+      plotOptions: {
+        bar: {
+          columnWidth: '45%',
+          distributed: true,
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      legend: {
+        show: false
+      },
+      xaxis: {
+        categories: [
+          'Staff1',
+          'Staff2',
+          'Staff3',
+          'Staff4',
+          'Staff5',
+          'Staff6',
+          'Staff7',
+          'LStaff8',
+        ],
+        labels: {
+          style: {
+            colors: ['#111111'],
+            fontSize: '12px'
+          }
+        }
+      }
+    };
+
+    new ApexCharts(document.querySelector("#staffHandledB"), handledBusiness).render();
   }
 
   function initializePieChart(chartID) {
@@ -389,9 +437,9 @@
       }]
     };
 
-    var chart = new ApexCharts(document.querySelector("#" + chartID), options);
-    chart.render();
-    return chart;
+    var pieChart = new ApexCharts(document.querySelector("#" + chartID), options);
+    pieChart.render();
+    return pieChart;
   }
 
   function initializeBarChart(chartID) {
@@ -418,9 +466,9 @@
       }
     };
 
-    var chart = new ApexCharts(document.querySelector("#" + chartID), options);
-    chart.render();
-    return chart;
+    var barChart = new ApexCharts(document.querySelector("#" + chartID), options);
+    barChart.render();
+    return barChart;
   }
 </script>
 
