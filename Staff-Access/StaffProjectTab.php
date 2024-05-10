@@ -21,7 +21,7 @@
       </ol>
     </nav>
     <div>
-      <h1 class=" bg-dark text-white p-4 m-2">Projects</h1>
+      <h1 class=" bg-dark text-white p-4">Projects</h1>
     </div>
     <div>
       <ul class="nav nav-tabs" id="myTab" role="tablist">

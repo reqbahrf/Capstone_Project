@@ -1,6 +1,6 @@
 <div>
     <div class="">
-        <h1 class=" bg-dark text-white p-4 m-2">Applicant:</h1>
+        <h1 class=" bg-dark text-white p-4">Applicant:</h1>
     </div>
     <!-- Where the applicant table start -->
     <div>

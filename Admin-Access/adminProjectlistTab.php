@@ -12,10 +12,10 @@
         border-top: 6px solid;
     }
 </style>
-<div class="">
-    <h1 class=" bg-dark text-white p-4 m-2">Project List</h1>
+<div class=" bg-dark text-white p-4">
+    <h1>Project List</h1>
 </div>
-<div>
+<div class="mt-4">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Applicant</button>

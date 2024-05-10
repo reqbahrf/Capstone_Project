@@ -29,17 +29,17 @@
             </legend>
             <div class="row sparkboxes m-4">
                 <div class="col-md-4 z-3" id="applicantChart" data-bs-toggle="modal" data-bs-target="#applicantModal">
-                    <div class="box box1 pt-2 bg-white shadow rounded-3">
+                    <div class="box box1 pt-2 bg-white shadow rounded-4 ">
                         <div id="Applicant"></div>
                     </div>
                 </div>
                 <div class="col-md-4 z-3" id="ongoingChart" data-bs-toggle="modal" data-bs-target="#ongoingModal">
-                    <div class="box box2 pt-2  bg-white shadow rounded-3">
+                    <div class="box box2 pt-2  bg-white shadow rounded-4">
                         <div id="Ongoing"></div>
                     </div>
                 </div>
                 <div class="col-md-4 z-3" id="completedChart" data-bs-toggle="modal" data-bs-target="#completedModal">
-                    <div class="box box3 pt-2 bg-white shadow rounded-3">
+                    <div class="box box3 pt-2 bg-white shadow rounded-4">
                         <div id="Completed"></div>
                     </div>
                 </div>

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Admin dashboard</title>
   <link rel="stylesheet" href="../assets/bootstrap-5.3.3-dist/css/bootstrap.min.css">
   <script src="../assets/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -18,7 +18,8 @@
 
   <style>
     .headerlogo {
-      background-color: #48c4d3;
+      background: rgb(2, 0, 36);
+      background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(72, 196, 211, 1) 96%, rgba(0, 212, 255, 1) 100%);
       color: white;
     }
 
@@ -55,7 +56,7 @@
       overflow-y: auto;
       overflow-x: hidden;
       width: 100%;
-      height: 80vh;
+      height: 85vh;
     }
 
     .flex-container {
@@ -70,10 +71,10 @@
 
     .main-column {
       flex-grow: 1;
-      margin-top: 3rem;
-      margin-left: 2rem;
-      margin-right: 2rem;
-      width: 80%;
+      margin-top: 0.5rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
+      width: 85%;
       order: 1;
     }
 
@@ -133,7 +134,7 @@
 </body>
 <script>
   $(document).ready(function() {
-    loadPage('adminDashboardTab.php', 'dashboardLink');
+    loadPage('/Admin-Access/adminDashboardTab.php', 'dashboardLink');
   });
 
 
@@ -144,7 +145,7 @@
       success: function(response) {
         $('#main-content').html(response);
         setActiveLink(activeLink);
-        if (url === 'adminDashboardTab.php') {
+        if (url === '/Admin-Access/adminDashboardTab.php') {
           InitdashboardChar()
           $(document).trigger('DocLoaded');
         }
@@ -156,9 +157,9 @@
   }
 
   //FIXME: Improve the logic of the following code
-
+  let pieChartAppli, barChartAppli, pieChartOngoing, barChartOngoing, pieChartComple, barChartComple;
   $(document).on('DocLoaded', function() {
-    let pieChartAppli, barChartAppli, pieChartOngoing, barChartOngoing, pieChartComple, barChartComple;
+    $(document).off('shown.bs.modal');
     $(document).on('shown.bs.modal', '#applicantModal', function() {
       setTimeout(function() {
         console.log('Initializing charts for applicantModal');

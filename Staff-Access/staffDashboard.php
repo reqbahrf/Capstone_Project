@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
+  <title>Staff Dashboard</title>
   <link rel="stylesheet" href="../assets/bootstrap-5.3.3-dist/css/bootstrap.min.css">
   <script src="../assets/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
@@ -17,7 +17,8 @@
 
   <style>
     .headerlogo {
-      background-color: #48c4d3;
+      background: rgb(2, 0, 36);
+      background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(72, 196, 211, 1) 96%, rgba(0, 212, 255, 1) 100%);
       color: white;
     }
 
@@ -55,7 +56,7 @@
       overflow-y: auto;
       overflow-x: hidden;
       width: 100%;
-      height: 80vh;
+      height: 85vh;
     }
 
     .flex-container {
@@ -70,10 +71,10 @@
 
     .main-column {
       flex-grow: 1;
-      margin-top: 3rem;
-      margin-left: 2rem;
-      margin-right: 2rem;
-      width: 80%;
+      margin-top: 0.5rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
+      width: 85%;
       order: 1;
     }
 
@@ -143,7 +144,7 @@
   </div>
   <script>
     $(document).ready(function() {
-      loadPage('staffDashboardTab.php', 'dashboardLink');
+      loadPage('/Staff-Access/staffDashboardTab.php', 'dashboardLink');
     });
 
     function loadPage(url, activeLink) {
@@ -153,7 +154,7 @@
         success: function(response) {
           $('#main-content').html(response);
           setActiveLink(activeLink);
-          if (url == 'staffDashboardTab.php') {
+          if (url == '/Staff-Access/staffDashboardTab.php') {
             InitdashboardChar();
           }
           if (url == '/org-access/viewCooperatorInfo.php') {
@@ -167,7 +168,7 @@
       });
     }
 
-//TODO: Charts for Applicant, Ongoing and Completed Projects
+    //TODO: Charts for Applicant, Ongoing and Completed Projects
 
     function InitdashboardChar() {
       var randomizeArray = function(arg) {
@@ -342,8 +343,8 @@
 
     function InitializeviewCooperatorProgress() {
       var options = {
-          series: [75],
-          chart: {
+        series: [75],
+        chart: {
           height: 250,
           type: 'radialBar',
           toolbar: {
@@ -354,7 +355,7 @@
           radialBar: {
             startAngle: -135,
             endAngle: 225,
-             hollow: {
+            hollow: {
               margin: 0,
               size: '70%',
               background: '#fff',
@@ -382,7 +383,7 @@
                 opacity: 0.35
               }
             },
-        
+
             dataLabels: {
               show: true,
               name: {
@@ -419,18 +420,18 @@
           lineCap: 'round'
         },
         labels: ['Percent'],
-        };
+      };
 
-        var chart = new ApexCharts(document.querySelector("#progressBar"), options);
-        chart.render();
+      var chart = new ApexCharts(document.querySelector("#progressBar"), options);
+      chart.render();
 
-//TODO: Production Generated Chart
-        var options = {
-          series: [{
-            name: 'Growth',
-            data: [10, 15, 7, -12] 
-          }],
-          chart: {
+      //TODO: Production Generated Chart
+      var options = {
+        series: [{
+          name: 'Growth',
+          data: [10, 15, 7, -12]
+        }],
+        chart: {
           type: 'bar',
           height: 350
         },
@@ -458,7 +459,7 @@
             text: 'Growth',
           },
           labels: {
-            formatter: function (y) {
+            formatter: function(y) {
               return y.toFixed(0) + "%";
             }
           }
@@ -471,19 +472,19 @@
             rotate: -90
           }
         }
-        };
+      };
 
-        var chart = new ApexCharts(document.querySelector("#productionGeneChart"), options);
-        chart.render();
+      var chart = new ApexCharts(document.querySelector("#productionGeneChart"), options);
+      chart.render();
 
-//TODO: Employment Generated Chart
+      //TODO: Employment Generated Chart
 
-         var options = {
-          series: [{
-            name: 'Growth',
-            data: [2, -2, 4, 5] 
-          }],
-          chart: {
+      var options = {
+        series: [{
+          name: 'Growth',
+          data: [2, -2, 4, 5]
+        }],
+        chart: {
           type: 'bar',
           height: 350
         },
@@ -511,7 +512,7 @@
             text: 'Growth',
           },
           labels: {
-            formatter: function (y) {
+            formatter: function(y) {
               return y.toFixed(0) + "%";
             }
           }
@@ -524,13 +525,12 @@
             rotate: -90
           }
         }
-        };
+      };
 
-        var chart = new ApexCharts(document.querySelector("#employmentGeneChart"), options);
-        chart.render();
+      var chart = new ApexCharts(document.querySelector("#employmentGeneChart"), options);
+      chart.render();
 
     }
-
   </script>
 
 </body>

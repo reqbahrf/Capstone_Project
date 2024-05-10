@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="m-4 p-3 shadow">
-        <h3 class="p-4 bg-black text-white">Handle Projects</h3>
+        <h3 class="p-4 bg-black text-white text-center">Handle Projects</h3>
         <table id="handledProject" class="table table-striped" style="width:100%">
             <thead>
                 <tr>

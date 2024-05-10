@@ -16,7 +16,8 @@
   <link rel="stylesheet" href="/dist/apexcharts.css">
   <style>
     .headerlogo {
-      background-color: #48c4d3;
+      background: rgb(2, 0, 36);
+      background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(72, 196, 211, 1) 96%, rgba(0, 212, 255, 1) 100%);
       color: white;
     }
 
@@ -61,7 +62,7 @@
       overflow-y: auto;
       overflow-x: hidden;
       width: 100%;
-      height: 80vh;
+      height: 85vh;
     }
 
     .flex-container {
@@ -76,10 +77,10 @@
 
     .main-column {
       flex-grow: 1;
-      margin-top: 3rem;
-      margin-left: 2rem;
-      margin-right: 2rem;
-      width: 80%;
+      margin-top: 0.5rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
+      width: 85%;
       order: 1;
     }
 
