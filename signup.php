@@ -4,12 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
-  <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <title>Sign up</title>
+  <link rel="stylesheet" href="./assets/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+  <script src="./assets/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="./assets/dist-smartWizard/css/smart_wizard_all.min.css">
+  <script src="./assets/dist-smartWizard/js/jquery.smartWizard.min.js"></script>
 </head>
 
 <body>
@@ -62,38 +64,35 @@
         </div>
         <h4 class="header-title mb-3">Sign up</h4>
 
-        <form>
-          <div id="progressbarwizard">
-
-            <ul class="nav nav-pills nav-justified form-wizard-header mb-3 w-50" role="tablist">
-              <li class="nav-item" role="presentation">
-                <a href="#account-2" data-bs-toggle="tab" data-toggle="tab" class="nav-link rounded-0 py-2 active" aria-selected="true" role="tab">
-                  <i class="mdi mdi-account-circle font-18 align-middle me-1"></i>
-                  <span class="d-none d-sm-inline">Account</span>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+          <div id="smartwizard" class="sw sw-justified sw-theme-dots">
+            <ul class="nav nav-progress">
+              <li class="nav-item">
+                <a class="nav-link default active" href="#step-1">
+                  <div class="num">1</div>
+                  Account
                 </a>
               </li>
-              <li class="nav-item" role="presentation">
-                <a href="#profile-tab-2" data-bs-toggle="tab" data-toggle="tab" class="nav-link rounded-0 py-2" aria-selected="false" role="tab" tabindex="-1">
-                  <i class="mdi mdi-face-man-profile font-18 align-middle me-1"></i>
-                  <span class="d-none d-sm-inline">Profile</span>
+              <li class="nav-item">
+                <a class="nav-link default" href="#step-2">
+                  <span class="num">2</span>
+                  Profile
                 </a>
               </li>
-              <li class="nav-item" role="presentation">
-                <a href="#finish-2" data-bs-toggle="tab" data-toggle="tab" class="nav-link rounded-0 py-2" aria-selected="false" role="tab" tabindex="-1">
-                  <i class="mdi mdi-checkbox-marked-circle-outline font-18 align-middle me-1"></i>
-                  <span class="d-none d-sm-inline">Finish</span>
+              <li class="nav-item">
+                <a class="nav-link default" href="#step-3">
+                  <span class="num">3</span>
+                  Finish
                 </a>
               </li>
             </ul>
 
-            <div class="tab-content b-0 mb-0">
-
-              <div id="bar" class="progress mb-3" style="height: 7px;">
-                <div class="bar progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 33.3333%;"></div>
-              </div>
-
-              <div class="tab-pane active show" id="account-2" role="tabpanel">
-                <div class="row">
+            <div class="sw-toolbar-elm toolbar toolbar-top" role="toolbar"><button class="btn sw-btn-prev sw-btn" type="button">Previous</button><button class="btn sw-btn-next sw-btn" type="button">Next</button><button class="btn btn-success" onclick="onFinish()">Finish</button>
+              <button class="btn btn-secondary" onclick="onCancel()">Cancel</button>
+            </div>
+            <div class="tab-content" style="height: 187.2px;">
+              <div id="step-1" class="tab-pane" role="tabpanel" aria-labelledby="step-1" style="position: static; left: 0px; display: block;">
+              <div class="row">
                   <div class="col-12 d-flex justify-content-center">
                     <div class="w-50">
                       <div class="form-floating mb-3">
@@ -111,15 +110,9 @@
                     </div>
                   </div> <!-- end col -->
                 </div> <!-- end row -->
-                <ul class="list-inline wizard mb-0">
-                  <li class="next list-inline-item float-end">
-                    <a href="javascript:void(0);" class="btn btn-info">Add More Info <i class="mdi mdi-arrow-right ms-1"></i></a>
-                  </li>
-                </ul>
               </div>
-
-              <div class="tab-pane" id="profile-tab-2" role="tabpanel">
-                <div class="row">
+              <div id="step-2" class="tab-pane" role="tabpanel" aria-labelledby="step-2" style="display: none;">
+              <div class="row">
                   <div class="col-12 d-flex justify-content-center">
                     <div class="w-50">
                       <div class="form-floating mb-3">
@@ -137,18 +130,9 @@
                     </div>
                   </div> <!-- end col -->
                 </div> <!-- end row -->
-                <ul class="pager wizard mb-0 list-inline">
-                  <li class="previous list-inline-item disabled">
-                    <button type="button" class="btn btn-light"><i class="mdi mdi-arrow-left me-1"></i> Back to Account</button>
-                  </li>
-                  <li class="next list-inline-item float-end">
-                    <button type="button" class="btn btn-info">Add More Info <i class="mdi mdi-arrow-right ms-1"></i></button>
-                  </li>
-                </ul>
               </div>
-
-              <div class="tab-pane" id="finish-2" role="tabpanel">
-                <div class="row">
+              <div id="step-3" class="tab-pane" role="tabpanel" aria-labelledby="step-3" style="display: none;">
+              <div class="row">
                   <div class="col-12">
                     <div class="text-center">
                       <h2 class="mt-0"><i class="mdi mdi-check-all"></i></h2>
@@ -166,18 +150,13 @@
                     </div>
                   </div> <!-- end col -->
                 </div> <!-- end row -->
-                <ul class="pager wizard mb-0 list-inline mt-1">
-                  <li class="previous list-inline-item disabled">
-                    <button type="button" class="btn btn-light"><i class="mdi mdi-arrow-left me-1"></i> Back to Profile</button>
-                  </li>
-                  <li class="next list-inline-item float-end">
-                    <button type="button" onclick="window.location.href='application.php'" class="btn btn-info">Submit</button>
-                  </li>
-                </ul>
               </div>
+            </div>
 
-            </div> <!-- tab-content -->
-          </div> <!-- end #progressbarwizard-->
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
         </form>
 
       </div> <!-- end card-body -->
@@ -193,14 +172,15 @@
         <div class="modal-body">
           <p><strong>Before you process, please prepare the following files in pdf format.
             </strong>
-            <ul>
-                <li>Letter of Intent</li>
-                <li>DTI/SEC/CDA</li>
-                <li>Business Permit</li>
-                <li>FDA/LTO: (Optional)</li>
-                <li>Official Receipt of the Business</li>
-                <li>Copy of Government Valid ID</li>
-              </ul></p>
+          <ul>
+            <li>Letter of Intent</li>
+            <li>DTI/SEC/CDA</li>
+            <li>Business Permit</li>
+            <li>FDA/LTO: (Optional)</li>
+            <li>Official Receipt of the Business</li>
+            <li>Copy of Government Valid ID</li>
+          </ul>
+          </p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-info" data-bs-dismiss="modal">Proceed</button>
@@ -213,35 +193,40 @@
       $('#info-header-modal').modal('show');
     });
   </script>
-
   <script>
     $(document).ready(function() {
-      // Handle click on "Add More Info" button in Account tab
-      $('#account-2 .next a').click(function(e) {
-        e.preventDefault();
-        $('a[href="#profile-tab-2"]').tab('show');
-        $('.bar').css('width', '66.6666%');
+      $('#smartwizard').smartWizard({
+        selected: 0,
+        theme: 'dots',
+        transition: {
+          animation: 'slideHorizontal'
+        },
+        toolbar: {
+          showNextButton: true, // show/hide a Next button
+          showPreviousButton: true, // show/hide a Previous button
+          position: 'both buttom', // none/ top/ both bottom
+          extraHtml: `<button class="btn btn-success" onclick="console.log('Button clicked'); window.location.href='application.php'; return false;">Submit</button>
+                              <button class="btn btn-secondary" onclick="onCancel()">Cancel</button>`
+        },
+        // Dommy code for testing
+        onLeaveStep: function(anchorObject, currentIndex, newIndex) {
+            if (currentIndex === $('#smartwizard').find('ul li').length - 1) {
+                return false; // Cancel form submission
+            }
+        },
       });
+      $("#smartwizard").on("showStep", function(e, anchorObject, stepIndex, stepDirection, stepPosition) {
+        var totalSteps = $('#smartwizard').find('ul li').length;
+        // console.log("Step: ", stepNumber);
+        console.log("Total Steps:", totalSteps);
 
-      // Handle click on "Add More Info" button in Profile tab
-      $('#profile-tab-2 .next button').click(function(e) {
-        e.preventDefault();
-        $('a[href="#finish-2"]').tab('show');
-        $('.bar').css('width', '100%');
-      });
-
-      // Handle click on "Back to Account" button in Profile tab
-      $('#profile-tab-2 .previous button').click(function(e) {
-        e.preventDefault();
-        $('a[href="#account-2"]').tab('show');
-        $('.bar').css('width', '33.3333%');
-      });
-
-      // Handle click on "Back to Profile" button in Finish tab
-      $('#finish-2 .previous button').click(function(e) {
-        e.preventDefault();
-        $('a[href="#profile-tab-2"]').tab('show');
-        $('.bar').css('width', '66.6666%');
+        if (stepIndex === totalSteps - 1 && stepPosition === 'last') {
+          console.log("Arriving at Last Step - Showing Buttons");
+          $('.btn-success, .btn-secondary').show();
+        } else {
+          console.log("Not Arriving at Last Step - Hiding Buttons");
+          $('.btn-success, .btn-secondary').hide();
+        }
       });
     });
   </script>

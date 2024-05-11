@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DOST-SETUP</title>
-  <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
-  <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="./assets/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+  <script src="./assets/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
   <style>
     /*--------------------------------------------------------------
     # Hero Section
@@ -254,7 +254,7 @@
     <div class="container text-center text-md-left" data-aos="fade-up">
       <h1>Welcome to <span>SETUP</span></h1>
       <h2>We provide fund assistance to any Micro, Small, Medium Businesses</h2>
-      <a href="application.php" class="btn-get-started scrollto">Apply Now</a>
+      <a href="signup.php" class="btn-get-started scrollto">Apply Now</a>
     </div>
   </section>
   <section id="what-we-do" class="what-we-do">
