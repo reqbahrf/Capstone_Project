@@ -4,49 +4,48 @@
       <h2>Cooperator Info:</h2>
     </legend>
     <div class="p-3">
-      <div class="form-group row">
-        <span for="project_title" class="col-sm-2 col-form-label"><strong>Project Title:</strong></span>
-        <div class="col-sm-10">
-          <p class="" id="project_title"><u>[Project Title Value]</u></p>
+      <div class="form-group row mt-2">
+        <label for="project_title" class="col-12 col-sm-2"><strong>Project Title:</strong></label>
+        <div class="col-12 col-sm-10">
+          <input type="text" class="form-control" id="project_title" value="[Project Title Value]" readonly>
         </div>
       </div>
-      <div class="form-group row">
-        <span for="firm_name" class="col-sm-2 col-form-label"> <strong>Name of Firm:</strong></span>
-        <div class="col-sm-10">
-          <p class="" id="firm_name"><u>[Firm Name Value]</u></p>
+      <div class="form-group row mt-2">
+        <label for="firm_name" class="col-12 col-sm-2"><strong>Name of Firm:</strong></label>
+        <div class="col-12 col-sm-10">
+          <input type="text" class="form-control" id="firm_name" value="[Firm Name Value]" readonly>
         </div>
       </div>
-      <div class="form-group row">
-        <span for="address" class="col-sm-2 col-form-label"><strong>Address:</strong></span>
-        <div class="col-sm-10">
-          <p class="" id="address"><u>[Address Value]</u></p>
+      <div class="form-group row mt-2">
+        <label for="address" class="col-12 col-sm-2"><strong>Address:</strong></label>
+        <div class="col-12 col-sm-10">
+          <input type="text" class="form-control" id="address" value="[Address Value]" readonly>
         </div>
       </div>
-      <div class="form-group row">
-        <span class="col-sm-2 col-form-label"><strong>Contact Person:</strong></span>
-        <div class="col-sm-4">
-          <p class="" id="contact_person"><u>[Contact Person Value]</u></p>
+      <div class="form-group row mt-2">
+        <label for="contact_person" class="col-12 col-sm-2"><strong>Contact Person:</strong></label>
+        <div class="col-12 col-sm-4">
+          <input type="text" class="form-control" id="contact_person" value="[Contact Person Value]" readonly>
         </div>
-        <span class="col-sm-2 col-form-label"><strong>Designation:</strong></span>
-        <div class="col-sm-4">
-          <p class="" id="designation"><u>[Designation Value]</u></p>
-        </div>
-      </div>
-      <div class="form-group row">
-        <span class="col-sm-2 col-form-label"><strong>Landline:</strong></span>
-        <div class="col-sm-2">
-          <p class="" id="landline"><u>[Landline Value]</u></p>
-        </div>
-        <span class="col-sm-2 col-form-label"><strong>Mobile Phone:</strong></span>
-        <div class="col-sm-2">
-          <p class="" id="mobile_phone"><u>[Mobile Phone Value]</u></p>
-        </div>
-        <span class="col-sm-2 col-form-label"><strong>Email Address:</strong></span>
-        <div class="col-sm-2">
-          <p class="" id="email"><u>[Email Address Value]</u></p>
+        <label for="designation" class="col-12 col-sm-2"><strong>Designation:</strong></label>
+        <div class="col-12 col-sm-4">
+          <input type="text" class="form-control" id="designation" value="[Designation Value]" readonly>
         </div>
       </div>
-    </div>
+      <div class="form-group row mt-2">
+        <label for="landline" class="col-12 col-sm-2"><strong>Landline:</strong></label>
+        <div class="col-12 col-sm-2">
+          <input type="text" class="form-control" id="landline" value="[Landline Value]" readonly>
+        </div>
+        <label for="mobile_phone" class="col-12 col-sm-2"><strong>Mobile Phone:</strong></label>
+        <div class="col-12 col-sm-2">
+          <input type="text" class="form-control" id="mobile_phone" value="[Mobile Phone Value]" readonly>
+        </div>
+        <label for="email" class="col-12 col-sm-2"><strong>Email Address:</strong></label>
+        <div class="col-12 col-sm-2">
+          <input type="text" class="form-control" id="email" value="[Email Address Value]" readonly>
+        </div>
+      </div>
   </fieldset>
   <fieldset>
     <legend class="w-auto">
@@ -56,7 +55,7 @@
       <div id="progressBar"></div>
     </div>
     <div class="row px-2">
-      <div class="col">
+      <div class="col-md-6">
         <fieldset>
           <legend>
             <h6>Production Generated:</h6>
@@ -65,7 +64,7 @@
           </div>
         </fieldset>
       </div>
-      <div class="col">
+      <div class="col-md-6">
         <fieldset>
           <legend>
             <h6>Employment Generated</h6>

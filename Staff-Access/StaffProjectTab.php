@@ -98,7 +98,7 @@
                   </p>
                 </td>
                 <td>
-                  <button class="btn btn-primary">Review</button>
+                  <button class="btn btn-primary" onclick="loadPage('/Staff-Access/staffProjectInfoTab.php','projectLink');">Info</button>
                 </td>
               </tr>
               <tr>
