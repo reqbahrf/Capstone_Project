@@ -69,7 +69,7 @@
   <?php include("header.php"); ?>
   <div class="container mt-5 shadow">
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="g-3 p-5">
-      <div id="smartwizard" dir="" class="sw sw-justified sw-theme-arrows">
+      <div id="smartwizard">
         <ul class="nav nav-progress">
           <li class="nav-item">
             <a class="nav-link default active" href="#step-1">
@@ -249,7 +249,7 @@
     $(document).ready(function() {
       $('#smartwizard').smartWizard({
         selected: 0,
-        theme: 'arrows',
+        theme: 'dots',
         transition: {
           animation: 'slideHorizontal'
         },

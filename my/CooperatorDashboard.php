@@ -14,6 +14,8 @@
   <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
   <script src="../dist/apexcharts.min.js"></script>
   <link rel="stylesheet" href="/dist/apexcharts.css">
+  <link rel="stylesheet" href="../assets/dist-smartWizard/css/smart_wizard_all.css">
+  <script src="../assets/dist-smartWizard/js/jquery.smartWizard.min.js"></script>
   <style>
     .headerlogo {
       background: rgb(2, 0, 36);
@@ -140,7 +142,7 @@
 </body>
 <script>
   $(document).ready(function() {
-    loadPage('CooperatorInformationTab.php', 'InformationTab');
+    loadPage('/my/CooperatorInformationTab.php', 'InformationTab');
   });
 
   function loadPage(url, activeLink) {
@@ -150,7 +152,7 @@
       success: function(response) {
         $('#main-content').html(response);
         setActiveLink(activeLink);
-        if (url === 'CooperatorInformationTab.php') {
+        if (url === '/my/CooperatorInformationTab.php') {
           initializeStackedChartPer();
           initializeProgressPer();
         }
@@ -164,13 +166,13 @@
   function initializeStackedChartPer() {
     var options = {
       series: [{
-        name: 'PRODUCT A',
+        name: 'Building',
         data: [500, 55, 41, 67, 22, 43, 21, 49]
       }, {
-        name: 'PRODUCT B',
+        name: 'Equipment',
         data: [13, 23, 20, 8, 13, 27, 33, 12]
       }, {
-        name: 'PRODUCT C',
+        name: 'Working Capital',
         data: [11, 17, 15, 15, 21, 14, 15, 13]
       }],
       chart: {

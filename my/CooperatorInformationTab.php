@@ -57,11 +57,56 @@
     </legend>
     <div class="container">
       <div class="row">
-        <div class="col" id="ProgressPer">
+        <div class="col d-flex flex-column align-items-center">
           <!-- Add content for ProgressPer div here -->
+          <!-- Assuming your ApexChart is here -->
+          <div id="ProgressPer" class="mx-auto" style="order: 1;"></div>
+          <div class="text-center" style="order: 2;">
+            <h5>750,000/1,000,000</h5>
+          </div>
         </div>
         <div class="col">
-          <!-- Add content for the second div here -->
+          <div>
+
+          </div>
+          <div>
+            <fieldset class="w-auto">
+              <legend class="w-auto">
+                <h6><strong>Refund History:</strong></h6>
+              </legend>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Amount</th>
+                    <th>Due For</th>
+                    <th>Remark</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>₱83,000.33</td>
+                    <td>1/15/2022</td> <!-- First quarter -->
+                    <td><span class="badge rounded-pill text-bg-success">Refunded</span></td>
+                  </tr>
+                  <tr>
+                    <td>₱83,000.33</td>
+                    <td>4/15/2022</td> <!-- Second quarter -->
+                    <td><span class="badge rounded-pill text-bg-success">Refunded</span></td>
+                  </tr>
+                  <tr>
+                    <td>₱83,000.33</td>
+                    <td>7/15/2022</td> <!-- Third quarter -->
+                    <td><span class="badge rounded-pill text-bg-success">Refunded</span></td>
+                  </tr>
+                  <tr>
+                    <td>₱83,000.33</td>
+                    <td>10/15/2022</td> <!-- Fourth quarter -->
+                    <td><span class="badge rounded-pill text-bg-success">Refunded</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </fieldset>
+          </div>
         </div>
       </div>
     </div>
