@@ -149,6 +149,9 @@
           InitdashboardChar()
           $(document).trigger('DocLoaded');
         }
+        if (url == '/org-access/viewCooperatorInfo.php') {
+          InitializeviewCooperatorProgress();
+        }
       },
       error: function(error) {
         console.log('Error: ' + error);
@@ -470,6 +473,197 @@
     var barChart = new ApexCharts(document.querySelector("#" + chartID), options);
     barChart.render();
     return barChart;
+  }
+
+  function InitializeviewCooperatorProgress() {
+    var options = {
+      series: [75],
+      chart: {
+        height: 250,
+        type: 'radialBar',
+        toolbar: {
+          show: true
+        }
+      },
+      plotOptions: {
+        radialBar: {
+          startAngle: -135,
+          endAngle: 225,
+          hollow: {
+            margin: 0,
+            size: '70%',
+            background: '#fff',
+            image: undefined,
+            imageOffsetX: 0,
+            imageOffsetY: 0,
+            position: 'front',
+            dropShadow: {
+              enabled: true,
+              top: 3,
+              left: 0,
+              blur: 4,
+              opacity: 0.24
+            }
+          },
+          track: {
+            background: '#fff',
+            strokeWidth: '67%',
+            margin: 0, // margin is in pixels
+            dropShadow: {
+              enabled: true,
+              top: -3,
+              left: 0,
+              blur: 4,
+              opacity: 0.35
+            }
+          },
+
+          dataLabels: {
+            show: true,
+            name: {
+              offsetY: -10,
+              show: true,
+              color: '#888',
+              fontSize: '17px'
+            },
+            value: {
+              formatter: function(val) {
+                return parseInt(val);
+              },
+              color: '#111',
+              fontSize: '36px',
+              show: true,
+            }
+          }
+        }
+      },
+      fill: {
+        type: 'gradient',
+        gradient: {
+          shade: 'dark',
+          type: 'horizontal',
+          shadeIntensity: 0.5,
+          gradientToColors: ['#ABE5A1'],
+          inverseColors: true,
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [0, 100]
+        }
+      },
+      stroke: {
+        lineCap: 'round'
+      },
+      labels: ['Percent'],
+    };
+
+    var chart = new ApexCharts(document.querySelector("#progressBar"), options);
+    chart.render();
+
+    //TODO: Production Generated Chart
+    var options = {
+      series: [{
+        name: 'Growth',
+        data: [10, 15, 7, -12]
+      }],
+      chart: {
+        type: 'bar',
+        height: 350
+      },
+      plotOptions: {
+        bar: {
+          colors: {
+            ranges: [{
+              from: -100,
+              to: -46,
+              color: '#F15B46'
+            }, {
+              from: -45,
+              to: 0,
+              color: '#FEB019'
+            }]
+          },
+          columnWidth: '80%',
+        }
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      yaxis: {
+        title: {
+          text: 'Growth',
+        },
+        labels: {
+          formatter: function(y) {
+            return y.toFixed(0) + "%";
+          }
+        }
+      },
+      xaxis: {
+        categories: [
+          'Quarter 1', 'Quarter 2', 'Quarter 3', 'Quarter 4'
+        ],
+        labels: {
+          rotate: -90
+        }
+      }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#productionGeneChart"), options);
+    chart.render();
+
+    //TODO: Employment Generated Chart
+
+    var options = {
+      series: [{
+        name: 'Growth',
+        data: [2, -2, 4, 5]
+      }],
+      chart: {
+        type: 'bar',
+        height: 350
+      },
+      plotOptions: {
+        bar: {
+          colors: {
+            ranges: [{
+              from: -100,
+              to: -46,
+              color: '#F15B46'
+            }, {
+              from: -45,
+              to: 0,
+              color: '#FEB019'
+            }]
+          },
+          columnWidth: '80%',
+        }
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      yaxis: {
+        title: {
+          text: 'Growth',
+        },
+        labels: {
+          formatter: function(y) {
+            return y.toFixed(0) + "%";
+          }
+        }
+      },
+      xaxis: {
+        categories: [
+          'Quarter 1', 'Quarter 2', 'Quarter 3', 'Quarter 4'
+        ],
+        labels: {
+          rotate: -90
+        }
+      }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#employmentGeneChart"), options);
+    chart.render();
+
   }
 </script>
 

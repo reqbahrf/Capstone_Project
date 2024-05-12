@@ -163,7 +163,7 @@
             InitdashboardChar();
           }
           if (url == '/org-access/viewCooperatorInfo.php') {
-            InitializeviewCooperatorProgress()
+            InitializeviewCooperatorProgress();
           }
         },
         error: function(error) {

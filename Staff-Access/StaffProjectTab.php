@@ -314,7 +314,7 @@
                     </div>
                     <label for="designation" class="col-12 col-sm-2"><strong>Designation:</strong></label>
                     <div class="col-12 col-sm-4">
-                      <input type="text" class="form-control" id="designation" placeholder="[Designation Value]" </div>
+                      <input type="text" class="form-control" id="designation" placeholder="[Designation Value]">
                     </div>
                     <div class="form-group row mt-2">
                       <label for="landline" class="col-12 col-sm-2"><strong>Landline:</strong></label>
