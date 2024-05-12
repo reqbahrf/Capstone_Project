@@ -26,7 +26,7 @@
             <p class="ps-2">Imploving the Business.....</p>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-info" id="dashboardLink" onclick="loadPage('staffProjectInfoTab.php','projectLink');">View</button>
+                <button class="btn btn-info" id="dashboardLink" onclick="loadPage('staffProjectInfoTab.php','projectLink');" data-bs-dismiss="modal">View</button>
                 <button class="btn btn-secondary">Edit</button>
             </div>
         </div>
