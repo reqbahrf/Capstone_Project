@@ -171,7 +171,7 @@
                   </p>
                 </td>
                 <td>
-                <button type="button" class="btn" id="modalButton" data-bs-toggle="modal" data-bs-target="#ApplicationModal" disabled>
+                  <button type="button" class="btn" id="modalButton" data-bs-toggle="modal" data-bs-target="#ApplicationModal" disabled>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
                       <path d="M56.177,16.832c-0.547-4.731-4.278-8.462-9.009-9.009C43.375,7.384,38.264,7,32,7S20.625,7.384,16.832,7.823c-4.731,0.547-8.462,4.278-9.009,9.009C7.384,20.625,7,25.736,7,32s0.384,11.375,0.823,15.168c0.547,4.731,4.278,8.462,9.009,9.009C20.625,56.616,25.736,57,32,57s11.375-0.384,15.168-0.823c4.731-0.547,8.462-4.278,9.009-9.009C56.616,43.375,57,38.264,57,32S56.616,20.625,56.177,16.832z M36,32c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,29.791,36,32z M36,45c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,42.791,36,45z M36,19c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,16.791,36,19z" fill="#000000" />
                     </svg>
@@ -276,8 +276,15 @@
             <li class="nav-item">
               <a class="nav-link default z-3" href="#step-5">
                 <span class="num">5</span>
-                Step Title
+                Market Outlets
               </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link default z-3" href="#step-6">
+                <span class="num">6</span>
+                Increase in
+              </a>
+
             </li>
           </ul>
 
@@ -595,6 +602,74 @@
                 </div>
               </fieldset>
 
+            </div>
+            <div id="step-6" class="tab-pane" role="tabpanel" aria-labelledby="step-5">
+              <fieldset class="mt-4">
+                <legend class="w-auto">
+                  <h3>TO BE ACCOMPLISHED BY DOST XI</h3>
+                </legend>
+                <div>
+                  <fieldset class="mt-4">
+                    <legend class="w-auto px-2">
+                      <h5 class="ms-2">Gross Sales Generated</h5>
+                    </legend>
+                    <div class="row ms-4">
+                      <div class="col-md-4">
+                        <div class="form-floating mb-3">
+                          <input type="text" class="form-control" id="grossSalesPeriod1" name="grossSalesPeriod1" placeholder="Gross Sales {period1}">
+                          <label for="grossSalesPeriod1">Gross Sales {period1}</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-floating mb-3">
+                          <input type="text" class="form-control" id="grossSalesPeriod2" name="grossSalesPeriod2" placeholder="Gross Sales {period2}">
+                          <label for="grossSalesPeriod2">Gross Sales {period2}</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="col">
+                          <div class="col-md-6">
+                            <p><strong>TOTAL GROSS SALES GENERATED:{Result}</strong></p>
+                          </div>
+                          <div class="col-md-6">
+                            <p><strong>% INCREASE IN PRODUCTIVITY GENERATED:{Result}</strong></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <fieldset class="mt-4">
+                    <legend class="w-auto px-2">
+                      <h5 class="ms-2">Employment Information</h5>
+                    </legend>
+                    <div class="row ms-4">
+                      <div class="col-md-4">
+                        <div class="form-floating mb-3">
+                          <input type="text" class="form-control" id="TotalEmployment2" name="TotalEmployment2" placeholder="Gross Sales {period1}">
+                          <label for="TotalEmployment2">Total Employment {period1}</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-floating mb-3">
+                          <input type="text" class="form-control" id="TotalEmployment2" name="TotalEmployment2" placeholder="Gross Sales {period2}">
+                          <label for="TotalEmployment2">Total Employment {period2}</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="col">
+                          <div class="col-md-6">
+                            <p><strong>EMPLOYMENT GENERATED:{Result}</strong></p>
+                          </div>
+                          <div class="col-md-6">
+                            <p><strong>% INCREASE IN EMPLOMENT GENERATED:{Result}</strong></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </fieldset>
             </div>
           </div>
 

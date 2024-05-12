@@ -100,7 +100,8 @@
 
 <body class="overflow-hidden">
   <div class="container-fluid px-0 headerlogo">
-    <div class="d-flex align-items-center ">
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
       <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 74.488 75.079" enable-background="new 0 0 74.488 75.079" xml:space="preserve" class="m-3 logo">
         <g>
           <rect x="19.235" y="19.699" width="36" height="36" />
@@ -127,18 +128,27 @@
           </g>
         </g>
       </svg>
-      <p>
-      <H4 class=" text-white"">DOST-SETUP Funding Monitoring System</H4>
-      </p>
+      <h4 class="text-white">DOST-SETUP Funding Monitoring System</h4>
+      </div>
+      <div>
+        <button class="btn position-relative">
+          <svg xmlns=" http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
+            <path d="M47.841797 5.0351562C47.05125 4.9672344 46.262109 5.4091719 45.943359 6.2011719L45.246094 7.9394531C37.943094 4.7824531 32.698625 6.4574844 30.640625 10.021484C23.743625 21.966484 16.695906 26.420828 15.628906 27.048828L49.583984 45.121094C49.880984 42.010094 51.171375 34.723891 56.734375 25.087891C58.792375 21.522891 57.621328 16.142484 51.236328 11.396484L52.392578 9.9257812C53.095578 9.0297812 52.841469 7.7193906 51.855469 7.1503906L48.615234 5.2792969C48.368734 5.1370469 48.105312 5.0577969 47.841797 5.0351562 z M 11.449219 27.326172C10.230984 27.331562 7.4444219 27.949797 4.6386719 32.810547L28.820312 46.771484C27.923145 49.295954 28.910806 52.176668 31.314453 53.564453C33.718585 54.952518 36.707485 54.368453 38.445312 52.328125L50 59C53.741 52.52 50.96875 49.839844 50.96875 49.839844L12.087891 27.390625C12.087891 27.390625 11.855297 27.324375 11.449219 27.326172 z" fill="#FFFFFF" />
+          </svg>
+          <span class="position-absolute top-25 start-75 translate-middle p-1 bg-danger border border-light rounded-circle">
+            <span class="visually-hidden">New alerts</span>
+          </span>
+        </button>
+      </div>
     </div>
   </div>
   <div class=" flex-container d-flex flex-column flex-md-row mobileView">
-        <div class="overflow-y-auto">
-          <?php include("navCooperator.php"); ?>
-        </div>
-        <main class="main-column scrollable-main" id="main-content">
-        </main>
+    <div class="overflow-y-auto">
+      <?php include("navCooperator.php"); ?>
     </div>
+    <main class="main-column scrollable-main" id="main-content">
+    </main>
+  </div>
 </body>
 <script>
   $(document).ready(function() {

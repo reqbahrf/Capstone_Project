@@ -12,7 +12,7 @@
   }
 </style>
 <div>
-  <h1 class="row bg-dark text-white p-4 m-2">Requirments</h1>
+  <h1 class="row bg-dark text-white p-4 m-2">Requirements</h1>
 </div>
 <div class="g-3 mt-sm-3 ms-sm-3 me-sm-3 mb-sm-2 p-sm-3 bg-white">
   <div class=" bg-white p-3">
@@ -33,11 +33,39 @@
       <label class="form-check-label" for="fr">Fund release</label>
     </div>
   </div>
+  <!-- Upload receipt modal -->
+  <div class="modal fade" id="expenseReceiptModal" tabindex="-1" aria-labelledby="expenseReceiptModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-info">
+          <h5 class="modal-title" id="expenseReceiptModalLabel">Expense Receipt</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <fieldset>
+            <legend class="w-auto">Receipt</legend>
+            <form>
+              <div class="mb-3">
+                <label for="expenseReceipt" class="form-label">Expense Receipt</label>
+                <input type="file" class="form-control" id="expenseReceipt" name="expenseReceipt">
+              </div>
+            </form>
+          </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-end">
+    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#expenseReceiptModal">Upload Receipt</button>
+  </div>
   <div>
     <div class="mt-4">
       <fieldset>
         <legend class="w-auto">
-          <h2>Quarterly Reports:</h2>
+          Quarterly Reports:
         </legend>
         <nav>
           <div class="nav nav-tabs mt-3" id="nav-tab" role="tablist">
@@ -79,134 +107,130 @@
               </ul>
               <div class="tab-content">
                 <div id="step-1" class="tab-pane" role="tabpanel" aria-labelledby="step-1">
-                  <fieldset class="">
-                    <legend class="w-auto">
-                      <h4>1.0 ASSETS</h4>
-                    </legend>
-                    <div class="row ms-md-4 mb-3">
-                      <div class="col-12 col-sm-6 col-md-4">
-                        <div class="form-floating mb-3">
-                          <input type="text" class="form-control" id="BuildingAsset" name="Building" placeholder="Building">
-                          <label for="BuildingAsset">Building:</label>
-                        </div>
-                      </div>
-                      <div class="col-12 col-sm-6 col-md-4">
-                        <div class="form-floating mb-3">
-                          <input type="text" class="form-control" id="Equipment" name="Equipment" placeholder="Equipment">
-                          <label for="Equipment">Equipment:</label>
-                        </div>
-                      </div>
-                      <div class="col-12 col-sm-6 col-md-4">
-                        <div class="form-floating mb-3">
-                          <input type="text" class="form-control" id="WorkingCapital" name="WorkingCapital" placeholder="Working Capital">
-                          <label for="WorkingCapital">Working Capital:</label>
-                        </div>
-                      </div>
-                    </div>
-                  </fieldset>
+                <fieldset class="">
+                <legend class="w-auto">
+                  <h4>1.0 ASSETS</h4>
+                </legend>
+                <div class="row ms-md-4 mb-3">
+                  <div class="col-12 col-sm-6 col-md-4">
+                    <label for="BuildingAsset">Building:</label>
+                    <input type="text" class="form-control" id="BuildingAsset" name="Building" placeholder="">
+                  </div>
+                  <div class="col-12 col-sm-6 col-md-4">
+                    <label for="Equipment">Equipment:</label>
+                    <input type="text" class="form-control" id="Equipment" name="Equipment" placeholder="">
+                  </div>
+                  <div class="col-12 col-sm-6 col-md-4">
+                    <label for="WorkingCapital">Working Capital:</label>
+                    <input type="text" class="form-control" id="WorkingCapital" name="WorkingCapital" placeholder="">
+                  </div>
+                </div>
+              </fieldset>
                 </div>
                 <div id="step-2" class="tab-pane" role="tabpanel" aria-labelledby="step-2">
-                  <fieldset class="mt-4">
-                    <legend class="w-auto">
-                      <h4>2.0 TOTAL EMPLOYMENT FOR THE QUARTER</h4>
-                    </legend>
-                    <div class="row ms-2 mb-3">
-                      <div class="col-sm-12 col-md-6">
-                        <h5>2.1 Direct Labor(Production)</h5>
-                        <div class="row ms-md-2">
-                          <div class="col-sm-12 mt-3 col-md-6">
-                            <h6>2.1a Direct Labor</h6>
-                            <!-- Your input fields here -->
-                            <div class="form-floating mb-3">
-                              <input type="text" class="form-control" id="maleInput" placeholder="Male">
-                              <label for="maleInput">Male</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                              <input type="text" class="form-control" id="femaleInput" placeholder="Female">
-                              <label for="femaleInput">Female</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                              <input type="text" class="form-control" id="workdayInput" placeholder="Workday">
-                              <label for="workdayInput">Workday</label>
-                            </div>
-                            <div class="mb-3">
-                              <p>{Total}</p>
-                            </div>
-                          </div>
-                          <div class="col-sm-12 mt-3 col-md-6">
-                            <h6>2.1b Part-time</h6>
-                            <!-- Your input fields here -->
-                            <div class="form-floating mb-3">
-                              <input type="text" class="form-control" id="parttimeMaleInput" placeholder="Male">
-                              <label for="parttimeMaleInput">Male</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                              <input type="text" class="form-control" id="parttimeFemaleInput" placeholder="Female">
-                              <label for="parttimeFemaleInput">Female</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                              <input type="text" class="form-control" id="parttimeWorkdayInput" placeholder="Workday">
-                              <label for="parttimeWorkdayInput">Workday</label>
-                            </div>
-                            <div class="mb-3">
-                              <p>{Total}</p>
-                            </div>
-                          </div>
+                <fieldset class="mt-4">
+                <legend class="w-auto">
+                  <h4>2.0 TOTAL EMPLOYMENT FOR THE QUARTER</h4>
+                </legend>
+                <div class="row ms-2 mb-3">
+                  <div class="col-sm-12 col-md-6">
+                    <h5>2.1 Direct Labor(Production)</h5>
+                    <div class="row ms-md-2">
+                      <div class="col-sm-12 mt-3 col-md-6">
+                        <h6>2.1a Direct Labor</h6>
+                        <!-- Your input fields here -->
+                        <div class="mb-3">
+                          <label for="maleInput">Male:</label>
+                          <input type="text" class="form-control" id="maleInput" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                          <label for="femaleInput">Female:</label>
+                          <input type="text" class="form-control" id="femaleInput" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                          <label for="workdayInput">Workday:</label>
+                          <input type="text" class="form-control" id="workdayInput" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                          <p>{Total}</p>
                         </div>
                       </div>
-                      <div class="col-sm-12 col-md-6">
-                        <h5>2.2 Indirect Labor(Admin and Marketing)</h5>
-                        <div class="row ms-md-2">
-                          <div class="col-sm-12 mt-3 col-md-6">
-                            <h6>2.2a Regular</h6>
-                            <!-- Your input fields here -->
-                            <div class="form-floating mb-3">
-                              <input type="text" class="form-control" id="parttimeMaleInput" placeholder="Male">
-                              <label for="parttimeMaleInput">Male</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                              <input type="text" class="form-control" id="parttimeFemaleInput" placeholder="Female">
-                              <label for="parttimeFemaleInput">Female</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                              <input type="text" class="form-control" id="parttimeWorkdayInput" placeholder="Workday">
-                              <label for="parttimeWorkdayInput">Workday</label>
-                            </div>
-                            <div class="mb-3">
-                              <p>{Total}</p>
-                            </div>
-                          </div>
-                          <div class="col-sm-12 mt-3 col-md-6">
-                            <h6>2.2b Part-time</h6>
-                            <!-- Your input fields here -->
-                            <div class="form-floating mb-3">
-                              <input type="text" class="form-control" id="parttimeMaleInput" placeholder="Male">
-                              <label for="parttimeMaleInput">Male</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                              <input type="text" class="form-control" id="parttimeFemaleInput" placeholder="Female">
-                              <label for="parttimeFemaleInput">Female</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                              <input type="text" class="form-control" id="parttimeWorkdayInput" placeholder="Workday">
-                              <label for="parttimeWorkdayInput">Workday</label>
-                            </div>
-                            <div class="mb-3">
-                              <p>{Total}</p>
-                            </div>
-                          </div>
+                      <div class="col-sm-12 mt-3 col-md-6">
+                        <h6>2.1b Part-time</h6>
+                        <!-- Your input fields here -->
+                        <div class="mb-3">
+                          <label for="parttimeMaleInput">Male:</label>
+                          <input type="text" class="form-control" id="parttimeMaleInput" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                          <label for="parttimeFemaleInput">Female:</label>
+                          <input type="text" class="form-control" id="parttimeFemaleInput" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                          <label for="parttimeWorkdayInput">Workday:</label>
+                          <input type="text" class="form-control" id="parttimeWorkdayInput" placeholder="">
+                        </div>
+                        <div class="mb-3">:
+                          <p>{Total}</p>
                         </div>
                       </div>
                     </div>
-                  </fieldset>
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                    <h5>2.2 Indirect Labor(Admin and Marketing)</h5>
+                    <div class="row ms-md-2">
+                      <div class="col-sm-12 mt-3 col-md-6">
+                        <h6>2.2a Regular</h6>
+                        <!-- Your input fields here -->
+                        <div class="mb-3">
+                          <label for="regularMaleInput">Male:</label>
+                          <input type="text" class="form-control" id="regularMaleInput" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                          <label for="regularFemaleInput">Female:</label>
+                          <input type="text" class="form-control" id="regularFemaleInput" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                          <label for="regularWorkdayInput">Workday:</label>
+                          <input type="text" class="form-control" id="regularWorkdayInput" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                          <p>{Total}</p>
+                        </div>
+                      </div>
+                      <div class="col-sm-12 mt-3 col-md-6">
+                        <h6>2.2b Part-time</h6>
+                        <!-- Your input fields here -->
+                        <div class="mb-3">
+                          <label for="parttimeMaleInput">Male:</label>
+                          <input type="text" class="form-control" id="parttimeMaleInput" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                          <label for="parttimeFemaleInput">Female:</label>
+                          <input type="text" class="form-control" id="parttimeFemaleInput" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                          <label for="parttimeWorkdayInput">Workday:</label>
+                          <input type="text" class="form-control" id="parttimeWorkdayInput" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                          <p>{Total}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
                 </div>
                 <div id="step-3" class="tab-pane" role="tabpanel" aria-labelledby="step-3">
-                  <fieldset class="mt-4">
-                    <legend class="w-auto">
-                      <h4>3.0 PRODUCTION AND SALES DATA FOR THE QUARTER</h4>
-                    </legend>
-                    <div>
+                <fieldset class="mt-4">
+                <legend class="w-auto">
+                  <h4>3.0 PRODUCTION AND SALES DATA FOR THE QUARTER</h4>
+                </legend>
+                  <div class="row align-items-center">
+                    <div class="col-sm-12 col-md-6">
                       <fieldset class="mt-4">
+                        <!-- Your first fieldset content here -->
                         <legend class="w-auto px-2">
                           <h5 class="ms-2">3.1 Export Market</h5>
                         </legend>
@@ -214,53 +238,55 @@
                         <div id="productExport" class="productExport">
                           <div class="row ms-4">
                             <hr>
-                            <div class="col-md-4">
-                              <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="productName" name="productName" placeholder="Name of Product">
+                            <div class="col-12">
+                              <div class="mb-3">
                                 <label for="productName">Name of Product:</label>
+                                <input type="text" class="form-control" id="productName" name="productName">
                               </div>
                             </div>
-                            <div class="col-md-4">
-                              <div class="form-floating mb-3">
-                                <textarea class="form-control h-50" id="packingDetails" name="packingDetails" placeholder="Packing Details"></textarea>
+                            <div class="col-12">
+                              <div class="mb-3">
                                 <label for="packingDetails">Packing Details:</label>
+                                <textarea class="form-control" id="packingDetails" name="packingDetails"></textarea>
                               </div>
                             </div>
-                            <div class="col-md-4">
-                              <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="volumeOfProduction" name="volumeOfProduction" placeholder="Volume of Production">
+                            <div class="col-12">
+                              <div class="mb-3">
                                 <label for="volumeOfProduction">Volume of Production:</label>
+                                <input type="text" class="form-control" id="volumeOfProduction" name="volumeOfProduction">
                               </div>
                             </div>
-                            <div class="col-md-4">
-                              <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="grossSales" name="grossSales" placeholder="Gross Sales">
+                            <div class="col-12">
+                              <div class="mb-3">
                                 <label for="grossSales">Gross Sales:</label>
+                                <input type="text" class="form-control" id="grossSales" name="grossSales">
                               </div>
                             </div>
-                            <div class="col-md-4">
-                              <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="estimatedCostOfProduction" name="estimatedCostOfProduction" placeholder="Estimated Cost of Production">
+                            <div class="col-12">
+                              <div class="mb-3">
                                 <label for="estimatedCostOfProduction">Estimated Cost of Production:</label>
+                                <input type="text" class="form-control" id="estimatedCostOfProduction" name="estimatedCostOfProduction">
+                              </div </div>
+                              <div class="col-12">
+                                <div class="mb-3">
+                                  <label for="netSales">Net Sales:</label>
+                                  <input type="text" class="form-control" id="netSales" name="netSales">
+                                </div>
                               </div>
+                              <hr>
                             </div>
-                            <div class="col-md-4">
-                              <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="netSales" name="netSales" placeholder="Net Sales">
-                                <label for="netSales">Net Sales:</label>
-                              </div>
+                            <div class="col-12">
+                              <button type="button" class="btn btn-danger deleteButtonExport">Delete</button>
                             </div>
-                            <hr>
                           </div>
-                          <div class="col-md-4">
-                            <button type="button" class="btn btn-danger deleteButtonExport">Delete</button>
+                          <div class="mt-2">
+                            <button id="addButtonExport" class="btn btn-primary">Add</button>
                           </div>
-                        </div>
-                        <div class="mt-2">
-                          <button id="addButtonExport" class="btn btn-primary">Add</button>
-                        </div>
                       </fieldset>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
                       <fieldset class="mt-4">
+                        <!-- Your second fieldset content here -->
                         <legend class="w-auto px-2">
                           <h5 class="ms-2">3.2 Local Market</h5>
                         </legend>
@@ -268,53 +294,53 @@
                         <div id="productLocal" class="productLocal">
                           <div class="row ms-4">
                             <hr>
-                            <div class="col-md-4">
-                              <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="productName" name="productName" placeholder="Name of Product">
+                            <div class="col-12">
+                              <div class="mb-3">
                                 <label for="productName">Name of Product:</label>
+                                <input type="text" class="form-control" id="productName" name="productName">
                               </div>
                             </div>
-                            <div class="col-md-4">
-                              <div class="form-floating mb-3">
-                                <textarea class="form-control h-50" id="packingDetails" name="packingDetails" placeholder="Packing Details"></textarea>
+                            <div class="col-12">
+                              <div class="mb-3">
                                 <label for="packingDetails">Packing Details:</label>
+                                <textarea class="form-control" id="packingDetails" name="packingDetails"></textarea>
+                              </div </div>
+                              <div class="col-12">
+                                <div class="mb-3">
+                                  <label for="volumeOfProduction">Volume of Production:</label>
+                                  <input type="text" class="form-control" id="volumeOfProduction" name="volumeOfProduction">
+                                </div>
                               </div>
-                            </div>
-                            <div class="col-md-4">
-                              <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="volumeOfProduction" name="volumeOfProduction" placeholder="Volume of Production">
-                                <label for="volumeOfProduction">Volume of Production:</label>
+                              <div class="col-12">
+                                <div class="mb-3">
+                                  <label for="grossSales">Gross Sales:</label>
+                                  <input type="text" class="form-control" id="grossSales" name="grossSales">
+                                </div>
                               </div>
-                            </div>
-                            <div class="col-md-4">
-                              <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="grossSales" name="grossSales" placeholder="Gross Sales">
-                                <label for="grossSales">Gross Sales:</label>
+                              <div class="col-12">
+                                <div class="mb-3">
+                                  <label for="estimatedCostOfProduction">Estimated Cost of Production:</label>
+                                  <input type="text" class="form-control" id="estimatedCostOfProduction" name="estimatedCostOfProduction">
+                                </div>
                               </div>
-                            </div>
-                            <div class="col-md-4">
-                              <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="estimatedCostOfProduction" name="estimatedCostOfProduction" placeholder="Estimated Cost of Production">
-                                <label for="estimatedCostOfProduction">Estimated Cost of Production:</label>
+                              <div class="col-12">
+                                <div class="mb-3">
+                                  <label for="netSales">Net Sales:</label>
+                                  <input type="text" class="form-control" id="netSales" name="netSales">
+                                </div>
                               </div>
+                              <hr>
                             </div>
-                            <div class="col-md-4">
-                              <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="netSales" name="netSales" placeholder="Net Sales">
-                                <label for="netSales">Net Sales:</label>
-                              </div>
+                            <div class="col-12">
+                              <button type="button" class="btn btn-danger deleteButtonLocal">Delete</button>
                             </div>
-                            <hr>
                           </div>
-                          <div class="col-md-4">
-                            <button type="button" class="btn btn-danger deleteButtonLocal">Delete</button>
+                          <div class="mt-2">
+                            <button id="addButtonLocal" class="btn btn-primary">Add</button>
                           </div>
-                        </div>
-                        <div class="mt-2">
-                          <button id="addButtonLocal" class="btn btn-primary">Add</button>
-                        </div>
                       </fieldset>
                     </div>
+                  </div>
                 </div>
                 <div id="step-4" class="tab-pane" role="tabpanel" aria-labelledby="step-4">
                   <fieldset class="mt-4 h-100">
