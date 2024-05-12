@@ -78,7 +78,7 @@
                 </li>
               </ul>
               <div class="tab-content">
-                <div id="step-1" class="tab-pane" role="tabpanel" aria-labelledby="step-1" style="position: static; left: 0px; display: block;">
+                <div id="step-1" class="tab-pane" role="tabpanel" aria-labelledby="step-1">
                   <fieldset class="">
                     <legend class="w-auto">
                       <h4>1.0 ASSETS</h4>

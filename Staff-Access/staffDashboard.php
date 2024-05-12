@@ -14,6 +14,8 @@
   <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
   <script src="../dist/apexcharts.min.js"></script>
   <link rel="stylesheet" href="/dist/apexcharts.css">
+  <link rel="stylesheet" href="../assets/dist-smartWizard/css/smart_wizard_all.css">
+  <script src="../assets/dist-smartWizard/js/jquery.smartWizard.min.js"></script>
 
   <style>
     .headerlogo {
