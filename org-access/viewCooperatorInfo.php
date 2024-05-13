@@ -51,9 +51,59 @@
     <legend class="w-auto">
       <h2>Cooperator's Progress:</h2>
     </legend>
-    <div class="bg-white bg-white d-flex justify-content-start">
-      <div id="progressBar"></div>
-    </div>
+    <div class="row mb-4">
+        <div class="col d-flex flex-column align-items-center">
+          <!-- Add content for ProgressPer div here -->
+          <!-- Assuming your ApexChart is here -->
+          <div id="progressBar" class="mx-auto" style="order: 1;"></div>
+          <div class="text-center" style="order: 2;">
+            <h5>750,000/1,000,000</h5>
+          </div>
+        </div>
+        <div class="col">
+          <div>
+
+          </div>
+          <div>
+            <fieldset class="w-auto">
+              <legend class="w-auto">
+                <h6><strong>Refund History:</strong></h6>
+              </legend>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Amount</th>
+                    <th>Due For</th>
+                    <th>Remark</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>₱83,000.33</td>
+                    <td>1/15/2022</td> <!-- First quarter -->
+                    <td><span class="badge rounded-pill text-bg-success">Refunded</span></td>
+                  </tr>
+                  <tr>
+                    <td>₱83,000.33</td>
+                    <td>4/15/2022</td> <!-- Second quarter -->
+                    <td><span class="badge rounded-pill text-bg-success">Refunded</span></td>
+                  </tr>
+                  <tr>
+                    <td>₱83,000.33</td>
+                    <td>7/15/2022</td> <!-- Third quarter -->
+                    <td><span class="badge rounded-pill text-bg-success">Refunded</span></td>
+                  </tr>
+                  <tr>
+                    <td>₱83,000.33</td>
+                    <td>10/15/2022</td> <!-- Fourth quarter -->
+                    <td><span class="badge rounded-pill text-bg-success">Refunded</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </fieldset>
+          </div>
+        </div>
+      </div>
     <div class="row px-2">
       <div class="col-md-6">
         <fieldset>
@@ -80,5 +130,63 @@
     <legend class="w-auto">
       <h2>Requirements:</h2>
     </legend>
+    <fieldset class="mt-4">
+      <!-- Your first fieldset content goes here -->
+      <legend class="w-auto">
+        <h5>Application requirements</h5>
+      </legend>
+      <div>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <input class="form-check-input me-1" type="checkbox" value="" id="letterOfIntentCheckbox">
+              <label class="form-check-label" for="letterOfIntentCheckbox">Letter of Intent</label>
+              <a href="path/to/letter_of_intent.pdf" target="_blank">Review File</a>
+            </div>
+            <span class="badge bg-success">Reviewed</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <input class="form-check-input me-1" type="checkbox" value="" id="dtiSecCdaCheckbox">
+              <label class="form-check-label" for="dtiSecCdaCheckbox">DTI/SEC/CDA</label>
+              <a href="path/to/dti_sec_cda.pdf" target="_blank">Review File</a>
+            </div>
+            <span class="badge bg-success">Reviewed</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <input class="form-check-input me-1" type="checkbox" value="" id="businessPermitCheckbox">
+              <label class="form-check-label" for="businessPermitCheckbox">Business Permit</label>
+              <a href="path/to/business_permit.pdf" target="_blank">Review File</a>
+            </div>
+            <span class="badge bg-success">Reviewed</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <input class="form-check-input me-1" type="checkbox" value="" id="fdaLtoCheckbox">
+              <label class="form-check-label" for="fdaLtoCheckbox">FDA/LTO</label>
+              <a href="path/to/fda_lto.pdf" target="_blank">Review File</a>
+            </div>
+            <span class="badge bg-success">Reviewed</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <input class="form-check-input me-1" type="checkbox" value="" id="officialReceiptCheckbox">
+              <label class="form-check-label" for="officialReceiptCheckbox">Official Receipt of the Business</label>
+              <a href="path/to/official_receipt.pdf" target="_blank">Review File</a>
+            </div>
+            <span class="badge bg-success">Reviewed</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <input class="form-check-input me-1" type="checkbox" value="" id="govValidIdCheckbox">
+              <label class="form-check-label" for="govValidIdCheckbox">Copy of Government Valid ID</label>
+              <a href="path/to/government_id.pdf" target="_blank">Review File</a>
+            </div>
+            <span class="badge bg-success">Reviewed</span>
+          </li>
+        </ul>
+      </div>
+    </fieldset>
   </fieldset>
 </div>

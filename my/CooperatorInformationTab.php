@@ -111,9 +111,9 @@
       </div>
     </div>
 
-    <div id="stackColumnChartPercent">
+    <!-- <div id="stackColumnChartPercent">
 
-    </div>
+    </div> -->
 
   </fieldset>
 </div>
