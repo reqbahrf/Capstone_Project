@@ -25,7 +25,7 @@ ul#myTab li.nav-item button.tab-Nav:hover {
       <h4 class="p-3">Projects</h4>
 </div>
 <div class="bg-white py-2 rounded-5">
-    <!-- Modal Pop-up start-->
+    <!--Ongoing Modal start-->
     <div class="modal fade" id="ApplicationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -46,7 +46,7 @@ ul#myTab li.nav-item button.tab-Nav:hover {
         </div>
       </div>
     </div>
-    <!-- Modal Pop-up end-->
+    <!-- Ongoing Modal end-->
     <div class="modal fade" id="OngoingModal" tabindex="-1" aria-labelledby="OngoingModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">

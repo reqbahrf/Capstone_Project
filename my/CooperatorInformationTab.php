@@ -1,10 +1,10 @@
-<div>
-  <h1 class=" bg-dark text-white p-4 m-2">Dashboard</h1>
+<div class="p-3">
+  <h4>Dashboard</h4>
 </div>
-<div class="row g-3 mt-3 ms-3 me-3 mb-2 p-3 bg-white">
+<div class="row g-3 mt-sm-2 ms-sm-2 me-sm-2 mb-sm-2 p-sm-2 bg-white rounded-5">
   <fieldset>
     <legend class="w-auto">
-      <h2>Client Info:</h2>
+      <h5>Client Info:</h5>
     </legend>
     <div class="p-3">
       <div class="form-group row mt-2">
@@ -53,7 +53,7 @@
   </fieldset>
   <fieldset class="mt-4">
     <legend class="w-auto">
-      <h2>Progress:</h2>
+      <h5>Refund Progress:</h5>
     </legend>
     <div class="container">
       <div class="row">

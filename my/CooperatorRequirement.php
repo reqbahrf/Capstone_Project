@@ -1,20 +1,50 @@
 <style>
-  .tab-Nav {
-    background-color: black;
+  .nav-tabs .nav-link.tab-Nav.active {
+    background-color: #318791 !important; 
+    font-weight: bold;
     color: white;
-    /* Change the text color to white for better contrast */
-  }
+    border-top: 6px solid;
+    border-top-right-radius: 10px; /* Adjust the radius value as needed */
+    border-top-left-radius: 10px;
+}
 
-  .tab-Nav.active {
-    background-color: white;
-    color: black;
-    /* Change the text color to black for better contrast */
-  }
+.nav-tabs .nav-link.tab-Nav {
+    background-color: white; /* Your desired color */
+    color: black; /* Adjust text color accordingly */
+    border: 1px solid #318791; /* Adjust border color */
+    border-bottom: none;
+}
+
+.nav-tabs .nav-link.tab-Nav:hover {
+    background-color: #318791; /* Hover state color */
+    color: white;
+}
+
+/* Change the background color of the progress bar */
+
+:root{
+    --sw-toolbar-btn-background-color:  #318791;
+    --sw-anchor-default-primary-color:  #f8f9fa;
+    --sw-anchor-active-primary-color:  #318791;
+    --sw-anchor-active-secondary-color:  #ffffff;
+    --sw-anchor-done-primary-color:  #48C4D3;
+    --sw-anchor-error-primary-color:  #dc3545;
+    --sw-anchor-error-secondary-color:  #ffffff;
+    --sw-anchor-warning-primary-color:  #ffc107;
+    --sw-anchor-warning-secondary-color:  #ffffff;
+    --sw-progress-color:  #318791;
+    --sw-progress-background-color:  #f8f9fa;
+    --sw-loader-color:  #318791;
+    --sw-loader-background-color:  #f8f9fa;
+    --sw-loader-background-wrapper-color:  rgba(255, 255, 255, 0.7);
+}
+
+
 </style>
-<div>
-  <h1 class="row bg-dark text-white p-4 m-2">Requirements</h1>
+<div class="p-3">
+  <h4 >Requirements</h4>
 </div>
-<div class="g-3 mt-sm-3 ms-sm-3 me-sm-3 mb-sm-2 p-sm-3 bg-white">
+<div class="g-3 mt-sm-2 ms-sm-2 me-sm-2 mb-sm-2 p-sm-2 bg-white rounded-5">
   <div class=" bg-white p-3">
     <div class="form-check form-check-lg">
       <input class="form-check-input" type="checkbox" name="requirements[]" value="TNA" id="tna">
@@ -67,14 +97,14 @@
         <legend class="w-auto">
           Quarterly Reports:
         </legend>
-        <nav>
+  
           <div class="nav nav-tabs mt-3" id="nav-tab" role="tablist">
             <button class="nav-link tab-Nav active" id="nav-quarter1-tab" data-bs-toggle="tab" data-bs-target="#nav-quarter1" type="button" role="tab" aria-controls="nav-quarter1" aria-selected="true">Quarter 1</button>
             <button class="nav-link tab-Nav" id="nav-quarter2-tab" data-bs-toggle="tab" data-bs-target="#nav-quarter2" type="button" role="tab" aria-controls="nav-quarter2" aria-selected="false" >Quarter 2</button>
             <button class="nav-link tab-Nav" id="nav-quarter3-tab" data-bs-toggle="tab" data-bs-target="#nav-quarter3" type="button" role="tab" aria-controls="nav-quarter3" aria-selected="false" >Quarter 3</button>
             <button class="nav-link tab-Nav" id="nav-quarter4-tab" data-bs-toggle="tab" data-bs-target="#nav-quarter4" type="button" role="tab" aria-controls="nav-quarter4" aria-selected="false" >Quarter 4</button>
           </div>
-        </nav>
+  
         <div class="tab-content">
           <div class="tab-pane fade show active w-auto" id="nav-quarter1" role="tabpanel" aria-labelledby="nav-quarter1-tab" tabindex="0">
             <h5 class="my-5">Quarter 1</h5>
@@ -367,10 +397,7 @@
                 </div>
               </div>
 
-              <!-- Include optional progressbar HTML -->
-              <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              
             </div>
 
 

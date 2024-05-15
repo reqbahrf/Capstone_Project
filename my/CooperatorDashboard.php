@@ -18,9 +18,7 @@
   <script src="../assets/dist-smartWizard/js/jquery.smartWizard.min.js"></script>
   <style>
     .headerlogo {
-      background: rgb(2, 0, 36);
-      background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(72, 196, 211, 1) 96%, rgba(0, 212, 255, 1) 100%);
-      color: white;
+      background: #318791;
     }
 
     fieldset legend {
