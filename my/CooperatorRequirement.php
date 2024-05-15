@@ -22,22 +22,6 @@
 
 /* Change the background color of the progress bar */
 
-:root{
-    --sw-toolbar-btn-background-color:  #318791;
-    --sw-anchor-default-primary-color:  #f8f9fa;
-    --sw-anchor-active-primary-color:  #318791;
-    --sw-anchor-active-secondary-color:  #ffffff;
-    --sw-anchor-done-primary-color:  #48C4D3;
-    --sw-anchor-error-primary-color:  #dc3545;
-    --sw-anchor-error-secondary-color:  #ffffff;
-    --sw-anchor-warning-primary-color:  #ffc107;
-    --sw-anchor-warning-secondary-color:  #ffffff;
-    --sw-progress-color:  #318791;
-    --sw-progress-background-color:  #f8f9fa;
-    --sw-loader-color:  #318791;
-    --sw-loader-background-color:  #f8f9fa;
-    --sw-loader-background-wrapper-color:  rgba(255, 255, 255, 0.7);
-}
 
 
 </style>

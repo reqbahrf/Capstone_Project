@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Staff Dashboard</title>
-  <link rel="stylesheet" href="../assets/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
   <script src="../assets/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
   <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.bootstrap5.css">
@@ -25,6 +25,23 @@
       background: #318791;
       color: white;
     }
+
+    :root{
+    --sw-toolbar-btn-background-color:  #318791;
+    --sw-anchor-default-primary-color:  #f8f9fa;
+    --sw-anchor-active-primary-color:  #318791;
+    --sw-anchor-active-secondary-color:  #ffffff;
+    --sw-anchor-done-primary-color:  #48C4D3;
+    --sw-anchor-error-primary-color:  #dc3545;
+    --sw-anchor-error-secondary-color:  #ffffff;
+    --sw-anchor-warning-primary-color:  #ffc107;
+    --sw-anchor-warning-secondary-color:  #ffffff;
+    --sw-progress-color:  #318791;
+    --sw-progress-background-color:  #f8f9fa;
+    --sw-loader-color:  #318791;
+    --sw-loader-background-color:  #f8f9fa;
+    --sw-loader-background-wrapper-color:  rgba(255, 255, 255, 0.7);
+}
 
     fieldset legend {
       position: absolute;
