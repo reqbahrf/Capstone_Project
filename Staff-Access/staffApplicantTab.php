@@ -1,7 +1,7 @@
 <div>
-    <div class="">
-        <h1 class=" bg-dark text-white p-4">Applicant:</h1>
-    </div>
+    <h4 class="p-3">Applicant:</h4>
+</div>
+<div class="bg-white py-2 rounded-5">
     <div class="modal fade" id="ApplicantModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -149,7 +149,7 @@
             </div>
         </div>
     </div>
-    <div>
+    <div class="m-3">
         <!-- Where the applicant table start -->
         <table id="applicant" class="table table-striped" style="width:100%">
             <thead>

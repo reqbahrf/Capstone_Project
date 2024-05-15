@@ -33,9 +33,9 @@
     </div>
 </div>
 <div>
-    <div>
-        <h1 class="bg-dark text-white p-4">Dashboard</h1>
-    </div>
+    <h4 class="p-3">Dashboard</h4>
+</div>
+<div class="bg-white py-2 rounded-5">
     <div class="row sparkboxes m-4">
         <div class="col-md-4">
             <div class="box box1 pt-2 bg-white shadow rounded-3">
@@ -54,7 +54,7 @@
         </div>
     </div>
     <div class="m-4 p-3 shadow">
-        <h3 class="p-4 bg-black text-white text-center">Handle Projects</h3>
+        <h5 class="p-2 text-center">Handle Projects</h5>
         <table id="handledProject" class="table table-striped" style="width:100%">
             <thead>
                 <tr>

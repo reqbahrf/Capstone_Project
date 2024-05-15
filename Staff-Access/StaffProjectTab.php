@@ -1,19 +1,30 @@
 <style>
-  .tab-Nav {
-    background-color: black;
-    color: white;
-    /* Change the text color to white for better contrast */
-  }
 
-  .tab-Nav.active {
+ul#myTab li.nav-item button.tab-Nav.active {
+    background-color: #318791 !important; 
     font-weight: bold;
-    background-color: white;
-    color: black;
+    color: white;
     border-top: 6px solid;
-  }
+    border-top-right-radius: 10px; /* Adjust the radius value as needed */
+    border-top-left-radius: 10px;
+}
+  ul#myTab li.nav-item button.tab-Nav {
+    background-color: white; /* Your desired color */
+    color: black; /* Adjust text color accordingly */
+    border: 1px solid #318791; /* Adjust border color */
+    border-bottom: none;
+}
+
+ul#myTab li.nav-item button.tab-Nav:hover {
+    background-color: #318791; /* Hover state color */
+    color: white;
+}
+
 </style>
 <div>
-  <div>
+      <h4 class="p-3">Projects</h4>
+</div>
+<div class="bg-white py-2 rounded-5">
     <!-- Modal Pop-up start-->
     <div class="modal fade" id="ApplicationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -51,22 +62,13 @@
             </div>
           </div>
           <div class="modal-footer">
-          <button class="btn btn-primary" data-bs-dismiss="modal" id="dashboardLink" onclick="loadPage('/org-access/viewCooperatorInfo.php','projectLink');">View</button>
+            <button class="btn btn-primary" data-bs-dismiss="modal" id="dashboardLink" onclick="loadPage('/org-access/viewCooperatorInfo.php','projectLink');">View</button>
           </div>
         </div>
       </div>
     </div>
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="StaffProjectTab.php">Staff Project Tab</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Staff Project Info</li>
-      </ol>
-    </nav>
     <div>
-      <h1 class=" bg-dark text-white p-4">Projects</h1>
-    </div>
-    <div>
-      <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <ul class="nav nav-tabs ps-3" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
           <button class="nav-link tab-Nav active" id="Approved-tab" data-bs-toggle="tab" data-bs-target="#Approved-tab-pane" type="button" role="tab" aria-controls="Approved-tab-pane" aria-selected="true">Approved Projects</button>
         </li>
@@ -79,7 +81,7 @@
       </ul>
 
     </div>
-    <div class="tab-content bg-white" id="myTabContent">
+    <div class="tab-content bg-white m-3" id="myTabContent">
       <!-- first tab here -->
       <div class="tab-pane fade show active" id="Approved-tab-pane" role="tabpanel" aria-labelledby="Approved-tab" tabindex="0">
         <!-- Where the applicant table start -->

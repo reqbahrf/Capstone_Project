@@ -22,8 +22,7 @@
 
   <style>
     .headerlogo {
-      background: rgb(2, 0, 36);
-      background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(72, 196, 211, 1) 96%, rgba(0, 212, 255, 1) 100%);
+      background: #318791;
       color: white;
     }
 
@@ -50,11 +49,6 @@
       padding: 2rem;
       border: 2px solid #dee2e6;
       border-radius: 0.25rem;
-    }
-
-    .headerlogo {
-      background-color: #48c4d3;
-      color: white;
     }
 
     .scrollable-main {
@@ -92,6 +86,26 @@
       object-fit: cover;
       object-position: center;
     }
+
+    .dt-paging .page-item .page-link {
+    color: #318791; /* Default text color */
+    background-color: #fff; /* Default background color */
+    border: 1px solid #dee2e6; /* Default border */
+    padding: 5px 10px; /* Padding */
+    margin: 0 2px; /* Margin */
+    border-radius: 4px; /* Rounded corners */
+}
+
+.dt-paging .page-item .page-link:hover {
+    background-color: #e9ecef; /* Background color on hover */
+    border-color: #ddd; /* Border color on hover */
+}
+
+.dt-paging .page-item.active .page-link {
+    background-color: #318791 !important; /* Background color for active page */
+    color: white; /* Text color for active page */
+    border-color: #318791; /* Border color for active page */
+}
 
     @media (min-width: 768px) {
       .flex-container {
@@ -230,7 +244,7 @@
         xaxis: {
           type: 'datetime',
         },
-        colors: ['#008FFB'],
+        colors: ['#48C4D3'],
         title: {
           text: '52',
           offsetX: 30,
@@ -275,7 +289,7 @@
         xaxis: {
           type: 'datetime',
         },
-        colors: ['#008FFB'],
+        colors: ['#48C4D3'],
         title: {
           text: '312',
           offsetX: 30,
@@ -320,8 +334,7 @@
         yaxis: {
           min: 0
         },
-        colors: ['#008FFB'],
-        //colors: ['#5564BE'],
+        colors: ['#48C4D3'],
         title: {
           text: '13',
           offsetX: 30,
