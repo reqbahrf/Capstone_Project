@@ -18,8 +18,7 @@
 
   <style>
     .headerlogo {
-      background: rgb(2, 0, 36);
-      background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(72, 196, 211, 1) 96%, rgba(0, 212, 255, 1) 100%);
+      background: #318791;
       color: white;
     }
 
@@ -76,6 +75,37 @@
       margin-right: 1rem;
       width: 85%;
       order: 1;
+    }
+
+    .dt-paging .page-item .page-link {
+      color: #318791;
+      /* Default text color */
+      background-color: #fff;
+      /* Default background color */
+      border: 1px solid #dee2e6;
+      /* Default border */
+      padding: 5px 10px;
+      /* Padding */
+      margin: 0 2px;
+      /* Margin */
+      border-radius: 4px;
+      /* Rounded corners */
+    }
+
+    .dt-paging .page-item .page-link:hover {
+      background-color: #e9ecef;
+      /* Background color on hover */
+      border-color: #ddd;
+      /* Border color on hover */
+    }
+
+    .dt-paging .page-item.active .page-link {
+      background-color: #318791 !important;
+      /* Background color for active page */
+      color: white;
+      /* Text color for active page */
+      border-color: #318791;
+      /* Border color for active page */
     }
 
     @media (min-width: 768px) {

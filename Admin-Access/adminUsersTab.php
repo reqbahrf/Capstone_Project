@@ -1,7 +1,9 @@
+
+<div class="p-3">
+    <h4>User Access</h4>
+</div>
 <div>
-  <div class="">
-    <h1 class=" bg-dark text-white p-4 m-2">User Access</h1>
-  </div>
+  <!-- userModal Start -->
   <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -27,6 +29,8 @@
       </div>
     </div>
   </div>
+  <!-- userModal end -->
+  <!-- Add User Modal -->
   <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -51,14 +55,15 @@
       </div>
     </div>
   </div>
-  <div class="px-3">
+  <!-- Add User Modal end -->
+  <div class="py-4 bg-white rounded-5">
     <div class="d-flex justify-content-end">
       <button type="button" class="btn btn-info" id="addUserModal" data-bs-toggle="modal" data-bs-target="#addUserModal">
         Add user
       </button>
     </div>
-    <div>
-      <table id="user_staff" class="table table-striped" style="width:100%">
+    <div class="mx-2">
+      <table id="user_staff" class="table table-hover mx-2" style="width:100%">
         <thead>
           <tr>
             <th>id</th>

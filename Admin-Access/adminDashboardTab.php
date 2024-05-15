@@ -16,16 +16,17 @@
 </style>
 
 <!-- HTML -->
+<div>
+    <h4 class="p-3">Dashboard</h4>
+</div>
 
-<div class="bg-white">
+<div class=" bg-white rounded-5">
 
-    <div>
-        <h1 class=" bg-dark text-white p-4">Dashboard</h1>
-    </div>
-    <div class="container mt-4">
+
+    <div class="container-flex m-3 py-4">
         <fieldset>
             <legend class="w-auto">
-                <h4>Projects:</h4>
+                <h5>Projects:</h5>
             </legend>
             <div class="row sparkboxes m-4">
                 <div class="col-md-4 z-3" id="applicantChart" data-bs-toggle="modal" data-bs-target="#applicantModal">
@@ -44,15 +45,15 @@
                     </div>
                 </div>
             </div>
+            <div class="py-5">
+                <fieldset>
+                    <legend class="text-center">
+                        <h6>Staff handled Projects:</h6>
+                    </legend>
+                    <div id="staffHandledB"></div>
+                </fieldset>
+            </div>
         </fieldset>
-        <div class="mt-4">
-            <fieldset>
-                <legend>
-                    <h4>Staff handled Projects:</h4>
-                </legend>
-                <div id="staffHandledB"></div>
-            </fieldset>
-        </div>
         <!-- Modal -->
         <div class="modal fade" id="applicantModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">

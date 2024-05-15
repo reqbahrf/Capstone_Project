@@ -1,19 +1,27 @@
 <style>
-    .nav-link {
-        background-color: black;
-        color: white;
-        /* Change the text color to white for better contrast */
-    }
+    ul#myTab li.nav-item button.tab-Nav.active {
+    background-color: #318791 !important; 
+    font-weight: bold;
+    color: white;
+    border-top: 6px solid;
+    border-top-right-radius: 10px; /* Adjust the radius value as needed */
+    border-top-left-radius: 10px;
+}
+  ul#myTab li.nav-item button.tab-Nav {
+    background-color: white; /* Your desired color */
+    color: black; /* Adjust text color accordingly */
+    border: 1px solid #318791; /* Adjust border color */
+    border-bottom: none;
+}
 
-    .nav-link.active {
-        font-weight: bold;
-        background-color: white;
-        color: black;
-        border-top: 6px solid;
-    }
+ul#myTab li.nav-item button.tab-Nav:hover {
+    background-color: #318791; /* Hover state color */
+    color: white;
+}
+
 </style>
-<div class=" bg-dark text-white p-4">
-    <h1>Project List</h1>
+<div class="p-3">
+    <h4>Project List</h4>
 </div>
 <!-- Applicant Modal -->
 <div class="modal fade" id="ApplicantModal" tabindex="-1" aria-labelledby="ApplicantModalLabel" aria-hidden="true">
@@ -143,6 +151,8 @@
         </div>
     </div>
 </div>
+<!-- Ongoing Modal End -->
+<!-- Complete Modal -->
 <div class="modal fade" id="CompleteModal" tabindex="-1" aria-labelledby="CompleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -162,25 +172,26 @@
         </div>
     </div>
 </div>
+<!-- Complete Modal End -->
 
 
-<div class="mt-4">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
+<div class="py-4 bg-white rounded-5">
+    <ul class="nav nav-tabs ps-3" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Applicant</button>
+            <button class="nav-link tab-Nav active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Applicant</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Ongoing</button>
+            <button class="nav-link tab-Nav" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Ongoing</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Completed</button>
+            <button class="nav-link tab-Nav" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Completed</button>
         </li>
     </ul>
-    <div class="tab-content" id="myTabContent">
+    <div class="tab-content bg-white" id="myTabContent">
         <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
             <!-- Where the applicant is displayed -->
-            <div>
-                <table id="applicant" class="table table-striped" style="width:100%">
+            <div class="mx-2">
+                <table id="applicant" class="table table-hover mx-2" style="width:100%">
                     <thead>
                         <tr>
                             <th>id</th>
@@ -265,8 +276,8 @@
         </div>
         <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
             <!-- Where the ongoing project are displayed -->
-            <div>
-                <table id="ongoing" class="table table-striped" style="width:100%">
+            <div class="mx-2">
+                <table id="ongoing" class="table table-hover mx-2" style="width:100%">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -334,8 +345,8 @@
         </div>
         <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
             <!-- Where the Complete Table is displayed -->
-            <div>
-                <table id="completed" class="table table-striped" style="width:100%">
+            <div class="mx-2">
+                <table id="completed" class="table table-hover mx-2" style="width:100%">
                     <thead>
                         <tr>
                             <th>ID</th>
