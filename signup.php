@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign up</title>
-  <link rel="stylesheet" href="./assets/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
   <script src="./assets/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -13,6 +13,25 @@
   <link rel="stylesheet" href="./assets/dist-smartWizard/css/smart_wizard_all.min.css">
   <script src="./assets/dist-smartWizard/js/jquery.smartWizard.min.js"></script>
 </head>
+
+<style>
+  :root {
+    --sw-toolbar-btn-background-color: #318791;
+    --sw-anchor-default-primary-color: #f8f9fa;
+    --sw-anchor-active-primary-color: #318791;
+    --sw-anchor-active-secondary-color: #ffffff;
+    --sw-anchor-done-primary-color: #48C4D3;
+    --sw-anchor-error-primary-color: #dc3545;
+    --sw-anchor-error-secondary-color: #ffffff;
+    --sw-anchor-warning-primary-color: #ffc107;
+    --sw-anchor-warning-secondary-color: #ffffff;
+    --sw-progress-color: #318791;
+    --sw-progress-background-color: #f8f9fa;
+    --sw-loader-color: #318791;
+    --sw-loader-background-color: #f8f9fa;
+    --sw-loader-background-wrapper-color: rgba(255, 255, 255, 0.7);
+  }
+</style>
 
 <body>
   <div class="d-flex justify-content-center vh-100 align-items-center">
@@ -82,7 +101,7 @@
               <li class="nav-item">
                 <a class="nav-link default" href="#step-3">
                   <span class="num">3</span>
-                  Finish
+                  Review
                 </a>
               </li>
             </ul>
@@ -92,7 +111,7 @@
             </div>
             <div class="tab-content" style="height: 187.2px;">
               <div id="step-1" class="tab-pane" role="tabpanel" aria-labelledby="step-1" style="position: static; left: 0px; display: block;">
-              <div class="row">
+                <div class="row">
                   <div class="col-12 d-flex justify-content-center">
                     <div class="w-50">
                       <div class="form-floating mb-3">
@@ -112,7 +131,7 @@
                 </div> <!-- end row -->
               </div>
               <div id="step-2" class="tab-pane" role="tabpanel" aria-labelledby="step-2" style="display: none;">
-              <div class="row">
+                <div class="row">
                   <div class="col-12 d-flex justify-content-center">
                     <div class="w-50">
                       <div class="form-floating mb-3">
@@ -132,15 +151,21 @@
                 </div> <!-- end row -->
               </div>
               <div id="step-3" class="tab-pane" role="tabpanel" aria-labelledby="step-3" style="display: none;">
-              <div class="row">
-                  <div class="col-12">
-                    <div class="text-center">
-                      <h2 class="mt-0"><i class="mdi mdi-check-all"></i></h2>
-                      <h3 class="mt-0">Thank you !</h3>
-
-                      <p class="w-75 mb-2 mx-auto">Quisque nec turpis at urna dictum luctus. Suspendisse convallis dignissim eros at volutpat. In egestas mattis dui. Aliquam
-                        mattis dictum aliquet.</p>
-
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-center">
+                    <div class="w-50">
+                      <div class="form-floating mb-3">
+                        <input type="text" id="reviewName1" name="reviewName1" class="form-control" value="" readonly>
+                        <label for="reviewName1">First name</label>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input type="text" id="reviewSurname1" name="reviewSurname1" class="form-control" value="" readonly>
+                        <label for="reviewSurname1">Last name</label>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input type="email" id="reviewEmail1" name="reviewEmail1" class="form-control" value="" readonly>
+                        <label for="reviewEmail1">Email</label>
+                      </div>
                       <div class="mb-3">
                         <div class="form-check d-inline-block">
                           <input type="checkbox" class="form-check-input" id="customCheck3">
@@ -210,9 +235,9 @@
         },
         // Dommy code for testing
         onLeaveStep: function(anchorObject, currentIndex, newIndex) {
-            if (currentIndex === $('#smartwizard').find('ul li').length - 1) {
-                return false; // Cancel form submission
-            }
+          if (currentIndex === $('#smartwizard').find('ul li').length - 1) {
+            return false; // Cancel form submission
+          }
         },
       });
       $("#smartwizard").on("showStep", function(e, anchorObject, stepIndex, stepDirection, stepPosition) {

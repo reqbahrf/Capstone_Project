@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Application Form</title>
-  <link rel="stylesheet" href="./assets/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="./assets/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
   <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css" />
@@ -60,6 +60,23 @@
     .sw-toolbar-elm .btn-success,
     .sw-toolbar-elm .btn-secondary {
       display: none;
+    }
+
+    :root {
+      --sw-toolbar-btn-background-color: #318791;
+      --sw-anchor-default-primary-color: #f8f9fa;
+      --sw-anchor-active-primary-color: #318791;
+      --sw-anchor-active-secondary-color: #ffffff;
+      --sw-anchor-done-primary-color: #48C4D3;
+      --sw-anchor-error-primary-color: #dc3545;
+      --sw-anchor-error-secondary-color: #ffffff;
+      --sw-anchor-warning-primary-color: #ffc107;
+      --sw-anchor-warning-secondary-color: #ffffff;
+      --sw-progress-color: #318791;
+      --sw-progress-background-color: #f8f9fa;
+      --sw-loader-color: #318791;
+      --sw-loader-background-color: #f8f9fa;
+      --sw-loader-background-wrapper-color: rgba(255, 255, 255, 0.7);
     }
   </style>
 
@@ -231,9 +248,75 @@
           </div>
           <div id="step-4" class="tab-pane" role="tabpanel" aria-labelledby="step-4" style="position: static; left: 0px; display: none;">
             <div class="row">
-              <div class="col-md-12">
-                <span>Review and confirm the details provided before submission.</span>
+              <div class="col-md-12 mb-4">
+                <h5>Review and confirm the details provided before submission.</h5>
               </div>
+              <div class="d-flex justify-content-center align-items-center flex-column"">
+                <div class="w-50 border rounded-5 p-4 shadow">
+                <h6 class="mb-4">Personal info:</h6>
+                  <div class="ps-4">
+                    <label for="f_name">First Name</label>
+                    <input type="text" name="f_name" id="f_name" class="form-control mb-3" placeholder="John" required readonly>
+
+                    <label for="l_name">Last Name</label>
+                    <input type="text" name="l_name" id="l_name" class="form-control mb-3" placeholder="Doe" required readonly>
+
+                    <label for="Mobile_no">Mobile Number</label>
+                    <input type="text" name="Mobile_no" id="Mobile_no" class="form-control mb-3" placeholder="0965-453-5432" pattern="\d{4}-\d{3}-\d{4}" title="Please enter a valid landline number in the format XXXX-XXX-XXXX" required readonly>
+
+                    <label for="email_add">Email Address</label>
+                    <input type="email" name="email_add" id="email_add" class="form-control mb-3" placeholder="example@example.com" required readonly>
+
+                    <label for="landline">Landline</label>
+                    <input type="text" name="landline" id="landline" class="form-control mb-3" placeholder="(XX) YYY ZZZZ" readonly>
+                  </div>
+                  <h6 class="mb-4">Business Info:</h6>
+                  <div class="ps-4">
+                    <label for="firm_name">Firm Name</label>
+                    <input type="text" name="firm_name" id="firm_name" class="form-control mb-3" placeholder="ABC Company" required readonly>
+
+                    <label for="Address">Address</label>
+                    <input type="text" name="Address" id="Address" class="form-control mb-3" placeholder="123 Main St" required readonly>
+
+                    <label for="buildings">Buildings</label>
+                    <input type="text" name="buildings" id="buildings" class="form-control mb-3" placeholder="Value in Php" required readonly>
+
+                    <label for="equipments">Equipments</label>
+                    <input type="text" name="equipments" id="equipments" class="form-control mb-3" placeholder="Value in Php" required readonly>
+
+                    <label for="working_capital">Working Capital</label>
+                    <input type="text" name="working_capital" id="working_capital" class="form-control mb-3" placeholder="Value in Php" required readonly>
+
+                    <label for="male_personnel">Male Personnel</label>
+                    <input type="number" name="male_personnel" id="male_personnel" class="form-control mb-3" placeholder="Number of Male Personnel" required readonly>
+
+                    <label for="female_personnel">Female Personnel</label>
+                    <input type="number" name="female_personnel" id="female_personnel" class="form-control mb-3" placeholder="Number of Female Personnel" required readonly>
+                  </div>
+                  <h6 class="mb-4">Requirement Upload:</h6>
+                  <div class="ps-4">
+                    <label for="IntentFile">Intent File</label>
+                    <input class="form-control mb-3" type="file" id="IntentFile" readonly>
+
+                    <label for="dtiFile">DTI File</label>
+                    <input class="form-control mb-3" type="file" id="dtiFile" readonly>
+
+                    <label for="businessPermitFile">Business Permit File</label>
+                    <input class="form-control mb-3" type="file" id="businessPermitFile" readonly>
+
+                    <label for="fdaLtoFile">FDA LTO File</label>
+                    <input class="form-control mb-3" type="file" id="fdaLtoFile" readonly>
+
+                    <label for="receiptFile">Receipt File</label>
+                    <input class="form-control mb-3" type="file" id="receiptFile" readonly>
+
+                    <label for="govIdFile">Government ID File</label>
+                    <input class="form-control mb-3" type="file" id="govIdFile" readonly>
+                  </div>
+
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
