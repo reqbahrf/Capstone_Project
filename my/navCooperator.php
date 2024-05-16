@@ -45,11 +45,12 @@
   .nav-item a.active {
     color: #FFFFFF;
   }
+
   .my-profile {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-}
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+  }
 
 
   @media only screen and (max-width: 600px) {
@@ -76,7 +77,7 @@
       justify-content: center;
     }
 
-    span {
+    span.nav-text {
       letter-spacing: -10px;
       display: none;
     }

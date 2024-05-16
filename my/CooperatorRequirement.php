@@ -123,9 +123,9 @@
                 <div id="step-1" class="tab-pane" role="tabpanel" aria-labelledby="step-1">
                 <fieldset class="">
                 <legend class="w-auto">
-                  <h4>1.0 ASSETS</h4>
+                  1.0 ASSETS
                 </legend>
-                <div class="row ms-md-4 mb-3">
+                <div class="row ms-md-4 ms-sm-2 my-4">
                   <div class="col-12 col-sm-6 col-md-4">
                     <label for="BuildingAsset">Building:</label>
                     <input type="text" class="form-control" id="BuildingAsset" name="Building" placeholder="">
@@ -144,14 +144,14 @@
                 <div id="step-2" class="tab-pane" role="tabpanel" aria-labelledby="step-2">
                 <fieldset class="mt-4">
                 <legend class="w-auto">
-                  <h4>2.0 TOTAL EMPLOYMENT FOR THE QUARTER</h4>
+                  2.0 EMPLOYMENT FOR THE QUARTER
                 </legend>
-                <div class="row ms-2 mb-3">
+                <div class="row ms-2 mb-3 my-4">
                   <div class="col-sm-12 col-md-6">
-                    <h5>2.1 Direct Labor(Production)</h5>
+                    <strong>2.1 Direct Labor(Production)</strong>
                     <div class="row ms-md-2">
                       <div class="col-sm-12 mt-3 col-md-6">
-                        <h6>2.1a Direct Labor</h6>
+                        <p>2.1a Direct Labor</p>
                         <!-- Your input fields here -->
                         <div class="mb-3">
                           <label for="maleInput">Male:</label>
@@ -170,7 +170,7 @@
                         </div>
                       </div>
                       <div class="col-sm-12 mt-3 col-md-6">
-                        <h6>2.1b Part-time</h6>
+                        <p>2.1b Part-time</p>
                         <!-- Your input fields here -->
                         <div class="mb-3">
                           <label for="parttimeMaleInput">Male:</label>
@@ -184,17 +184,17 @@
                           <label for="parttimeWorkdayInput">Workday:</label>
                           <input type="text" class="form-control" id="parttimeWorkdayInput" placeholder="">
                         </div>
-                        <div class="mb-3">:
+                        <div class="mb-3">
                           <p>{Total}</p>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="col-sm-12 col-md-6">
-                    <h5>2.2 Indirect Labor(Admin and Marketing)</h5>
+                    <strong>2.2 Indirect Labor(Admin and Marketing)</strong>
                     <div class="row ms-md-2">
                       <div class="col-sm-12 mt-3 col-md-6">
-                        <h6>2.2a Regular</h6>
+                        <p>2.2a Regular</p>
                         <!-- Your input fields here -->
                         <div class="mb-3">
                           <label for="regularMaleInput">Male:</label>
@@ -213,7 +213,7 @@
                         </div>
                       </div>
                       <div class="col-sm-12 mt-3 col-md-6">
-                        <h6>2.2b Part-time</h6>
+                        <p>2.2b Part-time</p>
                         <!-- Your input fields here -->
                         <div class="mb-3">
                           <label for="parttimeMaleInput">Male:</label>
@@ -239,18 +239,18 @@
                 <div id="step-3" class="tab-pane" role="tabpanel" aria-labelledby="step-3">
                 <fieldset class="mt-4">
                 <legend class="w-auto">
-                  <h4>3.0 PRODUCTION AND SALES DATA FOR THE QUARTER</h4>
+                  3.0 PRODUCTION AND SALES DATA FOR THE QUARTER
                 </legend>
                   <div class="row align-items-center">
                     <div class="col-sm-12 col-md-6">
                       <fieldset class="mt-4">
                         <!-- Your first fieldset content here -->
                         <legend class="w-auto px-2">
-                          <h5 class="ms-2">3.1 Export Market</h5>
+                          <strong>3.1 Export Market</strong>
                         </legend>
                         <!-- FIXME: Improve the textfield format -->
-                        <div id="productExport" class="productExport">
-                          <div class="row ms-4">
+                        <div id="productExport" class="productExport my-4">
+                          <div class="row ms-md-4 ms-sm-2">
                             <hr>
                             <div class="col-12">
                               <div class="mb-3">
@@ -299,14 +299,14 @@
                       </fieldset>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                      <fieldset class="mt-4">
+                      <fieldset class="mt-md-4 mt-sm-2">
                         <!-- Your second fieldset content here -->
                         <legend class="w-auto px-2">
-                          <h5 class="ms-2">3.2 Local Market</h5>
+                          <strong>3.2 Local Market</strong>
                         </legend>
                         <!-- FIXME: Improve the textfield format -->
-                        <div id="productLocal" class="productLocal">
-                          <div class="row ms-4">
+                        <div id="productLocal" class="productLocal my-4">
+                          <div class="row ms-md-4 ms-sm-2">
                             <hr>
                             <div class="col-12">
                               <div class="mb-3">
@@ -359,18 +359,18 @@
                 <div id="step-4" class="tab-pane" role="tabpanel" aria-labelledby="step-4">
                   <fieldset class="mt-4 h-100">
                     <legend class="w-auto">
-                      <h4>4.0 MARKET OUTLETS</h4>
+                      4.0 MARKET OUTLETS
                     </legend>
                     <div class="row">
-                      <div class="col-md-6 col-sm-6">
-                        <h5 class="ms-2">4.1 Export</h5>
+                      <div class="col-md-6 col-sm-6 my-4">
+                        <strong class="ms-2">4.1 Export</strong>
                         <div class="form-floating ms-4">
                           <textarea class="form-control h-100" placeholder="Export" id="exportTextarea"></textarea>
                           <label for="exportTextarea">Export</label>
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6">
-                        <h5 class="ms-2">4.2 Local</h5>
+                        <strong class="ms-2">4.2 Local</strong>
                         <div class="form-floating ms-4">
                           <textarea class="form-control h-100" placeholder="Local" id="localTextarea"></textarea>
                           <label for="localTextarea">Local</label>

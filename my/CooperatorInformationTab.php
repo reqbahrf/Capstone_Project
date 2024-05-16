@@ -1,7 +1,7 @@
 <div class="p-3">
   <h4>Dashboard</h4>
 </div>
-<div class="row g-3 mt-sm-2 ms-sm-2 me-sm-2 mb-sm-2 p-sm-2 bg-white rounded-5">
+<div class="row g-3 mt-sm-2 ms-sm-2 me-sm-2 mb-sm-2 mb-md-4 p-sm-2 p-md-5 bg-white rounded-5 w-100">
   <fieldset>
     <legend class="w-auto">
       <h5>Client Info:</h5>
@@ -70,10 +70,11 @@
 
           </div>
           <div>
-            <fieldset class="w-auto">
+            <fieldset class="w-auto my-2 my-sm-4">
               <legend class="w-auto">
                 <h6><strong>Refund History:</strong></h6>
               </legend>
+              <div class=" table-responsive">
               <table class="table">
                 <thead>
                   <tr>
@@ -105,6 +106,7 @@
                   </tr>
                 </tbody>
               </table>
+              </div>
             </fieldset>
           </div>
         </div>

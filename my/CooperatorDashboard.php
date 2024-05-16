@@ -21,50 +21,24 @@
       background: #318791;
     }
 
-    :root{
-    --sw-toolbar-btn-background-color:  #318791;
-    --sw-anchor-default-primary-color:  #f8f9fa;
-    --sw-anchor-active-primary-color:  #318791;
-    --sw-anchor-active-secondary-color:  #ffffff;
-    --sw-anchor-done-primary-color:  #48C4D3;
-    --sw-anchor-error-primary-color:  #dc3545;
-    --sw-anchor-error-secondary-color:  #ffffff;
-    --sw-anchor-warning-primary-color:  #ffc107;
-    --sw-anchor-warning-secondary-color:  #ffffff;
-    --sw-progress-color:  #318791;
-    --sw-progress-background-color:  #f8f9fa;
-    --sw-loader-color:  #318791;
-    --sw-loader-background-color:  #f8f9fa;
-    --sw-loader-background-wrapper-color:  rgba(255, 255, 255, 0.7);
-}
-
-    fieldset legend {
-      position: absolute;
-      /* Set position to absolute */
-      top: -20px;
-      /* Adjust this value to move legend up */
-      background-color: #fff;
-      /* Match the background color to your form or page background */
-      color: #495057;
-      border-radius: 0.25rem;
-      padding: 0.5rem;
-      font-size: 1rem;
-      font-weight: bold;
-      left: 10px;
-      /* Adjust horizontally if needed */
+    :root {
+      --sw-toolbar-btn-background-color: #318791;
+      --sw-anchor-default-primary-color: #f8f9fa;
+      --sw-anchor-active-primary-color: #318791;
+      --sw-anchor-active-secondary-color: #ffffff;
+      --sw-anchor-done-primary-color: #48C4D3;
+      --sw-anchor-error-primary-color: #dc3545;
+      --sw-anchor-error-secondary-color: #ffffff;
+      --sw-anchor-warning-primary-color: #ffc107;
+      --sw-anchor-warning-secondary-color: #ffffff;
+      --sw-progress-color: #318791;
+      --sw-progress-background-color: #f8f9fa;
+      --sw-loader-color: #318791;
+      --sw-loader-background-color: #f8f9fa;
+      --sw-loader-background-wrapper-color: rgba(255, 255, 255, 0.7);
     }
 
-
-    /* Additional styling to ensure the fieldset and its contents look integrated */
-    fieldset {
-      position: relative;
-      /* Added position relative */
-      padding: 2rem;
-      border: 2px solid #dee2e6;
-      border-radius: 0.25rem;
-      background-color: #fff;
-    }
-
+    
     .logo {
       width: 50px;
       height: 50px;
@@ -92,14 +66,6 @@
       order: 2;
     }
 
-    .main-column {
-      flex-grow: 1;
-      margin-top: 0.5rem;
-      margin-left: 1rem;
-      margin-right: 1rem;
-      width: 85%;
-      order: 1;
-    }
 
     @media (min-width: 768px) {
       .flex-container {
@@ -109,6 +75,70 @@
       .nav-column {
         order: 1;
       }
+
+      .main-column {
+        flex-grow: 1;
+        margin-top: 0.5rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        width: 85%;
+        order: 1;
+      }
+
+      fieldset legend {
+      position: absolute;
+      /* Set position to absolute */
+      top: -20px;
+      /* Adjust this value to move legend up */
+      background-color: #fff;
+      /* Match the background color to your form or page background */
+      color: #495057;
+      border-radius: 0.25rem;
+      padding: 0.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      left: 10px;
+      /* Adjust horizontally if needed */
+    }
+
+
+    /* Additional styling to ensure the fieldset and its contents look integrated */
+    fieldset {
+      position: relative;
+      /* Added position relative */
+      padding: 2rem;
+      border: 2px solid #dee2e6;
+      border-radius: 0.25rem;
+      background-color: #fff;
+    }
+
+
+
+    }
+
+    @media (max-width: 768px) {
+      .main-column {
+        padding: 0.5rem 0rem;
+        width: 100% !important;
+      }
+      fieldset legend {
+        position: absolute;
+        top: -20px;
+        background-color: #fff;
+        color: #495057;
+        border-radius: 0.25rem;
+        padding: 0.5rem;
+        font-size: 1rem;
+        font-weight: bold;
+        left: 10px;
+      }
+      fieldset {
+        position: relative;
+        padding: 0.5rem;
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+        background-color: #fff;
+      }
     }
   </style>
 </head>
@@ -117,33 +147,33 @@
   <div class="container-fluid px-0 headerlogo">
     <div class="d-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center">
-      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 74.488 75.079" enable-background="new 0 0 74.488 75.079" xml:space="preserve" class="m-3 logo">
-        <g>
-          <rect x="19.235" y="19.699" width="36" height="36" />
-          <circle fill="#48C4D3" cx="19.235" cy="19.699" r="18" />
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 74.488 75.079" enable-background="new 0 0 74.488 75.079" xml:space="preserve" class="m-3 logo">
           <g>
-            <circle fill="#48C4D3" cx="19.195" cy="19.648" r="18" />
-            <path fill="#FFFFFF" d="M19.323,37.598c9.918-0.027,17.953-8.071,17.953-17.997c0-9.925-8.034-17.972-17.952-17.998L19.323,37.598z" />
-            <path d="M37.192,19.601C37.166,9.682,29.12,1.648,19.195,1.648S1.224,9.682,1.198,19.601H37.192z" />
+            <rect x="19.235" y="19.699" width="36" height="36" />
+            <circle fill="#48C4D3" cx="19.235" cy="19.699" r="18" />
+            <g>
+              <circle fill="#48C4D3" cx="19.195" cy="19.648" r="18" />
+              <path fill="#FFFFFF" d="M19.323,37.598c9.918-0.027,17.953-8.071,17.953-17.997c0-9.925-8.034-17.972-17.952-17.998L19.323,37.598z" />
+              <path d="M37.192,19.601C37.166,9.682,29.12,1.648,19.195,1.648S1.224,9.682,1.198,19.601H37.192z" />
+            </g>
+            <g>
+              <circle fill="#48C4D3" cx="55.315" cy="19.651" r="18" />
+              <path fill="#FFFFFF" d="M37.319,19.651c0.027,9.918,8.07,17.952,17.996,17.952c9.925,0,17.972-8.034,17.998-17.952L37.319,19.651z" />
+              <path d="M55.315,37.648c9.919-0.027,17.953-8.072,17.953-17.997c0-9.925-8.034-17.972-17.952-17.998L55.315,37.648z" />
+            </g>
+            <g>
+              <circle fill="#48C4D3" cx="55.315" cy="55.649" r="18" />
+              <path fill="#FFFFFF" d="M55.269,37.605c-9.918,0.027-17.953,8.072-17.953,17.997s8.035,17.972,17.953,17.999V37.605z" />
+              <path d="M37.317,55.649c0.028,9.919,8.073,17.952,17.999,17.952c9.923,0,17.97-8.033,17.997-17.952H37.317z" />
+            </g>
+            <g>
+              <circle fill="#48C4D3" cx="19.315" cy="55.725" r="18" />
+              <path fill="#FFFFFF" d="M37.313,55.628c-0.027-9.919-8.072-17.953-17.997-17.953c-9.926,0-17.972,8.034-17.999,17.952L37.313,55.628z" />
+              <path d="M19.268,37.682C9.349,37.709,1.315,45.754,1.315,55.679S9.349,73.65,19.268,73.677V37.682z" />
+            </g>
           </g>
-          <g>
-            <circle fill="#48C4D3" cx="55.315" cy="19.651" r="18" />
-            <path fill="#FFFFFF" d="M37.319,19.651c0.027,9.918,8.07,17.952,17.996,17.952c9.925,0,17.972-8.034,17.998-17.952L37.319,19.651z" />
-            <path d="M55.315,37.648c9.919-0.027,17.953-8.072,17.953-17.997c0-9.925-8.034-17.972-17.952-17.998L55.315,37.648z" />
-          </g>
-          <g>
-            <circle fill="#48C4D3" cx="55.315" cy="55.649" r="18" />
-            <path fill="#FFFFFF" d="M55.269,37.605c-9.918,0.027-17.953,8.072-17.953,17.997s8.035,17.972,17.953,17.999V37.605z" />
-            <path d="M37.317,55.649c0.028,9.919,8.073,17.952,17.999,17.952c9.923,0,17.97-8.033,17.997-17.952H37.317z" />
-          </g>
-          <g>
-            <circle fill="#48C4D3" cx="19.315" cy="55.725" r="18" />
-            <path fill="#FFFFFF" d="M37.313,55.628c-0.027-9.919-8.072-17.953-17.997-17.953c-9.926,0-17.972,8.034-17.999,17.952L37.313,55.628z" />
-            <path d="M19.268,37.682C9.349,37.709,1.315,45.754,1.315,55.679S9.349,73.65,19.268,73.677V37.682z" />
-          </g>
-        </g>
-      </svg>
-      <h4 class="text-white">DOST-SETUP Funding Monitoring System</h4>
+        </svg>
+        <h4 class="text-white">DOST-SETUP Funding Monitoring System</h4>
       </div>
       <div>
         <button class="btn position-relative">
