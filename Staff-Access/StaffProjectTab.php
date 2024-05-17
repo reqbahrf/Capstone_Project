@@ -86,7 +86,7 @@ ul#myTab li.nav-item button.tab-Nav:hover {
       <div class="tab-pane fade show active" id="Approved-tab-pane" role="tabpanel" aria-labelledby="Approved-tab" tabindex="0">
         <!-- Where the applicant table start -->
         <div>
-          <table id="approvedTable" class="table table-striped" style="width:100%">
+          <table id="approvedTable" class="table table-hover" style="width:100%">
             <thead>
               <tr>
                 <th>id</th>
@@ -220,7 +220,7 @@ ul#myTab li.nav-item button.tab-Nav:hover {
       <div class="tab-pane fade" id="Ongoing-tab-pane" role="tabpanel" aria-labelledby="Ongoing-tab" tabindex="0">
         <!-- Where the Ongoing Table Start -->
         <div>
-          <table id="ongoingTable" class="table table-striped" style="width:100%;">
+          <table id="ongoingTable" class="table table-hover" style="width:100%;">
             <thead>
               <tr>
                 <th>Id</th>

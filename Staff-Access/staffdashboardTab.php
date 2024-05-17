@@ -55,7 +55,7 @@
     </div>
     <div class="m-4 p-3 shadow">
         <h5 class="p-2 text-center">Handle Projects</h5>
-        <table id="handledProject" class="table table-striped" style="width:100%">
+        <table id="handledProject" class="table table-hover" style="width:100%">
             <thead>
                 <tr>
                     <th>ID</th>

@@ -151,7 +151,7 @@
     </div>
     <div class="m-3">
         <!-- Where the applicant table start -->
-        <table id="applicant" class="table table-striped" style="width:100%">
+        <table id="applicant" class="table table-hover" style="width:100%">
             <thead>
                 <tr>
                     <th>id</th>

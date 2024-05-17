@@ -55,7 +55,7 @@
       overflow-y: auto;
       overflow-x: hidden;
       width: 100%;
-      height: 85vh;
+      height: 90vh;
     }
 
     .flex-container {
@@ -122,7 +122,7 @@
 
 <body class="overflow-hidden">
   <div class="container-fluid px-0 headerlogo">
-  <div class="d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center">
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 74.488 75.079" enable-background="new 0 0 74.488 75.079" xml:space="preserve" class="m-3 logo">
           <g>
@@ -413,29 +413,41 @@
     // staff handled projects chart
     var handledBusiness = {
       series: [{
+        name: 'Micro Enterprise',
         data: [21, 22, 10, 28, 16, 21, 13, 30]
+      }, {
+        name: 'Small Enterprise',
+        data: [15, 25, 11, 19, 14, 20, 12, 27]
+      }, {
+        name: 'Medium Enterprise',
+        data: [10, 20, 15, 24, 10, 15, 10, 20]
       }],
       chart: {
         height: 350,
         type: 'bar',
+        stacked: true,
         events: {
           click: function(chart, w, e) {
             // console.log(chart, w, e)
           }
         }
       },
-      colors: ['#48C4D3'],
+      colors: ['#008ffb', '#00e396', '#feb019'],
       plotOptions: {
         bar: {
           columnWidth: '45%',
-          distributed: true,
+          distributed: false,
+          borderRadius: 10,
+          borderRadiusApplication: 'end',
+          borderRadiusWhenStacked: 'last',
         }
       },
       dataLabels: {
         enabled: false
       },
       legend: {
-        show: false
+        show: true,
+        position: 'bottom'
       },
       xaxis: {
         categories: [
@@ -446,7 +458,7 @@
           'Staff5',
           'Staff6',
           'Staff7',
-          'LStaff8',
+          'Staff8',
         ],
         labels: {
           style: {
@@ -489,17 +501,28 @@
   function initializeBarChart(chartID) {
     var options = {
       series: [{
+        name: 'Micro Enterprise',
         data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+      }, {
+        name: 'Small Enterprise',
+        data: [300, 330, 348, 370, 440, 480, 590, 1000, 1100, 1280]
+      }, {
+        name: 'Medium Enterprise',
+        data: [200, 230, 248, 270, 340, 380, 490, 900, 1000, 1180]
       }],
       chart: {
         type: 'bar',
-        height: 350
+        height: 350,
+        stacked: true
       },
       plotOptions: {
         bar: {
           borderRadius: 4,
           borderRadiusApplication: 'end',
           horizontal: true,
+          columnWidth: '45%',
+          distributed: false,
+          endingShape: 'rounded'
         }
       },
       dataLabels: {

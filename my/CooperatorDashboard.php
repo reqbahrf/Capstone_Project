@@ -53,7 +53,7 @@
       overflow-y: auto;
       overflow-x: hidden;
       width: 100%;
-      height: 85vh;
+      height: 90vh;
     }
 
     .flex-container {
