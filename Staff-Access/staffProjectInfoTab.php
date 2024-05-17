@@ -4,17 +4,30 @@
     opacity: 0.7;
   }
 
-  .tab-Nav {
-    background-color: black;
+  ul#myTab li.nav-item button.tab-Nav.active {
+    background-color: #318791 !important;
+    font-weight: bold;
     color: white;
-    /* Change the text color to white for better contrast */
+    border-top: 6px solid;
+    border-top-right-radius: 10px;
+    /* Adjust the radius value as needed */
+    border-top-left-radius: 10px;
   }
 
-  .tab-Nav.active {
-    font-weight: bold;
+  ul#myTab li.nav-item button.tab-Nav {
     background-color: white;
+    /* Your desired color */
     color: black;
-    border-top: 6px solid;
+    /* Adjust text color accordingly */
+    border: 1px solid #318791;
+    /* Adjust border color */
+    border-bottom: none;
+  }
+
+  ul#myTab li.nav-item button.tab-Nav:hover {
+    background-color: #318791;
+    /* Hover state color */
+    color: white;
   }
 
   .checkbox-wrapper-26 {
@@ -162,10 +175,6 @@
     opacity: 1;
   }
 
-  .productExport:first-of-type .deleteButtonExport,
-  .productLocal:first-of-type .deleteButtonLocal {
-    display: none;
-  }
 
   .line {
     position: absolute;
@@ -187,7 +196,7 @@
 </style>
 <div>
   <div>
-    <h1 class=" bg-dark text-white p-4 m-2">{Project title}</h1>
+    <h4 class="p-4">{Project title}</h4>
   </div>
   <div>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -346,7 +355,7 @@
     </div>
     <div class="tab-pane fade" id="ProjectData-tab-pane" role="tabpanel" aria-labelledby="ProjectData-tab" tabindex="0">
       <!-- Where the project Data sheets will be displayed. -->
-      <div class="mt-5 me-5 text-end">
+      <div class=" me-5 text-end">
         <button type="button" id="BackData" class="btn">Back</button>
       </div>
       <div id="dataSheets">
@@ -563,21 +572,22 @@
                 </div>
               </fieldset>
             </div>
-            <div id="step-4" class="tab-pane" role="tabpanel" aria-labelledby="step-4">
-              <fieldset class="mt-4">
-                <legend class="w-auto">
-                  <h4>3.0 PRODUCTION AND SALES DATA FOR THE QUARTER</h4>
-                </legend>
-                <div>
-                  <div class="row align-items-center">
-                    <div class="col-sm-12 col-md-6">
+            <div id="step-4" class="tab-pane h-auto" role="tabpanel" aria-labelledby="step-4">
+              <div class="container">
+                <fieldset class="mt-4 h-auto">
+                  <legend class="w-auto">
+                    <h4>3.0 PRODUCTION AND SALES DATA FOR THE QUARTER</h4>
+                  </legend>
+                  <div class="row">
+                    <!-- Export Market Fieldset -->
+                    <div class="col-md-6">
                       <fieldset class="mt-4">
-                        <!-- Your first fieldset content here -->
                         <legend class="w-auto px-2">
                           <h5 class="ms-2">3.1 Export Market</h5>
                         </legend>
-                        <!-- FIXME: Improve the textfield format -->
                         <div id="productExport" class="productExport">
+                          <!-- Export Market Form Content -->
+                          <!-- Form fields and buttons as in your original code -->
                           <div class="row ms-4">
                             <hr>
                             <div class="col-12">
@@ -608,7 +618,7 @@
                               <div class="mb-3">
                                 <label for="estimatedCostOfProduction">Estimated Cost of Production:</label>
                                 <input type="text" class="form-control" id="estimatedCostOfProduction" name="estimatedCostOfProduction">
-                              </div </div>
+                              </div>
                               <div class="col-12">
                                 <div class="mb-3">
                                   <label for="netSales">Net Sales:</label>
@@ -621,69 +631,75 @@
                               <button type="button" class="btn btn-danger deleteButtonExport">Delete</button>
                             </div>
                           </div>
-                          <div class="mt-2">
-                            <button id="addButtonExport" class="btn btn-primary">Add</button>
-                          </div>
+                        </div>
+                        <div class="mt-2">
+                          <button id="addButtonExport" class="btn btn-primary">Add</button>
+                        </div>
                       </fieldset>
                     </div>
-                    <div class="col-sm-12 col-md-6">
+
+                    <!-- Local Market Fieldset -->
+                    <div class="col-md-6">
                       <fieldset class="mt-4">
-                        <!-- Your second fieldset content here -->
                         <legend class="w-auto px-2">
                           <h5 class="ms-2">3.2 Local Market</h5>
                         </legend>
-                        <!-- FIXME: Improve the textfield format -->
                         <div id="productLocal" class="productLocal">
-                          <div class="row ms-4">
-                            <hr>
-                            <div class="col-12">
-                              <div class="mb-3">
-                                <label for="productName">Name of Product:</label>
-                                <input type="text" class="form-control" id="productName" name="productName">
-                              </div>
-                            </div>
-                            <div class="col-12">
-                              <div class="mb-3">
-                                <label for="packingDetails">Packing Details:</label>
-                                <textarea class="form-control" id="packingDetails" name="packingDetails"></textarea>
-                              </div </div>
-                              <div class="col-12">
-                                <div class="mb-3">
-                                  <label for="volumeOfProduction">Volume of Production:</label>
-                                  <input type="text" class="form-control" id="volumeOfProduction" name="volumeOfProduction">
-                                </div>
-                              </div>
-                              <div class="col-12">
-                                <div class="mb-3">
-                                  <label for="grossSales">Gross Sales:</label>
-                                  <input type="text" class="form-control" id="grossSales" name="grossSales">
-                                </div>
-                              </div>
-                              <div class="col-12">
-                                <div class="mb-3">
-                                  <label for="estimatedCostOfProduction">Estimated Cost of Production:</label>
-                                  <input type="text" class="form-control" id="estimatedCostOfProduction" name="estimatedCostOfProduction">
-                                </div>
-                              </div>
-                              <div class="col-12">
-                                <div class="mb-3">
-                                  <label for="netSales">Net Sales:</label>
-                                  <input type="text" class="form-control" id="netSales" name="netSales">
-                                </div>
-                              </div>
+                          <!-- Local Market Form Content -->
+                          <!-- Form fields and buttons as in your original code -->
+                            <div class="row ms-4">
                               <hr>
+                              <div class="col-12">
+                                <div class="mb-3">
+                                  <label for="productName">Name of Product:</label>
+                                  <input type="text" class="form-control" id="productName" name="productName">
+                                </div>
+                              </div>
+                              <div class="col-12">
+                                <div class="mb-3">
+                                  <label for="packingDetails">Packing Details:</label>
+                                  <textarea class="form-control" id="packingDetails" name="packingDetails"></textarea>
+                                </div>
+                                <div class="col-12">
+                                  <div class="mb-3">
+                                    <label for="volumeOfProduction">Volume of Production:</label>
+                                    <input type="text" class="form-control" id="volumeOfProduction" name="volumeOfProduction">
+                                  </div>
+                                </div>
+                                <div class="col-12">
+                                  <div class="mb-3">
+                                    <label for="grossSales">Gross Sales:</label>
+                                    <input type="text" class="form-control" id="grossSales" name="grossSales">
+                                  </div>
+                                </div>
+                                <div class="col-12">
+                                  <div class="mb-3">
+                                    <label for="estimatedCostOfProduction">Estimated Cost of Production:</label>
+                                    <input type="text" class="form-control" id="estimatedCostOfProduction" name="estimatedCostOfProduction">
+                                  </div>
+                                </div>
+                                <div class="col-12">
+                                  <div class="mb-3">
+                                    <label for="netSales">Net Sales:</label>
+                                    <input type="text" class="form-control" id="netSales" name="netSales">
+                                  </div>
+                                </div>
+                                <hr>
+                              </div>
+                              <div class="col-12">
+                                <button type="button" class="btn btn-danger deleteButtonLocal">Delete</button>
+                              </div>
                             </div>
-                            <div class="col-12">
-                              <button type="button" class="btn btn-danger deleteButtonLocal">Delete</button>
-                            </div>
-                          </div>
-                          <div class="mt-2">
-                            <button id="addButtonLocal" class="btn btn-primary">Add</button>
-                          </div>
+                        
+                        </div>
+                        <div class="mt-2">
+                          <button id="addButtonLocal" class="btn btn-primary">Add</button>
+                        </div>
                       </fieldset>
                     </div>
                   </div>
-                </div>
+                </fieldset>
+              </div>
             </div>
             <div id="step-5" class="tab-pane h-50" role="tabpanel" aria-labelledby="step-5">
               <fieldset class="mt-4">
@@ -785,63 +801,13 @@
         </div>
         <button type="submit" id="createSheetButton" class="btn btn-info">Create Sheet</button>
       </div>
-      
+
 
 
     </div>
     <div class="tab-pane fade" id="Client-tab-pane" role="tabpanel" aria-labelledby="Client-tab" tabindex="0">
+      <div id="cooperatorInfo" class="p-2">
 
-      <!-- where the client's information will be displayed. -->
-      <div class="row g-3 mt-3 ms-3 me-3 mb-2 p-3">
-        <fieldset>
-          <legend class="w-auto">
-            <h2>Client Info:</h2>
-          </legend>
-          <div class="p-3">
-            <div class="form-group row">
-              <span for="project_title" class="col-sm-2 col-form-label"><strong>Project Title:</strong></span>
-              <div class="col-sm-10">
-                <p class="" id="project_title"><u>[Project Title Value]</u></p>
-              </div>
-            </div>
-            <div class="form-group row">
-              <span for="firm_name" class="col-sm-2 col-form-label"> <strong>Name of Firm:</strong></span>
-              <div class="col-sm-10">
-                <p class="" id="firm_name"><u>[Firm Name Value]</u></p>
-              </div>
-            </div>
-            <div class="form-group row">
-              <span for="address" class="col-sm-2 col-form-label"><strong>Address:</strong></span>
-              <div class="col-sm-10">
-                <p class="" id="address"><u>[Address Value]</u></p>
-              </div>
-            </div>
-            <div class="form-group row">
-              <span class="col-sm-2 col-form-label"><strong>Contact Person:</strong></span>
-              <div class="col-sm-4">
-                <p class="" id="contact_person"><u>[Contact Person Value]</u></p>
-              </div>
-              <span class="col-sm-2 col-form-label"><strong>Designation:</strong></span>
-              <div class="col-sm-4">
-                <p class="" id="designation"><u>[Designation Value]</u></p>
-              </div>
-            </div>
-            <div class="form-group row">
-              <span class="col-sm-2 col-form-label"><strong>Landline:</strong></span>
-              <div class="col-sm-2">
-                <p class="" id="landline"><u>[Landline Value]</u></p>
-              </div>
-              <span class="col-sm-2 col-form-label"><strong>Mobile Phone:</strong></span>
-              <div class="col-sm-2">
-                <p class="" id="mobile_phone"><u>[Mobile Phone Value]</u></p>
-              </div>
-              <span class="col-sm-2 col-form-label"><strong>Email Address:</strong></span>
-              <div class="col-sm-2">
-                <p class="" id="email"><u>[Email Address Value]</u></p>
-              </div>
-            </div>
-          </div>
-        </fieldset>
       </div>
     </div>
 
@@ -875,6 +841,39 @@
           $('.btn-success, .btn-secondary').hide();
         }
       });
+
+      $('.deleteButtonExport, .deleteButtonLocal').hide();
+      $("#addButtonExport").on("click", function(e) {
+        e.preventDefault();
+        var clone = $(".productExport").first().clone();
+        clone.find("input, textarea").val(""); // Clear all text inputs and textareas
+        clone.find(".deleteButtonExport").show();
+        clone.insertAfter(".productExport:last");
+        $('#sw-AddProjectData').smartWizard('fixHeight');
+      });
+
+      // Handle deleting export product entries
+      $(document).on("click", ".deleteButtonExport", function() {
+        $(this).closest(".productExport").remove();
+        $('#sw-AddProjectData').smartWizard('fixHeight');
+      });
+
+      // Handle adding new local product entries
+      $("#addButtonLocal").on("click", function(e) {
+        e.preventDefault();
+        var clone = $(".productLocal").first().clone();
+        clone.find("input, textarea").val(""); // Clear all text inputs and textareas
+        clone.find(".deleteButtonLocal").show();
+        clone.insertAfter(".productLocal:last");
+        $('#sw-AddProjectData').smartWizard('fixHeight');
+      });
+
+      // Handle deleting local product entries
+      $(document).on("click", ".deleteButtonLocal", function() {
+        $(this).closest(".productLocal").remove();
+        $('#sw-AddProjectData').smartWizard('fixHeight');
+      });
+
     });
   </script>
 
@@ -940,34 +939,6 @@
       }
 
       $(document).ready(function() {
-        $("#addButtonExport").click(function(e) {
-          e.preventDefault();
-          var clone = $(".productExport").first().clone();
-          clone.find("input").val("");
-          clone.find(".deleteButtonExport").show();
-          clone.insertAfter(".productExport:last");
-        });
-
-        $(document).on("click", ".deleteButtonExport", function() {
-          $(this).closest(".productExport").remove();
-        });
-
-        $("#addButtonLocal").click(function(e) {
-          e.preventDefault();
-          var clone = $(".productLocal").first().clone();
-          clone.find("input").val("");
-          clone.find(".deleteButtonLocal").show();
-          clone.insertAfter(".productLocal:last");
-        });
-
-        $(document).on("click", ".deleteButtonLocal", function() {
-          $(this).closest(".productLocal").remove();
-        });
-
-        // Hide the delete buttons initially
-        $('.deleteButtonExport, .deleteButtonLocal').hide();
-      });
-      $(document).ready(function() {
         $('#createSheetButton').click(function(e) {
           e.preventDefault(); // Prevent the default form submission
 
@@ -1014,4 +985,19 @@
         });
       });
     })();
+    $(document).ready(function() {
+      $('#Client-tab').click(function() {
+        $.ajax({
+          url: '/org-access/viewCooperatorInfo.php', // Specify the path to the PHP file
+          type: 'GET',
+          success: function(response) {
+            $('#cooperatorInfo').html(response);
+            InitializeviewCooperatorProgress();
+          },
+          error: function() {
+            alert('Error loading information.');
+          }
+        });
+      });
+    });
   </script>
