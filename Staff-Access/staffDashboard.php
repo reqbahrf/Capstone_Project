@@ -178,7 +178,7 @@
             </g>
           </g>
         </svg>
-        <h4 class="text-white">DOST-SETUP Funding Monitoring System</h4>
+        <h4 class="text-white">DOST-SETUP Fund Monitoring System</h4>
       </div>
       <div>
         <button class="btn position-relative pe-4">
