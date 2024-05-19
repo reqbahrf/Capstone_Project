@@ -283,7 +283,7 @@ session_start();
   <footer class="footer footer-alt text-center fixed-bottom">
     2018 - <script>
       document.write(new Date().getFullYear())
-    </script>2024 © Hyper - Coderthemes.com
+    </script>2024 © DOST - SETUP
   </footer>
   <script>
     function togglePasswordVisibility(event) {
