@@ -9,30 +9,63 @@
     object-position: center;
   }
 
+  .nav-link.home:hover{
+    background-color:#48C4D3;
+     text-decoration: none;
+  }
+
   .nav-link.login {
     color: #ffffff;
     /* White text */
-    background-color: #007bff;
+    background-color: #318791;
     /* Blue background */
-    padding: 8px 16px;
+    padding: 10px 16px;
     border-radius: 20px;
     font-weight: bold;
   }
 
   .nav-link.login:hover {
-    background-color: #0056b3;
+    background-color: #48C4D3;
     /* Darker blue on hover */
     text-decoration: none;
     /* Removes underline on hover */
   }
+
+  .headerText {
+    font-family: 'arial';
+    font-size: 40px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Ensure this element takes up the full height of its container */
+  }
+
 </style>
-<div class="p-1">
-  <div class="container-flex p-1 align-items-center mb-3 mb-md-0">
+
+<!-- Confirmation modal start -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel">Confirmation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to go to the Home page?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <a href="#" class="btn btn-primary">Confirm</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Confirmation modal End -->
+<div class="p-1 shadow-lg z-3">
+  <div class="container-flex px-0 px-md-5 px-lg-5 align-items-center mb-3 mb-md-0">
     <header class="d-flex flex-wrap justify-content-center py-3 mb-2 border-bottom">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-        <svg class="bi me-2" width="40" height="32">
-          <use xlink:href="#bootstrap"></use>
-        </svg>
         <span class="fs-4">
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="74.488px" height="75.079px" viewBox="0 0 74.488 75.079" enable-background="new 0 0 74.488 75.079" xml:space="preserve">
                     <g>
@@ -61,11 +94,10 @@
                     </g>
                   </svg>
         </span>
-        <h1 class="px-3">DOST-SETUP</h1>
+        <h1 class="headerText px-3">DOST-SETUP</h1>
       </a>
       <ul class="nav nav-pills align-items-center">
-        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
+      <li class="nav-item"><a href="/" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'index.php') ? 'active' : ''; ?>" onclick="confirmRedirect()" data-toggle="modal" data-target="#confirmModal">Home</a></li>
         <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
         <li class="nav-item"><a href="#" class="nav-link">About</a></li>
         <li class="nav-item"><a href="login.php" class="nav-link login">Login</a></li>
@@ -73,3 +105,18 @@
     </header>
   </div>
 </div>
+<script>
+  $(document).ready(function() {
+    $('a.nav-link').click(function(e) {
+      e.preventDefault(); // Prevent the default behavior of the anchor tag
+      var link = $(this).attr('href');
+      $('#confirmModal').modal('show'); // Show the confirmation modal
+      $('#confirmModal .btn-primary').attr('href', link); // Set the redirection link
+    });
+
+    $('#confirmModal .btn-primary').click(function() {
+      var link = $(this).attr('href');
+      window.location.href = link; // Redirect after confirmation
+    });
+  });
+</script>
