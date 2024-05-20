@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Application Form</title>
   <link rel="stylesheet" href="../assets/css/main.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="../assets/jquery-3.7.1/jquery-3.7.1.min.js"></script>
   <script src="./assets/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
   <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css" />
   <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css" />
@@ -16,6 +16,11 @@
   <style>
     #container {
       max-width: 60%;
+    }
+
+    #Enterprise_Level {
+      font-weight: bold;
+      color: #318791;
     }
 
     .mt-200 {
@@ -142,7 +147,7 @@
                 <div class="row">
                   <div class="col-12 col-md-4 p-2">
                     <div class="form-floating">
-                      <input type="text" name="Mobile_no" id="Mobile_no" class="form-control" placeholder="0965-453-5432" pattern="\d{4}-\d{3}-\d{4}" title="Please enter a valid landline number in the format XXXX-XXX-XXXX" required>
+                      <input type="text" name="Mobile_no" id="Mobile_no" class="form-control" placeholder="0965-453-5432" pattern="\d{4}-\d{3}-\d{4}" title="Please enter a valid mobile number in the format XXXX-XXX-XXXX" required>
                       <div class="invalid-feedback">
                         Please enter a valid mobile number.
                       </div>
@@ -221,6 +226,7 @@
                     </div>
                     <label for="working_capital">Working Capital:</label>
                   </div>
+                  <p>Enterprise Level: <span id="Enterprise_Level"></span></p>
                 </fieldset>
               </div>
               <div class="col-12 col-md-4 mb-3">
@@ -414,14 +420,14 @@
             </div>
           </div>
 
-          </div>
-          
-
         </div>
+
+
       </div>
-
-
     </div>
+
+
+  </div>
   </div>
   <div class="progress">
     <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -438,16 +444,16 @@
         'fdaLtoFile': 'fdaLtoFileReadonly',
         'receiptFile': 'receiptFileReadonly',
         'govIdFile': 'govIdFileReadonly'
-    };
+      };
 
-    // Attach change event listeners to file inputs for updating readonly fields
-    $.each(fileInputs, function(inputId, readonlyId) {
+      // Attach change event listeners to file inputs for updating readonly fields
+      $.each(fileInputs, function(inputId, readonlyId) {
         $('#' + inputId).on('change', function() {
-            var fileName = this.files.length > 0 ? this.files[0].name : '';
-            $('#' + readonlyId).val(fileName);
+          var fileName = this.files.length > 0 ? this.files[0].name : '';
+          $('#' + readonlyId).val(fileName);
         });
-    });
-    
+      });
+
       $('#smartwizard').smartWizard({
         selected: 0,
         theme: 'dots',
@@ -543,6 +549,64 @@
       console.log("Form cancelled");
       window.location.href = 'some_cancel_url'; // Redirect to a specific URL
     }
+
+    $(document).ready(function() {
+    $('#Mobile_no').on('keypress', function(e) {
+        var charCode = (e.which) ? e.which : e.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }).on('input', function() {
+        var number = $(this).val().replace(/\D/g, ''); // Remove non-numeric characters
+        if (number.length > 0) {
+            var formattedNumber = number.match(/(\d{0,4})(\d{0,3})(\d{0,4})/);
+            var formatted = '';
+            if (formattedNumber[1]) formatted += formattedNumber[1];
+            if (formattedNumber[2]) formatted += '-' + formattedNumber[2];
+            if (formattedNumber[3]) formatted += '-' + formattedNumber[3];
+            $(this).val(formatted);
+        }
+    });
+});
+
+    $(document).ready(function() {
+
+      function updateEnterpriseLevel() {
+        const formatNumber = (input) => {
+          let value = input.value.replace(/,/g, ''); // Remove existing commas
+          value = value.replace(/\D/g, ''); // Remove non-numeric characters
+          value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ','); // Add commas every 3 digits
+
+          input.value = value;
+        };
+
+        formatNumber(document.getElementById('buildings'));
+        formatNumber(document.getElementById('equipments'));
+        formatNumber(document.getElementById('working_capital'));
+
+        var buildingsValue = parseFloat($('#buildings').val().replace(/,/g, '')) || 0;
+        var equipmentsValue = parseFloat($('#equipments').val().replace(/,/g, '')) || 0;
+        var workingCapitalValue = parseFloat($('#working_capital').val().replace(/,/g, '')) || 0;
+        var total = buildingsValue + equipmentsValue + workingCapitalValue;
+
+        if (total === 0) {
+          $('#Enterprise_Level').text('');
+          return;
+        }
+        if (total < 3e6) {
+          $('#Enterprise_Level').text('Micro Enterprise');
+        } else if (total < 15e6) {
+          $('#Enterprise_Level').text('Small Enterprise');
+        } else if (total < 100e6) {
+          $('#Enterprise_Level').text('Medium Enterprise');
+        } else {
+          $('#Enterprise_Level').text('Large Enterprise');
+        }
+      }
+
+      $('#buildings, #equipments, #working_capital').on('input', updateEnterpriseLevel);
+    });
   </script>
 </body>
 

@@ -97,7 +97,7 @@
         <h1 class="headerText px-3">DOST-SETUP</h1>
       </a>
       <ul class="nav nav-pills align-items-center">
-      <li class="nav-item"><a href="/" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'index.php') ? 'active' : ''; ?>" onclick="confirmRedirect()" data-toggle="modal" data-target="#confirmModal">Home</a></li>
+      <li class="nav-item"><a href="/" id="home" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'index.php') ? 'active' : ''; ?>" onclick="confirmRedirect()" data-toggle="modal" data-target="#confirmModal">Home</a></li>
         <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
         <li class="nav-item"><a href="#" class="nav-link">About</a></li>
         <li class="nav-item"><a href="login.php" class="nav-link login">Login</a></li>
@@ -107,7 +107,7 @@
 </div>
 <script>
   $(document).ready(function() {
-    $('a.nav-link').click(function(e) {
+    $('#home').click(function(e) {
       e.preventDefault(); // Prevent the default behavior of the anchor tag
       var link = $(this).attr('href');
       $('#confirmModal').modal('show'); // Show the confirmation modal

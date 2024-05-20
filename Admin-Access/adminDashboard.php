@@ -7,9 +7,8 @@
   <title>Admin dashboard</title>
   <link rel="stylesheet" href="../assets/css/main.css">
   <script src="../assets/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.bootstrap5.css">
-  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src="../assets/jquery-3.7.1/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
   <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
   <script src="../dist/apexcharts.min.js"></script>

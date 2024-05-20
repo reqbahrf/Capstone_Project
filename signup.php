@@ -7,9 +7,7 @@
   <title>Sign up</title>
   <link rel="stylesheet" href="../assets/css/main.css">
   <script src="./assets/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="./assets/jquery-3.7.1/jquery-3.7.1.min.js"></script>
   <link rel="stylesheet" href="./assets/dist-smartWizard/css/smart_wizard_all.min.css">
   <script src="./assets/dist-smartWizard/js/jquery.smartWizard.min.js"></script>
 </head>
@@ -46,9 +44,9 @@
         </g>
       </svg>
     </div>
-    <div class="card p-4 w-50 rounded-3 shadow">
+    <div class="card p-4 p-sm-0 p-md-2 rounded-3 shadow">
       <div class="card-body">
-        <div class="card-header pt-4 d-flex justify-content-center align-items-center">
+        <div class="card-header w-100 px-5 d-flex justify-content-center align-items-center">
           <a href="index.php">
             <span>
               <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="74.488px" height="75.079px" viewBox="0 0 74.488 75.079" enable-background="new 0 0 74.488 75.079" xml:space="preserve">
@@ -83,7 +81,7 @@
         </div>
         <h4 class="header-title mb-3">Sign up</h4>
 
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="g-3">
           <div id="smartwizard" class="sw sw-justified sw-theme-dots">
             <ul class="nav nav-progress">
               <li class="nav-item">
@@ -105,46 +103,70 @@
                 </a>
               </li>
             </ul>
-
-            <div class="sw-toolbar-elm toolbar toolbar-top" role="toolbar"><button class="btn sw-btn-prev sw-btn" type="button">Previous</button><button class="btn sw-btn-next sw-btn" type="button">Next</button><button class="btn btn-success" onclick="onFinish()">Finish</button>
-              <button class="btn btn-secondary" onclick="onCancel()">Cancel</button>
-            </div>
-            <div class="tab-content" style="height: 187.2px;">
-              <div id="step-1" class="tab-pane" role="tabpanel" aria-labelledby="step-1" style="position: static; left: 0px; display: block;">
+            <div class="tab-content">
+              <div id="step-1" class="tab-pane" role="tabpanel" aria-labelledby="step-1">
                 <div class="row">
-                  <div class="col-12 d-flex justify-content-center">
-                    <div class="w-50">
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="userName1" name="userName1" value="hyper">
-                        <label for="userName1">User name</label>
+                  <div class="col-12 d-flex justify-content-center mb-3 p-1 p-sm-0 p-md-2 p-lg-2 ">
+                    <div class="w-75">
+                      <div class="col-12 p-md-3 p-2">
+                        <div class="form-floating">
+                          <input type="text" class="form-control" id="userName1" name="userName1" placeholder="Username" required>
+                          <label for="userName1">User name</label>
+                          <div class="invalid-feedback">
+                            Please enter a username.
+                          </div>
+                        </div>
                       </div>
-                      <div class="form-floating mb-3">
-                        <input type="password" id="password1" name="password1" class="form-control" value="123456789">
-                        <label for="password1">Password</label>
+                      <div class="col-12 p-md-3 p-2">
+                        <div class="form-floating">
+                          <input type="password" id="password1" name="password1" class="form-control" placeholder="Password" required>
+                          <label for="password1">Password</label>
+                          <div class="invalid-feedback">
+                            Please enter a password.
+                          </div>
+                        </div>
                       </div>
-                      <div class="form-floating mb-3">
-                        <input type="password" id="confirm1" name="confirm1" class="form-control" value="123456789">
-                        <label for="confirm1">Re Password</label>
+                      <div class="col-12 p-md-3 p-2">
+                        <div class="form-floating">
+                          <input type="password" id="confirm1" name="confirm1" class="form-control" placeholder="Confirm Password" required>
+                          <label for="confirm1">Re Password</label>
+                          <div class="invalid-feedback">
+                            Please confirm your password.
+                          </div>
+                        </div>
                       </div>
+
                     </div>
-                  </div> <!-- end col -->
-                </div> <!-- end row -->
+
+                  </div>
+
+                </div>
+
               </div>
               <div id="step-2" class="tab-pane" role="tabpanel" aria-labelledby="step-2" style="display: none;">
                 <div class="row">
-                  <div class="col-12 d-flex justify-content-center">
-                    <div class="w-50">
+                  <div class="col-12 d-flex justify-content-center mb-3 p-1 p-sm-0 p-md-2 p-lg-2 ">
+                    <div class="w-75">
                       <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="name1" name="name1" value="Francis">
+                        <input type="text" class="form-control" id="name1" name="name1" placeholder="First name" required>
                         <label for="name1">First name</label>
+                        <div class="invalid-feedback">
+                          Please enter your first name.
+                        </div>
                       </div>
                       <div class="form-floating mb-3">
-                        <input type="text" id="surname1" name="surname1" class="form-control" value="Brinkman">
+                        <input type="text" id="surname1" name="surname1" class="form-control" placeholder="Last name" required>
                         <label for="surname1">Last name</label>
+                        <div class="invalid-feedback">
+                          Please enter your last name.
+                        </div>
                       </div>
                       <div class="form-floating mb-3">
-                        <input type="email" id="email1" name="email1" class="form-control" value="cory1979@hotmail.com">
+                        <input type="email" id="email1" name="email1" class="form-control" placeholder="Email" required>
                         <label for="email1">Email</label>
+                        <div class="invalid-feedback">
+                          Please enter your email.
+                        </div>
                       </div>
                     </div>
                   </div> <!-- end col -->
