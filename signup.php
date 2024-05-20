@@ -168,46 +168,53 @@
                           Please enter your email.
                         </div>
                       </div>
-                    </div>
-                  </div> <!-- end col -->
-                </div> <!-- end row -->
-              </div>
-              <div id="step-3" class="tab-pane" role="tabpanel" aria-labelledby="step-3" style="display: none;">
-                <div class="row">
-                  <div class="col-12 d-flex justify-content-center">
-                    <div class="w-50">
-                      <div class="form-floating mb-3">
-                        <input type="text" id="reviewName1" name="reviewName1" class="form-control" value="" readonly>
-                        <label for="reviewName1">First name</label>
-                      </div>
-                      <div class="form-floating mb-3">
-                        <input type="text" id="reviewSurname1" name="reviewSurname1" class="form-control" value="" readonly>
-                        <label for="reviewSurname1">Last name</label>
-                      </div>
-                      <div class="form-floating mb-3">
-                        <input type="email" id="reviewEmail1" name="reviewEmail1" class="form-control" value="" readonly>
-                        <label for="reviewEmail1">Email</label>
-                      </div>
-                      <div class="mb-3">
-                        <div class="form-check d-inline-block">
-                          <input type="checkbox" class="form-check-input" id="customCheck3">
-                          <label class="form-check-label" for="customCheck3">I agree with the Terms and Conditions</label>
+                      <div class="col-md-12 mb-5">
+                        <div class="form-check">
+                          <input type="checkbox" name="agree_terms" id="agree_terms" class="form-check-input" required>
+                          <div class="invalid-feedback">
+                            You must agree to the terms and conditions.
+                          </div>
+                          <label for="agree_terms" class="form-check-label">Agree to Terms and Conditions</label>
                         </div>
                       </div>
                     </div>
                   </div> <!-- end col -->
                 </div> <!-- end row -->
               </div>
-            </div>
-
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
         </form>
+        <div id="step-3" class="tab-pane" role="tabpanel" aria-labelledby="step-3" style="display: none;">
+          <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+              <div class="w-75">
+                <div>
+                  <input type="text" id="reviewUserN" name="reviewUname" class="form-control" readonly>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="text" id="reviewName1" name="reviewName1" class="form-control" readonly>
+                  <label for="reviewName1">First name</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="text" id="reviewSurname1" name="reviewSurname1" class="form-control" readonly>
+                  <label for="reviewSurname1">Last name</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="email" id="reviewEmail1" name="reviewEmail1" class="form-control" readonly>
+                  <label for="reviewEmail1">Email</label>
+                </div>
 
-      </div> <!-- end card-body -->
+              </div>
+            </div> <!-- end col -->
+          </div> <!-- end row -->
+        </div>
+      </div>
+
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
     </div>
+
+  </div> <!-- end card-body -->
+  </div>
 
   </div>
   <div id="info-header-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="info-header-modalLabel" aria-hidden="true">
@@ -256,12 +263,17 @@
                               <button class="btn btn-secondary" onclick="onCancel()">Cancel</button>`
         },
         // Dommy code for testing
-        onLeaveStep: function(anchorObject, currentIndex, newIndex) {
-          if (currentIndex === $('#smartwizard').find('ul li').length - 1) {
-            return false; // Cancel form submission
-          }
-        },
       });
+      $('#smartwizard').on('leaveStep', function(e, anchorObject, currentStepIndex, nextStepIndex, stepDirection) {
+        // Check if the user is moving forward
+        if (nextStepIndex > currentStepIndex) {
+          // Perform validation for the current step
+          if (!validateCurrentStep(currentStepIndex)) {
+            return false; // Prevent moving to the next step
+          }
+        }
+      });
+
       $("#smartwizard").on("showStep", function(e, anchorObject, stepIndex, stepDirection, stepPosition) {
         var totalSteps = $('#smartwizard').find('ul li').length;
         // console.log("Step: ", stepNumber);
@@ -270,12 +282,59 @@
         if (stepIndex === totalSteps - 1 && stepPosition === 'last') {
           console.log("Arriving at Last Step - Showing Buttons");
           $('.btn-success, .btn-secondary').show();
+
+          $('#reviewUserN').val($('#userName1').val());
+          $('#reviewName1').val($('#name1').val());
+          $('#reviewSurname1').val($('#surname1').val());
+          $('#reviewEmail1').val($('#email1').val());
+
         } else {
           console.log("Not Arriving at Last Step - Hiding Buttons");
           $('.btn-success, .btn-secondary').hide();
         }
       });
     });
+
+    function validateCurrentStep(stepIndex) {
+      var isValid = true;
+      var currentStep = $('#step-' + (stepIndex + 1)); // stepIndex is 0-based
+
+      currentStep.find('input, select').each(function() {
+        if (!this.checkValidity()) {
+          $(this).addClass('is-invalid'); // Add invalid class for styling
+          isValid = false;
+        } else {
+          $(this).removeClass('is-invalid');
+        }
+      });
+
+      // Check if password and confirm password fields match
+      var password = currentStep.find('input[name="password1"]').val();
+      var confirmPassword = currentStep.find('input[name="confirm1"]').val();
+
+      if (password !== confirmPassword) {
+        currentStep.find('input[name="confirm1"]').addClass('is-invalid');
+        currentStep.find('input[name="confirm1"]').siblings('.invalid-feedback').text('Passwords do not match.');
+        isValid = false;
+      } else {
+        currentStep.find('input[name="confirm1"]').removeClass('is-invalid');
+        currentStep.find('input[name="confirm1"]').siblings('.invalid-feedback').text('Please confirm your password.');
+      }
+
+      return isValid;
+    }
+
+
+
+    function onFinish() {
+      console.log("Form submitted");
+      $('form').submit();
+    }
+
+    function onCancel() {
+      console.log("Form cancelled");
+      window.location.href = 'some_cancel_url'; // Redirect to a specific URL
+    }
   </script>
 </body>
 
