@@ -79,144 +79,50 @@
           </a>
           <h3 class="px-4 mb-0">DOST-SETUP</h3>
         </div>
-        <h4 class="header-title mb-3">Sign up</h4>
+        <h4 class="header-title my-3">Sign up</h4>
 
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="g-3">
-          <div id="smartwizard" class="sw sw-justified sw-theme-dots">
-            <ul class="nav nav-progress">
-              <li class="nav-item">
-                <a class="nav-link default active" href="#step-1">
-                  <div class="num">1</div>
-                  Account
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link default" href="#step-2">
-                  <span class="num">2</span>
-                  Profile
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link default" href="#step-3">
-                  <span class="num">3</span>
-                  Review
-                </a>
-              </li>
-            </ul>
-            <div class="tab-content">
-              <div id="step-1" class="tab-pane" role="tabpanel" aria-labelledby="step-1">
-                <div class="row">
-                  <div class="col-12 d-flex justify-content-center mb-3 p-1 p-sm-0 p-md-2 p-lg-2 ">
-                    <div class="w-75">
-                      <div class="col-12 p-md-3 p-2">
-                        <div class="form-floating">
-                          <input type="text" class="form-control" id="userName1" name="userName1" placeholder="Username" required>
-                          <label for="userName1">User name</label>
-                          <div class="invalid-feedback">
-                            Please enter a username.
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12 p-md-3 p-2">
-                        <div class="form-floating">
-                          <input type="password" id="password1" name="password1" class="form-control" placeholder="Password" required>
-                          <label for="password1">Password</label>
-                          <div class="invalid-feedback">
-                            Please enter a password.
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12 p-md-3 p-2">
-                        <div class="form-floating">
-                          <input type="password" id="confirm1" name="confirm1" class="form-control" placeholder="Confirm Password" required>
-                          <label for="confirm1">Re Password</label>
-                          <div class="invalid-feedback">
-                            Please confirm your password.
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-              <div id="step-2" class="tab-pane" role="tabpanel" aria-labelledby="step-2" style="display: none;">
-                <div class="row">
-                  <div class="col-12 d-flex justify-content-center mb-3 p-1 p-sm-0 p-md-2 p-lg-2 ">
-                    <div class="w-75">
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="name1" name="name1" placeholder="First name" required>
-                        <label for="name1">First name</label>
-                        <div class="invalid-feedback">
-                          Please enter your first name.
-                        </div>
-                      </div>
-                      <div class="form-floating mb-3">
-                        <input type="text" id="surname1" name="surname1" class="form-control" placeholder="Last name" required>
-                        <label for="surname1">Last name</label>
-                        <div class="invalid-feedback">
-                          Please enter your last name.
-                        </div>
-                      </div>
-                      <div class="form-floating mb-3">
-                        <input type="email" id="email1" name="email1" class="form-control" placeholder="Email" required>
-                        <label for="email1">Email</label>
-                        <div class="invalid-feedback">
-                          Please enter your email.
-                        </div>
-                      </div>
-                      <div class="col-md-12 mb-5">
-                        <div class="form-check">
-                          <input type="checkbox" name="agree_terms" id="agree_terms" class="form-check-input" required>
-                          <div class="invalid-feedback">
-                            You must agree to the terms and conditions.
-                          </div>
-                          <label for="agree_terms" class="form-check-label">Agree to Terms and Conditions</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div> <!-- end col -->
-                </div> <!-- end row -->
-              </div>
-        </form>
-        <div id="step-3" class="tab-pane" role="tabpanel" aria-labelledby="step-3" style="display: none;">
           <div class="row">
-            <div class="col-12 d-flex justify-content-center">
+            <div class="col-12 d-flex justify-content-center mb-3 p-1 p-sm-0 p-md-2 p-lg-2 ">
               <div class="w-75">
-                <div>
-                  <input type="text" id="reviewUserN" name="reviewUname" class="form-control" readonly>
+                <div class="col-12 p-md-3 p-2">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="userName1" name="userName1" placeholder="Username">
+                    <label for="userName1">User name</label>
+                    <div class="invalid-feedback">
+                      Please enter a username.
+                    </div>
+                  </div>
                 </div>
-                <div class="form-floating mb-3">
-                  <input type="text" id="reviewName1" name="reviewName1" class="form-control" readonly>
-                  <label for="reviewName1">First name</label>
+                <div class="col-12 p-md-3 p-2">
+                  <div class="form-floating">
+                    <input type="password" id="password1" name="password1" class="form-control" placeholder="Password">
+                    <label for="password1">Password</label>
+                    <div class="invalid-feedback">
+                      Please enter a password.
+                    </div>
+                  </div>
                 </div>
-                <div class="form-floating mb-3">
-                  <input type="text" id="reviewSurname1" name="reviewSurname1" class="form-control" readonly>
-                  <label for="reviewSurname1">Last name</label>
+                <div class="col-12 p-md-3 p-2">
+                  <div class="form-floating">
+                    <input type="password" id="confirm1" name="confirm1" class="form-control" placeholder="Confirm Password">
+                    <label for="confirm1">Re Password</label>
+                    <div class="invalid-feedback">
+                      Please confirm your password.
+                    </div>
+                  </div>
                 </div>
-                <div class="form-floating mb-3">
-                  <input type="email" id="reviewEmail1" name="reviewEmail1" class="form-control" readonly>
-                  <label for="reviewEmail1">Email</label>
+                <div class="col-12 p-md-3 p-2">
+                  <button type="submit" class="btn btn-primary w-100">Sign-up</button>
                 </div>
-
               </div>
-            </div> <!-- end col -->
-          </div> <!-- end row -->
-        </div>
-      </div>
 
-      <div class="progress">
-        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
-
   </div> <!-- end card-body -->
-  </div>
-
-  </div>
   <div id="info-header-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="info-header-modalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -242,99 +148,53 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div>
+
   <script>
     $(document).ready(function() {
-      $('#info-header-modal').modal('show');
-    });
-  </script>
-  <script>
-    $(document).ready(function() {
-      $('#smartwizard').smartWizard({
-        selected: 0,
-        theme: 'dots',
-        transition: {
-          animation: 'slideHorizontal'
-        },
-        toolbar: {
-          showNextButton: true, // show/hide a Next button
-          showPreviousButton: true, // show/hide a Previous button
-          position: 'both buttom', // none/ top/ both bottom
-          extraHtml: `<button class="btn btn-success" onclick="console.log('Button clicked'); window.location.href='application.php'; return false;">Submit</button>
-                              <button class="btn btn-secondary" onclick="onCancel()">Cancel</button>`
-        },
-        // Dommy code for testing
-      });
-      $('#smartwizard').on('leaveStep', function(e, anchorObject, currentStepIndex, nextStepIndex, stepDirection) {
-        // Check if the user is moving forward
-        if (nextStepIndex > currentStepIndex) {
-          // Perform validation for the current step
-          if (!validateCurrentStep(currentStepIndex)) {
-            return false; // Prevent moving to the next step
-          }
-        }
-      });
+      $('form').on('submit', function(e) { 
 
-      $("#smartwizard").on("showStep", function(e, anchorObject, stepIndex, stepDirection, stepPosition) {
-        var totalSteps = $('#smartwizard').find('ul li').length;
-        // console.log("Step: ", stepNumber);
-        console.log("Total Steps:", totalSteps);
+        e.preventDefault(); // prevent the form from being submitted
 
-        if (stepIndex === totalSteps - 1 && stepPosition === 'last') {
-          console.log("Arriving at Last Step - Showing Buttons");
-          $('.btn-success, .btn-secondary').show();
+        $('input').each(function() {
+            if ($(this).val() === '') {
+                isValid = false;
+                $(this).addClass('is-invalid'); // add 'is-invalid' class to show validation feedback
+            } else {
+                $(this).removeClass('is-invalid'); // remove 'is-invalid' class if the field is valid
+            }
+        });
 
-          $('#reviewUserN').val($('#userName1').val());
-          $('#reviewName1').val($('#name1').val());
-          $('#reviewSurname1').val($('#surname1').val());
-          $('#reviewEmail1').val($('#email1').val());
+        var password = $('#password1').val();
+        var confirmPassword = $('#confirm1').val();
 
+        if (confirmPassword === '') {
+            $('#confirm1').addClass('is-invalid'); // add 'is-invalid' class to confirm password field
+            $('#confirm1').next('.invalid-feedback').text('Please confirm your password.'); // show error message
+        } else if (password !== confirmPassword) {
+            $('#confirm1').addClass('is-invalid'); // add 'is-invalid' class to confirm password field
+            $('#confirm1').next('.invalid-feedback').text('Passwords do not match.'); // show error message
         } else {
-          console.log("Not Arriving at Last Step - Hiding Buttons");
-          $('.btn-success, .btn-secondary').hide();
+            $('#confirm1').removeClass('is-invalid'); // remove 'is-invalid' class if passwords match
+            isValid = true;
+        }
+
+       
+
+        if (isValid) {
+          // form is valid
+          // submit the form via AJAX
+          $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            success: function() {
+              // if the form is successfully submitted, redirect to application.php
+              window.location.href = 'application.php';
+            }
+          });
         }
       });
     });
-
-    function validateCurrentStep(stepIndex) {
-      var isValid = true;
-      var currentStep = $('#step-' + (stepIndex + 1)); // stepIndex is 0-based
-
-      currentStep.find('input, select').each(function() {
-        if (!this.checkValidity()) {
-          $(this).addClass('is-invalid'); // Add invalid class for styling
-          isValid = false;
-        } else {
-          $(this).removeClass('is-invalid');
-        }
-      });
-
-      // Check if password and confirm password fields match
-      var password = currentStep.find('input[name="password1"]').val();
-      var confirmPassword = currentStep.find('input[name="confirm1"]').val();
-
-      if (password !== confirmPassword) {
-        currentStep.find('input[name="confirm1"]').addClass('is-invalid');
-        currentStep.find('input[name="confirm1"]').siblings('.invalid-feedback').text('Passwords do not match.');
-        isValid = false;
-      } else {
-        currentStep.find('input[name="confirm1"]').removeClass('is-invalid');
-        currentStep.find('input[name="confirm1"]').siblings('.invalid-feedback').text('Please confirm your password.');
-      }
-
-      return isValid;
-    }
-
-
-
-    function onFinish() {
-      console.log("Form submitted");
-      $('form').submit();
-    }
-
-    function onCancel() {
-      console.log("Form cancelled");
-      window.location.href = 'some_cancel_url'; // Redirect to a specific URL
-    }
   </script>
 </body>
 
