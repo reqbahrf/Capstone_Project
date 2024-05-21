@@ -142,6 +142,19 @@
                   <label for="l_name">Last Name:</label>
                 </div>
               </div>
+              <div class="col-12 p-md-3 p-2">
+                <div class="row">
+                  <div class="col-12 col-md-6 mx-auto">
+                    <div class="form-floating">
+                      <input type="text" name="" id="designation" class="form-control" placeholder="Designation" required data-bs-toggle="tooltip" data-bs-placement="right" title="Example: Manager, Owner, CEO, etc.">
+                      <div class="invalid-feedback">
+                        Please enter your Designation.
+                      </div>
+                      <label for="designation">Designation:</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="col-12 p-md-3">
                 <h5>Contact Info:</h5>
                 <div class="row">
@@ -190,6 +203,20 @@
                 </div>
               </div>
               <div class="col-12 col-md-6">
+              <div class="form-floating">
+                <select class="form-select" id="enterpriseType" aria-label="Floating label select example" required>
+                  <option selected>Select Type of Enterprise</option>
+                  <option value="Sole Proprietorship">Sole Proprietorship</option>
+                  <option value="Partnership">Partnership</option>
+                  <option value="Corporation">Corporation</option>
+                </select>
+                <label for="enterpriseType">Type Of Enterprise</label>
+                <div class="invalid-feedback">
+                  Please select a type of enterprise.
+                </div>
+              </div>
+              </div>
+              <div class="col-12">
                 <div class="form-floating mb-3">
                   <input type="text" name="Address" id="Address" class="form-control" placeholder="123 Main St" required>
                   <div class="invalid-feedback">
@@ -436,7 +463,11 @@
   </div>
   <?php include("footer.php"); ?>
   <script>
+    $(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip()
+      })
     $(document).ready(function() {
+      
       var fileInputs = {
         'IntentFile': 'IntentFileReadonly',
         'dtiFile': 'dtiFileReadonly',

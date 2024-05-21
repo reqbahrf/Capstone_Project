@@ -16,8 +16,9 @@
   <link rel="stylesheet" href="/dist/apexcharts.css">
   <link rel="stylesheet" href="../assets/dist-smartWizard/css/smart_wizard_all.css">
   <script src="../assets/dist-smartWizard/js/jquery.smartWizard.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  <script src="../assets/date-picker-assets/moment.min.js"></script>
+  <script src="../assets/date-picker-assets/daterangepicker.js"></script>
+  <link rel="stylesheet" href="../assets/date-picker-assets/daterangepicker.css">
 
 
   <style>

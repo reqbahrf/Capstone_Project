@@ -13,47 +13,51 @@
                     <div>
                         <fieldset class="mt-2">
                             <legend class="w-auto">
-                                <h5>Cooperator Info:</h5>
+                                <h5>Firm Info</h5>
                             </legend>
                             <div class="p-3">
                                 <div class="form-group row mt-2">
-                                    <label for="project_title" class="col-12 col-sm-2"><strong>Project Title:</strong></label>
-                                    <div class="col-12 col-sm-10">
-                                        <input type="text" class="form-control" id="project_title" value="[Project Title Value]" readonly>
-                                    </div>
-                                </div>
-                                <div class="form-group row mt-2">
-                                    <label for="firm_name" class="col-12 col-sm-2"><strong>Name of Firm:</strong></label>
+                                    <label for="firm_name" class="col-12 col-sm-2">Name of Firm:</label>
                                     <div class="col-12 col-sm-10">
                                         <input type="text" class="form-control" id="firm_name" value="[Firm Name Value]" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row mt-2">
-                                    <label for="address" class="col-12 col-sm-2"><strong>Address:</strong></label>
+                                    <label for="address" class="col-12 col-sm-2">Address:</label>
                                     <div class="col-12 col-sm-10">
                                         <input type="text" class="form-control" id="address" value="[Address Value]" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row mt-2">
-                                    <label for="contact_person" class="col-12 col-sm-2"><strong>Contact Person:</strong></label>
+                                    <label for="contact_person" class="col-12 col-sm-2">Contact Person:</label>
                                     <div class="col-12 col-sm-4">
                                         <input type="text" class="form-control" id="contact_person" value="[Contact Person Value]" readonly>
                                     </div>
-                                    <label for="designation" class="col-12 col-sm-2"><strong>Designation:</strong></label>
+                                    <label for="designation" class="col-12 col-sm-2">Designation:</label>
                                     <div class="col-12 col-sm-4">
                                         <input type="text" class="form-control" id="designation" value="[Designation Value]" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row mt-2">
-                                    <label for="landline" class="col-12 col-sm-2"><strong>Landline:</strong></label>
+                                    <label for="enterpriseType" class="col-12 col-sm-2">Type Of Enterprise</label>
+                                    <div class="col-12 col-sm-10">
+                                        <select class="form-select" id="enterpriseType">
+                                            <option selected value="Sole Proprietorship">Sole Proprietorship</option>
+                                            <option  value="Partnership">Partnership</option>
+                                            <option value="Corporation">Corporation</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row mt-2">
+                                    <label for="landline" class="col-12 col-sm-2">Landline:</label>
                                     <div class="col-12 col-sm-2">
                                         <input type="text" class="form-control" id="landline" value="[Landline Value]" readonly>
                                     </div>
-                                    <label for="mobile_phone" class="col-12 col-sm-2"><strong>Mobile Phone:</strong></label>
+                                    <label for="mobile_phone" class="col-12 col-sm-2">Mobile Phone:</label>
                                     <div class="col-12 col-sm-2">
                                         <input type="text" class="form-control" id="mobile_phone" value="[Mobile Phone Value]" readonly>
                                     </div>
-                                    <label for="email" class="col-12 col-sm-2"><strong>Email Address:</strong></label>
+                                    <label for="email" class="col-12 col-sm-2">Email Address:</label>
                                     <div class="col-12 col-sm-2">
                                         <input type="text" class="form-control" id="email" value="[Email Address Value]" readonly>
                                     </div>
@@ -127,10 +131,10 @@
                                         <h5>Schedule an Evaluation</h5>
                                     </legend>
                                     <div class="input-group date" id="datepicker" data-date-format="mm-dd-yyyy">
-                                        <input type="text" class="form-control">
+                                        <input type="text" id="bDate" class="form-control">
                                         <div class="input-group-append">
                                             <span class="input-group-text">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="25" height="25">
                                                     <path d="M8 8L8 20L56 20L56 8L46 8L46 9C46 10.657 44.657 12 43 12C41.343 12 40 10.657 40 9L40 8L24 8L24 9C24 10.657 22.657 12 21 12C19.343 12 18 10.657 18 9L18 8L8 8 z M 8 22L8 56L32.259766 56C31.739766 54.74 31.379687 53.4 31.179688 52L12 52L12 22.169922L8 22 z M 52 23.830078L52 32.359375C53.41 32.639375 54.75 33.089453 56 33.689453L56 24L52 23.830078 z M 19 29L19 35L25 35L25 29L19 29 z M 29 29L29 35L35 35L35 29L29 29 z M 39 29L39 34.810547C40.8 33.640547 42.82 32.789375 45 32.359375L45 29L39 29 z M 49 34C40.739414 34 34 40.73942 34 49C34 57.26058 40.739414 64 49 64C57.260586 64 64 57.26058 64 49C64 40.73942 57.260586 34 49 34 z M 49 38C55.098827 38 60 42.901177 60 49C60 55.098823 55.098827 60 49 60C42.901173 60 38 55.098823 38 49C38 42.901177 42.901173 38 49 38 z M 19 39L19 45L25 45L25 39L19 39 z M 29 39L29 45L31.589844 45C32.169844 42.8 33.17 40.77 34.5 39L29 39 z M 48 41L47.039062 49.630859L47.009766 49.859375L47.199219 50L53.439453 54.509766L54.800781 53.039062L50.830078 48.289062L50 41L48 41 z" fill="#000000" />
                                                 </svg>
                                             </span>
@@ -159,6 +163,7 @@
                     <th>Designation</th>
                     <th>Firm Name</th>
                     <th>Additional Info</th>
+                    <th>Date Applied</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -180,8 +185,16 @@
                             <span class="ps-2">Equipment: 100,000</span>
                         </p>
                         <strong>Contact Details:</strong>
-                        <p><strong class="p-2">Landline:</strong> 1234567 <br><Strong class="p-2">Mobile Phone:</Strong> 09123456789</p>
+                        <p>
+                            <strong class="p-2">Landline:</strong> 
+                            1234567 <br>
+                            <Strong class="p-2">Mobile Phone:</Strong> 
+                            09123456789 <br> 
+                            <strong class="p-2">Email:</strong>
+                            JohnDoe@gmail.com
+                       </p>
                     </td>
+                    <td>05/22/2024</td>
                     <td>To be review</td>
                     <td>
                         <button class="btn" data-bs-toggle="modal" data-bs-target="#ApplicantModal">
@@ -207,8 +220,16 @@
                             <span class="ps-2">Equipment: 143,000</span>
                         </p>
                         <strong>Contact Details:</strong>
-                        <p><strong class="p-2">Landline:</strong> 1234567 <br><Strong class="p-2">Mobile Phone:</Strong> 09123456789</p>
+                        <p>
+                            <strong class="p-2">Landline:</strong> 
+                            1234567 <br>
+                            <Strong class="p-2">Mobile Phone:</Strong> 
+                            09123456789 <br>
+                            <strong class="p-2">Email:</strong>
+                            SamSon@gmail.com
+                        </p>
                     </td>
+                    <td>05/21/2024</td>
                     <td>waiting for approval</td>
                     <td>
                         <button class="btn" data-bs-toggle="modal" data-bs-target="#ApplicantModal" disabled>
@@ -226,6 +247,7 @@
                     <th>Designation</th>
                     <th>Firm Name</th>
                     <th>Additional Info</th>
+                    <th>Date Applied</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -237,6 +259,20 @@
 <script>
     $(document).ready(function() {
         new DataTable('#applicant'); // Then initialize DataTables
-        $('#datepicker').datepicker();
+        $('#datepicker').daterangepicker({
+        "singleDatePicker": true,
+        "showDropdowns": true,
+        "opens": "center",
+        "drops": "up",
+        "autoUpdateInput": false
+      });
+    
+      $('#datepicker').on('apply.daterangepicker', function(ev, picker) {
+        $(this).val(picker.startDate.format('MM/DD/YYYY'));
+      });
+    
+      $('#datepicker').on('cancel.daterangepicker', function(ev, picker) {
+        $(this).val('');
+      });
     });
 </script>
