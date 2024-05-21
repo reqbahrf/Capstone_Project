@@ -1,3 +1,25 @@
+<?php
+$conn = include_once 'db_connection/database_connection.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $username = filter_var($_POST["userName1"], FILTER_SANITIZE_STRING);
+  $password = filter_var($_POST["password1"], FILTER_SANITIZE_STRING);
+
+  $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password before storing it
+
+  $stmt = $conn->prepare("INSERT INTO cooperator_users (user_name, password) VALUES (?, ?)");
+  $stmt->bind_param("ss", $username, $hashedPassword);
+
+  if ($stmt->execute()) {
+      echo "New record created successfully";
+  } else {
+      echo "Error: " . $stmt->error;
+  }
+
+  $stmt->close();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 

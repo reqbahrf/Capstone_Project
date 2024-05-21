@@ -13,5 +13,6 @@
 
   if ($conn) {
     echo "connected";
+    return $conn;
   }
 ?>

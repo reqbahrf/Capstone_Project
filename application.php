@@ -13,12 +13,65 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
   <link rel="stylesheet" href="./assets/dist-smartWizard/css/smart_wizard_all.min.css">
   <script src="./assets/dist-smartWizard/js/jquery.smartWizard.min.js"></script>
+  <script src="./assets/date-picker-assets/moment.min.js"></script>
+  <script src="./assets/date-picker-assets/daterangepicker.js"></script>
+  <link rel="stylesheet" href="./assets/date-picker-assets/daterangepicker.css">
+  <script>
+    $(document).ready(function() {
+      $('#b_date').daterangepicker({
+        "singleDatePicker": true,
+        "showDropdowns": true,
+        "opens": "center",
+        "drops": "up",
+        "autoUpdateInput": false
+      });
+    
+      $('#b_date').on('apply.daterangepicker', function(ev, picker) {
+        $(this).val(picker.startDate.format('MM/DD/YYYY'));
+      });
+    
+      $('#b_date').on('cancel.daterangepicker', function(ev, picker) {
+        $(this).val('');
+      });
+    });
+  </script>
+  <script>
+    function togglePasswordVisibility() {
+      let passwordInput = document.querySelector('#password');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+      } else {
+        passwordInput.type = 'password';
+      }
+    }
+
+    document.querySelector('input[type="checkbox"]').addEventListener('click', togglePasswordVisibility);
+
+    function validateForm() {
+      let usernameInput = document.getElementById('username');
+      let passwordInput = document.getElementById('password');
+
+      if (usernameInput.value === '') {
+        alert('Please enter a username.');
+        return false;
+      }
+
+      if (passwordInput.value === '') {
+        alert('Please enter a password.');
+        return false;
+      }
+
+
+
+      return true;
+    }
+  </script>
   <style>
     #container {
       max-width: 60%;
     }
 
-    #Enterprise_Level {
+    #Enterprise_Level, #to_Assets, #re_to_Assets, #re_Enterprise_Level {
       font-weight: bold;
       color: #318791;
     }
@@ -146,6 +199,19 @@
                 <div class="row">
                   <div class="col-12 col-md-6 mx-auto">
                     <div class="form-floating">
+                      <input type="text" name="b_date" id="b_date" class="form-control" placeholder="Birth Date:" required>
+                      <div class="invalid-feedback">
+                        Please enter your Birth Date.
+                      </div>
+                      <label for="b_date">Birth Date:</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 p-md-3 p-2">
+                <div class="row">
+                  <div class="col-12 col-md-6 mx-auto">
+                    <div class="form-floating">
                       <input type="text" name="" id="designation" class="form-control" placeholder="Designation" required data-bs-toggle="tooltip" data-bs-placement="right" title="Example: Manager, Owner, CEO, etc.">
                       <div class="invalid-feedback">
                         Please enter your Designation.
@@ -253,6 +319,7 @@
                     </div>
                     <label for="working_capital">Working Capital:</label>
                   </div>
+                  <p>Total Assets: <span id="to_Assets"></span></p>
                   <p>Enterprise Level: <span id="Enterprise_Level"></span></p>
                 </fieldset>
               </div>
@@ -367,6 +434,12 @@
             <label for="l_name">Last Name</label>
             <input type="text" name="l_name" id="re_l_name" class="form-control mb-3" readonly>
 
+            <label for="b_Date">Birth Date</label>
+            <input type="text" name="b_Date" id="re_b_Date" class="form-control mb-3" readonly>
+
+            <label for="designa">Designation</label>
+            <input type="text" name="designa" id="re_designa" class="form-control mb-3" readonly>
+
             <label for="Mobile_no">Mobile Number</label>
             <input type="text" name="Mobile_no" id="re_Mobile_no" class="form-control mb-3" readonly>
 
@@ -380,6 +453,9 @@
           <div class="ps-4">
             <label for="firm_name">Firm Name</label>
             <input type="text" name="firm_name" id="re_firm_name" class="form-control mb-3" readonly>
+
+            <label for="type_enterprise">Type of Enterprise</label>
+            <input type="text" name="type_enterprise" id="re_type_enterprise" class="form-control mb-3" readonly>
 
             <label for="Address">Address</label>
             <input type="text" name="Address" id="re_Address" class="form-control mb-3" readonly>
@@ -395,6 +471,9 @@
 
               <label for="working_capital">Working Capital</label>
               <input type="text" name="working_capital" id="re_working_capital" class="form-control mb-3" readonly>
+
+              <p>Total Assets: <span id="re_to_Assets"></span></p>
+              <p>Enterprise Level: <span id="re_Enterprise_Level"></span></p>
 
             </fieldset>
             <fieldset class=" my-3">
@@ -531,16 +610,21 @@
           // Personal Info
           $('#re_f_name').val($('#f_name').val());
           $('#re_l_name').val($('#l_name').val());
+          $('#re_b_Date').val($('#b_date').val());
+          $('#re_designa').val($('#designation').val());
           $('#re_Mobile_no').val($('#Mobile_no').val());
           $('#re_email_add').val($('#email_add').val());
           $('#re_landline').val($('#landline').val());
 
           // Business Info
           $('#re_firm_name').val($('#firm_name').val());
+          $('#re_type_enterprise').val($('#enterpriseType').val());
           $('#re_Address').val($('#Address').val());
           $('#re_buildings').val($('#buildings').val());
           $('#re_equipments').val($('#equipments').val());
           $('#re_working_capital').val($('#working_capital').val());
+          $('#re_to_Assets').text($('#to_Assets').text());
+          $('#re_Enterprise_Level').text($('#Enterprise_Level').text());
 
           // Personnel Info
           $('#re_male_personnelDir').val($('#male_personnelDi').val());
@@ -620,6 +704,7 @@
         var equipmentsValue = parseFloat($('#equipments').val().replace(/,/g, '')) || 0;
         var workingCapitalValue = parseFloat($('#working_capital').val().replace(/,/g, '')) || 0;
         var total = buildingsValue + equipmentsValue + workingCapitalValue;
+        $('#to_Assets').text(total.toLocaleString());
 
         if (total === 0) {
           $('#Enterprise_Level').text('');
