@@ -1,3 +1,108 @@
+<?php
+
+$conn = include_once './db_connection/database_connection.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+  // Retrieve current user's ID from session
+  session_start();
+  $user_id = 1; // Assuming you store the user ID in session
+  $successful_inserts = 0;
+
+  // Personal Info table
+  $f_name = htmlspecialchars($_POST['f_name']);
+  $l_name = htmlspecialchars($_POST['l_name']);
+
+  $b_date = htmlspecialchars($_POST['b_date']);
+  $date = DateTime::createFromFormat('m/d/Y', $b_date);
+  $formatted_date = $date->format('Y-m-d');
+
+  $designation = htmlspecialchars($_POST['designation']);
+  $mobile_number = htmlspecialchars($_POST['Mobile_no']);
+  $email_address = htmlspecialchars($_POST['email_add']);
+  $landline = htmlspecialchars($_POST['landline']);
+
+  // Insert into personal_info table
+  $sql_personal_info = "INSERT INTO personal_info (user_id, f_name, l_name, birth_date, designation, mobile_number, email_address, landline) 
+                          VALUES ('$user_id', '$f_name', '$l_name', '$formatted_date', '$designation', '$mobile_number', '$email_address', '$landline')";
+  $conn->query($sql_personal_info);
+  if ($conn->affected_rows > 0) {
+    $successful_inserts++;
+  }
+
+  // Business Info table
+  $firm_name = htmlspecialchars($_POST['firm_name']);
+  $enterprise_type = htmlspecialchars($_POST['enterpriseType']);
+  $enterprise_level = htmlspecialchars($_POST['enterprise_level']);
+  $address = htmlspecialchars($_POST['Address']);
+
+  // Insert into business_info table
+  $sql_business_info = "INSERT INTO business_info (user_id, firm_name, enterprise_type, enterprise_level, address) 
+                          VALUES ('$user_id', '$firm_name', '$enterprise_type', '$enterprise_level', '$address')";
+  $conn->query($sql_business_info);
+  if ($conn->affected_rows > 0) {
+    $successful_inserts++;
+  }
+
+  // Retrieve the last inserted business ID
+  $business_id = $conn->insert_id;
+
+  // Assets table
+  $building_value = htmlspecialchars($_POST['buildings']);
+  $equipment_value = htmlspecialchars($_POST['equipments']);
+  $working_capital = htmlspecialchars($_POST['working_capital']);
+
+  // Insert into assets table
+  $sql_assets = "INSERT INTO assets (business_id, building_value, equipment_value, working_capital) 
+                   VALUES ('$business_id', '$building_value', '$equipment_value', '$working_capital')";
+  $conn->query($sql_assets);
+  if ($conn->affected_rows > 0) {
+    $successful_inserts++;
+  }
+  // Personnel table
+  $male_direct = htmlspecialchars($_POST['male_personnelDi']);
+  $female_direct = htmlspecialchars($_POST['female_personnelDi']);
+  $male_indirect = htmlspecialchars($_POST['male_personnelInd']);
+  $female_indirect = htmlspecialchars($_POST['female_personnelInd']);
+
+  // Insert into personnel table
+  $sql_personnel = "INSERT INTO personnel (business_id, male_direct, female_direct, male_indirect, female_indirect) 
+                      VALUES ('$business_id', '$male_direct', '$female_direct', '$male_indirect', '$female_indirect')";
+  $conn->query($sql_personnel);
+  if ($conn->affected_rows > 0) {
+    $successful_inserts++;
+  }
+
+  // Requirements table
+  // Check if the file inputs are set and not empty
+
+  $letter_of_intent = $_FILES['IntentFile']['name'];
+  $dti_sec_cda = $_FILES['dtiFile']['name'];
+  $business_permit = $_FILES['businessPermitFile']['name'];
+  $fda_ito = $_FILES['fdaLtoFile']['name'];
+  $official_receipt = $_FILES['receiptFile']['name'];
+  $government_id = $_FILES['govIdFile']['name'];
+
+  // Insert into the requirements table
+  $sql_files = "INSERT INTO `requirements`(`business_id`, `letter_of_intent`, `dti_sec_cda`, `business_permit`, `fda_ito`, `official_receipt`, `government_id`) 
+            VALUES ('$business_id', '$letter_of_intent', '$dti_sec_cda', '$business_permit', '$fda_ito', '$official_receipt', '$government_id')";
+  // Execute the SQL query
+  $conn->query($sql_files);
+  if ($conn->affected_rows > 0) {
+    $successful_inserts++;
+  };
+
+  
+
+  if ($successful_inserts == 5) {
+    echo '<div class="alert alert-success alert-dismissible text-bg-success border-0 fade show" role="alert">
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+        <strong>Success - </strong> All data successfully inserted.
+    </div>';
+}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,11 +130,11 @@
         "drops": "up",
         "autoUpdateInput": false
       });
-    
+
       $('#b_date').on('apply.daterangepicker', function(ev, picker) {
         $(this).val(picker.startDate.format('MM/DD/YYYY'));
       });
-    
+
       $('#b_date').on('cancel.daterangepicker', function(ev, picker) {
         $(this).val('');
       });
@@ -71,7 +176,10 @@
       max-width: 60%;
     }
 
-    #Enterprise_Level, #to_Assets, #re_to_Assets, #re_Enterprise_Level {
+    #Enterprise_Level,
+    #to_Assets,
+    #re_to_Assets,
+    #re_Enterprise_Level {
       font-weight: bold;
       color: #318791;
     }
@@ -143,7 +251,7 @@
 <body>
   <?php include("header.php"); ?>
   <div class="container mt-5 shadow">
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="g-3 p-5">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="g-3 p-5" enctype="multipart/form-data">
       <div id="smartwizard">
         <ul class="nav nav-progress">
           <li class="nav-item">
@@ -212,7 +320,7 @@
                 <div class="row">
                   <div class="col-12 col-md-6 mx-auto">
                     <div class="form-floating">
-                      <input type="text" name="" id="designation" class="form-control" placeholder="Designation" required data-bs-toggle="tooltip" data-bs-placement="right" title="Example: Manager, Owner, CEO, etc.">
+                      <input type="text" name="designation" id="designation" class="form-control" placeholder="Designation" required data-bs-toggle="tooltip" data-bs-placement="right" title="Example: Manager, Owner, CEO, etc.">
                       <div class="invalid-feedback">
                         Please enter your Designation.
                       </div>
@@ -269,18 +377,18 @@
                 </div>
               </div>
               <div class="col-12 col-md-6">
-              <div class="form-floating">
-                <select class="form-select" id="enterpriseType" aria-label="Floating label select example" required>
-                  <option selected>Select Type of Enterprise</option>
-                  <option value="Sole Proprietorship">Sole Proprietorship</option>
-                  <option value="Partnership">Partnership</option>
-                  <option value="Corporation">Corporation</option>
-                </select>
-                <label for="enterpriseType">Type Of Enterprise</label>
-                <div class="invalid-feedback">
-                  Please select a type of enterprise.
+                <div class="form-floating">
+                  <select class="form-select" name="enterpriseType" id="enterpriseType" aria-label="Floating label select example" required>
+                    <option selected>Select Type of Enterprise</option>
+                    <option value="Sole Proprietorship">Sole Proprietorship</option>
+                    <option value="Partnership">Partnership</option>
+                    <option value="Corporation">Corporation</option>
+                  </select>
+                  <label for="enterpriseType">Type Of Enterprise</label>
+                  <div class="invalid-feedback">
+                    Please select a type of enterprise.
+                  </div>
                 </div>
-              </div>
               </div>
               <div class="col-12">
                 <div class="form-floating mb-3">
@@ -321,6 +429,7 @@
                   </div>
                   <p>Total Assets: <span id="to_Assets"></span></p>
                   <p>Enterprise Level: <span id="Enterprise_Level"></span></p>
+                  <input type="hidden" id="EnterpriseLevelInput" name="enterprise_level">
                 </fieldset>
               </div>
               <div class="col-12 col-md-4 mb-3">
@@ -370,39 +479,39 @@
             <div class="row mb-12 p-5">
               <div class="mb-3">
                 <label for="IntentFile" class="form-label">Letter of Intent:<span>*</span></label>
-                <input class="form-control" type="file" id="IntentFile" required>
+                <input class="form-control" type="file" name="IntentFile" id="IntentFile" required>
                 <div class="invalid-feedback">
                   Please upload the Letter of Intent.
                 </div>
               </div>
               <div class="mb-3">
                 <label for="dtiFile" class="form-label">DTI/SEC/CDA: <span>*</span></label>
-                <input class="form-control" type="file" id="dtiFile" required>
+                <input class="form-control" type="file" name="dtiFile" id="dtiFile" required>
                 <div class="invalid-feedback">
                   Please upload the DTI/SEC/CDA document.
                 </div>
               </div>
               <div class="mb-3">
                 <label for="businessPermitFile" class="form-label">Business Permit: <span>*</span></label>
-                <input class="form-control" type="file" id="businessPermitFile" required>
+                <input class="form-control" type="file" name="businessPermitFile" id="businessPermitFile" required>
                 <div class="invalid-feedback">
                   Please upload the Business Permit.
                 </div>
               </div>
               <div class="mb-3">
                 <label for="fdaLtoFile" class="form-label">FDA/LTO:(Optional)</label>
-                <input class="form-control" type="file" id="fdaLtoFile">
+                <input class="form-control" type="file" name="fdaLtoFile" id="fdaLtoFile">
               </div>
               <div class="mb-3">
                 <label for="receiptFile" class="form-label">Official Receipt of the Business: <span>*</span></label>
-                <input class="form-control" type="file" id="receiptFile" required>
+                <input class="form-control" type="file" name="receiptFile" id="receiptFile" required>
                 <div class="invalid-feedback">
                   Please upload the Official Receipt of the Business.
                 </div>
               </div>
               <div class="mb-3">
                 <label for="govIdFile" class="form-label">Copy of Government Valid ID: <span>*</span></label>
-                <input class="form-control" type="file" id="govIdFile" required>
+                <input class="form-control" type="file" name="govIdFile" id="govIdFile" required>
                 <div class="invalid-feedback">
                   Please upload the Copy of Government Valid ID.
                 </div>
@@ -429,48 +538,48 @@
           <h6 class="mb-4">Personal info:</h6>
           <div class="ps-4">
             <label for="f_name">First Name</label>
-            <input type="text" name="f_name" id="re_f_name" class="form-control mb-3" readonly>
+            <input type="text" id="re_f_name" class="form-control mb-3" readonly>
 
             <label for="l_name">Last Name</label>
-            <input type="text" name="l_name" id="re_l_name" class="form-control mb-3" readonly>
+            <input type="text" id="re_l_name" class="form-control mb-3" readonly>
 
             <label for="b_Date">Birth Date</label>
-            <input type="text" name="b_Date" id="re_b_Date" class="form-control mb-3" readonly>
+            <input type="text" id="re_b_Date" class="form-control mb-3" readonly>
 
             <label for="designa">Designation</label>
-            <input type="text" name="designa" id="re_designa" class="form-control mb-3" readonly>
+            <input type="text" id="re_designa" class="form-control mb-3" readonly>
 
             <label for="Mobile_no">Mobile Number</label>
-            <input type="text" name="Mobile_no" id="re_Mobile_no" class="form-control mb-3" readonly>
+            <input type="text" id="re_Mobile_no" class="form-control mb-3" readonly>
 
             <label for="email_add">Email Address</label>
-            <input type="email" name="email_add" id="re_email_add" class="form-control mb-3" readonly>
+            <input type="email" id="re_email_add" class="form-control mb-3" readonly>
 
             <label for="landline">Landline</label>
-            <input type="text" name="landline" id="re_landline" class="form-control mb-3" readonly>
+            <input type="text" id="re_landline" class="form-control mb-3" readonly>
           </div>
           <h6 class="mb-4">Business Info:</h6>
           <div class="ps-4">
             <label for="firm_name">Firm Name</label>
-            <input type="text" name="firm_name" id="re_firm_name" class="form-control mb-3" readonly>
+            <input type="text" id="re_firm_name" class="form-control mb-3" readonly>
 
             <label for="type_enterprise">Type of Enterprise</label>
-            <input type="text" name="type_enterprise" id="re_type_enterprise" class="form-control mb-3" readonly>
+            <input type="text" id="re_type_enterprise" class="form-control mb-3" readonly>
 
             <label for="Address">Address</label>
-            <input type="text" name="Address" id="re_Address" class="form-control mb-3" readonly>
+            <input type="text" id="re_Address" class="form-control mb-3" readonly>
             <fieldset class=" my-3">
               <legend>
                 Assets
               </legend>
               <label for="buildings">Buildings</label>
-              <input type="text" name="buildings" id="re_buildings" class="form-control mb-3" readonly>
+              <input type="text" id="re_buildings" class="form-control mb-3" readonly>
 
               <label for="equipments">Equipments</label>
-              <input type="text" name="equipments" id="re_equipments" class="form-control mb-3" readonly>
+              <input type="text" id="re_equipments" class="form-control mb-3" readonly>
 
               <label for="working_capital">Working Capital</label>
-              <input type="text" name="working_capital" id="re_working_capital" class="form-control mb-3" readonly>
+              <input type="text" id="re_working_capital" class="form-control mb-3" readonly>
 
               <p>Total Assets: <span id="re_to_Assets"></span></p>
               <p>Enterprise Level: <span id="re_Enterprise_Level"></span></p>
@@ -481,20 +590,20 @@
                 Number of Personnel Direct:
               </legend>
               <label for="male_personnel">Male Personnel</label>
-              <input type="number" name="male_personnel" id="re_male_personnelDir" class="form-control mb-3" readonly>
+              <input type="number" id="re_male_personnelDir" class="form-control mb-3" readonly>
 
               <label for="female_personnel">Female Personnel</label>
-              <input type="number" name="female_personnel" id="re_female_personnelDir" class="form-control mb-3" readonly>
+              <input type="number" id="re_female_personnelDir" class="form-control mb-3" readonly>
             </fieldset>
             <fieldset class=" my-3">
               <legend>
                 Number of Personnel Indirect:
               </legend>
               <label for="male_personnel">Male Personnel</label>
-              <input type="number" name="male_personnelDir" id="re_male_personnelInd" class="form-control mb-3" readonly>
+              <input type="number" id="re_male_personnelInd" class="form-control mb-3" readonly>
 
               <label for="female_personnel">Female Personnel</label>
-              <input type="number" name="female_personnelDir" id="re_female_personnelInd" class="form-control mb-3" readonly>
+              <input type="number" id="re_female_personnelInd" class="form-control mb-3" readonly>
             </fieldset>
 
           </div>
@@ -542,11 +651,11 @@
   </div>
   <?php include("footer.php"); ?>
   <script>
-    $(function () {
-        $('[data-bs-toggle="tooltip"]').tooltip()
-      })
+    $(function() {
+      $('[data-bs-toggle="tooltip"]').tooltip()
+    })
     $(document).ready(function() {
-      
+
       var fileInputs = {
         'IntentFile': 'IntentFileReadonly',
         'dtiFile': 'dtiFileReadonly',
@@ -574,7 +683,7 @@
           showNextButton: true,
           showPreviousButton: true,
           position: 'both bottom',
-          extraHtml: `<button class="btn btn-success" onclick="onFinish()">Submit</button>
+          extraHtml: `<button type="submit" class="btn btn-success" onclick="onFinish()">Submit</button>
                         <button class="btn btn-secondary" onclick="onCancel()">Cancel</button>`
         },
         anchorSettings: {
@@ -626,6 +735,9 @@
           $('#re_to_Assets').text($('#to_Assets').text());
           $('#re_Enterprise_Level').text($('#Enterprise_Level').text());
 
+          $('#EnterpriseLevelInput').val($('#Enterprise_Level').text());
+
+
           // Personnel Info
           $('#re_male_personnelDir').val($('#male_personnelDi').val());
           $('#re_female_personnelDir').val($('#female_personnelDi').val());
@@ -666,24 +778,24 @@
     }
 
     $(document).ready(function() {
-    $('#Mobile_no').on('keypress', function(e) {
+      $('#Mobile_no').on('keypress', function(e) {
         var charCode = (e.which) ? e.which : e.keyCode;
         if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-            return false;
+          return false;
         }
         return true;
-    }).on('input', function() {
+      }).on('input', function() {
         var number = $(this).val().replace(/\D/g, ''); // Remove non-numeric characters
         if (number.length > 0) {
-            var formattedNumber = number.match(/(\d{0,4})(\d{0,3})(\d{0,4})/);
-            var formatted = '';
-            if (formattedNumber[1]) formatted += formattedNumber[1];
-            if (formattedNumber[2]) formatted += '-' + formattedNumber[2];
-            if (formattedNumber[3]) formatted += '-' + formattedNumber[3];
-            $(this).val(formatted);
+          var formattedNumber = number.match(/(\d{0,4})(\d{0,3})(\d{0,4})/);
+          var formatted = '';
+          if (formattedNumber[1]) formatted += formattedNumber[1];
+          if (formattedNumber[2]) formatted += '-' + formattedNumber[2];
+          if (formattedNumber[3]) formatted += '-' + formattedNumber[3];
+          $(this).val(formatted);
         }
+      });
     });
-});
 
     $(document).ready(function() {
 
@@ -727,80 +839,3 @@
 </body>
 
 </html>
-<script>
-  function clearFields() {
-    $("#f_name").val("");
-    $("#l_name").val("");
-    $("#Mobile_no").val("");
-    $("#email_add").val("");
-    $("#landline").val("");
-    $("#firm_name").val("");
-    $("#Address").val("");
-    $('input[name="asset_category"]:checked').prop('checked', false);
-  }
-  $('form').on('submit', function(event) {
-    // Prevent the form from submitting immediately
-    event.preventDefault();
-  });
-
-  // Check if all required fields are filled out and input matches required patterns
-  var firstName = $("#f_name").val();
-  var lastName = $("#l_name").val();
-  var mobileNumber = $("#Mobile_no").val();
-  var emailAddress = $("#email_add").val();
-  var landline = $("#landline").val();
-  var firmName = $("#firm_name").val();
-  var address = $("#Address").val();
-  var assetCategory = $('input[name="asset_category"]:checked').val();
-
-  // Add your validation logic here. For example:
-  if (!firstName || !lastName || !mobileNumber || !emailAddress || !landline || !firmName || !address || !assetCategory) {
-    alert('Please fill out all required fields.');
-    return;
-  }
-
-  // If everything is valid, show the confirmation dialog
-  showConfirmation();
-
-  function showConfirmation() {
-    var firstName = $("#f_name").val();
-    var lastName = $("#l_name").val();
-    var mobileNumber = $("#Mobile_no").val();
-    var emailAddress = $("#email_add").val();
-    var landline = $("#landline").val();
-    var firmName = $("#firm_name").val();
-    var address = $("#Address").val();
-    var assetCategory = $('input[name="asset_category"]:checked').val();
-
-    var confirmationMessage = "<H5>We are about to receive the following:</H5><br>";
-    confirmationMessage += "<strong>First Name:</strong> " + firstName + "<br>";
-    confirmationMessage += "<strong>Last Name:</strong> " + lastName + "<br>";
-    confirmationMessage += "<strong>Mobile Number:</strong> " + mobileNumber + "<br>";
-    confirmationMessage += "<strong>Email Address:</strong> " + emailAddress + "<br>";
-    confirmationMessage += "<strong>Landline:</strong> " + landline + "<br>";
-    confirmationMessage += "<strong>Firm Name:</strong> " + firmName + "<br>";
-    confirmationMessage += "<strong>Address:</strong> " + address + "<br>";
-    confirmationMessage += "<strong>Asset Category:</strong> " + assetCategory + "<br>";
-
-    $("#confirmationMessage").html(confirmationMessage);
-    $('#confirmationModal').modal('show');
-
-    // When the user clicks on the confirm button, submit the form
-    $("#confirmButton").click(function() {
-      $('#confirmationModal').modal('hide');
-      $.ajax({
-        type: 'POST',
-        url: window.location.href,
-        data: $('form').serialize(),
-        success: function() {
-          alert('Form successfully submitted!');
-        }
-      });
-    });
-
-    // When the user clicks on the cancel button, close the modal
-    $('.btn-secondary[data-dismiss="modal"]').click(function() {
-      $('#confirmationModal').modal('hide');
-    });
-  }
-</script>
