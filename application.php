@@ -76,13 +76,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Requirements table
   // Check if the file inputs are set and not empty
 
-  $letter_of_intent = $_FILES['IntentFile']['name'];
-  $dti_sec_cda = $_FILES['dtiFile']['name'];
-  $business_permit = $_FILES['businessPermitFile']['name'];
-  $fda_ito = $_FILES['fdaLtoFile']['name'];
-  $official_receipt = $_FILES['receiptFile']['name'];
-  $government_id = $_FILES['govIdFile']['name'];
+  $allowed_mime_type = 'application/pdf';
 
+  $letter_of_intent = $_FILES['IntentFile']['name'];
+  if ($_FILES['IntentFile']['type'] != $allowed_mime_type) {
+      die('Invalid file type for Letter of Intent. Only PDF files are allowed.');
+  }
+  
+  $dti_sec_cda = $_FILES['dtiFile']['name'];
+  if ($_FILES['dtiFile']['type'] != $allowed_mime_type) {
+      die('Invalid file type for DTI/SEC/CDA. Only PDF files are allowed.');
+  }
+  
+  $business_permit = $_FILES['businessPermitFile']['name'];
+  if ($_FILES['businessPermitFile']['type'] != $allowed_mime_type) {
+      die('Invalid file type for Business Permit. Only PDF files are allowed.');
+  }
+  
+  $fda_ito = $_FILES['fdaLtoFile']['name'];
+  if ($_FILES['fdaLtoFile']['type'] != $allowed_mime_type) {
+      die('Invalid file type for FDA/ITO. Only PDF files are allowed.');
+  }
+  
+  $official_receipt = $_FILES['receiptFile']['name'];
+  if ($_FILES['receiptFile']['type'] != $allowed_mime_type) {
+      die('Invalid file type for Official Receipt. Only PDF files are allowed.');
+  }
+  
+  $government_id = $_FILES['govIdFile']['name'];
+  if ($_FILES['govIdFile']['type'] != $allowed_mime_type) {
+      die('Invalid file type for Government ID. Only PDF files are allowed.');
+  }
+  
   // Insert into the requirements table
   $sql_files = "INSERT INTO `requirements`(`business_id`, `letter_of_intent`, `dti_sec_cda`, `business_permit`, `fda_ito`, `official_receipt`, `government_id`) 
             VALUES ('$business_id', '$letter_of_intent', '$dti_sec_cda', '$business_permit', '$fda_ito', '$official_receipt', '$government_id')";
@@ -92,10 +117,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $successful_inserts++;
   };
 
-  
+  $sql_applicationInfo = "INSERT INTO `application_info`(`business_id`) VALUES ('$business_id')";
+  $conn->query($sql_applicationInfo);
+  if ($conn->affected_rows > 0) {
+    $successful_inserts++;
+  };
 
-  if ($successful_inserts == 5) {
-    echo '<div class="alert alert-success alert-dismissible text-bg-success border-0 fade show" role="alert">
+  if ($successful_inserts == 6) {
+    echo '<div class="alert alert-success alert-dismissible text-bg-success border-0 fade show m-5" role="alert">
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
         <strong>Success - </strong> All data successfully inserted.
     </div>';
