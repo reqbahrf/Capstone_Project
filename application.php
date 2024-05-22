@@ -30,6 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $successful_inserts++;
   }
 
+  $personal_info_id = $conn->insert_id;
+
   // Business Info table
   $firm_name = htmlspecialchars($_POST['firm_name']);
   $enterprise_type = htmlspecialchars($_POST['enterpriseType']);
@@ -37,8 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $address = htmlspecialchars($_POST['Address']);
 
   // Insert into business_info table
-  $sql_business_info = "INSERT INTO business_info (user_id, firm_name, enterprise_type, enterprise_level, address) 
-                          VALUES ('$user_id', '$firm_name', '$enterprise_type', '$enterprise_level', '$address')";
+  $sql_business_info = "INSERT INTO business_info (user_info_id, firm_name, enterprise_type, enterprise_level, address) 
+                          VALUES ('$personal_info_id', '$firm_name', '$enterprise_type', '$enterprise_level', '$address')";
   $conn->query($sql_business_info);
   if ($conn->affected_rows > 0) {
     $successful_inserts++;

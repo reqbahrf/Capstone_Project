@@ -1,3 +1,36 @@
+<?php
+
+$conn = include_once '../db_connection/database_connection.php';
+
+
+function getApplicant($conn)
+{
+    $sql = "SELECT personal_info.user_id, personal_info.f_name, personal_info.l_name, personal_info.designation, personal_info.mobile_number, personal_info.email_address, personal_info.landline, business_info.firm_name, business_info.enterprise_type, business_info.B_address, assets.building_value, assets.equipment_value, assets.working_capital, application_info.date_applied 
+
+    FROM personal_info 
+    INNER JOIN business_info ON business_info.user_info_id = personal_info.id 
+    INNER JOIN assets ON assets.business_id = business_info.id
+    INNER JOIN application_info ON application_info.business_id = business_info.id;";
+
+    $result = mysqli_query($conn, $sql);
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return $rows;
+}
+
+$applicants = getApplicant($conn);
+
+echo "<pre>";
+
+print_r($applicants);
+
+echo "</pre>";
+
+
+
+
+
+
+?>
 <div>
     <h4 class="p-3">Applicant:</h4>
 </div>
@@ -43,7 +76,7 @@
                                     <div class="col-12 col-sm-10">
                                         <select class="form-select" id="enterpriseType">
                                             <option selected value="Sole Proprietorship">Sole Proprietorship</option>
-                                            <option  value="Partnership">Partnership</option>
+                                            <option value="Partnership">Partnership</option>
                                             <option value="Corporation">Corporation</option>
                                         </select>
                                     </div>
@@ -186,13 +219,13 @@
                         </p>
                         <strong>Contact Details:</strong>
                         <p>
-                            <strong class="p-2">Landline:</strong> 
+                            <strong class="p-2">Landline:</strong>
                             1234567 <br>
-                            <Strong class="p-2">Mobile Phone:</Strong> 
-                            09123456789 <br> 
+                            <Strong class="p-2">Mobile Phone:</Strong>
+                            09123456789 <br>
                             <strong class="p-2">Email:</strong>
                             JohnDoe@gmail.com
-                       </p>
+                        </p>
                     </td>
                     <td>05/22/2024</td>
                     <td>To be review</td>
@@ -221,9 +254,9 @@
                         </p>
                         <strong>Contact Details:</strong>
                         <p>
-                            <strong class="p-2">Landline:</strong> 
+                            <strong class="p-2">Landline:</strong>
                             1234567 <br>
-                            <Strong class="p-2">Mobile Phone:</Strong> 
+                            <Strong class="p-2">Mobile Phone:</Strong>
                             09123456789 <br>
                             <strong class="p-2">Email:</strong>
                             SamSon@gmail.com
@@ -260,19 +293,19 @@
     $(document).ready(function() {
         new DataTable('#applicant'); // Then initialize DataTables
         $('#datepicker').daterangepicker({
-        "singleDatePicker": true,
-        "showDropdowns": true,
-        "opens": "center",
-        "drops": "up",
-        "autoUpdateInput": false
-      });
-    
-      $('#datepicker').on('apply.daterangepicker', function(ev, picker) {
-        $(this).val(picker.startDate.format('MM/DD/YYYY'));
-      });
-    
-      $('#datepicker').on('cancel.daterangepicker', function(ev, picker) {
-        $(this).val('');
-      });
+            "singleDatePicker": true,
+            "showDropdowns": true,
+            "opens": "center",
+            "drops": "up",
+            "autoUpdateInput": false
+        });
+
+        $('#datepicker').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('MM/DD/YYYY'));
+        });
+
+        $('#datepicker').on('cancel.daterangepicker', function(ev, picker) {
+            $(this).val('');
+        });
     });
 </script>
