@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $address = htmlspecialchars($_POST['Address']);
 
   // Insert into business_info table
-  $sql_business_info = "INSERT INTO business_info (user_info_id, firm_name, enterprise_type, enterprise_level, address) 
+  $sql_business_info = "INSERT INTO business_info (user_info_id, firm_name, enterprise_type, enterprise_level, B_address) 
                           VALUES ('$personal_info_id', '$firm_name', '$enterprise_type', '$enterprise_level', '$address')";
   $conn->query($sql_business_info);
   if ($conn->affected_rows > 0) {
@@ -50,9 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $business_id = $conn->insert_id;
 
   // Assets table
-  $building_value = htmlspecialchars($_POST['buildings']);
-  $equipment_value = htmlspecialchars($_POST['equipments']);
-  $working_capital = htmlspecialchars($_POST['working_capital']);
+  $building_value = str_replace(',' , '', htmlspecialchars($_POST['buildings'])) ;
+  $equipment_value = str_replace(',' , '',  htmlspecialchars($_POST['equipments']));
+  $working_capital =  str_replace(',' , '', htmlspecialchars($_POST['working_capital']));
 
   // Insert into assets table
   $sql_assets = "INSERT INTO assets (business_id, building_value, equipment_value, working_capital) 
@@ -82,34 +82,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $letter_of_intent = $_FILES['IntentFile']['name'];
   if ($_FILES['IntentFile']['type'] != $allowed_mime_type) {
-      die('Invalid file type for Letter of Intent. Only PDF files are allowed.');
+    die('Invalid file type for Letter of Intent. Only PDF files are allowed.');
   }
-  
+
   $dti_sec_cda = $_FILES['dtiFile']['name'];
   if ($_FILES['dtiFile']['type'] != $allowed_mime_type) {
-      die('Invalid file type for DTI/SEC/CDA. Only PDF files are allowed.');
+    die('Invalid file type for DTI/SEC/CDA. Only PDF files are allowed.');
   }
-  
+
   $business_permit = $_FILES['businessPermitFile']['name'];
   if ($_FILES['businessPermitFile']['type'] != $allowed_mime_type) {
-      die('Invalid file type for Business Permit. Only PDF files are allowed.');
+    die('Invalid file type for Business Permit. Only PDF files are allowed.');
   }
-  
+
   $fda_ito = $_FILES['fdaLtoFile']['name'];
   if ($_FILES['fdaLtoFile']['type'] != $allowed_mime_type) {
-      die('Invalid file type for FDA/ITO. Only PDF files are allowed.');
+    die('Invalid file type for FDA/ITO. Only PDF files are allowed.');
   }
-  
+
   $official_receipt = $_FILES['receiptFile']['name'];
   if ($_FILES['receiptFile']['type'] != $allowed_mime_type) {
-      die('Invalid file type for Official Receipt. Only PDF files are allowed.');
+    die('Invalid file type for Official Receipt. Only PDF files are allowed.');
   }
-  
+
   $government_id = $_FILES['govIdFile']['name'];
   if ($_FILES['govIdFile']['type'] != $allowed_mime_type) {
-      die('Invalid file type for Government ID. Only PDF files are allowed.');
+    die('Invalid file type for Government ID. Only PDF files are allowed.');
   }
-  
+
   // Insert into the requirements table
   $sql_files = "INSERT INTO `requirements`(`business_id`, `letter_of_intent`, `dti_sec_cda`, `business_permit`, `fda_ito`, `official_receipt`, `government_id`) 
             VALUES ('$business_id', '$letter_of_intent', '$dti_sec_cda', '$business_permit', '$fda_ito', '$official_receipt', '$government_id')";
@@ -126,11 +126,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   };
 
   if ($successful_inserts == 6) {
-    echo '<div class="alert alert-success alert-dismissible text-bg-success border-0 fade show m-5" role="alert">
+    echo '<div class="alert alert-success alert-dismissible text-bg-success border-0 fade show mx-5" role="alert">
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
         <strong>Success - </strong> All data successfully inserted.
     </div>';
-}
+  }
 }
 ?>
 
@@ -830,41 +830,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $(document).ready(function() {
 
-      function updateEnterpriseLevel() {
-        const formatNumber = (input) => {
-          let value = input.value.replace(/,/g, ''); // Remove existing commas
-          value = value.replace(/\D/g, ''); // Remove non-numeric characters
-          value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ','); // Add commas every 3 digits
+   function updateEnterpriseLevel() {
+  const formatNumber = (input) => {
+    let value = input.value.replace(/,/g, ''); // Remove existing commas
+    value = value.replace(/[^\d.]/g, ''); // Remove non-numeric characters except for decimal point
+    value = value.replace(/(\.\d{2})\d+$/, '$1'); // Limit decimal points to 2
 
-          input.value = value;
-        };
+    // Add commas every 3 digits
+    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-        formatNumber(document.getElementById('buildings'));
-        formatNumber(document.getElementById('equipments'));
-        formatNumber(document.getElementById('working_capital'));
+    input.value = value;
+  };
 
-        var buildingsValue = parseFloat($('#buildings').val().replace(/,/g, '')) || 0;
-        var equipmentsValue = parseFloat($('#equipments').val().replace(/,/g, '')) || 0;
-        var workingCapitalValue = parseFloat($('#working_capital').val().replace(/,/g, '')) || 0;
-        var total = buildingsValue + equipmentsValue + workingCapitalValue;
-        $('#to_Assets').text(total.toLocaleString());
+  formatNumber(document.getElementById('buildings'));
+  formatNumber(document.getElementById('equipments'));
+  formatNumber(document.getElementById('working_capital'));
 
-        if (total === 0) {
-          $('#Enterprise_Level').text('');
-          return;
-        }
-        if (total < 3e6) {
-          $('#Enterprise_Level').text('Micro Enterprise');
-        } else if (total < 15e6) {
-          $('#Enterprise_Level').text('Small Enterprise');
-        } else if (total < 100e6) {
-          $('#Enterprise_Level').text('Medium Enterprise');
-        } else {
-          $('#Enterprise_Level').text('Large Enterprise');
-        }
-      }
+  var buildingsValue = parseFloat($('#buildings').val().replace(/,/g, '')) || 0;
+  var equipmentsValue = parseFloat($('#equipments').val().replace(/,/g, '')) || 0;
+  var workingCapitalValue = parseFloat($('#working_capital').val().replace(/,/g, '')) || 0;
+  var total = buildingsValue + equipmentsValue + workingCapitalValue;
+  $('#to_Assets').text(total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+  if (total === 0) {
+    $('#Enterprise_Level').text('');
+    return;
+  }
+  if (total < 3e6) {
+    $('#Enterprise_Level').text('Micro Enterprise');
+  } else if (total < 15e6) {
+    $('#Enterprise_Level').text('Small Enterprise');
+  } else if (total < 100e6) {
+    $('#Enterprise_Level').text('Medium Enterprise');
+  } else {
+    $('#Enterprise_Level').text('Large Enterprise');
+  }
+}
 
-      $('#buildings, #equipments, #working_capital').on('input', updateEnterpriseLevel);
+$('#buildings, #equipments, #working_capital').on('input', updateEnterpriseLevel);
     });
   </script>
 </body>

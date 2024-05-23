@@ -19,11 +19,26 @@ function getApplicant($conn)
 
 $applicants = getApplicant($conn);
 
-echo "<pre>";
+foreach ($applicants as $applicant) {
+    $ApplicantTable [] = $applicant;
+}
 
-print_r($applicants);
+            // [user_id] => 1
+            // [f_name] => Reanz Arthur 
+            // [l_name] => Monera
+            // [designation] => CEO
+            // [mobile_number] => 0982-322-3232
+            // [email_address] => re@erer
+            // [landline] => 1121
+            // [firm_name] => Resf
+            // [enterprise_type] => Partnership
+            // [B_address] => Mats
+            // [building_value] => 1.00
+            // [equipment_value] => 343.00
+            // [working_capital] => 43.00
+            // [date_applied] => 2024-05-22
 
-echo "</pre>";
+
 
 
 
@@ -202,76 +217,38 @@ echo "</pre>";
                 </tr>
             </thead>
             <tbody id="tableBody">
-                <tr>
-                    <td>1</td>
-                    <td>John Doe</td>
-                    <td>Manager</td>
-                    <td>XYZ company</td>
-                    <td>
-                        <p><strong>Business Address:</strong> tagum, Davao Del Norte <br> <strong>Type of Enterprise:</strong> Sole Proprietorship</p>
-                        <p>
-                            <Strong>
-                                Assets:
-                            </Strong> <br>
-                            <span class="ps-2">Land: 100,000</span><br>
-                            <span class="ps-2">Building: 100,000</span> <br>
-                            <span class="ps-2">Equipment: 100,000</span>
-                        </p>
-                        <strong>Contact Details:</strong>
-                        <p>
-                            <strong class="p-2">Landline:</strong>
-                            1234567 <br>
-                            <Strong class="p-2">Mobile Phone:</Strong>
-                            09123456789 <br>
-                            <strong class="p-2">Email:</strong>
-                            JohnDoe@gmail.com
-                        </p>
-                    </td>
-                    <td>05/22/2024</td>
-                    <td>To be review</td>
-                    <td>
-                        <button class="btn" data-bs-toggle="modal" data-bs-target="#ApplicantModal">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
-                                <path d="M56.177,16.832c-0.547-4.731-4.278-8.462-9.009-9.009C43.375,7.384,38.264,7,32,7S20.625,7.384,16.832,7.823c-4.731,0.547-8.462,4.278-9.009,9.009C7.384,20.625,7,25.736,7,32s0.384,11.375,0.823,15.168c0.547,4.731,4.278,8.462,9.009,9.009C20.625,56.616,25.736,57,32,57s11.375-0.384,15.168-0.823c4.731-0.547,8.462-4.278,9.009-9.009C56.616,43.375,57,38.264,57,32S56.616,20.625,56.177,16.832z M36,32c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,29.791,36,32z M36,45c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,42.791,36,45z M36,19c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,16.791,36,19z" fill="#000000" />
-                            </svg>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Sam Son</td>
-                    <td>Owner</td>
-                    <td>XYZ company</td>
-                    <td>
-                        <p><strong>Business Address:</strong> Carmen, Davao Del Norte <br> <strong>Type of Enterprise:</strong> Sole Proprietorship</p>
-                        <p>
-                            <Strong>
-                                Assets:
-                            </Strong> <br>
-                            <span class="ps-2">Land: 144,000</span><br>
-                            <span class="ps-2">Building: 122,000</span> <br>
-                            <span class="ps-2">Equipment: 143,000</span>
-                        </p>
-                        <strong>Contact Details:</strong>
-                        <p>
-                            <strong class="p-2">Landline:</strong>
-                            1234567 <br>
-                            <Strong class="p-2">Mobile Phone:</Strong>
-                            09123456789 <br>
-                            <strong class="p-2">Email:</strong>
-                            SamSon@gmail.com
-                        </p>
-                    </td>
-                    <td>05/21/2024</td>
-                    <td>waiting for approval</td>
-                    <td>
-                        <button class="btn" data-bs-toggle="modal" data-bs-target="#ApplicantModal" disabled>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
-                                <path d="M56.177,16.832c-0.547-4.731-4.278-8.462-9.009-9.009C43.375,7.384,38.264,7,32,7S20.625,7.384,16.832,7.823c-4.731,0.547-8.462,4.278-9.009,9.009C7.384,20.625,7,25.736,7,32s0.384,11.375,0.823,15.168c0.547,4.731,4.278,8.462,9.009,9.009C20.625,56.616,25.736,57,32,57s11.375-0.384,15.168-0.823c4.731-0.547,8.462-4.278,9.009-9.009C56.616,43.375,57,38.264,57,32S56.616,20.625,56.177,16.832z M36,32c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,29.791,36,32z M36,45c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,42.791,36,45z M36,19c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,16.791,36,19z" fill="#000000" />
-                            </svg>
-                        </button>
-                    </td>
-                </tr>
+                <?php foreach ($ApplicantTable as $item): ?>
+                    <tr>
+                        <td><?= $item['user_id'] ?></td>
+                        <td><?= $item['f_name'] . " " . $item['l_name'] ?></td>
+                        <td><?= $item['designation'] ?></td>
+                        <td><?= $item['firm_name'] ?></td>
+                        <td>
+                            <p><strong>Business Address:</strong> <?= $item['B_address'] ?> <br> <strong>Type of Enterprise:</strong> <?= $item['enterprise_type'] ?></p>
+                            <p>
+                                <Strong>Assets:</Strong> <br>
+                                <span class="ps-2">Building: <?= number_format($item['building_value'], 2) ?></span><br>
+                                <span class="ps-2">Equipment: <?= number_format($item['equipment_value'], 2) ?></span> <br>
+                                <span class="ps-2">Working Capital: <?= number_format($item['working_capital'], 2) ?></span>
+                            </p>
+                            <strong>Contact Details:</strong>
+                            <p>
+                                <strong class="p-2">Landline:</strong> <?= $item['landline'] ?> <br>
+                                <Strong class="p-2">Mobile Phone:</Strong> <?= $item['mobile_number'] ?> <br>
+                                <strong class="p-2">Email:</strong> <?= $item['email_address'] ?>
+                            </p>
+                        </td>
+                        <td><?= $item['date_applied'] ?></td>
+                        <td>To be review</td>
+                        <td>
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#ApplicantModal">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
+                                    <path d="M56.177,16.832c-0.547-4.731-4.278-8.462-9.009-9.009C43.375,7.384,38.264,7,32,7S20.625,7.384,16.832,7.823c-4.731,0.547-8.462,4.278-9.009,9.009C7.384,20.625,7,25.736,7,32s0.384,11.375,0.823,15.168c0.547,4.731,4.278,8.462,9.009,9.009C20.625,56.616,25.736,57,32,57s11.375-0.384,15.168-0.823c4.731-0.547,8.462-4.278,9.009-9.009C56.616,43.375,57,38.264,57,32S56.616,20.625,56.177,16.832z M36,32c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,29.791,36,32z M36,45c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,42.791,36,45z M36,19c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,16.791,36,19z" fill="#000000" />
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
             </tbody>
             <tfoot>
                 <tr>
