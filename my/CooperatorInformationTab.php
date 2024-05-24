@@ -70,11 +70,11 @@
 
           </div>
           <div>
-            <fieldset class="w-auto my-2 my-sm-4">
+            <fieldset class="w-auto">
               <legend class="w-auto">
                 <h6><strong>Refund History:</strong></h6>
               </legend>
-              <div class=" table-responsive">
+             
               <table class="table">
                 <thead>
                   <tr>
@@ -106,7 +106,7 @@
                   </tr>
                 </tbody>
               </table>
-              </div>
+              
             </fieldset>
           </div>
         </div>
