@@ -18,7 +18,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="handleProjectModalLabel">Handle Project</h5>
+                <h5 class="modal-title" id="handleProjectModalLabel">Handled Project</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -54,7 +54,7 @@
         </div>
     </div>
     <div class="m-4 p-3 shadow">
-        <h5 class="p-2 text-center">Handle Projects</h5>
+        <h5 class="p-2 text-center">Handled Projects</h5>
         <table id="handledProject" class="table table-hover" style="width:100%">
             <thead>
                 <tr>

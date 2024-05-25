@@ -168,7 +168,7 @@
             <div>
               <input class="form-check-input me-1" type="checkbox" value="" id="letterOfIntentCheckbox">
               <label class="form-check-label" for="letterOfIntentCheckbox">Letter of Intent</label>
-              <a href="path/to/letter_of_intent.pdf" target="_blank">Review File</a>
+              <a href="path/to/letter_of_intent.pdf" target="_blank">view File</a>
             </div>
             <span class="badge bg-success">Reviewed</span>
           </li>
@@ -176,7 +176,7 @@
             <div>
               <input class="form-check-input me-1" type="checkbox" value="" id="dtiSecCdaCheckbox">
               <label class="form-check-label" for="dtiSecCdaCheckbox">DTI/SEC/CDA</label>
-              <a href="path/to/dti_sec_cda.pdf" target="_blank">Review File</a>
+              <a href="path/to/dti_sec_cda.pdf" target="_blank">view File</a>
             </div>
             <span class="badge bg-success">Reviewed</span>
           </li>
@@ -184,7 +184,7 @@
             <div>
               <input class="form-check-input me-1" type="checkbox" value="" id="businessPermitCheckbox">
               <label class="form-check-label" for="businessPermitCheckbox">Business Permit</label>
-              <a href="path/to/business_permit.pdf" target="_blank">Review File</a>
+              <a href="path/to/business_permit.pdf" target="_blank">view File</a>
             </div>
             <span class="badge bg-success">Reviewed</span>
           </li>
@@ -192,7 +192,7 @@
             <div>
               <input class="form-check-input me-1" type="checkbox" value="" id="fdaLtoCheckbox">
               <label class="form-check-label" for="fdaLtoCheckbox">FDA/LTO</label>
-              <a href="path/to/fda_lto.pdf" target="_blank">Review File</a>
+              <a href="path/to/fda_lto.pdf" target="_blank">view File</a>
             </div>
             <span class="badge bg-success">Reviewed</span>
           </li>
@@ -200,7 +200,7 @@
             <div>
               <input class="form-check-input me-1" type="checkbox" value="" id="officialReceiptCheckbox">
               <label class="form-check-label" for="officialReceiptCheckbox">Official Receipt of the Business</label>
-              <a href="path/to/official_receipt.pdf" target="_blank">Review File</a>
+              <a href="path/to/official_receipt.pdf" target="_blank">view File</a>
             </div>
             <span class="badge bg-success">Reviewed</span>
           </li>
@@ -208,7 +208,7 @@
             <div>
               <input class="form-check-input me-1" type="checkbox" value="" id="govValidIdCheckbox">
               <label class="form-check-label" for="govValidIdCheckbox">Copy of Government Valid ID</label>
-              <a href="path/to/government_id.pdf" target="_blank">Review File</a>
+              <a href="path/to/government_id.pdf" target="_blank">view File</a>
             </div>
             <span class="badge bg-success">Reviewed</span>
           </li>
@@ -217,3 +217,30 @@
     </fieldset>
   </fieldset>
 </div>
+<script>
+  $(document).ready(function() {
+    const checkboxes = document.querySelectorAll('.form-check-input');
+const reviewedSpans = document.querySelectorAll('.badge.bg-success');
+
+// Hide all 'Reviewed' spans initially
+reviewedSpans.forEach(span => {
+    span.style.display = 'none';
+});
+
+// Add event listener to each checkbox
+checkboxes.forEach((checkbox, index) => {
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            // Show confirmation modal
+            // You can customize the modal content and appearance based on your requirements
+            $('#myModal').modal('show');
+
+            // Show 'Reviewed' span if checkbox is checked
+            reviewedSpans[index].style.display = 'inline';
+        } else {
+            reviewedSpans[index].style.display = 'none'; // Hide 'Reviewed' span if checkbox is unchecked
+        }
+    });
+});
+  });
+</script>

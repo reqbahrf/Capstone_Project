@@ -20,23 +20,23 @@ function getApplicant($conn)
 $applicants = getApplicant($conn);
 
 foreach ($applicants as $applicant) {
-    $ApplicantTable [] = $applicant;
+    $ApplicantTable[] = $applicant;
 }
 
-            // [user_id] => 1
-            // [f_name] => Reanz Arthur 
-            // [l_name] => Monera
-            // [designation] => CEO
-            // [mobile_number] => 0982-322-3232
-            // [email_address] => re@erer
-            // [landline] => 1121
-            // [firm_name] => Resf
-            // [enterprise_type] => Partnership
-            // [B_address] => Mats
-            // [building_value] => 1.00
-            // [equipment_value] => 343.00
-            // [working_capital] => 43.00
-            // [date_applied] => 2024-05-22
+// [user_id] => 1
+// [f_name] => Reanz Arthur 
+// [l_name] => Monera
+// [designation] => CEO
+// [mobile_number] => 0982-322-3232
+// [email_address] => re@erer
+// [landline] => 1121
+// [firm_name] => Resf
+// [enterprise_type] => Partnership
+// [B_address] => Mats
+// [building_value] => 1.00
+// [equipment_value] => 343.00
+// [working_capital] => 43.00
+// [date_applied] => 2024-05-22
 
 
 
@@ -46,6 +46,25 @@ foreach ($applicants as $applicant) {
 
 
 ?>
+<!-- checkbox modal -->
+<!-- <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Review File</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" >Approve</button>
+                <button type="button" class="btn btn-secondary" >Resubmit</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
 <div>
     <h4 class="p-3">Applicant:</h4>
 </div>
@@ -53,8 +72,8 @@ foreach ($applicants as $applicant) {
     <div class="modal fade" id="ApplicantModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
-                <div class="modal-header bg-info">
-                    <h4 class="modal-title" id="exampleModalLabel">Info</h4>
+                <div class="modal-header bg-primary">
+                    <h4 class="modal-title text-white" id="exampleModalLabel">Info</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-5">
@@ -124,49 +143,50 @@ foreach ($applicants as $applicant) {
                                                 <div>
                                                     <input class="form-check-input me-1" type="checkbox" value="" id="letterOfIntentCheckbox">
                                                     <label class="form-check-label" for="letterOfIntentCheckbox">Letter of Intent</label>
-                                                    <a href="path/to/letter_of_intent.pdf" target="_blank">Review File</a>
+                                                    <span class="badge bg-success">Reviewed</span>
                                                 </div>
-                                                <span class="badge bg-success">Reviewed</span>
+                                                <a href="path/to/letter_of_intent.pdf" target="_blank">Review File</a>
                                             </li>
                                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                                 <div>
                                                     <input class="form-check-input me-1" type="checkbox" value="" id="dtiSecCdaCheckbox">
                                                     <label class="form-check-label" for="dtiSecCdaCheckbox">DTI/SEC/CDA</label>
-                                                    <a href="path/to/dti_sec_cda.pdf" target="_blank">Review File</a>
+                                                    
+                                                    <span class="badge bg-success">Reviewed</span>
                                                 </div>
-                                                <span class="badge bg-success">Reviewed</span>
+                                                <a href="path/to/dti_sec_cda.pdf" target="_blank">Review File</a>
                                             </li>
                                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                                 <div>
                                                     <input class="form-check-input me-1" type="checkbox" value="" id="businessPermitCheckbox">
                                                     <label class="form-check-label" for="businessPermitCheckbox">Business Permit</label>
-                                                    <a href="path/to/business_permit.pdf" target="_blank">Review File</a>
+                                                    <span class="badge bg-success">Reviewed</span>
                                                 </div>
-                                                <span class="badge bg-success">Reviewed</span>
+                                                <a href="path/to/business_permit.pdf" target="_blank">Review File</a>
                                             </li>
                                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                                 <div>
                                                     <input class="form-check-input me-1" type="checkbox" value="" id="fdaLtoCheckbox">
                                                     <label class="form-check-label" for="fdaLtoCheckbox">FDA/LTO</label>
-                                                    <a href="path/to/fda_lto.pdf" target="_blank">Review File</a>
+                                                    <span class="badge bg-success">Reviewed</span>
                                                 </div>
-                                                <span class="badge bg-success">Reviewed</span>
+                                                <a href="path/to/fda_lto.pdf" target="_blank">Review File</a>
                                             </li>
                                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                                 <div>
                                                     <input class="form-check-input me-1" type="checkbox" value="" id="officialReceiptCheckbox">
                                                     <label class="form-check-label" for="officialReceiptCheckbox">Official Receipt of the Business</label>
-                                                    <a href="path/to/official_receipt.pdf" target="_blank">Review File</a>
+                                                    <span class="badge bg-success">Reviewed</span>
                                                 </div>
-                                                <span class="badge bg-success">Reviewed</span>
+                                                <a href="path/to/official_receipt.pdf" target="_blank">Review File</a>
                                             </li>
                                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                                 <div>
                                                     <input class="form-check-input me-1" type="checkbox" value="" id="govValidIdCheckbox">
                                                     <label class="form-check-label" for="govValidIdCheckbox">Copy of Government Valid ID</label>
-                                                    <a href="path/to/government_id.pdf" target="_blank">Review File</a>
+                                                    <span class="badge bg-success">Reviewed</span>
                                                 </div>
-                                                <span class="badge bg-success">Reviewed</span>
+                                                <a href="path/to/government_id.pdf" target="_blank">Review File</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -178,8 +198,8 @@ foreach ($applicants as $applicant) {
                                     <legend>
                                         <h5>Schedule an Evaluation</h5>
                                     </legend>
-                                    <div class="input-group date" id="datepicker" data-date-format="mm-dd-yyyy">
-                                        <input type="text" id="bDate" class="form-control">
+                                    <div class="input-group date" data-date-format="mm-dd-yyyy">
+                                        <input type="text" id="datepicker"" class=" form-control">
                                         <div class="input-group-append">
                                             <span class="input-group-text">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="25" height="25">
@@ -217,7 +237,7 @@ foreach ($applicants as $applicant) {
                 </tr>
             </thead>
             <tbody id="tableBody">
-                <?php foreach ($ApplicantTable as $item): ?>
+                <?php foreach ($ApplicantTable as $item) : ?>
                     <tr>
                         <td><?= $item['user_id'] ?></td>
                         <td><?= $item['f_name'] . " " . $item['l_name'] ?></td>
@@ -284,5 +304,31 @@ foreach ($applicants as $applicant) {
         $('#datepicker').on('cancel.daterangepicker', function(ev, picker) {
             $(this).val('');
         });
+
+       // Get all checkboxes and their corresponding 'Reviewed' spans
+const checkboxes = document.querySelectorAll('.form-check-input');
+const reviewedSpans = document.querySelectorAll('.badge.bg-success');
+
+// Hide all 'Reviewed' spans initially
+reviewedSpans.forEach(span => {
+    span.style.display = 'none';
+});
+
+// Add event listener to each checkbox
+checkboxes.forEach((checkbox, index) => {
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            // Show confirmation modal
+            // You can customize the modal content and appearance based on your requirements
+            $('#myModal').modal('show');
+
+            // Show 'Reviewed' span if checkbox is checked
+            reviewedSpans[index].style.display = 'inline';
+        } else {
+            reviewedSpans[index].style.display = 'none'; // Hide 'Reviewed' span if checkbox is unchecked
+        }
+    });
+});
+        
     });
 </script>
