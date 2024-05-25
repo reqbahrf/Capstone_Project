@@ -141,6 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Application Form</title>
+  <link rel="icon" href="./assets/svg/DOST_ICON.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/css/main.css">
   <script src="../assets/jquery-3.7.1/jquery-3.7.1.min.js"></script>
   <script src="./assets/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>

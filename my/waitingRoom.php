@@ -14,6 +14,47 @@
     /* Increased from 60s to 120s */
     transform-origin: center;
   }
+  @media (min-width: 768px) {
+    .waiting-clock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: calc(100vh - 100px);
+  }
+
+  
+  }
+  
+  @media (max-width: 768px) {
+    .waiting-clock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: calc(100vh - 100px);
+    }
+
+    
+  .waiting-clock h3 {
+    font-size: 15px;
+  }
+
+    .waiting-clock h4 {
+    font-size: 10px;
+  }
+
+  .waitingClock {
+    width: 200px;
+    height: 200px;
+  }
+
+  
+
+
+  }
+
+
 </style>
 
 <body class="overflow-hidden">
@@ -63,25 +104,29 @@
   <div class=" flex-container d-flex flex-column flex-md-row mobileView">
     <main class="main-column overflow-hidden vh-100" id="main-content">
       <div class="d-flex justify-content-center align-items-center m-0">
-        <div class="container d-flex flex-column justify-content-center align-items-center bg-white p-4 w-50 shadow rounded-5">
-          <div class="w-auto">
-            <h3>Your Application is still in the process</h3>
+        <div class="waiting-clock">
+          <div class="container d-flex flex-column justify-content-center align-items-center bg-white p-4 shadow rounded-5 ">
+            <div>
+              <h3>Your Application is still in the process</h3>
+            </div>
+            <div class="w-auto">
+              <!-- SVG content here -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="waitingClock" viewBox="0 0 64 64" width="256" height="256">
+                <g id="clock" transform="scale(-1, 1) translate(-64, 0)">
+                  <path d="M32 6C25.563809 6 19.527204 8.3098104 14.773438 12.533203L11.175781 9.0058594L9.2421875 21.353516L21.550781 19.177734L17.634766 15.337891C21.623806 11.883136 26.650401 10 32 10C44.131 10 54 19.869 54 32C54 44.131 44.131 54 32 54C19.869 54 10 44.131 10 32C10 31.468 10.019641 30.940969 10.056641 30.417969L6.0664062 30.132812C6.0224062 30.749813 6 31.372 6 32C6 46.336 17.664 58 32 58C46.336 58 58 46.336 58 32C58 17.664 46.336 6 32 6 z M 30.5 14L31 18L33 18L33.5 14L30.5 14 z M 14 30.5L14 33.5L18 33L18 31L14 30.5 z M 50 30.5L46 31L46 33L50 33.5L50 30.5 z M 31 46L30.5 50L33.5 50L33 46L31 46 z" fill="#000000" />
+                </g>
+                <g id="arrow" transform="scale(-1, 1) translate(-64, 0)">
+                  <path d="M 44.021484 18.564453L33.25 28.203125 A 4 4 0 0 0 32 28 A 4 4 0 0 0 32 36 A 4 4 0 0 0 32.722656 35.931641L40.816406 42.638672L42.640625 40.816406L35.931641 32.720703 A 4 4 0 0 0 35.796875 30.75L45.435547 19.978516L44.021484 18.564453 z" fill="#000000" />
+                </g>
+              </svg>
+            </div>
+            <div class="w-auto">
+              <h4>Please Wait for your approval</h4>
+            </div>
           </div>
-          <div class="w-auto">
-            <!-- SVG content here -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="256" height="256">
-              <g id="clock" transform="scale(-1, 1) translate(-64, 0)">
-                <path d="M32 6C25.563809 6 19.527204 8.3098104 14.773438 12.533203L11.175781 9.0058594L9.2421875 21.353516L21.550781 19.177734L17.634766 15.337891C21.623806 11.883136 26.650401 10 32 10C44.131 10 54 19.869 54 32C54 44.131 44.131 54 32 54C19.869 54 10 44.131 10 32C10 31.468 10.019641 30.940969 10.056641 30.417969L6.0664062 30.132812C6.0224062 30.749813 6 31.372 6 32C6 46.336 17.664 58 32 58C46.336 58 58 46.336 58 32C58 17.664 46.336 6 32 6 z M 30.5 14L31 18L33 18L33.5 14L30.5 14 z M 14 30.5L14 33.5L18 33L18 31L14 30.5 z M 50 30.5L46 31L46 33L50 33.5L50 30.5 z M 31 46L30.5 50L33.5 50L33 46L31 46 z" fill="#000000" />
-              </g>
-              <g id="arrow" transform="scale(-1, 1) translate(-64, 0)">
-                <path d="M 44.021484 18.564453L33.25 28.203125 A 4 4 0 0 0 32 28 A 4 4 0 0 0 32 36 A 4 4 0 0 0 32.722656 35.931641L40.816406 42.638672L42.640625 40.816406L35.931641 32.720703 A 4 4 0 0 0 35.796875 30.75L45.435547 19.978516L44.021484 18.564453 z" fill="#000000" />
-              </g>
-            </svg>
-          </div>
-          <div class="w-auto">
-            <h4>Please Wait for your approval</h4>
-          </div>
+
         </div>
+
       </div>
     </main>
   </div>
