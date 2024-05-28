@@ -34,7 +34,7 @@
   .headerText {
     font-family: 'arial';
     font-size: 40px;
-    font-weight: 700;
+    font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;

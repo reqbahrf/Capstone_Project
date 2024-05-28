@@ -1,9 +1,12 @@
 <?php
+
 $conn = include_once 'db_connection/database_connection.php';
 
+session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $username = filter_var($_POST["userName1"], FILTER_SANITIZE_STRING);
-  $password = filter_var($_POST["password1"], FILTER_SANITIZE_STRING);
+  $username = htmlspecialchars($_POST["userName1"]);
+  $password = htmlspecialchars($_POST["password1"]);
 
   $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password before storing it
 
@@ -18,8 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $stmt->close();
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,13 +30,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign up</title>
-  <link rel="icon" href="../assets/svg/DOST_ICON.svg" type="image/svg+xml">
+  <link rel="icon" href="./assets/svg/DOST_ICON.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/css/main.css">
   <script src="./assets/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
   <script src="./assets/jquery-3.7.1/jquery-3.7.1.min.js"></script>
   <link rel="stylesheet" href="./assets/dist-smartWizard/css/smart_wizard_all.min.css">
   <script src="./assets/dist-smartWizard/js/jquery.smartWizard.min.js"></script>
 </head>
+
+
 
 <style>
   :root {

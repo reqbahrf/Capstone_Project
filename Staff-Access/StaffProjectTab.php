@@ -20,13 +20,21 @@ ul#myTab li.nav-item button.tab-Nav:hover {
     color: white;
 }
 
+#ongoingTable_wrapper > div:first-child,
+#approvedTable_wrapper > div:first-child {
+  background-color: black;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  color: white;
+  margin-top: 0 !important;
+}
 </style>
 <div>
       <h4 class="p-3">Projects</h4>
 </div>
 <div class="bg-white py-2 rounded-5">
     <!--Ongoing Modal start-->
-    <div class="modal fade" id="ApplicationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="ApplicationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -47,7 +55,7 @@ ul#myTab li.nav-item button.tab-Nav:hover {
       </div>
     </div>
     <!-- Ongoing Modal end-->
-    <div class="modal fade" id="OngoingModal" tabindex="-1" aria-labelledby="OngoingModalLabel" aria-hidden="true">
+    <div class="modal fade" id="OngoingModal" tabindex="-1" aria-labelledby="OngoingModalLabel" aria-hidden="true" data-bs-backdrop="static">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -81,7 +89,7 @@ ul#myTab li.nav-item button.tab-Nav:hover {
       </ul>
 
     </div>
-    <div class="tab-content bg-white m-3" id="myTabContent">
+    <div class="tab-content bg-white mt-0 mx-3 mb-3" id="myTabContent">
       <!-- first tab here -->
       <div class="tab-pane fade show active" id="Approved-tab-pane" role="tabpanel" aria-labelledby="Approved-tab" tabindex="0">
         <!-- Where the applicant table start -->

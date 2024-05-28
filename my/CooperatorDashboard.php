@@ -1,6 +1,6 @@
 <?php session_start();
 
-$_SESSION["user"] = array("type" => "waiting");
+$_SESSION["user"] = array("type" => "approved");
 
 ?>
 <!DOCTYPE html>

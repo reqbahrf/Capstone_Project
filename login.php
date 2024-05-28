@@ -2,7 +2,7 @@
 session_start();
 //include("database.php");
 
-/*if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $login_username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
   $login_password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -30,7 +30,7 @@ session_start();
     error_log("User not found: " . $login_username);
     echo "Invalid username or password";
   }
-}*/
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -2,6 +2,8 @@
 
 $conn = include_once './db_connection/database_connection.php';
 
+session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   // Retrieve current user's ID from session
@@ -37,10 +39,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $enterprise_type = htmlspecialchars($_POST['enterpriseType']);
   $enterprise_level = htmlspecialchars($_POST['enterprise_level']);
   $address = htmlspecialchars($_POST['Address']);
+  $export_market = htmlspecialchars($_POST['Export']);
+  $local_market = htmlspecialchars($_POST['Local']);
 
   // Insert into business_info table
-  $sql_business_info = "INSERT INTO business_info (user_info_id, firm_name, enterprise_type, enterprise_level, B_address) 
-                          VALUES ('$personal_info_id', '$firm_name', '$enterprise_type', '$enterprise_level', '$address')";
+  $sql_business_info = "INSERT INTO business_info (user_info_id, firm_name, enterprise_type, enterprise_level, B_address, Export_Mkt_Outlet, Local_Mkt_Outlet) 
+                          VALUES ('$personal_info_id', '$firm_name', '$enterprise_type', '$enterprise_level', '$address', '$export_market', '$local_market')";
   $conn->query($sql_business_info);
   if ($conn->affected_rows > 0) {
     $successful_inserts++;
@@ -50,9 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $business_id = $conn->insert_id;
 
   // Assets table
-  $building_value = str_replace(',' , '', htmlspecialchars($_POST['buildings'])) ;
-  $equipment_value = str_replace(',' , '',  htmlspecialchars($_POST['equipments']));
-  $working_capital =  str_replace(',' , '', htmlspecialchars($_POST['working_capital']));
+  $building_value = str_replace(',', '', htmlspecialchars($_POST['buildings']));
+  $equipment_value = str_replace(',', '',  htmlspecialchars($_POST['equipments']));
+  $working_capital =  str_replace(',', '', htmlspecialchars($_POST['working_capital']));
 
   // Insert into assets table
   $sql_assets = "INSERT INTO assets (business_id, building_value, equipment_value, working_capital) 
@@ -141,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Application Form</title>
-  <link rel="icon" href="./assets/svg/DOST_ICON.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/svg/DOST_ICON.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/css/main.css">
   <script src="../assets/jquery-3.7.1/jquery-3.7.1.min.js"></script>
   <script src="./assets/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
@@ -411,7 +415,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <div class="col-12 col-md-6">
                 <div class="form-floating">
                   <select class="form-select" name="enterpriseType" id="enterpriseType" aria-label="Floating label select example" required>
-                    <option selected>Select Type of Enterprise</option>
+                    <option selected value="">Select Type of Enterprise</option>
                     <option value="Sole Proprietorship">Sole Proprietorship</option>
                     <option value="Partnership">Partnership</option>
                     <option value="Corporation">Corporation</option>
@@ -501,6 +505,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="female_personnelInd">Female:</label>
                   </div>
                 </fieldset>
+              </div>
+              <div class="col-12 mb-3">
+                <fieldset>
+                  <legend>
+                    Market Outlet
+                  </legend>
+                  <div class="form-floating mb-3">
+                    <textarea name="Export" id="ExportMar" class="form-control" placeholder="Export" required></textarea>
+                    <div class="invalid-feedback">
+                      Please enter the Export Market Outlet
+                    </div>
+                    <label for="Export">Export:</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <textarea name="Local" id="LocalMar" class="form-control" placeholder="Local" required></textarea>
+                    <div class="invalid-feedback">
+                      Please enter the Local Market Outlet
+                    </div>
+                    <label for="Local">Local:</label>
+                  </div>
+                </fieldset>
+
               </div>
 
             </div>
@@ -637,6 +663,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <label for="female_personnel">Female Personnel</label>
               <input type="number" id="re_female_personnelInd" class="form-control mb-3" readonly>
             </fieldset>
+            <fieldset class=" my-3">
+              <legend>
+                Market Outlet
+              </legend>
+              <label for="Export">Export</label>
+              <textarea id="re_ExportMar" class="form-control mb-3" readonly></textarea>
+
+              <label for="Local">Local</label>
+              <textarea id="re_LocalMar" class="form-control mb-3" readonly></textarea>
+            </fieldset>
 
           </div>
           <h6 class="mb-4">Requirement Uploaded:</h6>
@@ -766,8 +802,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $('#re_working_capital').val($('#working_capital').val());
           $('#re_to_Assets').text($('#to_Assets').text());
           $('#re_Enterprise_Level').text($('#Enterprise_Level').text());
-
           $('#EnterpriseLevelInput').val($('#Enterprise_Level').text());
+          $('#re_LocalMar').val($('#LocalMar').val());
+          $('#re_ExportMar').val($('#ExportMar').val());
 
 
           // Personnel Info
@@ -782,6 +819,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       });
     });
 
+
     function validateCurrentStep(stepIndex) {
       var isValid = true;
       var currentStep = $('#step-' + (stepIndex + 1)); // stepIndex is 0-based
@@ -790,6 +828,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!this.checkValidity()) {
           $(this).addClass('is-invalid'); // Add invalid class for styling
           isValid = false;
+          $('#smartwizard').smartWizard('fixHeight');
         } else {
           $(this).removeClass('is-invalid');
         }
@@ -831,43 +870,62 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $(document).ready(function() {
 
-   function updateEnterpriseLevel() {
-  const formatNumber = (input) => {
-    let value = input.value.replace(/,/g, ''); // Remove existing commas
-    value = value.replace(/[^\d.]/g, ''); // Remove non-numeric characters except for decimal point
-    value = value.replace(/(\.\d{2})\d+$/, '$1'); // Limit decimal points to 2
+      function updateEnterpriseLevel() {
+        const formatNumber = (input) => {
+          let value = input.value.replace(/,/g, ''); // Remove existing commas
+          value = value.replace(/[^\d.]/g, ''); // Remove non-numeric characters except for decimal point
+          value = value.replace(/(\.\d{2})\d+$/, '$1'); // Limit decimal points to 2
 
-    // Add commas every 3 digits
-    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+          // Add commas every 3 digits
+          value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-    input.value = value;
-  };
+          input.value = value;
+        };
 
-  formatNumber(document.getElementById('buildings'));
-  formatNumber(document.getElementById('equipments'));
-  formatNumber(document.getElementById('working_capital'));
+        formatNumber(document.getElementById('buildings'));
+        formatNumber(document.getElementById('equipments'));
+        formatNumber(document.getElementById('working_capital'));
 
-  var buildingsValue = parseFloat($('#buildings').val().replace(/,/g, '')) || 0;
-  var equipmentsValue = parseFloat($('#equipments').val().replace(/,/g, '')) || 0;
-  var workingCapitalValue = parseFloat($('#working_capital').val().replace(/,/g, '')) || 0;
-  var total = buildingsValue + equipmentsValue + workingCapitalValue;
-  $('#to_Assets').text(total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
-  if (total === 0) {
-    $('#Enterprise_Level').text('');
-    return;
-  }
-  if (total < 3e6) {
-    $('#Enterprise_Level').text('Micro Enterprise');
-  } else if (total < 15e6) {
-    $('#Enterprise_Level').text('Small Enterprise');
-  } else if (total < 100e6) {
-    $('#Enterprise_Level').text('Medium Enterprise');
-  } else {
-    $('#Enterprise_Level').text('Large Enterprise');
-  }
-}
+        var buildingsValue = parseFloat($('#buildings').val().replace(/,/g, '')) || 0;
+        var equipmentsValue = parseFloat($('#equipments').val().replace(/,/g, '')) || 0;
+        var workingCapitalValue = parseFloat($('#working_capital').val().replace(/,/g, '')) || 0;
+        var total = buildingsValue + equipmentsValue + workingCapitalValue;
+        $('#to_Assets').text(total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+        if (total === 0) {
+          $('#Enterprise_Level').text('');
+          return;
+        }
+        if (total < 3e6) {
+          $('#Enterprise_Level').text('Micro Enterprise');
+        } else if (total < 15e6) {
+          $('#Enterprise_Level').text('Small Enterprise');
+        } else if (total < 100e6) {
+          $('#Enterprise_Level').text('Medium Enterprise');
+        } else {
+          $('#Enterprise_Level').text('Large Enterprise');
+        }
+      }
 
-$('#buildings, #equipments, #working_capital').on('input', updateEnterpriseLevel);
+      $('#buildings, #equipments, #working_capital').on('input', updateEnterpriseLevel);
+    });
+
+
+
+    $('textarea').on('input', function() {
+      this.style.height = 'auto';
+      this.style.height = (this.scrollHeight) + 'px';
+    });
+
+    $('textarea[readonly]').each(function() {
+      this.style.height = 'auto';
+      this.style.height = (this.scrollHeight) + 'px';
+    });
+
+
+    $('#Export, #Local').on('input', function() {
+      if (this.scrollHeight > this.clientHeight) {
+        $('#smartwizard').smartWizard('fixHeight');
+      }
     });
   </script>
 </body>

@@ -63,13 +63,21 @@ foreach ($applicants as $applicant) {
         </div>
     </div>
 </div> -->
-
+<style>
+   #applicant_wrapper > div:first-child {
+    background-color: black;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    color: white;
+    margin-top: 0 !important;
+    }
+</style>
 
 <div>
     <h4 class="p-3">Applicant:</h4>
 </div>
 <div class="bg-white py-2 rounded-5">
-    <div class="modal fade" id="ApplicantModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="ApplicantModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header bg-primary">

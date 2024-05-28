@@ -13,8 +13,17 @@
         transform: scale(1.05);
         font-weight: bolder;
     }
+
+    /* handleproject header color change */
+    #handledProject_wrapper > div:first-child {
+    background-color: black;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    color: white;
+}
+
 </style>
-<div class="modal fade" id="handleProjectModal" tabindex="-1" aria-labelledby="handleProjectModalLabel" aria-hidden="true">
+<div class="modal fade" id="handleProjectModal" tabindex="-1" aria-labelledby="handleProjectModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

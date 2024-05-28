@@ -62,12 +62,21 @@ ul#myTab li.nav-item button.tab-Nav:hover {
     color: white;
 }
 
+#ongoing_wrapper > div:first-child,
+#applicant_wrapper > div:first-child {
+    background-color: #318791;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    color: white;
+    margin-top: 0 !important;
+}
+
 </style>
 <div class="p-3">
     <h4>Project List</h4>
 </div>
 <!-- Applicant Modal -->
-<div class="modal fade" id="ApplicantModal" tabindex="-1" aria-labelledby="ApplicantModalLabel" aria-hidden="true">
+<div class="modal fade" id="ApplicantModal" tabindex="-1" aria-labelledby="ApplicantModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-info">
@@ -133,7 +142,7 @@ ul#myTab li.nav-item button.tab-Nav:hover {
 </div>
 <!-- Applicant Modal End -->
 <!-- Ongoing Modal -->
-<div class="modal fade" id="OngoingModal" tabindex="-1" aria-labelledby="OngoingModalLabel" aria-hidden="true">
+<div class="modal fade" id="OngoingModal" tabindex="-1" aria-labelledby="OngoingModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-info">

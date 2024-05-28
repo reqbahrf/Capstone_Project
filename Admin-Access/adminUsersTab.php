@@ -1,4 +1,12 @@
 
+<style>
+  #user_staff_wrapper > div:first-child {
+    background-color: #318791;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    color: white;
+  }
+</style>
 <div class="p-3">
     <h4>User Access</h4>
 </div>
