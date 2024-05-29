@@ -14,51 +14,50 @@
     /* Increased from 60s to 120s */
     transform-origin: center;
   }
+
   @media (min-width: 768px) {
     .waiting-clock {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    height: calc(100vh - 100px);
-  }
-
-  
-  }
-  
-  @media (max-width: 768px) {
-    .waiting-clock {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    height: calc(100vh - 100px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50%;
+      height: calc(100vh - 100px);
     }
 
-    
-  .waiting-clock h3 {
-    font-size: 15px;
+
   }
+
+  @media (max-width: 768px) {
+    .waiting-clock {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 90%;
+      height: calc(100vh - 100px);
+    }
+
+
+    .waiting-clock h3 {
+      font-size: 15px;
+    }
 
     .waiting-clock h4 {
-    font-size: 10px;
+      font-size: 10px;
+    }
+
+    .waitingClock {
+      width: 200px;
+      height: 200px;
+    }
+
+
+
+
   }
-
-  .waitingClock {
-    width: 200px;
-    height: 200px;
-  }
-
-  
-
-
-  }
-
-
 </style>
 
 <body class="overflow-hidden">
-  <div class="container-fluid px-0 headerlogo">
+  <div class="container-fluid px-0 headerlogo z-3">
     <div class="d-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center">
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 74.488 75.079" enable-background="new 0 0 74.488 75.079" xml:space="preserve" class="m-3 logo">
@@ -101,10 +100,10 @@
       </div>
     </div>
   </div>
-  <div class=" flex-container d-flex flex-column flex-md-row mobileView">
+  <div class=" flex-container d-flex flex-column flex-md-row mobileView bg-white">
     <main class="main-column overflow-hidden vh-100" id="main-content">
       <div class="d-flex justify-content-center align-items-center m-0">
-        <div class="waiting-clock">
+        <div class="waiting-clock z-3">
           <div class="container d-flex flex-column justify-content-center align-items-center bg-white p-4 shadow rounded-5 ">
             <div>
               <h3>Your Application is still in the process</h3>
@@ -121,7 +120,7 @@
               </svg>
             </div>
             <div class="w-auto">
-              <h4>Please Wait for your approval</h4>
+              <h4>Please Wait for the approval</h4>
             </div>
           </div>
 

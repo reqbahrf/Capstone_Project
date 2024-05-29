@@ -94,6 +94,10 @@
     font-size: 12px;
   }
 
+  #dataSheetHeader img {
+    width: 100%;
+    height: auto;
+  }
   @media screen and (max-width: 767px) {
     .tg {
       width: auto !important;
@@ -154,9 +158,13 @@
       padding: 5px;
       /* Reduce padding to save space */
     }
+    
   }
 </style>
 <div id="containerSize">
+  <div id=dataSheetHeader>
+    <img src="/assets/img/projectsheetsHeader.png" alt="header">
+  </div>
   <div>
     <!-- Create a textfield for the following; Project Title:, Name of Firm:, Address:, the Contact person: and Designation: should be in the same horizontal line then Contact Details such as landline:, Mobile Phone: and Email Address should also in the same line. note that the textfield should utilize bootstrap -->
     <div class="form-group row">

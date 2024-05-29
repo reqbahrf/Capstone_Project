@@ -66,7 +66,7 @@
   <!-- Add User Modal end -->
   <div class="py-4 bg-white rounded-5">
     <div class="d-flex justify-content-end">
-      <button type="button" class="btn btn-info" id="addUserModal" data-bs-toggle="modal" data-bs-target="#addUserModal">
+      <button type="button" class="btn btn-primary" id="addUserModal" data-bs-toggle="modal" data-bs-target="#addUserModal">
         Add user
       </button>
     </div>

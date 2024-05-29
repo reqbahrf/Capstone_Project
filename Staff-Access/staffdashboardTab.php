@@ -16,9 +16,9 @@
 
     /* handleproject header color change */
     #handledProject_wrapper > div:first-child {
-    background-color: black;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    background-color: #318791;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     color: white;
 }
 
