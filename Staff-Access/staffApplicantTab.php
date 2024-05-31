@@ -64,12 +64,12 @@ foreach ($applicants as $applicant) {
     </div>
 </div> -->
 <style>
-   #applicant_wrapper > div:first-child {
-    background-color: #318791;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    color: white;
-    margin-top: 0 !important;
+    #applicant_wrapper>div:first-child {
+        background-color: #318791;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        color: white;
+        margin-top: 0 !important;
     }
 </style>
 
@@ -94,47 +94,43 @@ foreach ($applicants as $applicant) {
                                 <div class="form-group row mt-2">
                                     <label for="firm_name" class="col-12 col-sm-2">Name of Firm:</label>
                                     <div class="col-12 col-sm-10">
-                                        <input type="text" class="form-control" id="firm_name" value="[Firm Name Value]" readonly>
+                                        <input type="text" class="form-control" id="firm_name" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row mt-2">
                                     <label for="address" class="col-12 col-sm-2">Address:</label>
                                     <div class="col-12 col-sm-10">
-                                        <input type="text" class="form-control" id="address" value="[Address Value]" readonly>
+                                        <input type="text" class="form-control" id="address" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row mt-2">
                                     <label for="contact_person" class="col-12 col-sm-2">Contact Person:</label>
                                     <div class="col-12 col-sm-4">
-                                        <input type="text" class="form-control" id="contact_person" value="[Contact Person Value]" readonly>
+                                        <input type="text" class="form-control" id="contact_person" readonly>
                                     </div>
                                     <label for="designation" class="col-12 col-sm-2">Designation:</label>
                                     <div class="col-12 col-sm-4">
-                                        <input type="text" class="form-control" id="designation" value="[Designation Value]" readonly>
+                                        <input type="text" class="form-control" id="designation" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row mt-2">
                                     <label for="enterpriseType" class="col-12 col-sm-2">Type Of Enterprise</label>
                                     <div class="col-12 col-sm-10">
-                                        <select class="form-select" id="enterpriseType">
-                                            <option selected value="Sole Proprietorship">Sole Proprietorship</option>
-                                            <option value="Partnership">Partnership</option>
-                                            <option value="Corporation">Corporation</option>
-                                        </select>
+                                        <input type="text" class="form-control" id="enterpriseType" value="Sole Proprietorship" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row mt-2">
                                     <label for="landline" class="col-12 col-sm-2">Landline:</label>
                                     <div class="col-12 col-sm-2">
-                                        <input type="text" class="form-control" id="landline" value="[Landline Value]" readonly>
+                                        <input type="text" class="form-control" id="landline" readonly>
                                     </div>
                                     <label for="mobile_phone" class="col-12 col-sm-2">Mobile Phone:</label>
                                     <div class="col-12 col-sm-2">
-                                        <input type="text" class="form-control" id="mobile_phone" value="[Mobile Phone Value]" readonly>
+                                        <input type="text" class="form-control" id="mobile_phone" readonly>
                                     </div>
                                     <label for="email" class="col-12 col-sm-2">Email Address:</label>
                                     <div class="col-12 col-sm-2">
-                                        <input type="text" class="form-control" id="email" value="[Email Address Value]" readonly>
+                                        <input type="text" class="form-control" id="email" readonly>
                                     </div>
                                 </div>
                         </fieldset>
@@ -159,7 +155,6 @@ foreach ($applicants as $applicant) {
                                                 <div>
                                                     <input class="form-check-input me-1" type="checkbox" value="" id="dtiSecCdaCheckbox">
                                                     <label class="form-check-label" for="dtiSecCdaCheckbox">DTI/SEC/CDA</label>
-                                                    
                                                     <span class="badge bg-success">Reviewed</span>
                                                 </div>
                                                 <a href="path/to/dti_sec_cda.pdf" target="_blank">Review File</a>
@@ -252,7 +247,8 @@ foreach ($applicants as $applicant) {
                         <td><?= $item['designation'] ?></td>
                         <td><?= $item['firm_name'] ?></td>
                         <td>
-                            <p><strong>Business Address:</strong> <?= $item['B_address'] ?> <br> <strong>Type of Enterprise:</strong> <?= $item['enterprise_type'] ?></p>
+                            <strong>Business Address:</strong> <span class="b_address"><?= $item['B_address'] ?></span><br>
+                            <strong>Type of Enterprise:</strong> <span class="enterprise_l"><?= $item['enterprise_type'] ?></span>
                             <p>
                                 <Strong>Assets:</Strong> <br>
                                 <span class="ps-2">Building: <?= number_format($item['building_value'], 2) ?></span><br>
@@ -261,9 +257,9 @@ foreach ($applicants as $applicant) {
                             </p>
                             <strong>Contact Details:</strong>
                             <p>
-                                <strong class="p-2">Landline:</strong> <?= $item['landline'] ?> <br>
-                                <Strong class="p-2">Mobile Phone:</Strong> <?= $item['mobile_number'] ?> <br>
-                                <strong class="p-2">Email:</strong> <?= $item['email_address'] ?>
+                                <strong class="p-2">Landline:</strong> <span class="landline"><?= $item['landline'] ?></span> <br>
+                                <Strong class="p-2">Mobile Phone:</Strong> <span class="mobile_num"> <?= $item['mobile_number'] ?> </span> <br>
+                                <strong class="p-2">Email:</strong> <span class="email_add"><?= $item['email_address'] ?></span> 
                             </p>
                         </td>
                         <td><?= $item['date_applied'] ?></td>
@@ -313,30 +309,59 @@ foreach ($applicants as $applicant) {
             $(this).val('');
         });
 
-       // Get all checkboxes and their corresponding 'Reviewed' spans
-const checkboxes = document.querySelectorAll('.form-check-input');
-const reviewedSpans = document.querySelectorAll('.badge.bg-success');
+        // Get all checkboxes and their corresponding 'Reviewed' spans
+        const checkboxes = document.querySelectorAll('.form-check-input');
+        const reviewedSpans = document.querySelectorAll('.badge.bg-success');
 
-// Hide all 'Reviewed' spans initially
-reviewedSpans.forEach(span => {
-    span.style.display = 'none';
-});
+        // Hide all 'Reviewed' spans initially
+        reviewedSpans.forEach(span => {
+            span.style.display = 'none';
+        });
 
-// Add event listener to each checkbox
-checkboxes.forEach((checkbox, index) => {
-    checkbox.addEventListener('change', function() {
-        if (this.checked) {
-            // Show confirmation modal
-            // You can customize the modal content and appearance based on your requirements
-            $('#myModal').modal('show');
+        // Add event listener to each checkbox
+        checkboxes.forEach((checkbox, index) => {
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    // Show confirmation modal
+                    // You can customize the modal content and appearance based on your requirements
+                    $('#myModal').modal('show');
 
-            // Show 'Reviewed' span if checkbox is checked
-            reviewedSpans[index].style.display = 'inline';
-        } else {
-            reviewedSpans[index].style.display = 'none'; // Hide 'Reviewed' span if checkbox is unchecked
-        }
+                    // Show 'Reviewed' span if checkbox is checked
+                    reviewedSpans[index].style.display = 'inline';
+                } else {
+                    reviewedSpans[index].style.display = 'none'; // Hide 'Reviewed' span if checkbox is unchecked
+                }
+            });
+        });
+
     });
-});
-        
+</script>
+<script>
+    // jQuery code to populate modal fields with table row values
+    $(document).ready(function() {
+        $('.btn[data-bs-toggle="modal"]').on('click', function() {
+            let row = $(this).closest('tr');
+
+            let userId = row.find('td:nth-child(1)').text();
+            let fullName = row.find('td:nth-child(2)').text();
+            let designation = row.find('td:nth-child(3)').text();
+            let firmName = row.find('td:nth-child(4)').text();
+            let businessAddress = row.find('td:nth-child(5) span.b_address').text();
+            let enterpriseType = row.find('td:nth-child(5) span.enterprise_l').text();
+            let landline = row.find('td:nth-child(5) span.landline').text();
+            let mobilePhone = row.find('td:nth-child(5) span.mobile_num').text();
+            let emailAddress = row.find('td:nth-child(5) span.email_add').text();
+            // Add more fields as needed
+
+            $('#firm_name').val(firmName);
+            $('#address').val(businessAddress);
+            $('#contact_person').val(fullName); // Add corresponding value
+            $('#designation').val(designation);
+            $('#enterpriseType').val(enterpriseType);
+            $('#landline').val(landline);
+            $('#mobile_phone').val(mobilePhone);
+            $('#email').val(emailAddress);
+            // Add more fields as needed
+        });
     });
 </script>
