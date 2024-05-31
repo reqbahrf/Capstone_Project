@@ -2,13 +2,11 @@
 
 $conn = include_once './db_connection/database_connection.php';
 
-session_start();
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   // Retrieve current user's ID from session
   session_start();
-  $user_id = 1; // Assuming you store the user ID in session
+  $user_id = 8; // Assuming you store the user ID in session
   $successful_inserts = 0;
 
   // Personal Info table
@@ -66,14 +64,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $successful_inserts++;
   }
   // Personnel table
-  $male_direct = htmlspecialchars($_POST['male_personnelDi']);
-  $female_direct = htmlspecialchars($_POST['female_personnelDi']);
-  $male_indirect = htmlspecialchars($_POST['male_personnelInd']);
-  $female_indirect = htmlspecialchars($_POST['female_personnelInd']);
+  $m_personnelDiRe = $_POST['m_personnelDiRe'];
+  $f_personnelDiRe = $_POST['f_personnelDiRe'];
+  $m_personnelDiPart = $_POST['m_personnelDiPart'];
+  $f_personnelDiPart = $_POST['f_personnelDiPart'];
+  $m_personnelIndRe = $_POST['m_personnelIndRe'];
+  $f_personnelIndRe = $_POST['f_personnelIndRe'];
+  $m_personnelIndPart = $_POST['m_personnelIndPart'];
+  $f_personnelIndPart = $_POST['f_personnelIndPart'];
+  
 
   // Insert into personnel table
-  $sql_personnel = "INSERT INTO personnel (business_id, male_direct, female_direct, male_indirect, female_indirect) 
-                      VALUES ('$business_id', '$male_direct', '$female_direct', '$male_indirect', '$female_indirect')";
+  $sql_personnel = "INSERT INTO `personnel`(`business_id`, `male_direct_re`, `female_direct_re`, `male_direct_part`, `female_direct_part`, `male_indirect_re`, `female_indirect_re`, `male_indirect_part`, `female_indirect_part`) 
+                    VALUES ('$business_id', '$m_personnelDiRe', '$f_personnelDiRe', '$m_personnelDiPart', '$f_personnelDiPart', '$m_personnelIndRe', '$f_personnelIndRe', '$m_personnelIndPart', '$f_personnelIndPart')";
   $conn->query($sql_personnel);
   if ($conn->affected_rows > 0) {
     $successful_inserts++;
@@ -215,9 +218,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     #Enterprise_Level,
     #to_Assets,
     #re_to_Assets,
-    #re_Enterprise_Level {
+    #re_Enterprise_Level,
+    #EstimatedFund,
+    #re_EstimatedFund {
       font-weight: bold;
       color: #318791;
+    }
+
+    #EstimationNotice,
+    #re_EstimationNotice{
+      font-size: 0.8rem;
+      color: red;
     }
 
     .mt-200 {
@@ -279,6 +290,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       --sw-loader-color: #318791;
       --sw-loader-background-color: #f8f9fa;
       --sw-loader-background-wrapper-color: rgba(255, 255, 255, 0.7);
+    }
+
+    #smartwizard {
+      font-size: 15px;
     }
   </style>
 
@@ -413,7 +428,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
               </div>
               <div class="col-12 col-md-6">
-                <div class="form-floating">
+                <div class="form-floating mb-3">
                   <select class="form-select" name="enterpriseType" id="enterpriseType" aria-label="Floating label select example" required>
                     <option selected value="">Select Type of Enterprise</option>
                     <option value="Sole Proprietorship">Sole Proprietorship</option>
@@ -443,21 +458,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     Assets:
                   </legend>
                   <div class="form-floating mb-3">
-                    <input type="text" name="buildings" id="buildings" class="form-control" placeholder="Value in USD" required>
+                    <input type="text" name="buildings" id="buildings" class="form-control" placeholder="Value in p" required>
                     <div class="invalid-feedback">
                       Please enter the value of buildings.
                     </div>
                     <label for="buildings">Buildings:</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input type="text" name="equipments" id="equipments" class="form-control" placeholder="Value in USD" required>
+                    <input type="text" name="equipments" id="equipments" class="form-control" placeholder="Value in p" required>
                     <div class="invalid-feedback">
                       Please enter the value of equipments.
                     </div>
                     <label for="equipments">Equipments:</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input type="text" name="working_capital" id="working_capital" class="form-control" placeholder="Value in USD" required>
+                    <input type="text" name="working_capital" id="working_capital" class="form-control" placeholder="Value in p" required>
                     <div class="invalid-feedback">
                       Please enter the value of working capital.
                     </div>
@@ -465,46 +480,149 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   </div>
                   <p>Total Assets: <span id="to_Assets"></span></p>
                   <p>Enterprise Level: <span id="Enterprise_Level"></span></p>
+                  <p>Estimated funds that can be acquired:</p>
+                  <div class="text-center">
+                    <span id="EstimatedFund" class="p-2"></span> <br>
+                    <span id="EstimationNotice" hidden>*Note that this estimation is still subject to further business evaluation.</span>
+                  </div>
                   <input type="hidden" id="EnterpriseLevelInput" name="enterprise_level">
                 </fieldset>
               </div>
-              <div class="col-12 col-md-4 mb-3">
-                <fieldset>
-                  <legend class="w-auto">Number of Personnel Direct:</legend>
-                  <div class="form-floating mb-3">
-                    <input type="text" name="male_personnelDi" id="male_personnelDi" class="form-control" placeholder="Number of Male Personnel" required>
-                    <div class="invalid-feedback">
-                      Please enter the number of male personnel.
-                    </div>
-                    <label for="male_personnelDi">Male:</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                    <input type="text" name="female_personnelDi" id="female_personnelDi" class="form-control" placeholder="Number of Female Personnel" required>
-                    <div class="invalid-feedback">
-                      Please enter the number of female personnel.
-                    </div>
-                    <label for="female_personnelDi">Female:</label>
-                  </div>
-                </fieldset>
-              </div>
-              <div class="col-12 col-md-4 mb-3">
-                <fieldset>
-                  <legend class="w-auto">Number of Personnel Indirect:</legend>
-                  <div class="form-floating mb-3">
-                    <input type="text" name="male_personnelInd" id="male_personnelInd" class="form-control" placeholder="Number of Male Personnel" required>
-                    <div class="invalid-feedback">
-                      Please enter the number of male personnel.
-                    </div>
-                    <label for="male_personnelInd">Male:</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                    <input type="text" name="female_personnelInd" id="female_personnelInd" class="form-control" placeholder="Number of Female Personnel" required>
-                    <div class="invalid-feedback">
-                      Please enter the number of female personnel.
-                    </div>
-                    <label for="female_personnelInd">Female:</label>
-                  </div>
-                </fieldset>
+              <div class="col-12 col-md-8">
+                <div class="col-12 mb-3">
+                  <fieldset class="p-0">
+                    <legend class="w-auto">Number of Personnel Direct(Production):</legend>
+                    <table class="table my-4">
+                      <thead>
+                        <tr>
+                          <th scope="col" colspan="2" class="text-center table-primary">Regular</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Male:</th>
+                          <th scope="col">Female:</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div class="mb-3">
+                              <input type="text" name="m_personnelDiRe" id="m_personnelDiRe" class="form-control" placeholder="Number of Male Regular" required>
+                              <div class="invalid-feedback">
+                                Please enter the number of male personnel.
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="mb-3">
+                              <input type="text" name="f_personnelDiRe" id="f_personnelDiRe" class="form-control" placeholder="Number of Female Regular" required>
+                              <div class="invalid-feedback">
+                                Please enter the number of female personnel.
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col" colspan="2" class="text-center table-primary">Part-time</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Male:</th>
+                          <th scope="col">Female:</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div class="mb-3">
+                              <input type="text" name="m_personnelDiPart" id="m_personnelDiPart" class="form-control" placeholder="Number of Male Part-time" required>
+                              <div class="invalid-feedback">
+                                Please enter the number of male personnel.
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="mb-3">
+                              <input type="text" name="f_personnelDiPart" id="f_personnelDiPart" class="form-control" placeholder="Number of Female Part-time" required>
+                              <div class="invalid-feedback">
+                                Please enter the number of female personnel.
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </fieldset>
+                </div>
+                <div class="col-12 mb-3">
+                  <fieldset class="p-0">
+                    <legend class="w-auto">Number of Personnel Indirect(Admin and Marketing):</legend>
+                    <table class="table my-4">
+                      <thead>
+                        <tr>
+                          <th scope="col" colspan="2" class="text-center table-primary">Regular</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Male:</th>
+                          <th scope="col">Female:</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div class="mb-3">
+                              <input type="text" name="m_personnelIndRe" id="m_personnelIndRe" class="form-control" placeholder="Number of Male Regular" required>
+                              <div class="invalid-feedback">
+                                Please enter the number of male personnel.
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="mb-3">
+                              <input type="text" name="f_personnelIndRe" id="f_personnelIndRe" class="form-control" placeholder="Number of Female Regular" required>
+                              <div class="invalid-feedback">
+                                Please enter the number of female personnel.
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col" colspan="2" class="text-center table-primary">Part-time</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Male:</th>
+                          <th scope="col">Female:</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div class="mb-3">
+                              <input type="text" name="m_personnelIndPart" id="m_personnelIndPart" class="form-control" placeholder="Number of Male Part-time" required>
+                              <div class="invalid-feedback">
+                                Please enter the number of male personnel.
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="mb-3">
+                              <input type="text" name="f_personnelIndPart" id="f_personnelIndPart" class="form-control" placeholder="Number of Female Part-time" required>
+                              <div class="invalid-feedback">
+                                Please enter the number of female personnel.
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </fieldset>
+                </div>
               </div>
               <div class="col-12 mb-3">
                 <fieldset>
@@ -592,7 +710,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <h5>Review and confirm the details provided before submission.</h5>
         </div>
         <div class="d-flex justify-content-center align-items-center flex-column"">
-          <div class=" w-50 border rounded-5 p-4 shadow">
+          <div class="w-50 border rounded-5 p-4 shadow">
           <h6 class="mb-4">Personal info:</h6>
           <div class="ps-4">
             <label for="f_name">First Name</label>
@@ -641,28 +759,123 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
               <p>Total Assets: <span id="re_to_Assets"></span></p>
               <p>Enterprise Level: <span id="re_Enterprise_Level"></span></p>
+              <p>Estimated funds that can be acquired:</p>
+              <div class="text-center">
+                    <span id="re_EstimatedFund" class="p-2"></span> <br>
+                    <span id="re_EstimationNotice">*Note that this estimation is still subject to further business evaluation.</span>
+              </div>
 
             </fieldset>
-            <fieldset class=" my-3">
-              <legend>
-                Number of Personnel Direct:
-              </legend>
-              <label for="male_personnel">Male Personnel</label>
-              <input type="number" id="re_male_personnelDir" class="form-control mb-3" readonly>
-
-              <label for="female_personnel">Female Personnel</label>
-              <input type="number" id="re_female_personnelDir" class="form-control mb-3" readonly>
-            </fieldset>
-            <fieldset class=" my-3">
-              <legend>
-                Number of Personnel Indirect:
-              </legend>
-              <label for="male_personnel">Male Personnel</label>
-              <input type="number" id="re_male_personnelInd" class="form-control mb-3" readonly>
-
-              <label for="female_personnel">Female Personnel</label>
-              <input type="number" id="re_female_personnelInd" class="form-control mb-3" readonly>
-            </fieldset>
+            <div class="col-12 mb-3">
+              <fieldset class="p-0" disabled>
+                <legend class="w-auto">Number of Personnel Direct(Production):</legend>
+                <table class="table my-4">
+                  <thead>
+                    <tr>
+                      <th scope="col" colspan="2" class="text-center table-primary">Regular</th>
+                    </tr>
+                    <tr>
+                      <th scope="col">Male:</th>
+                      <th scope="col">Female:</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="mb-3">
+                          <input type="text" name="re_m_personnelDiRe" id="re_m_personnelDiRe" class="form-control" readonly>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="mb-3">
+                          <input type="text" name="re_f_personnelDiRe" id="re_f_personnelDiRe" class="form-control" readonly>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col" colspan="2" class="text-center table-primary">Part-time</th>
+                    </tr>
+                    <tr>
+                      <th scope="col">Male:</th>
+                      <th scope="col">Female:</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="mb-3">
+                          <input type="text" name="re_m_personnelDiPart" id="re_m_personnelDiPart" class="form-control" readonly>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="mb-3">
+                          <input type="text" name="re_f_personnelDiPart" id="re_f_personnelDiPart" class="form-control" readonly>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </fieldset>
+            </div>
+            <div class="col-12 mb-3">
+              <fieldset class="p-0" disabled>
+                <legend class="w-auto">Number of Personnel Indirect(Admin and Marketing):</legend>
+                <table class="table my-4">
+                  <thead>
+                    <tr>
+                      <th scope="col" colspan="2" class="text-center table-primary">Regular</th>
+                    </tr>
+                    <tr>
+                      <th scope="col">Male:</th>
+                      <th scope="col">Female:</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="mb-3">
+                          <input type="text" name="re_m_personnelIndRe" id="re_m_personnelIndRe" class="form-control" readonly>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="mb-3">
+                          <input type="text" name="re_f_personnelIndRe" id="re_f_personnelIndRe" class="form-control" readonly>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col" colspan="2" class="text-center table-primary">Part-time</th>
+                    </tr>
+                    <tr>
+                      <th scope="col">Male:</th>
+                      <th scope="col">Female:</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="mb-3">
+                          <input type="text" name="re_m_personnelIndPart" id="re_m_personnelIndPart" class="form-control" readonly>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="mb-3">
+                          <input type="text" name="re_f_personnelIndPart" id="re_f_personnelIndPart" class="form-control" readonly>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </fieldset>
+            </div>
             <fieldset class=" my-3">
               <legend>
                 Market Outlet
@@ -803,15 +1016,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $('#re_to_Assets').text($('#to_Assets').text());
           $('#re_Enterprise_Level').text($('#Enterprise_Level').text());
           $('#EnterpriseLevelInput').val($('#Enterprise_Level').text());
+          $('#re_EstimatedFund').text($('#EstimatedFund').text());
           $('#re_LocalMar').val($('#LocalMar').val());
           $('#re_ExportMar').val($('#ExportMar').val());
 
 
           // Personnel Info
-          $('#re_male_personnelDir').val($('#male_personnelDi').val());
-          $('#re_female_personnelDir').val($('#female_personnelDi').val());
-          $('#re_male_personnelInd').val($('#male_personnelInd').val());
-          $('#re_female_personnelInd').val($('#female_personnelInd').val());
+          $('#re_m_personnelDiRe').val($('#m_personnelDiRe').val());
+          $('#re_f_personnelDiRe').val($('#f_personnelDiRe').val());
+          $('#re_m_personnelDiPart').val($('#m_personnelDiPart').val());
+          $('#re_f_personnelDiPart').val($('#f_personnelDiPart').val());
+
+          // Retrieve and populate values for indirect personnel
+          $('#re_m_personnelIndRe').val($('#m_personnelIndRe').val());
+          $('#re_f_personnelIndRe').val($('#f_personnelIndRe').val());
+          $('#re_m_personnelIndPart').val($('#m_personnelIndPart').val());
+          $('#re_f_personnelIndPart').val($('#f_personnelIndPart').val());
 
           // Object mapping file input IDs to their corresponding readonly input IDs
         }
@@ -904,6 +1124,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
           $('#Enterprise_Level').text('Large Enterprise');
         }
+
+        // Calculate 50% of the total
+        var estimatedFund = total * 0.5;
+
+        // Update the span element with the estimated fund
+        $('#EstimatedFund').text(estimatedFund.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+
+        // Unhide the estimation notice
+        $('#EstimationNotice').removeAttr('hidden');
+        // Unhide the estimation notice
+        document.getElementById('EstimationNotice').style.display = 'inline';
       }
 
       $('#buildings, #equipments, #working_capital').on('input', updateEnterpriseLevel);
