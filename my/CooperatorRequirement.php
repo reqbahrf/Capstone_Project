@@ -25,6 +25,12 @@
     color: white;
   }
 
+  .nav-link.tab-Nav:disabled {
+  opacity: 0.5; /* Reduce opacity for disabled buttons */
+  cursor: not-allowed; /* Change cursor to not-allowed */
+  /* Add any other custom styles you want for disabled buttons */
+}
+
   /* Change the background color of the progress bar */
 </style>
 <div class="p-3">
@@ -86,305 +92,14 @@
 
         <div class="nav nav-tabs mt-3" id="nav-tab" role="tablist">
           <button class="nav-link tab-Nav active" id="nav-quarter1-tab" data-bs-toggle="tab" data-bs-target="#nav-quarter1" type="button" role="tab" aria-controls="nav-quarter1" aria-selected="true">Quarter 1</button>
-          <button class="nav-link tab-Nav" id="nav-quarter2-tab" data-bs-toggle="tab" data-bs-target="#nav-quarter2" type="button" role="tab" aria-controls="nav-quarter2" aria-selected="false">Quarter 2</button>
-          <button class="nav-link tab-Nav" id="nav-quarter3-tab" data-bs-toggle="tab" data-bs-target="#nav-quarter3" type="button" role="tab" aria-controls="nav-quarter3" aria-selected="false">Quarter 3</button>
-          <button class="nav-link tab-Nav" id="nav-quarter4-tab" data-bs-toggle="tab" data-bs-target="#nav-quarter4" type="button" role="tab" aria-controls="nav-quarter4" aria-selected="false">Quarter 4</button>
+          <button class="nav-link tab-Nav" id="nav-quarter2-tab" data-bs-toggle="tab" data-bs-target="#nav-quarter2" type="button" role="tab" aria-controls="nav-quarter2" aria-selected="false" disabled>Quarter 2</button>
+          <button class="nav-link tab-Nav" id="nav-quarter3-tab" data-bs-toggle="tab" data-bs-target="#nav-quarter3" type="button" role="tab" aria-controls="nav-quarter3" aria-selected="false" disabled>Quarter 3</button>
+          <button class="nav-link tab-Nav" id="nav-quarter4-tab" data-bs-toggle="tab" data-bs-target="#nav-quarter4" type="button" role="tab" aria-controls="nav-quarter4" aria-selected="false" disabled>Quarter 4</button>
         </div>
 
         <div class="tab-content">
           <div class="tab-pane fade show active w-auto" id="nav-quarter1" role="tabpanel" aria-labelledby="nav-quarter1-tab" tabindex="0">
-            <h5 class="my-5">Quarter 1</h5>
-            <div id="smartwizard">
-              <ul class="nav nav-progress">
-                <li class="nav-item">
-                  <a class="nav-link default active z-3" href="#step-1">
-                    <div class="num">1</div>
-                    Assets
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link default z-3" href="#step-2">
-                    <span class="num">2</span>
-                    Total Employment
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link default z-3" href="#step-3">
-                    <span class="num">3</span>
-                    Production and Sales
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link default z-3" href="#step-4">
-                    <span class="num">4</span>
-                    Market Outlets
-                  </a>
-                </li>
-              </ul>
-              <div class="tab-content">
-                <div id="step-1" class="tab-pane" role="tabpanel" aria-labelledby="step-1">
-                  <fieldset class="">
-                    <legend class="w-auto">
-                      1.0 ASSETS
-                    </legend>
-                    <div class="row ms-md-4 ms-sm-2 my-4">
-                      <div class="col-12 col-sm-6 col-md-4">
-                        <label for="BuildingAsset">Building:</label>
-                        <input type="text" class="form-control" id="BuildingAsset" name="Building" placeholder="">
-                      </div>
-                      <div class="col-12 col-sm-6 col-md-4">
-                        <label for="Equipment">Equipment:</label>
-                        <input type="text" class="form-control" id="Equipment" name="Equipment" placeholder="">
-                      </div>
-                      <div class="col-12 col-sm-6 col-md-4">
-                        <label for="WorkingCapital">Working Capital:</label>
-                        <input type="text" class="form-control" id="WorkingCapital" name="WorkingCapital" placeholder="">
-                      </div>
-                    </div>
-                  </fieldset>
-                </div>
-                <div id="step-2" class="tab-pane" role="tabpanel" aria-labelledby="step-2">
-                  <fieldset class="mt-4">
-                    <legend class="w-auto">
-                      2.0 EMPLOYMENT FOR THE QUARTER
-                    </legend>
-                    <div class="row ms-2 mb-3 my-4">
-                      <div class="col-sm-12 col-md-6">
-                        <strong>2.1 Direct Labor(Production)</strong>
-                        <div class="row ms-md-2">
-                          <div class="col-sm-12 mt-3 col-md-6">
-                            <p>2.1a Direct Labor</p>
-                            <!-- Your input fields here -->
-                            <div class="mb-3">
-                              <label for="maleInput">Male:</label>
-                              <input type="text" class="form-control" id="maleInput" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                              <label for="femaleInput">Female:</label>
-                              <input type="text" class="form-control" id="femaleInput" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                              <label for="workdayInput">Workday:</label>
-                              <input type="text" class="form-control" id="workdayInput" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                              <p>{Total}</p>
-                            </div>
-                          </div>
-                          <div class="col-sm-12 mt-3 col-md-6">
-                            <p>2.1b Part-time</p>
-                            <!-- Your input fields here -->
-                            <div class="mb-3">
-                              <label for="parttimeMaleInput">Male:</label>
-                              <input type="text" class="form-control" id="parttimeMaleInput" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                              <label for="parttimeFemaleInput">Female:</label>
-                              <input type="text" class="form-control" id="parttimeFemaleInput" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                              <label for="parttimeWorkdayInput">Workday:</label>
-                              <input type="text" class="form-control" id="parttimeWorkdayInput" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                              <p>{Total}</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-12 col-md-6">
-                        <strong>2.2 Indirect Labor(Admin and Marketing)</strong>
-                        <div class="row ms-md-2">
-                          <div class="col-sm-12 mt-3 col-md-6">
-                            <p>2.2a Regular</p>
-                            <!-- Your input fields here -->
-                            <div class="mb-3">
-                              <label for="regularMaleInput">Male:</label>
-                              <input type="text" class="form-control" id="regularMaleInput" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                              <label for="regularFemaleInput">Female:</label>
-                              <input type="text" class="form-control" id="regularFemaleInput" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                              <label for="regularWorkdayInput">Workday:</label>
-                              <input type="text" class="form-control" id="regularWorkdayInput" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                              <p>{Total}</p>
-                            </div>
-                          </div>
-                          <div class="col-sm-12 mt-3 col-md-6">
-                            <p>2.2b Part-time</p>
-                            <!-- Your input fields here -->
-                            <div class="mb-3">
-                              <label for="parttimeMaleInput">Male:</label>
-                              <input type="text" class="form-control" id="parttimeMaleInput" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                              <label for="parttimeFemaleInput">Female:</label>
-                              <input type="text" class="form-control" id="parttimeFemaleInput" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                              <label for="parttimeWorkdayInput">Workday:</label>
-                              <input type="text" class="form-control" id="parttimeWorkdayInput" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                              <p>{Total}</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </fieldset>
-                </div>
-                <div id="step-3" class="tab-pane" role="tabpanel" aria-labelledby="step-3">
-                  <fieldset class="mt-4">
-                    <legend class="w-auto">
-                      3.0 PRODUCTION AND SALES DATA FOR THE QUARTER
-                    </legend>
-                    <div class="row align-items-center">
-                      <div class="col-sm-12 col-md-6">
-                        <fieldset class="mt-4">
-                          <!-- Your first fieldset content here -->
-                          <legend class="w-auto px-2">
-                            <strong>3.1 Export Market</strong>
-                          </legend>
-                          <!-- FIXME: Improve the textfield format -->
-                          <div id="productExport" class="productExport my-4">
-                            <div class="row ms-md-4 ms-sm-2">
-                              <hr>
-                              <div class="col-12">
-                                <div class="mb-3">
-                                  <label for="productName">Name of Product:</label>
-                                  <input type="text" class="form-control" id="productName" name="productName">
-                                </div>
-                              </div>
-                              <div class="col-12">
-                                <div class="mb-3">
-                                  <label for="packingDetails">Packing Details:</label>
-                                  <textarea class="form-control" id="packingDetails" name="packingDetails"></textarea>
-                                </div>
-                              </div>
-                              <div class="col-12">
-                                <div class="mb-3">
-                                  <label for="volumeOfProduction">Volume of Production:</label>
-                                  <input type="text" class="form-control" id="volumeOfProduction" name="volumeOfProduction">
-                                </div>
-                              </div>
-                              <div class="col-12">
-                                <div class="mb-3">
-                                  <label for="grossSales">Gross Sales:</label>
-                                  <input type="text" class="form-control" id="grossSales" name="grossSales">
-                                </div>
-                              </div>
-                              <div class="col-12">
-                                <div class="mb-3">
-                                  <label for="estimatedCostOfProduction">Estimated Cost of Production:</label>
-                                  <input type="text" class="form-control" id="estimatedCostOfProduction" name="estimatedCostOfProduction">
-                                </div </div>
-                                <div class="col-12">
-                                  <div class="mb-3">
-                                    <label for="netSales">Net Sales:</label>
-                                    <input type="text" class="form-control" id="netSales" name="netSales">
-                                  </div>
-                                </div>
-                                <hr>
-                              </div>
-                              <div class="col-12">
-                                <button type="button" class="btn btn-danger deleteButtonExport">Delete</button>
-                              </div>
-                            </div>
-                            <div class="mt-2">
-                              <button id="addButtonExport" class="btn btn-primary">Add</button>
-                            </div>
-                        </fieldset>
-                      </div>
-                      <div class="col-sm-12 col-md-6">
-                        <fieldset class="mt-md-4 mt-sm-2">
-                          <!-- Your second fieldset content here -->
-                          <legend class="w-auto px-2">
-                            <strong>3.2 Local Market</strong>
-                          </legend>
-                          <!-- FIXME: Improve the textfield format -->
-                          <div id="productLocal" class="productLocal my-4">
-                            <div class="row ms-md-4 ms-sm-2">
-                              <hr>
-                              <div class="col-12">
-                                <div class="mb-3">
-                                  <label for="productName">Name of Product:</label>
-                                  <input type="text" class="form-control" id="productName" name="productName">
-                                </div>
-                              </div>
-                              <div class="col-12">
-                                <div class="mb-3">
-                                  <label for="packingDetails">Packing Details:</label>
-                                  <textarea class="form-control" id="packingDetails" name="packingDetails"></textarea>
-                                </div </div>
-                                <div class="col-12">
-                                  <div class="mb-3">
-                                    <label for="volumeOfProduction">Volume of Production:</label>
-                                    <input type="text" class="form-control" id="volumeOfProduction" name="volumeOfProduction">
-                                  </div>
-                                </div>
-                                <div class="col-12">
-                                  <div class="mb-3">
-                                    <label for="grossSales">Gross Sales:</label>
-                                    <input type="text" class="form-control" id="grossSales" name="grossSales">
-                                  </div>
-                                </div>
-                                <div class="col-12">
-                                  <div class="mb-3">
-                                    <label for="estimatedCostOfProduction">Estimated Cost of Production:</label>
-                                    <input type="text" class="form-control" id="estimatedCostOfProduction" name="estimatedCostOfProduction">
-                                  </div>
-                                </div>
-                                <div class="col-12">
-                                  <div class="mb-3">
-                                    <label for="netSales">Net Sales:</label>
-                                    <input type="text" class="form-control" id="netSales" name="netSales">
-                                  </div>
-                                </div>
-                                <hr>
-                              </div>
-                              <div class="col-12">
-                                <button type="button" class="btn btn-danger deleteButtonLocal">Delete</button>
-                              </div>
-                            </div>
-                            <div class="mt-2">
-                              <button id="addButtonLocal" class="btn btn-primary">Add</button>
-                            </div>
-                        </fieldset>
-                      </div>
-                    </div>
-                </div>
-                <div id="step-4" class="tab-pane" role="tabpanel" aria-labelledby="step-4">
-                  <fieldset class="mt-4 h-100">
-                    <legend class="w-auto">
-                      4.0 MARKET OUTLETS
-                    </legend>
-                    <div class="row">
-                      <div class="col-md-6 col-sm-6 my-4">
-                        <strong class="ms-2">4.1 Export</strong>
-                        <div class="form-floating ms-4">
-                          <textarea class="form-control h-100" placeholder="Export" id="exportTextarea"></textarea>
-                          <label for="exportTextarea">Export</label>
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-sm-6">
-                        <strong class="ms-2">4.2 Local</strong>
-                        <div class="form-floating ms-4">
-                          <textarea class="form-control h-100" placeholder="Local" id="localTextarea"></textarea>
-                          <label for="localTextarea">Local</label>
-                        </div>
-                      </div>
-                    </div>
-                  </fieldset>
-                </div>
-              </div>
-            </div>
-
-
+            
           </div>
           <div class="tab-pane fade" id="nav-quarter2" role="tabpanel" aria-labelledby="nav-quarter2-tab" tabindex="0">
 
@@ -403,32 +118,16 @@
 </div>
 <script>
   $(document).ready(function() {
-    $('#smartwizard').smartWizard({
-      selected: 0,
-      theme: 'dots',
-      transition: {
-        animation: 'slideHorizontal'
-      },
-      toolbar: {
-        showNextButton: true, // show/hide a Next button
-        showPreviousButton: true, // show/hide a Previous button
-        position: 'both buttom', // none/ top/ both bottom
-        extraHtml: `<button class="btn btn-success" onclick="onFinish()">Submit</button>
-                              <button class="btn btn-secondary" onclick="onCancel()">Cancel</button>`
-      },
-    });
-    $("#smartwizard").on("showStep", function(e, anchorObject, stepIndex, stepDirection, stepPosition) {
-      var totalSteps = $('#smartwizard').find('ul li').length;
-      // console.log("Step: ", stepNumber);
-      console.log("Total Steps:", totalSteps);
-
-      if (stepIndex === totalSteps - 1 && stepPosition === 'last') {
-        console.log("Arriving at Last Step - Showing Buttons");
-        $('.btn-success, .btn-secondary').show();
-      } else {
-        console.log("Not Arriving at Last Step - Hiding Buttons");
-        $('.btn-success, .btn-secondary').hide();
-      }
-    });
+   // Example AJAX request to load content into Quarter 1 tab
+$.ajax({
+  url: 'outputs/quarterlyReport.php',
+  type: 'GET',
+  success: function(response) {
+    $('#nav-quarter1').html(response); // Update the content of Quarter 1 tab with the response
+  },
+  error: function(xhr, status, error) {
+    console.error(error);
+  }
+});
   });
 </script>
