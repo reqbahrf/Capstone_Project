@@ -20,58 +20,63 @@ function getApplicant($conn)
 $applicants = getApplicant($conn);
 
 foreach ($applicants as $applicant) {
-    $ApplicantTable [] = $applicant;
+    $ApplicantTable[] = $applicant;
 }
 
-            // [user_id] => 1
-            // [f_name] => Reanz Arthur 
-            // [l_name] => Monera
-            // [designation] => CEO
-            // [mobile_number] => 0982-322-3232
-            // [email_address] => re@erer
-            // [landline] => 1121
-            // [firm_name] => Resf
-            // [enterprise_type] => Partnership
-            // [B_address] => Mats
-            // [building_value] => 1.00
-            // [equipment_value] => 343.00
-            // [working_capital] => 43.00
-            // [date_applied] => 2024-05-22
+// [user_id] => 1
+// [f_name] => Reanz Arthur 
+// [l_name] => Monera
+// [designation] => CEO
+// [mobile_number] => 0982-322-3232
+// [email_address] => re@erer
+// [landline] => 1121
+// [firm_name] => Resf
+// [enterprise_type] => Partnership
+// [B_address] => Mats
+// [building_value] => 1.00
+// [equipment_value] => 343.00
+// [working_capital] => 43.00
+// [date_applied] => 2024-05-22
 
 ?>
 
 
 <style>
     ul#myTab li.nav-item button.tab-Nav.active {
-    background-color: #318791 !important; 
-    font-weight: bold;
-    color: white;
-    border-top: 6px solid;
-    border-top-right-radius: 10px; /* Adjust the radius value as needed */
-    border-top-left-radius: 10px;
-}
-  ul#myTab li.nav-item button.tab-Nav {
-    background-color: white; /* Your desired color */
-    color: black; /* Adjust text color accordingly */
-    border: 1px solid #318791; /* Adjust border color */
-    border-bottom: none;
-}
+        background-color: #318791 !important;
+        font-weight: bold;
+        color: white;
+        border-top: 6px solid;
+        border-top-right-radius: 10px;
+        /* Adjust the radius value as needed */
+        border-top-left-radius: 10px;
+    }
 
-ul#myTab li.nav-item button.tab-Nav:hover {
-    background-color: #318791; /* Hover state color */
-    color: white;
-}
+    ul#myTab li.nav-item button.tab-Nav {
+        background-color: white;
+        /* Your desired color */
+        color: black;
+        /* Adjust text color accordingly */
+        border: 1px solid #318791;
+        /* Adjust border color */
+        border-bottom: none;
+    }
 
-#ongoing_wrapper > div:first-child,
-#applicant_wrapper > div:first-child,
-#completed_wrapper > div:first-child {
-    background-color: #318791;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    color: white;
-    margin-top: 0 !important;
-}
+    ul#myTab li.nav-item button.tab-Nav:hover {
+        background-color: #318791;
+        /* Hover state color */
+        color: white;
+    }
 
+    #ongoing_wrapper>div:first-child,
+    #applicant_wrapper>div:first-child,
+    #completed_wrapper>div:first-child {
+        background-color: #318791;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        color: white;
+        margin-top: 0 !important;
+    }
 </style>
 <div class="p-3">
     <h4>Project List</h4>
@@ -80,8 +85,8 @@ ul#myTab li.nav-item button.tab-Nav:hover {
 <div class="modal fade" id="ApplicantModal" tabindex="-1" aria-labelledby="ApplicantModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header bg-info">
-                <h5 class="modal-title" id="ApplicantModalLabel">Applicant Details</h5>
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="ApplicantModalLabel">Applicant Details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -90,44 +95,55 @@ ul#myTab li.nav-item button.tab-Nav:hover {
                 <div class="container">
                     <fieldset>
                         <div class="row">
-                            <div class="col-12 col-md-6">
-                                <strong>Cooperator Name:</strong> Sam Son<br>
-                                <strong>Designation:</strong> Owner<br>
-                                <strong>Contact Details:</strong>
-                                <p><strong class="p-2">Landline:</strong> 1234567 <br><Strong class="p-2">Mobile Phone:</Strong> 09123456789</p>
+                            <div class="col-12">
+                                <fieldset class="mb-3">
+                                    <legend>Personal Info</legend>
+                                    <label for="cooperatorName">Cooperator Name:</label>
+                                    <input type="text" id="cooperatorName" class="form-control" value="Sam Son" readonly>
+                                    <label for="designation">Designation:</label>
+                                    <input type="text" id="designation" class="form-control" value="Owner" readonly>
+                                    <label>Contact Details:</label>
+                                    <div>
+                                        <label for="landline" class="p-2">Landline:</label>
+                                        <input type="text" id="landline" class="form-control" value="1234567" readonly>
+                                        <label for="mobilePhone" class="p-2">Mobile Phone:</label>
+                                        <input type="text" id="mobilePhone" class="form-control" value="09123456789" readonly>
+                                    </div>
+                                </fieldset>
                             </div>
-                            <div class="col-12 col-md-6">
-                                <p><strong>Business Address:</strong> Carmen, Davao Del Norte <br> <strong>Type of Enterprise:</strong> Sole Proprietorship</p>
-                                <p>
-                                    <Strong>
-                                        Assets:
-                                    </Strong> <br>
-                                    <span class="ps-2">Land: 144,000</span><br>
-                                    <span class="ps-2">Building: 122,000</span><br>
-                                    <span class="ps-2">Equipment: 143,000</span>
-                                </p>
+                            <div class="col-12">
+                                <fieldset class="mb-3">
+                                    <legend>Business Info</legend>
+                                    <label for="businessAddress">Business Address:</label>
+                                    <input type="text" id="businessAddress" class="form-control" value="Carmen, Davao Del Norte" readonly>
+                                    <label for="typeOfEnterprise">Type of Enterprise:</label>
+                                    <input type="text" id="typeOfEnterprise" class="form-control" value="Sole Proprietorship" readonly>
+                                    <label>Assets:</label>
+                                    <div>
+                                        <label for="land" class="ps-2">Land:</label>
+                                        <input type="text" id="land" class="form-control" value="144,000" readonly>
+                                        <label for="building" class="ps-2">Building:</label>
+                                        <input type="text" id="building" class="form-control" value="122,000" readonly>
+                                        <label for="equipment" class="ps-2">Equipment:</label>
+                                        <input type="text" id="equipment" class="form-control" value="143,000" readonly>
+                                    </div>
+                                </fieldset>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <strong>Contact Details:</strong>
-                                <p><strong class="p-2">Landline:</strong> 1234567 <br><Strong class="p-2">Mobile Phone:</Strong> 09123456789</p>
-                                <br>
-                                <br>
                                 <Strong>Evaluated by:</Strong>
                                 <p class="ps-2">Staff-1</p>
                                 <br>
                                 <br>
                                 <strong>Assign to:</strong>
                                 <select class="form-select form-control-lg w-50" aria-label="Default select example">
-                                    <option selected>Select Staff</option>
+                                    <option selected value="">Select Staff</option>
                                     <option value="staff1">Staff 1</option>
                                     <option value="staff2">Staff 2</option>
                                     <option value="staff3">Staff 3</option>
                                     <option value="staff4">Staff 4</option>
                                     <option value="staff5">Staff 5</option>
-                                    <option value="staff6">Staff 6</option>
-                                    <option value="staff7">Staff 7</option>
                                 </select>
                             </div>
                         </div>
@@ -135,7 +151,7 @@ ul#myTab li.nav-item button.tab-Nav:hover {
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-info"> Approve</button>
+                <button class="btn btn-primary"> Approve</button>
                 <button class="btn btn-danger">Delete</button>
             </div>
         </div>
@@ -146,8 +162,8 @@ ul#myTab li.nav-item button.tab-Nav:hover {
 <div class="modal fade" id="OngoingModal" tabindex="-1" aria-labelledby="OngoingModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header bg-info">
-                <h5 class="modal-title" id="OngoingModalLabel">Ongoing Project Details</h5>
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="OngoingModalLabel">Ongoing Project Details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -156,49 +172,75 @@ ul#myTab li.nav-item button.tab-Nav:hover {
                 <div class="container">
                     <fieldset>
                         <div class="row">
-                            <div class="col-12 col-md-6">
-                                <strong>Project Title:</strong> Imploving the Business.....<br>
-                                <strong>Firm Name:</strong> XYZ Company<br>
-                                <strong>Refund Progress:</strong> 500,000/1,000,000
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <p><strong>Business Address:</strong> tagum, Davao Del Norte <br> <strong>Type of Enterprise:</strong> Sole Proprietorship</p>
-                                <p>
-                                    <Strong>
-                                        Assets:
-                                    </Strong> <br>
-                                    <span class="ps-2">Land: 100,000</span><br>
-                                    <span class="ps-2">Building: 100,000</span><br>
-                                    <span class="ps-2">Equipment: 100,000</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <p><strong>Name:</strong> Jorge Walt</p>
-                                <strong>Contact Details:</strong>
-                                <p><strong class="p-2">Landline:</strong> 1234567 <br><Strong class="p-2">Mobile Phone:</Strong> 09123456789</p>
-                                <br>
-                                <br>
-                                <Strong>Handled by:</Strong>
-                                <select class="form-select form-control-lg w-50" aria-label="Default select example">
-                                    <option selected>Select Staff</option>
-                                    <option value="staff1">Staff 1</option>
-                                    <option value="staff2">Staff 2</option>
-                                    <option value="staff3">Staff 3</option>
-                                    <option value="staff4">Staff 4</option>
-                                    <option value="staff5">Staff 5</option>
-                                    <option value="staff6">Staff 6</option>
-                                    <option value="staff7">Staff 7</option>
-                                </select>
-                            </div>
+                            <fieldset class="mb-3">
+                                <legend>Project Info</legend>
+                                <div class="col-12 col-md-6">
+                                    <label for="projectTitle">Project Title:</label> 
+                                    <input type="text" id="projectTitle" class="form-control" value="Improving the Business....." readonly><br>
+                                    <label for="firmName">Firm Name:</label> 
+                                    <input type="text" id="firmName" class="form-control" value="XYZ Company" readonly><br>
+                                    <label for="refundProgress">Refund Progress:</label> 
+                                    <input type="text" id="refundProgress" class="form-control" value="500,000/1,000,000" readonly>
+                                </div>
+                            </fieldset>
+                            <fieldset class="mb-3">
+                                <legend>Business Info</legend>
+                                <div class="col-12 col-md-6">
+                                    <div>
+                                        <label for="businessAddress">Business Address:</label> 
+                                        <input type="text" id="businessAddress" class="form-control" value="tagum, Davao Del Norte" readonly><br> 
+                                        <label for="typeOfEnterprise">Type of Enterprise:</label> 
+                                        <input type="text" id="typeOfEnterprise" class="form-control" value="Sole Proprietorship" readonly>
+                                    </div>
+                                    <div>
+                                        <Strong>
+                                            Assets:
+                                        </Strong> <br>
+                                        <label for="building" class="ps-2">Building:</label>
+                                        <input type="text" id="building" class="form-control" value="100,000" readonly>
+                                        <label for="equipment" class="ps-2">Equipment:</label>
+                                        <input type="text" id="equipment" class="form-control" value="100,000" readonly>
+                                        <label for="workingCapital" class="ps-2">Working Capital:</label>
+                                        <input type="text" id="workingCapital" class="form-control" value="100,000" readonly>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset class="mb-3">
+                                <legend>Cooperator Info</legend>
+                                <div>
+                                    <strong>Name:</strong>
+                                    <input type="text" class="form-control" value="Jorge Walt" readonly>
+                                </div>
+                                <div>
+                                    <br>
+                                    <strong>Contact Details:</strong>
+                                    <br>
+                                    <label for="mobilePhone" class="p-2">Mobile Phone:</label>
+                                    <input type="text" id="mobilePhone" class="form-control" value="09123456789" readonly>
+                                    <label for="email" class="p-2">Email:</label>
+                                    <input type="text" id="email" class="form-control" value="Jorge@gmail.com" readonly>
+                                    <label for="landline" class="p-2">Landline:</label>
+                                    <input type="text" id="landline" class="form-control" value="1234567" readonly>
+                                </div>
+                            </fieldset>
+                            <br>
+                            <br>
+                            <Strong>Handled by:</Strong>
+                            <select class="form-select form-control-lg w-50" aria-label="Default select example">
+                                <option selected>Select Staff</option>
+                                <option value="staff1">Staff 1</option>
+                                <option value="staff2">Staff 2</option>
+                                <option value="staff3">Staff 3</option>
+                                <option value="staff4">Staff 4</option>
+                                <option value="staff5">Staff 5</option>
+                            </select>
                         </div>
                     </fieldset>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-info" data-bs-dismiss="modal" onclick="loadPage('/org-access/viewCooperatorInfo.php','projectList');">View Project</button>
-                <button class="btn btn-success">save</button>
+                <button class="btn btn-primary" data-bs-dismiss="modal" onclick="loadPage('/org-access/viewCooperatorInfo.php','projectList');">View Project</button>
+                <button class="btn btn-success">Save</button>
                 <button class="btn btn-danger">Delete</button>
             </div>
         </div>
@@ -209,8 +251,8 @@ ul#myTab li.nav-item button.tab-Nav:hover {
 <div class="modal fade" id="CompleteModal" tabindex="-1" aria-labelledby="CompleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header bg-info">
-                <h5 class="modal-title" id="CompleteModalLabel">Complete Project</h5>
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="CompleteModalLabel">Complete Project</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -252,43 +294,43 @@ ul#myTab li.nav-item button.tab-Nav:hover {
                             <th>Designation</th>
                             <th>Firm Name</th>
                             <th>Additional Info</th>
-                            <th>data Applied</th>
+                            <th>Date Applied</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody id="tableBody">
-                        <?php foreach ($ApplicantTable as $applicantInfo): ?>
-                        <tr>
-                            <td><?= $applicantInfo['user_id'] ?></td>
-                            <td><?= $applicantInfo['f_name'] . " " . $applicantInfo['l_name'] ?></td>
-                            <td><?= $applicant['designation'] ?></td>
-                            <td><?= $applicant['firm_name'] ?></td>
-                            <td>
-                            <p><strong>Business Address:</strong> <?= $applicantInfo['B_address'] ?> <br> <strong>Type of Enterprise:</strong> <?= $applicantInfo['enterprise_type'] ?></p>
-                            <p>
-                                <Strong>Assets:</Strong> <br>
-                                <span class="ps-2">Building: <?= number_format($applicantInfo['building_value'], 2) ?></span><br>
-                                <span class="ps-2">Equipment: <?= number_format($applicantInfo['equipment_value'], 2) ?></span> <br>
-                                <span class="ps-2">Working Capital: <?= number_format($applicantInfo['working_capital'], 2) ?></span>
-                            </p>
-                            <strong>Contact Details:</strong>
-                            <p>
-                                <strong class="p-2">Landline:</strong> <?= $applicantInfo['landline'] ?> <br>
-                                <Strong class="p-2">Mobile Phone:</Strong> <?= $applicantInfo['mobile_number'] ?> <br>
-                                <strong class="p-2">Email:</strong> <?= $applicantInfo['email_address'] ?>
-                            </p>
-                        </td>
-                        <td><?= $applicantInfo['date_applied'] ?></td>
-                            <td>To be review</td>
-                            <td>
-                                <button class="btn" data-bs-toggle="modal" data-bs-target="#ApplicantModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
-                                        <path d="M56.177,16.832c-0.547-4.731-4.278-8.462-9.009-9.009C43.375,7.384,38.264,7,32,7S20.625,7.384,16.832,7.823c-4.731,0.547-8.462,4.278-9.009,9.009C7.384,20.625,7,25.736,7,32s0.384,11.375,0.823,15.168c0.547,4.731,4.278,8.462,9.009,9.009C20.625,56.616,25.736,57,32,57s11.375-0.384,15.168-0.823c4.731-0.547,8.462-4.278,9.009-9.009C56.616,43.375,57,38.264,57,32S56.616,20.625,56.177,16.832z M36,32c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,29.791,36,32z M36,45c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,42.791,36,45z M36,19c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,16.791,36,19z" fill="#000000" />
-                                    </svg>
-                                </button>
-                            </td>
-                        </tr>
+                        <?php foreach ($ApplicantTable as $applicantInfo) : ?>
+                            <tr>
+                                <td><?= $applicantInfo['user_id'] ?></td>
+                                <td><?= $applicantInfo['f_name'] . " " . $applicantInfo['l_name'] ?></td>
+                                <td><?= $applicant['designation'] ?></td>
+                                <td><?= $applicant['firm_name'] ?></td>
+                                <td>
+                                    <p><strong>Business Address:</strong> <?= $applicantInfo['B_address'] ?> <br> <strong>Type of Enterprise:</strong> <?= $applicantInfo['enterprise_type'] ?></p>
+                                    <p>
+                                        <Strong>Assets:</Strong> <br>
+                                        <span class="ps-2">Building: <?= number_format($applicantInfo['building_value'], 2) ?></span><br>
+                                        <span class="ps-2">Equipment: <?= number_format($applicantInfo['equipment_value'], 2) ?></span> <br>
+                                        <span class="ps-2">Working Capital: <?= number_format($applicantInfo['working_capital'], 2) ?></span>
+                                    </p>
+                                    <strong>Contact Details:</strong>
+                                    <p>
+                                        <strong class="p-2">Landline:</strong> <?= $applicantInfo['landline'] ?> <br>
+                                        <Strong class="p-2">Mobile Phone:</Strong> <?= $applicantInfo['mobile_number'] ?> <br>
+                                        <strong class="p-2">Email:</strong> <?= $applicantInfo['email_address'] ?>
+                                    </p>
+                                </td>
+                                <td><?= $applicantInfo['date_applied'] ?></td>
+                                <td>To be review</td>
+                                <td>
+                                    <button class="btn" data-bs-toggle="modal" data-bs-target="#ApplicantModal">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
+                                            <path d="M56.177,16.832c-0.547-4.731-4.278-8.462-9.009-9.009C43.375,7.384,38.264,7,32,7S20.625,7.384,16.832,7.823c-4.731,0.547-8.462,4.278-9.009,9.009C7.384,20.625,7,25.736,7,32s0.384,11.375,0.823,15.168c0.547,4.731,4.278,8.462,9.009,9.009C20.625,56.616,25.736,57,32,57s11.375-0.384,15.168-0.823c4.731-0.547,8.462-4.278,9.009-9.009C56.616,43.375,57,38.264,57,32S56.616,20.625,56.177,16.832z M36,32c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,29.791,36,32z M36,45c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,42.791,36,45z M36,19c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,16.791,36,19z" fill="#000000" />
+                                        </svg>
+                                    </button>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                     <tfoot>
@@ -298,7 +340,7 @@ ul#myTab li.nav-item button.tab-Nav:hover {
                             <th>Designation</th>
                             <th>Firm Name</th>
                             <th>Additional Info</th>
-                            <th>data Applied</th>
+                            <th>Date Applied</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -319,7 +361,7 @@ ul#myTab li.nav-item button.tab-Nav:hover {
                             <th>Firm Info</th>
                             <th>Owner Info</th>
                             <th>Refund Progress</th>
-                            <th>Status</th>
+
                             <th>Handled by</th>
                             <th>Action</th>
                         </tr>
@@ -347,16 +389,14 @@ ul#myTab li.nav-item button.tab-Nav:hover {
                                 <p><strong class="p-2">Landline:</strong> 1234567 <br><Strong class="p-2">Mobile Phone:</Strong> 09123456789</p>
                             </td>
                             <td>500,000/1,000,000</td>
-                            <td>On-going</td>
+
                             <td>John Smitty</td>
                             <td>
                                 <button class="btn" data-bs-toggle="modal" data-bs-target="#OngoingModal">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
                                         <path d="M56.177,16.832c-0.547-4.731-4.278-8.462-9.009-9.009C43.375,7.384,38.264,7,32,7S20.625,7.384,16.832,7.823c-4.731,0.547-8.462,4.278-9.009,9.009C7.384,20.625,7,25.736,7,32s0.384,11.375,0.823,15.168c0.547,4.731,4.278,8.462,9.009,9.009C20.625,56.616,25.736,57,32,57s11.375-0.384,15.168-0.823c4.731-0.547,8.462-4.278,9.009-9.009C56.616,43.375,57,38.264,57,32S56.616,20.625,56.177,16.832z M36,32c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,29.791,36,32z M36,45c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,42.791,36,45z M36,19c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,16.791,36,19z" fill="#000000" />
                                     </svg>
-                                </button>
-
-                            </td>
+                                </button </td>
                         </tr>
                     </tbody>
                     <tfoot>
@@ -367,7 +407,7 @@ ul#myTab li.nav-item button.tab-Nav:hover {
                             <th>Firm Info</th>
                             <th>Owner Info</th>
                             <th>Refund Progress</th>
-                            <th>Status</th>
+
                             <th>Handled by</th>
                             <th>Action</th>
                         </tr>
