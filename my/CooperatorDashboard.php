@@ -1,7 +1,42 @@
-<?php session_start();
+<?php
+session_start();
 
-$_SESSION["user"] = array("type" => "approved");
+$conn = include_once '../db_connection/database_connection.php';
 
+$userId= $_SESSION['user_id'];
+$userName=$_SESSION['user_name']; 
+$userBirthD=$_SESSION['birth_date'];
+
+if (!isset($userId) && !isset($userName) && !isset($userBirthD)) {
+  header("Location: ../login.php");
+  exit();
+}
+
+$query = "SELECT personal_info.user_id, business_info.user_info_id, application_info.application_status 
+FROM personal_info
+INNER JOIN business_info ON business_info.user_info_id = personal_info.id
+INNER JOIN application_info ON application_info.business_id = business_info.id
+WHERE personal_info.user_id = ?;";
+
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $userId);
+
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+
+if ($result->num_rows > 0) {
+  // Output data of the first row
+  if($row = $result->fetch_assoc()) {
+    $_SESSION['application_status'] = $row["application_status"];
+  }
+} else {
+  echo "0 results";
+}
+
+
+$stmt->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -149,11 +184,11 @@ $_SESSION["user"] = array("type" => "approved");
 </head>
 
 <?php
-if(isset($_SESSION['user'])) {
+if(isset($_SESSION['application_status'])) {
   // Check the user type and include the appropriate file
-  if($_SESSION['user']['type'] == 'approved') {
+  if($_SESSION['application_status'] == 'approved') {
       include("approved.php");
-  } else if($_SESSION['user']['type'] == 'waiting') {
+  } else if($_SESSION['application_status'] == 'waiting') {
       include("waitingRoom.php");
   }
 }

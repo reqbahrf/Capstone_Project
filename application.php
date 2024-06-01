@@ -1,12 +1,14 @@
 <?php
 
+session_start();
+
 $conn = include_once './db_connection/database_connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   // Retrieve current user's ID from session
-  session_start();
-  $user_id = 10; // Assuming you store the user ID in session
+ 
+  $user_id =  $_SESSION['user_id'];
   $successful_inserts = 0;
 
   // Personal Info table

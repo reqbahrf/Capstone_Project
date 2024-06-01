@@ -1,5 +1,9 @@
 <?php
+$session_expiration = 300;
+session_set_cookie_params($session_expiration);
 session_start();
+
+
 
 $conn = include_once 'db_connection/database_connection.php';
 
@@ -30,6 +34,9 @@ try {
     // User is valid, perform actions like setting session variables, redirecting, etc.
     // Example: setting session variables
     $_SESSION['user_id'] = $row['id'];
+    $_SESSION['user_name'] = $row['user_name'];
+    $_SESSION['birth_date'] = $row['birth_date'];
+
     // Redirect to a dashboard or home page
     echo "success";
     exit();
@@ -44,6 +51,7 @@ try {
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
 }}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

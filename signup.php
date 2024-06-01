@@ -1,8 +1,9 @@
 <?php
+session_start();
 
 $conn = include_once 'db_connection/database_connection.php';
 
-session_start();
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $username = htmlspecialchars($_POST["userName1"]);
@@ -13,13 +14,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt = $conn->prepare("INSERT INTO cooperator_users (user_name, password) VALUES (?, ?)");
   $stmt->bind_param("ss", $username, $hashedPassword);
 
-  if ($stmt->execute()) {
-      echo "New record created successfully";
-  } else {
-      echo "Error: " . $stmt->error;
-  }
+if ($stmt->execute()) {
+    // Start the session if it's not already started
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
 
-  $stmt->close();
+    // Store the ID in the session
+    $_SESSION['user_id'] = $conn->insert_id;
+
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $stmt->error;
+}
+$stmt->close();
 }
 ?>
 
