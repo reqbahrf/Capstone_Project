@@ -1,11 +1,15 @@
 <?php
 
+session_start();
+
+$staffID = $_SESSION['staff_id'];
+
 $conn = include_once '../db_connection/database_connection.php';
 
 
 function getApplicant($conn)
 {
-    $sql = "SELECT personal_info.user_id, personal_info.f_name, personal_info.l_name, personal_info.designation, personal_info.mobile_number, personal_info.email_address, personal_info.landline, business_info.firm_name, business_info.enterprise_type, business_info.B_address, assets.building_value, assets.equipment_value, assets.working_capital, application_info.date_applied, application_info.application_status
+    $sql = "SELECT personal_info.user_id, personal_info.f_name, personal_info.l_name, personal_info.designation, personal_info.mobile_number, personal_info.email_address, personal_info.landline, business_info.firm_name, business_info.enterprise_type, business_info.B_address, assets.building_value, assets.equipment_value, assets.working_capital, application_info.date_applied, application_info.application_status, business_info.id
 
     FROM personal_info 
     INNER JOIN business_info ON business_info.user_info_id = personal_info.id 
@@ -23,6 +27,21 @@ $applicants = getApplicant($conn);
 
 foreach ($applicants as $applicant) {
     $ApplicantTable[] = $applicant;
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    $b_ID = $_POST['b_ID'];
+    $projectTitle = $_POST['projectTitle'];
+    $fundAmount = $_POST['fundAmount'];
+
+    $sql = "INSERT INTO `project_info`( `business_id`, `handled_by_id`, `project_title`, `amount_barrowed`) VALUES ('$b_ID','$staffID','$projectTitle','$fundAmount')";
+
+    if (mysqli_query($conn, $sql)) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
 }
 
 // [user_id] => 1
@@ -196,11 +215,16 @@ foreach ($applicants as $applicant) {
                                         </ul>
                                     </div>
                                 </fieldset>
-                                <form action="" method="post">
+                                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="projectP">
                                     <fieldset class="my-4">
                                         <legend>
                                             Proposed Title and Fund Amount
                                         </legend>
+                                        <div id="alertForm" class="alert alert-success alert-dismissible text-bg-success border-0 fade show mx-5 d-none" role="alert">
+                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            <strong>Success - </strong> All data successfully inserted.
+                                        </div>
+                                        <input type="hidden" name="b_ID" id="b_ID">
                                         <div class="form-floating mb-3">
                                             <input type="text" class="form-control" id="projectTitle" name="projectTitle" placeholder="Project Title">
                                             <label for="projectTitle">Project Title</label>
@@ -211,7 +235,6 @@ foreach ($applicants as $applicant) {
                                         </div>
                                     </fieldset>
                                 </form>
-
                             </div>
                             <div class="col-md-4">
                                 <fieldset class="mt-4">
@@ -236,7 +259,7 @@ foreach ($applicants as $applicant) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success">Save</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" id="submitProject" class="btn btn-primary">Submit</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -265,7 +288,9 @@ foreach ($applicants as $applicant) {
                         <td><?= $item['designation'] ?></td>
                         <td><?= $item['firm_name'] ?></td>
                         <td>
-                            <strong>Business Address:</strong> <span class="b_address"><?= $item['B_address'] ?></span><br>
+                            <strong>Business Address:</strong>
+                            <input type="hidden" id="business_id" name="business_id" value="<?= $item['id'] ?>">
+                            <span class="b_address"><?= $item['B_address'] ?></span><br>
                             <strong>Type of Enterprise:</strong> <span class="enterprise_l"><?= $item['enterprise_type'] ?></span>
                             <p>
                                 <Strong>Assets:</Strong> <br>
@@ -364,6 +389,7 @@ foreach ($applicants as $applicant) {
             let fullName = row.find('td:nth-child(2)').text();
             let designation = row.find('td:nth-child(3)').text();
             let firmName = row.find('td:nth-child(4)').text();
+            let businessID = row.find('td:nth-child(5) input#business_id').val();
             let businessAddress = row.find('td:nth-child(5) span.b_address').text();
             let enterpriseType = row.find('td:nth-child(5) span.enterprise_l').text();
             let landline = row.find('td:nth-child(5) span.landline').text();
@@ -372,6 +398,7 @@ foreach ($applicants as $applicant) {
             // Add more fields as needed
 
             $('#firm_name').val(firmName);
+            $('#b_ID').val(businessID);
             $('#address').val(businessAddress);
             $('#contact_person').val(fullName); // Add corresponding value
             $('#designation').val(designation);
@@ -380,6 +407,26 @@ foreach ($applicants as $applicant) {
             $('#mobile_phone').val(mobilePhone);
             $('#email').val(emailAddress);
             // Add more fields as needed
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $("#submitProject").click(function(e) {
+            e.preventDefault(); // Prevent default form submission
+
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo $_SERVER["PHP_SELF"]; ?>',
+                data: $('#projectP').serialize(), // Serialize the form data
+                success: function(response) {
+                    // Handle the response from the server
+                    $('#alertForm').removeClass('d-none');
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors
+                }
+            });
         });
     });
 </script>

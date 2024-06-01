@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+$_SESSION['staff_id'] = 1;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
