@@ -73,10 +73,10 @@
       <table id="user_staff" class="table table-hover mx-2" style="width:100%">
         <thead>
           <tr>
-            <th>id</th>
+            <th>ID</th>
             <th>Name</th>
-            <th>username</th>
-            <th>password</th>
+            <th>Username</th>
+            <th>Password</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -113,10 +113,10 @@
         </tbody>
         <tfoot>
           <tr>
-            <th>id</th>
+            <th>ID</th>
             <th>Name</th>
-            <th>username</th>
-            <th>password</th>
+            <th>Username</th>
+            <th>Password</th>
             <th>Status</th>
             <th>Action</th>
           </tr>

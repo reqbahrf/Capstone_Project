@@ -5,12 +5,14 @@ $conn = include_once '../db_connection/database_connection.php';
 
 function getApplicant($conn)
 {
-    $sql = "SELECT personal_info.user_id, personal_info.f_name, personal_info.l_name, personal_info.designation, personal_info.mobile_number, personal_info.email_address, personal_info.landline, business_info.firm_name, business_info.enterprise_type, business_info.B_address, assets.building_value, assets.equipment_value, assets.working_capital, application_info.date_applied 
+    $sql = "SELECT personal_info.user_id, personal_info.f_name, personal_info.l_name, personal_info.designation, personal_info.mobile_number, personal_info.email_address, personal_info.landline, business_info.firm_name, business_info.enterprise_type, business_info.B_address, assets.building_value, assets.equipment_value, assets.working_capital, application_info.date_applied, application_info.application_status
 
     FROM personal_info 
     INNER JOIN business_info ON business_info.user_info_id = personal_info.id 
     INNER JOIN assets ON assets.business_id = business_info.id
-    INNER JOIN application_info ON application_info.business_id = business_info.id;";
+    INNER JOIN application_info ON application_info.business_id = business_info.id
+    WHERE application_info.application_status = 'waiting';";
+
 
     $result = mysqli_query($conn, $sql);
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -88,7 +90,7 @@ foreach ($applicants as $applicant) {
                     <div>
                         <fieldset class="mt-2">
                             <legend class="w-auto">
-                                <h5>Firm Info</h5>
+                                Firm Info
                             </legend>
                             <div class="p-3">
                                 <div class="form-group row mt-2">
@@ -139,7 +141,7 @@ foreach ($applicants as $applicant) {
                                 <fieldset class="mt-4">
                                     <!-- Your first fieldset content goes here -->
                                     <legend class="w-auto">
-                                        <h5>Application requirements</h5>
+                                        Application requirements
                                     </legend>
                                     <div>
                                         <ul class="list-group">
@@ -194,6 +196,22 @@ foreach ($applicants as $applicant) {
                                         </ul>
                                     </div>
                                 </fieldset>
+                                <form action="" method="post">
+                                    <fieldset class="my-4">
+                                        <legend>
+                                            Proposed Title and Fund Amount
+                                        </legend>
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="projectTitle" name="projectTitle" placeholder="Project Title">
+                                            <label for="projectTitle">Project Title</label>
+                                        </div>
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="fundAmount" name="fundAmount" placeholder="Fund Amount">
+                                            <label for="fundAmount">Fund Amount</label>
+                                        </div>
+                                    </fieldset>
+                                </form>
+
                             </div>
                             <div class="col-md-4">
                                 <fieldset class="mt-4">
@@ -217,8 +235,8 @@ foreach ($applicants as $applicant) {
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-success">Save</button>
-                    <button class="btn btn-info">Submit</button>
+                    <button type="button" class="btn btn-success">Save</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -259,7 +277,7 @@ foreach ($applicants as $applicant) {
                             <p>
                                 <strong class="p-2">Landline:</strong> <span class="landline"><?= $item['landline'] ?></span> <br>
                                 <Strong class="p-2">Mobile Phone:</Strong> <span class="mobile_num"> <?= $item['mobile_number'] ?> </span> <br>
-                                <strong class="p-2">Email:</strong> <span class="email_add"><?= $item['email_address'] ?></span> 
+                                <strong class="p-2">Email:</strong> <span class="email_add"><?= $item['email_address'] ?></span>
                             </p>
                         </td>
                         <td><?= $item['date_applied'] ?></td>

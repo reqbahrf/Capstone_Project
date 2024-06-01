@@ -1,4 +1,6 @@
 <?php
+$session_expiration = 300;
+session_set_cookie_params($session_expiration);
 session_start();
 
 $conn = include_once '../db_connection/database_connection.php';
@@ -10,7 +12,7 @@ $userBirthD=$_SESSION['birth_date'];
 if (!isset($userId) && !isset($userName) && !isset($userBirthD)) {
   header("Location: ../login.php");
   exit();
-}
+} else {
 
 $query = "SELECT personal_info.user_id, business_info.user_info_id, application_info.application_status 
 FROM personal_info
@@ -35,6 +37,8 @@ if ($result->num_rows > 0) {
   echo "0 results";
 }
 
+
+}
 
 $stmt->close();
 ?>

@@ -10,7 +10,8 @@ function getApplicant($conn)
     FROM personal_info 
     INNER JOIN business_info ON business_info.user_info_id = personal_info.id 
     INNER JOIN assets ON assets.business_id = business_info.id
-    INNER JOIN application_info ON application_info.business_id = business_info.id;";
+    INNER JOIN application_info ON application_info.business_id = business_info.id
+    WHERE application_info.application_status = 'waiting';";
 
     $result = mysqli_query($conn, $sql);
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -99,15 +100,15 @@ foreach ($applicants as $applicant) {
                                 <fieldset class="mb-3">
                                     <legend>Personal Info</legend>
                                     <label for="cooperatorName">Cooperator Name:</label>
-                                    <input type="text" id="cooperatorName" class="form-control" value="Sam Son" readonly>
+                                    <input type="text" id="cooperatorName" class="form-control"  readonly>
                                     <label for="designation">Designation:</label>
-                                    <input type="text" id="designation" class="form-control" value="Owner" readonly>
+                                    <input type="text" id="designation" class="form-control"  readonly>
                                     <label>Contact Details:</label>
                                     <div>
                                         <label for="landline" class="p-2">Landline:</label>
-                                        <input type="text" id="landline" class="form-control" value="1234567" readonly>
+                                        <input type="text" id="landline" class="form-control"  readonly>
                                         <label for="mobilePhone" class="p-2">Mobile Phone:</label>
-                                        <input type="text" id="mobilePhone" class="form-control" value="09123456789" readonly>
+                                        <input type="text" id="mobilePhone" class="form-control"  readonly>
                                     </div>
                                 </fieldset>
                             </div>
@@ -115,17 +116,18 @@ foreach ($applicants as $applicant) {
                                 <fieldset class="mb-3">
                                     <legend>Business Info</legend>
                                     <label for="businessAddress">Business Address:</label>
-                                    <input type="text" id="businessAddress" class="form-control" value="Carmen, Davao Del Norte" readonly>
+                                    <input type="text" id="businessAddress" class="form-control"  readonly>
                                     <label for="typeOfEnterprise">Type of Enterprise:</label>
-                                    <input type="text" id="typeOfEnterprise" class="form-control" value="Sole Proprietorship" readonly>
+                                    <input type="text" id="typeOfEnterprise" class="form-control"  readonly>
                                     <label>Assets:</label>
                                     <div>
-                                        <label for="land" class="ps-2">Land:</label>
-                                        <input type="text" id="land" class="form-control" value="144,000" readonly>
+                                      
                                         <label for="building" class="ps-2">Building:</label>
-                                        <input type="text" id="building" class="form-control" value="122,000" readonly>
+                                        <input type="text" id="building" class="form-control"  readonly>
                                         <label for="equipment" class="ps-2">Equipment:</label>
-                                        <input type="text" id="equipment" class="form-control" value="143,000" readonly>
+                                        <input type="text" id="equipment" class="form-control"  readonly>
+                                        <label for="land" class="ps-2">Land:</label>
+                                        <input type="text" id="workingCapital" class="form-control"  readonly>
                                     </div>
                                 </fieldset>
                             </div>
@@ -175,11 +177,11 @@ foreach ($applicants as $applicant) {
                             <fieldset class="mb-3">
                                 <legend>Project Info</legend>
                                 <div class="col-12 col-md-6">
-                                    <label for="projectTitle">Project Title:</label> 
+                                    <label for="projectTitle">Project Title:</label>
                                     <input type="text" id="projectTitle" class="form-control" value="Improving the Business....." readonly><br>
-                                    <label for="firmName">Firm Name:</label> 
+                                    <label for="firmName">Firm Name:</label>
                                     <input type="text" id="firmName" class="form-control" value="XYZ Company" readonly><br>
-                                    <label for="refundProgress">Refund Progress:</label> 
+                                    <label for="refundProgress">Refund Progress:</label>
                                     <input type="text" id="refundProgress" class="form-control" value="500,000/1,000,000" readonly>
                                 </div>
                             </fieldset>
@@ -187,9 +189,9 @@ foreach ($applicants as $applicant) {
                                 <legend>Business Info</legend>
                                 <div class="col-12 col-md-6">
                                     <div>
-                                        <label for="businessAddress">Business Address:</label> 
-                                        <input type="text" id="businessAddress" class="form-control" value="tagum, Davao Del Norte" readonly><br> 
-                                        <label for="typeOfEnterprise">Type of Enterprise:</label> 
+                                        <label for="businessAddress">Business Address:</label>
+                                        <input type="text" id="businessAddress" class="form-control" value="tagum, Davao Del Norte" readonly><br>
+                                        <label for="typeOfEnterprise">Type of Enterprise:</label>
                                         <input type="text" id="typeOfEnterprise" class="form-control" value="Sole Proprietorship" readonly>
                                     </div>
                                     <div>
@@ -289,7 +291,7 @@ foreach ($applicants as $applicant) {
                 <table id="applicant" class="table table-hover mx-2" style="width:100%">
                     <thead>
                         <tr>
-                            <th>id</th>
+                            <th>ID</th>
                             <th>Client Name</th>
                             <th>Designation</th>
                             <th>Firm Name</th>
@@ -307,19 +309,36 @@ foreach ($applicants as $applicant) {
                                 <td><?= $applicant['designation'] ?></td>
                                 <td><?= $applicant['firm_name'] ?></td>
                                 <td>
-                                    <p><strong>Business Address:</strong> <?= $applicantInfo['B_address'] ?> <br> <strong>Type of Enterprise:</strong> <?= $applicantInfo['enterprise_type'] ?></p>
-                                    <p>
+                                    <div><strong>Business Address:</strong> <span class="business_Address"><?= $applicantInfo['B_address'] ?></span> <br> <strong>Type of Enterprise:</strong> <span class="Type_Enterprise"><?= $applicantInfo['enterprise_type'] ?></span>
+                                    </div>
+                                    <div>
                                         <Strong>Assets:</Strong> <br>
-                                        <span class="ps-2">Building: <?= number_format($applicantInfo['building_value'], 2) ?></span><br>
-                                        <span class="ps-2">Equipment: <?= number_format($applicantInfo['equipment_value'], 2) ?></span> <br>
-                                        <span class="ps-2">Working Capital: <?= number_format($applicantInfo['working_capital'], 2) ?></span>
-                                    </p>
+                                        <span class="ps-2">
+                                            Building:
+                                            <span class="building"> <?= number_format($applicantInfo['building_value'], 2) ?>
+                                            </span>
+                                        </span><br>
+                                        <span class="ps-2">Equipment:
+                                            <span class="Equipment"><?= number_format($applicantInfo['equipment_value'], 2) ?>
+                                            </span>
+                                        </span> <br>
+                                        <span class="ps-2">Working Capital:
+                                            <span class="Working_C"><?= number_format($applicantInfo['working_capital'], 2) ?>
+                                            </span>
+                                        </span>
+                                    </div>
                                     <strong>Contact Details:</strong>
-                                    <p>
-                                        <strong class="p-2">Landline:</strong> <?= $applicantInfo['landline'] ?> <br>
-                                        <Strong class="p-2">Mobile Phone:</Strong> <?= $applicantInfo['mobile_number'] ?> <br>
-                                        <strong class="p-2">Email:</strong> <?= $applicantInfo['email_address'] ?>
-                                    </p>
+                                    <div>
+                                        <strong class="p-2">Landline:</strong>
+                                        <span class="landline"><?= $applicantInfo['landline'] ?>
+                                        </span> <br>
+                                        <Strong class="p-2">Mobile Phone:</Strong>
+                                        <span class="MobileNum"><?= $applicantInfo['mobile_number'] ?>
+                                        </span> <br>
+                                        <strong class="p-2">Email:</strong>
+                                        <span class="Email"><?= $applicantInfo['email_address'] ?>
+                                        </span>
+                                    </div>
                                 </td>
                                 <td><?= $applicantInfo['date_applied'] ?></td>
                                 <td>To be review</td>
@@ -335,7 +354,7 @@ foreach ($applicants as $applicant) {
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>id</th>
+                            <th>ID</th>
                             <th>Client Name</th>
                             <th>Designation</th>
                             <th>Firm Name</th>
@@ -495,4 +514,19 @@ foreach ($applicants as $applicant) {
         $('#ongoing').DataTable();
         $('#completed').DataTable();
     });
+    $(document).ready(function() {
+    $('button[data-bs-toggle="modal"]').on('click', function() {
+        var row = $(this).closest('tr');
+        
+        $('#cooperatorName').val(row.find('td:eq(1)').text());
+        $('#designation').val(row.find('td:eq(2)').text());
+        $('#businessAddress').val(row.find('.business_Address').text());
+        $('#typeOfEnterprise').val(row.find('.Type_Enterprise').text());
+        $('#landline').val(row.find('.landline').text());
+        $('#mobilePhone').val(row.find('.MobileNum').text());
+        $('#building').val(row.find('.building').text());
+        $('#equipment').val(row.find('.Equipment').text());
+        $('#workingCapital').val(row.find('.Working_C').text());
+    });
+});
 </script>
