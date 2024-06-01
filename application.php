@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   // Retrieve current user's ID from session
   session_start();
-  $user_id = 8; // Assuming you store the user ID in session
+  $user_id = 10; // Assuming you store the user ID in session
   $successful_inserts = 0;
 
   // Personal Info table
