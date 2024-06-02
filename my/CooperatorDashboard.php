@@ -188,13 +188,42 @@ $stmt->close();
 </head>
 
 <?php
-if(isset($_SESSION['application_status'])) {
-  // Check the user type and include the appropriate file
-  if($_SESSION['application_status'] == 'approved') {
-      include("approved.php");
-  } else if($_SESSION['application_status'] == 'waiting') {
-      include("waitingRoom.php");
+// Start the sessio
+
+if(isset($_SESSION['application_status']) && $_SESSION['application_status'] == 'approved') {
+    $projectInfo = "SELECT  personal_info.user_id, business_info.id AS business_id, project_info.id AS project_id 
+        FROM personal_info
+        INNER JOIN business_info ON business_info.user_info_id = personal_info.id
+        INNER JOIN project_info ON project_info.business_id = business_info.id
+        WHERE personal_info.user_id = ?;";
+
+    if($stmt = $conn->prepare($projectInfo)){
+  // Bind the user_id from the session to the prepared statement
+  $stmt->bind_param("i", $_SESSION['user_id']);
+
+  // Execute the prepared statement
+  $stmt->execute();
+
+  // Declare the result variables
+  $business_id = null;
+  $project_id = null;
+
+  // Bind the result variables
+  $stmt->bind_result($user_id, $business_id, $project_id);
+
+  // Fetch the result values
+  if($stmt->fetch()){
+      // Store the result values in the session
+      $_SESSION['business_id'] = $business_id;
+      $_SESSION['project_id'] = $project_id;
   }
+
+  // Close the statement
+  $stmt->close();
+    }
+    include("approved.php");
+} else if(isset($_SESSION['application_status']) && $_SESSION['application_status'] == 'waiting') {
+    include("waitingRoom.php");
 }
 ?>
 </html>

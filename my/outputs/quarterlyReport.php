@@ -1,14 +1,18 @@
 <?php
+session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Capture form data
   $formData = $_POST;
 
   // Convert form data to JSON format
-  $json = json_encode($formData, JSON_PRETTY_PRINT);
-
-  // Write JSON data to a file
-  file_put_contents('form_data.json', $json);
 }
+
+if(isset($_SESSION['business_id']) && isset($_SESSION['project_id'])) {
+    echo "business_id and project_id are stored in the session.";
+} else {
+    echo "business_id and/or project_id are not stored in the session.";
+}
+
 ?>
 <style>
   #smartwizard th {
@@ -20,34 +24,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 </style>
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-<div id="smartwizard" class="my-4">
-  <ul class="nav nav-progress">
-    <li class="nav-item">
-      <a class="nav-link default active z-3" href="#step-1">
-        <div class="num">1</div>
-        Assets
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link default z-3" href="#step-2">
-        <span class="num">2</span>
-        Total Employment
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link default z-3" href="#step-3">
-        <span class="num">3</span>
-        Production and Sales
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link default z-3" href="#step-4">
-        <span class="num">4</span>
-        Market Outlets
-      </a>
-    </li>
-  </ul>
-  <div class="tab-content">
+  <div id="smartwizard" class="my-4">
+    <ul class="nav nav-progress">
+      <li class="nav-item">
+        <a class="nav-link default active z-3" href="#step-1">
+          <div class="num">1</div>
+          Assets
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link default z-3" href="#step-2">
+          <span class="num">2</span>
+          Total Employment
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link default z-3" href="#step-3">
+          <span class="num">3</span>
+          Production and Sales
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link default z-3" href="#step-4">
+          <span class="num">4</span>
+          Market Outlets
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
       <div id="step-1" class="tab-pane" role="tabpanel" aria-labelledby="step-1">
         <fieldset class="">
           <legend class="w-auto">
@@ -94,9 +98,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </thead>
                     <tbody>
                       <tr>
-                        <td><input type="text" name="male_Dir_Regular" class="form-control" id="maleInput" ></td>
-                        <td><input type="text" name="female_Dir_Regular" class="form-control" id="femaleInput" ></td>
-                        <td><input type="text" name="workday_Dir_Regular" class="form-control" id="workdayInput" ></td>
+                        <td><input type="text" name="male_Dir_Regular" class="form-control" id="maleInput"></td>
+                        <td><input type="text" name="female_Dir_Regular" class="form-control" id="femaleInput"></td>
+                        <td><input type="text" name="workday_Dir_Regular" class="form-control" id="workdayInput"></td>
                         <td>{Total}</td>
                       </tr>
                     </tbody>
@@ -117,9 +121,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </thead>
                     <tbody>
                       <tr>
-                        <td><input type="text"  name="male_Dir_PartT" class="form-control" id="parttimeMaleInput" ></td>
-                        <td><input type="text"  name="female_Dir_PartT" class="form-control" id="parttimeFemaleInput" ></td>
-                        <td><input type="text"  name="workday_Dir_PartT" class="form-control" id="parttimeWorkdayInput" ></td>
+                        <td><input type="text" name="male_Dir_PartT" class="form-control" id="parttimeMaleInput"></td>
+                        <td><input type="text" name="female_Dir_PartT" class="form-control" id="parttimeFemaleInput"></td>
+                        <td><input type="text" name="workday_Dir_PartT" class="form-control" id="parttimeWorkdayInput"></td>
                         <td>{Total}</td>
                       </tr>
                     </tbody>
@@ -145,9 +149,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </thead>
                     <tbody>
                       <tr>
-                        <td><input type="text"  name="male_Indir_Regular" class="form-control" id="regularMaleInput" ></td>
-                        <td><input type="text"  name="female_Indir_Regular" class="form-control" id="regularFemaleInput" ></td>
-                        <td><input type="text"  name="workday_Indir_Regular" class="form-control" id="regularWorkdayInput" ></td>
+                        <td><input type="text" name="male_Indir_Regular" class="form-control" id="regularMaleInput"></td>
+                        <td><input type="text" name="female_Indir_Regular" class="form-control" id="regularFemaleInput"></td>
+                        <td><input type="text" name="workday_Indir_Regular" class="form-control" id="regularWorkdayInput"></td>
                         <td>{Total}</td>
                       </tr>
                     </tbody>
@@ -170,9 +174,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </thead>
                     <tbody>
                       <tr>
-                        <td><input type="text" name="male_Indir_PartT" class="form-control" id="parttimeMaleInput" ></td>
-                        <td><input type="text" name="female_Indir_PartT" class="form-control" id="parttimeFemaleInput" ></td>
-                        <td><input type="text" name="workday_Indir_PartT" class="form-control" id="parttimeWorkdayInput" ></td>
+                        <td><input type="text" name="male_Indir_PartT" class="form-control" id="parttimeMaleInput"></td>
+                        <td><input type="text" name="female_Indir_PartT" class="form-control" id="parttimeFemaleInput"></td>
+                        <td><input type="text" name="workday_Indir_PartT" class="form-control" id="parttimeWorkdayInput"></td>
                         <td>{Total}</td>
                       </tr>
                     </tbody>
@@ -314,8 +318,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
         </fieldset>
       </div>
+    </div>
   </div>
-</div>
 </form>
 <script>
   $(document).ready(function() {
@@ -325,7 +329,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     function addRow(buttonSelector, tableSelector, counter, identifier) {
       $(buttonSelector).click(function() {
         counter++;
-    
+
         var newRow = `
           <tr>
             <td><input type="text" class="form-control" name="${identifier}ProductName${counter}"></td>
@@ -336,7 +340,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <td><input type="text" class="form-control" name="${identifier}NetSales${counter}"></td>
           </tr>
         `;
-    
+
         $(tableSelector).append(newRow);
         updateDeleteButtonState();
       });
@@ -407,26 +411,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   });
 </script>
 <script>
- $(document).ready(function() {
-  $('form').submit(function(event) {
-    event.preventDefault(); // Prevent default form submission
+  $(document).ready(function() {
+    $('form').submit(function(event) {
+      event.preventDefault(); // Prevent default form submission
 
-    // Serialize form data
-    var formData = $(this).serialize();
+      // Serialize form data
+      var formData = $(this).serialize();
 
-    // Send form data using AJAX
-    $.ajax({
-      type: 'POST',
-      url: $(this).attr('action'),
-      data: formData,
-      success: function(response) {
-        // Handle the response if needed
-        loadPage('/my/CooperatorRequirement.php','requirementTab')
-      },
-      error: function(xhr, status, error) {
-        // Handle any errors
-      }
+      // Send form data using AJAX
+      $.ajax({
+        type: 'POST',
+        url: $(this).attr('action'),
+        data: JSON.stringify($(this).serializeArray()), // Serialize form data as JSON
+        contentType: 'application/json', // Set content type to JSON
+        success: function(response) {
+          // Handle the response if needed
+          loadPage('/my/CooperatorRequirement.php', 'requirementTab');
+        },
+        error: function(xhr, status, error) {
+          // Handle any errors
+        }
+      });
     });
   });
-});
 </script>
