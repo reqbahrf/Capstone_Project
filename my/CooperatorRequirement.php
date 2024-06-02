@@ -1,3 +1,32 @@
+<?php
+session_start();
+$conn = include_once '../db_connection/database_connection.php';
+
+$ongoing_project_id = $_SESSION['project_id'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  // Check if a file was uploaded
+  if (isset($_FILES['expenseReceipt']) && $_FILES['expenseReceipt']['error'] == 0) {
+    $receipt_file = $_FILES['expenseReceipt']['tmp_name'];
+    $receipt_file_content = addslashes(file_get_contents($receipt_file)); // Read and escape file content
+
+    // Prepare the SQL statement
+    $sql = "INSERT INTO receipt_upload (ongoing_project_id, receipt_file) VALUES ('$ongoing_project_id', '$receipt_file_content')";
+
+    // Execute the SQL query
+    if (mysqli_query($conn, $sql)) {
+      echo "Record inserted successfully";
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+  } else {
+    echo "No file uploaded or there was an error uploading the file.";
+  }
+
+  // Close the database connection
+  mysqli_close($conn);
+}
+?>
+
 <style>
   .nav-tabs .nav-link.tab-Nav.active {
     background-color: #318791 !important;
@@ -26,10 +55,12 @@
   }
 
   .nav-link.tab-Nav:disabled {
-  opacity: 0.5; /* Reduce opacity for disabled buttons */
-  cursor: not-allowed; /* Change cursor to not-allowed */
-  /* Add any other custom styles you want for disabled buttons */
-}
+    opacity: 0.5;
+    /* Reduce opacity for disabled buttons */
+    cursor: not-allowed;
+    /* Change cursor to not-allowed */
+    /* Add any other custom styles you want for disabled buttons */
+  }
 
   /* Change the background color of the progress bar */
 </style>
@@ -59,23 +90,25 @@
   <div class="modal fade" id="expenseReceiptModal" tabindex="-1" aria-labelledby="expenseReceiptModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header bg-info">
+        <div class="modal-header bg-primary">
           <h5 class="modal-title" id="expenseReceiptModalLabel">Expense Receipt</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <fieldset>
             <legend class="w-auto">Receipt</legend>
-            <form>
-              <div class="mb-3">
-                <label for="expenseReceipt" class="form-label">Expense Receipt</label>
-                <input type="file" class="form-control" id="expenseReceipt" name="expenseReceipt">
-              </div>
-            </form>
+            <div id="expenseReceipt" class="alert alert-success alert-dismissible text-bg-success border-0 fade show mx-5 d-none" role="alert">
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+              <strong>Success - </strong> All data successfully inserted.
+            </div>
+            <div class="mb-3">
+              <label for="expenseReceipt" class="form-label">Expense Receipt</label>
+              <input type="file" class="form-control" id="expenseReceiptFile" name="expenseReceiptFile">
+            </div>
           </fieldset>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary submit-receipt">Submit</button>
         </div>
       </div>
     </div>
@@ -99,7 +132,7 @@
 
         <div class="tab-content">
           <div class="tab-pane fade show active w-auto" id="nav-quarter1" role="tabpanel" aria-labelledby="nav-quarter1-tab" tabindex="0">
-            
+
           </div>
           <div class="tab-pane fade" id="nav-quarter2" role="tabpanel" aria-labelledby="nav-quarter2-tab" tabindex="0">
 
@@ -118,16 +151,47 @@
 </div>
 <script>
   $(document).ready(function() {
-   // Example AJAX request to load content into Quarter 1 tab
-$.ajax({
-  url: 'outputs/quarterlyReport.php',
-  type: 'GET',
-  success: function(response) {
-    $('#nav-quarter1').html(response); // Update the content of Quarter 1 tab with the response
-  },
-  error: function(xhr, status, error) {
-    console.error(error);
-  }
-});
+    // Example AJAX request to load content into Quarter 1 tab
+    $.ajax({
+      url: 'outputs/quarterlyReport.php',
+      type: 'GET',
+      success: function(response) {
+        $('#nav-quarter1').html(response); // Update the content of Quarter 1 tab with the response
+      },
+      error: function(xhr, status, error) {
+        console.error(error);
+      }
+    });
+  });
+</script>
+<script>
+  $(document).ready(function() {
+    $('.submit-receipt').click(function(event) {
+      event.preventDefault(); // Prevent default button action
+
+      // Create a FormData object
+      var formData = new FormData();
+      formData.append('expenseReceipt', $('#expenseReceiptFile')[0].files[0]);
+
+      // Send form data using AJAX
+      $.ajax({
+        type: 'POST',
+        url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>', // Replace with your PHP file path
+        data: formData, // Send the FormData object
+        contentType: false, // The content type used when sending data to the server
+        cache: false, // To disable request pages to be cached
+        processData: false, // To send DOMDocument or non-processed data file it is set to false (i.e., data should not be in the form of string)
+        success: function(response) {
+          // Handle response if needed
+          console.log(response);
+
+          // Remove the 'd-none' class from the div
+          $('#expenseReceipt').removeClass('d-none');
+        },
+        error: function(xhr, status, error) {
+          // Handle any errors
+        }
+      });
+    });
   });
 </script>

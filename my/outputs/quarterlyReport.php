@@ -1,18 +1,37 @@
 <?php
 session_start();
+
+$conn = include_once '../../db_connection/database_connection.php';
+
+$ongoing_project_id = $_SESSION['project_id'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Capture form data
-  $formData = $_POST;
+  $rawData = file_get_contents('php://input');
 
-  // Convert form data to JSON format
+  // Check if rawData is not null
+  if ($rawData !== null) {
+    // Prepare the SQL query
+    $sql = "INSERT INTO ongoing_project_quarterly_report (Q1, ongoing_project_id) VALUES (?, ?)";
+
+    if($stmt = $conn->prepare($sql)){
+      // Bind the variables to the prepared statement
+      $stmt->bind_param("si", $rawData, $ongoing_project_id);
+
+      // Execute the prepared statement
+      if($stmt->execute()){
+        echo "Data successfully inserted!";
+      } else {
+        echo "Failed to insert data: " . $stmt->error;
+      }
+
+      // Close the statement
+      $stmt->close();
+    } else {
+      echo "Failed to prepare statement: " . $conn->error;
+    }
+  }
+  exit();
 }
-
-if(isset($_SESSION['business_id']) && isset($_SESSION['project_id'])) {
-    echo "business_id and project_id are stored in the session.";
-} else {
-    echo "business_id and/or project_id are not stored in the session.";
-}
-
 ?>
 <style>
   #smartwizard th {
@@ -24,6 +43,10 @@ if(isset($_SESSION['business_id']) && isset($_SESSION['project_id'])) {
   }
 </style>
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+   <div id="qReport" class="alert alert-success alert-dismissible text-bg-success border-0 fade show my-2 mx-5 d-none" role="alert">
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+        <strong>Success - </strong> All data successfully inserted.
+    </div>
   <div id="smartwizard" class="my-4">
     <ul class="nav nav-progress">
       <li class="nav-item">
@@ -415,18 +438,23 @@ if(isset($_SESSION['business_id']) && isset($_SESSION['project_id'])) {
     $('form').submit(function(event) {
       event.preventDefault(); // Prevent default form submission
 
-      // Serialize form data
-      var formData = $(this).serialize();
+      // Convert form data to JSON
+      var formData = $(this).serializeArray();
+      var dataObject = {};
+      $.each(formData, function(i, v) {
+        dataObject[v.name] = v.value;
+      });
 
       // Send form data using AJAX
       $.ajax({
         type: 'POST',
         url: $(this).attr('action'),
-        data: JSON.stringify($(this).serializeArray()), // Serialize form data as JSON
+        data: JSON.stringify(dataObject), // Send the new data object
         contentType: 'application/json', // Set content type to JSON
         success: function(response) {
           // Handle the response if needed
-          loadPage('/my/CooperatorRequirement.php', 'requirementTab');
+          $('#qReport').removeClass('d-none');
+          console.log(response);
         },
         error: function(xhr, status, error) {
           // Handle any errors
