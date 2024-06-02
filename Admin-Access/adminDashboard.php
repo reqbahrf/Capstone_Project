@@ -414,13 +414,13 @@
     var handledBusiness = {
       series: [{
         name: 'Micro Enterprise',
-        data: [21, 22, 10, 28, 16, 21, 13, 30]
+        data: [21, 22, 10, 28, 16]
       }, {
         name: 'Small Enterprise',
-        data: [15, 25, 11, 19, 14, 20, 12, 27]
+        data: [15, 25, 11, 19, 14]
       }, {
         name: 'Medium Enterprise',
-        data: [10, 20, 15, 24, 10, 15, 10, 20]
+        data: [10, 20, 15, 24, 10]
       }],
       chart: {
         height: 350,
@@ -456,9 +456,6 @@
           'Staff3',
           'Staff4',
           'Staff5',
-          'Staff6',
-          'Staff7',
-          'Staff8',
         ],
         labels: {
           style: {
@@ -474,7 +471,7 @@
 
   function initializePieChart(chartID) {
     var options = {
-      series: [42, 55, 13],
+      series: [77, 58, 50],
       chart: {
         width: 380,
         type: 'pie',

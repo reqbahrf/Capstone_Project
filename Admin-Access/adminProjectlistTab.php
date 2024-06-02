@@ -5,7 +5,7 @@ $conn = include_once '../db_connection/database_connection.php';
 
 function getApplicant($conn)
 {
-    $sql = "SELECT personal_info.user_id, personal_info.f_name, personal_info.l_name, personal_info.designation, personal_info.mobile_number, personal_info.email_address, personal_info.landline, business_info.firm_name, business_info.enterprise_type, business_info.B_address, assets.building_value, assets.equipment_value, assets.working_capital, application_info.date_applied 
+    $sql = "SELECT personal_info.user_id, personal_info.f_name, personal_info.l_name, personal_info.designation, personal_info.mobile_number, personal_info.email_address, personal_info.landline, business_info.firm_name, business_info.enterprise_type, business_info.B_address, assets.building_value, assets.equipment_value, assets.working_capital, application_info.date_applied, business_info.id
 
     FROM personal_info 
     INNER JOIN business_info ON business_info.user_info_id = personal_info.id 
@@ -23,6 +23,23 @@ $applicants = getApplicant($conn);
 foreach ($applicants as $applicant) {
     $ApplicantTable[] = $applicant;
 }
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['businessId']) && isset($_POST['approvalStatus'])) {
+        $businessId = $_POST['businessId'];
+        $approvalStatus = $_POST['approvalStatus'];
+        function approveApplication($businessId, $approvalStatus, $conn) {
+            $sql = "UPDATE `application_info` SET `application_status` = ? WHERE `business_id` = ?";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, 'si', $approvalStatus, $businessId);
+            mysqli_stmt_execute($stmt);
+            echo 'success';
+        }
+        approveApplication($businessId, $approvalStatus, $conn);
+    }
+    exit();
+}
+
 
 // [user_id] => 1
 // [f_name] => Reanz Arthur 
@@ -100,34 +117,34 @@ foreach ($applicants as $applicant) {
                                 <fieldset class="mb-3">
                                     <legend>Personal Info</legend>
                                     <label for="cooperatorName">Cooperator Name:</label>
-                                    <input type="text" id="cooperatorName" class="form-control"  readonly>
+                                    <input type="text" id="cooperatorName" class="form-control" readonly>
                                     <label for="designation">Designation:</label>
-                                    <input type="text" id="designation" class="form-control"  readonly>
+                                    <input type="text" id="designation" class="form-control" readonly>
                                     <label>Contact Details:</label>
                                     <div>
                                         <label for="landline" class="p-2">Landline:</label>
-                                        <input type="text" id="landline" class="form-control"  readonly>
+                                        <input type="text" id="landline" class="form-control" readonly>
                                         <label for="mobilePhone" class="p-2">Mobile Phone:</label>
-                                        <input type="text" id="mobilePhone" class="form-control"  readonly>
+                                        <input type="text" id="mobilePhone" class="form-control" readonly>
                                     </div>
                                 </fieldset>
                             </div>
                             <div class="col-12">
                                 <fieldset class="mb-3">
                                     <legend>Business Info</legend>
+                                    <input type="hidden" name="b_id" id="b_id">
                                     <label for="businessAddress">Business Address:</label>
-                                    <input type="text" id="businessAddress" class="form-control"  readonly>
+                                    <input type="text" id="businessAddress" class="form-control" readonly>
                                     <label for="typeOfEnterprise">Type of Enterprise:</label>
-                                    <input type="text" id="typeOfEnterprise" class="form-control"  readonly>
+                                    <input type="text" id="typeOfEnterprise" class="form-control" readonly>
                                     <label>Assets:</label>
                                     <div>
-                                      
                                         <label for="building" class="ps-2">Building:</label>
-                                        <input type="text" id="building" class="form-control"  readonly>
+                                        <input type="text" id="building" class="form-control" readonly>
                                         <label for="equipment" class="ps-2">Equipment:</label>
-                                        <input type="text" id="equipment" class="form-control"  readonly>
+                                        <input type="text" id="equipment" class="form-control" readonly>
                                         <label for="land" class="ps-2">Land:</label>
-                                        <input type="text" id="workingCapital" class="form-control"  readonly>
+                                        <input type="text" id="workingCapital" class="form-control" readonly>
                                     </div>
                                 </fieldset>
                             </div>
@@ -153,7 +170,7 @@ foreach ($applicants as $applicant) {
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary"> Approve</button>
+                <button id="approveButton" class="btn btn-primary">Approve</button>
                 <button class="btn btn-danger">Delete</button>
             </div>
         </div>
@@ -189,6 +206,7 @@ foreach ($applicants as $applicant) {
                                 <legend>Business Info</legend>
                                 <div class="col-12 col-md-6">
                                     <div>
+
                                         <label for="businessAddress">Business Address:</label>
                                         <input type="text" id="businessAddress" class="form-control" value="tagum, Davao Del Norte" readonly><br>
                                         <label for="typeOfEnterprise">Type of Enterprise:</label>
@@ -302,14 +320,17 @@ foreach ($applicants as $applicant) {
                         </tr>
                     </thead>
                     <tbody id="tableBody">
+                    <?php if (isset($ApplicantTable) && is_array($ApplicantTable)) : ?>
                         <?php foreach ($ApplicantTable as $applicantInfo) : ?>
                             <tr>
                                 <td><?= $applicantInfo['user_id'] ?></td>
                                 <td><?= $applicantInfo['f_name'] . " " . $applicantInfo['l_name'] ?></td>
-                                <td><?= $applicant['designation'] ?></td>
-                                <td><?= $applicant['firm_name'] ?></td>
+                                <td><?= $applicantInfo['designation'] ?></td>
+                                <td><?= $applicantInfo['firm_name'] ?></td>
                                 <td>
-                                    <div><strong>Business Address:</strong> <span class="business_Address"><?= $applicantInfo['B_address'] ?></span> <br> <strong>Type of Enterprise:</strong> <span class="Type_Enterprise"><?= $applicantInfo['enterprise_type'] ?></span>
+                                    <div><strong>Business Address:</strong>
+                                        <input type="hidden" name="business_id" id="business_id" value="<?= $applicantInfo['id'] ?>">
+                                        <span class="business_Address"><?= $applicantInfo['B_address'] ?></span> <br> <strong>Type of Enterprise:</strong> <span class="Type_Enterprise"><?= $applicantInfo['enterprise_type'] ?></span>
                                     </div>
                                     <div>
                                         <Strong>Assets:</Strong> <br>
@@ -351,6 +372,7 @@ foreach ($applicants as $applicant) {
                                 </td>
                             </tr>
                         <?php endforeach; ?>
+                        <?php endif; ?>
                     </tbody>
                     <tfoot>
                         <tr>
@@ -515,18 +537,40 @@ foreach ($applicants as $applicant) {
         $('#completed').DataTable();
     });
     $(document).ready(function() {
-    $('button[data-bs-toggle="modal"]').on('click', function() {
-        var row = $(this).closest('tr');
-        
-        $('#cooperatorName').val(row.find('td:eq(1)').text());
-        $('#designation').val(row.find('td:eq(2)').text());
-        $('#businessAddress').val(row.find('.business_Address').text());
-        $('#typeOfEnterprise').val(row.find('.Type_Enterprise').text());
-        $('#landline').val(row.find('.landline').text());
-        $('#mobilePhone').val(row.find('.MobileNum').text());
-        $('#building').val(row.find('.building').text());
-        $('#equipment').val(row.find('.Equipment').text());
-        $('#workingCapital').val(row.find('.Working_C').text());
+        $('button[data-bs-toggle="modal"]').on('click', function() {
+            var row = $(this).closest('tr');
+
+            $('#cooperatorName').val(row.find('td:eq(1)').text());
+            $('#designation').val(row.find('td:eq(2)').text());
+            $('#b_id').val(row.find('#business_id').val());
+            $('#businessAddress').val(row.find('.business_Address').text());
+            $('#typeOfEnterprise').val(row.find('.Type_Enterprise').text());
+            $('#landline').val(row.find('.landline').text());
+            $('#mobilePhone').val(row.find('.MobileNum').text());
+            $('#building').val(row.find('.building').text());
+            $('#equipment').val(row.find('.Equipment').text());
+            $('#workingCapital').val(row.find('.Working_C').text());
+        });
     });
-});
+</script>
+<script>
+    $(document).ready(function() {
+        $("#approveButton").click(function(e) {
+            e.preventDefault();
+            let Business_ID = $('#b_id').val(); // replace this with your argument
+            let approved = 'approved';
+            $.ajax({
+                url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
+                type: 'post',
+                data: {
+                    businessId: Business_ID,
+                    approvalStatus: approved
+                },
+                success: function(response) {
+                    // Do something with the response from the server
+                    console.log(response);
+                }
+            });
+        });
+    });
 </script>

@@ -281,6 +281,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </tr>
             </thead>
             <tbody id="tableBody">
+            <?php if (isset($ApplicantTable) && is_array($ApplicantTable)) : ?>
                 <?php foreach ($ApplicantTable as $item) : ?>
                     <tr>
                         <td><?= $item['user_id'] ?></td>
@@ -316,6 +317,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </td>
                     </tr>
                 <?php endforeach; ?>
+                <?php endif; ?>
             </tbody>
             <tfoot>
                 <tr>
