@@ -28,7 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['businessId']) && isset($_POST['approvalStatus'])) {
         $businessId = $_POST['businessId'];
         $approvalStatus = $_POST['approvalStatus'];
-        function approveApplication($businessId, $approvalStatus, $conn) {
+        function approveApplication($businessId, $approvalStatus, $conn)
+        {
             $sql = "UPDATE `application_info` SET `application_status` = ? WHERE `business_id` = ?";
             $stmt = mysqli_prepare($conn, $sql);
             mysqli_stmt_bind_param($stmt, 'si', $approvalStatus, $businessId);
@@ -37,24 +38,58 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         approveApplication($businessId, $approvalStatus, $conn);
     }
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['business_id'])) {
+        $businessId = $_POST['business_id'];
+
+        function getProposal($businessId, $conn)
+        {
+            $sql = "SELECT 
+                business_info.id,
+                project_info.project_title, 
+                project_info.fund_amount, 
+                application_info.date_applied, 
+                org_users.user_name 
+                FROM project_info 
+                INNER JOIN business_info 
+                ON project_info.business_id = business_info.id 
+                INNER JOIN application_info 
+                ON application_info.business_id = business_info.id 
+                INNER JOIN org_users 
+                ON project_info.evaluated_by_id = org_users.id
+                WHERE business_info.id = ?";
+
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, 'i', $businessId);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            $row = mysqli_fetch_assoc($result);
+            return $row;
+        }
+
+        $row = getProposal($businessId, $conn);
+
+        header('Content-Type: application/json'); // Set the header for JSON response
+
+        if ($row) {
+            $response = array(
+                'ProjectTitle_fetch' => $row['project_title'],
+                'Amount_fetch' => $row['fund_amount'],
+                'Applied_fetch' => $row['date_applied'],
+                'evaluated_fetch' => $row['user_name']
+            );
+            echo json_encode($response); // Return the response as JSON
+        } else {
+            echo json_encode(array('error' => 'No data found.'));
+        }
+    }
+
     exit();
 }
 
 
-// [user_id] => 1
-// [f_name] => Reanz Arthur 
-// [l_name] => Monera
-// [designation] => CEO
-// [mobile_number] => 0982-322-3232
-// [email_address] => re@erer
-// [landline] => 1121
-// [firm_name] => Resf
-// [enterprise_type] => Partnership
-// [B_address] => Mats
-// [building_value] => 1.00
-// [equipment_value] => 343.00
-// [working_capital] => 43.00
-// [date_applied] => 2024-05-22
 
 ?>
 
@@ -147,12 +182,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <input type="text" id="workingCapital" class="form-control" readonly>
                                     </div>
                                 </fieldset>
+                                <fieldset class="mb-3">
+                                    <legend>Project Proposal</legend>
+                                    <label for="ProjectTitle_fetch">Project Title:</label>
+                                    <input type="text" id="ProjectTitle_fetch" class="form-control" readonly value="">
+                                    <div class="row my-2">
+                                        <div class="col-md-6">
+                                            <label for="Amount_fetch">Amount:</label>
+                                            <input type="text" id="Amount_fetch" class="form-control" readonly value="">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="Applied_fetch">Date Applied:</label>
+                                            <input type="text" id="Applied_fetch" class="form-control" readonly value="">
+                                        </div>
+                                    </div>
+                                    <label for="evaluated_fetch">Evaluated by:</label>
+                                    <input type="text" id="evaluated_fetch" class="form-control" readonly value="">
+                                </fieldset>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <Strong>Evaluated by:</Strong>
-                                <p class="ps-2">Staff-1</p>
                                 <br>
                                 <br>
                                 <strong>Assign to:</strong>
@@ -320,58 +370,58 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </tr>
                     </thead>
                     <tbody id="tableBody">
-                    <?php if (isset($ApplicantTable) && is_array($ApplicantTable)) : ?>
-                        <?php foreach ($ApplicantTable as $applicantInfo) : ?>
-                            <tr>
-                                <td><?= $applicantInfo['user_id'] ?></td>
-                                <td><?= $applicantInfo['f_name'] . " " . $applicantInfo['l_name'] ?></td>
-                                <td><?= $applicantInfo['designation'] ?></td>
-                                <td><?= $applicantInfo['firm_name'] ?></td>
-                                <td>
-                                    <div><strong>Business Address:</strong>
-                                        <input type="hidden" name="business_id" id="business_id" value="<?= $applicantInfo['id'] ?>">
-                                        <span class="business_Address"><?= $applicantInfo['B_address'] ?></span> <br> <strong>Type of Enterprise:</strong> <span class="Type_Enterprise"><?= $applicantInfo['enterprise_type'] ?></span>
-                                    </div>
-                                    <div>
-                                        <Strong>Assets:</Strong> <br>
-                                        <span class="ps-2">
-                                            Building:
-                                            <span class="building"> <?= number_format($applicantInfo['building_value'], 2) ?>
+                        <?php if (isset($ApplicantTable) && is_array($ApplicantTable)) : ?>
+                            <?php foreach ($ApplicantTable as $applicantInfo) : ?>
+                                <tr>
+                                    <td><?= $applicantInfo['user_id'] ?></td>
+                                    <td><?= $applicantInfo['f_name'] . " " . $applicantInfo['l_name'] ?></td>
+                                    <td><?= $applicantInfo['designation'] ?></td>
+                                    <td><?= $applicantInfo['firm_name'] ?></td>
+                                    <td>
+                                        <div><strong>Business Address:</strong>
+                                            <input type="hidden" name="business_id" id="business_id" value="<?= $applicantInfo['id'] ?>">
+                                            <span class="business_Address"><?= $applicantInfo['B_address'] ?></span> <br> <strong>Type of Enterprise:</strong> <span class="Type_Enterprise"><?= $applicantInfo['enterprise_type'] ?></span>
+                                        </div>
+                                        <div>
+                                            <Strong>Assets:</Strong> <br>
+                                            <span class="ps-2">
+                                                Building:
+                                                <span class="building"> <?= number_format($applicantInfo['building_value'], 2) ?>
+                                                </span>
+                                            </span><br>
+                                            <span class="ps-2">Equipment:
+                                                <span class="Equipment"><?= number_format($applicantInfo['equipment_value'], 2) ?>
+                                                </span>
+                                            </span> <br>
+                                            <span class="ps-2">Working Capital:
+                                                <span class="Working_C"><?= number_format($applicantInfo['working_capital'], 2) ?>
+                                                </span>
                                             </span>
-                                        </span><br>
-                                        <span class="ps-2">Equipment:
-                                            <span class="Equipment"><?= number_format($applicantInfo['equipment_value'], 2) ?>
+                                        </div>
+                                        <strong>Contact Details:</strong>
+                                        <div>
+                                            <strong class="p-2">Landline:</strong>
+                                            <span class="landline"><?= $applicantInfo['landline'] ?>
+                                            </span> <br>
+                                            <Strong class="p-2">Mobile Phone:</Strong>
+                                            <span class="MobileNum"><?= $applicantInfo['mobile_number'] ?>
+                                            </span> <br>
+                                            <strong class="p-2">Email:</strong>
+                                            <span class="Email"><?= $applicantInfo['email_address'] ?>
                                             </span>
-                                        </span> <br>
-                                        <span class="ps-2">Working Capital:
-                                            <span class="Working_C"><?= number_format($applicantInfo['working_capital'], 2) ?>
-                                            </span>
-                                        </span>
-                                    </div>
-                                    <strong>Contact Details:</strong>
-                                    <div>
-                                        <strong class="p-2">Landline:</strong>
-                                        <span class="landline"><?= $applicantInfo['landline'] ?>
-                                        </span> <br>
-                                        <Strong class="p-2">Mobile Phone:</Strong>
-                                        <span class="MobileNum"><?= $applicantInfo['mobile_number'] ?>
-                                        </span> <br>
-                                        <strong class="p-2">Email:</strong>
-                                        <span class="Email"><?= $applicantInfo['email_address'] ?>
-                                        </span>
-                                    </div>
-                                </td>
-                                <td><?= $applicantInfo['date_applied'] ?></td>
-                                <td>To be review</td>
-                                <td>
-                                    <button class="btn" data-bs-toggle="modal" data-bs-target="#ApplicantModal">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
-                                            <path d="M56.177,16.832c-0.547-4.731-4.278-8.462-9.009-9.009C43.375,7.384,38.264,7,32,7S20.625,7.384,16.832,7.823c-4.731,0.547-8.462,4.278-9.009,9.009C7.384,20.625,7,25.736,7,32s0.384,11.375,0.823,15.168c0.547,4.731,4.278,8.462,9.009,9.009C20.625,56.616,25.736,57,32,57s11.375-0.384,15.168-0.823c4.731-0.547,8.462-4.278,9.009-9.009C56.616,43.375,57,38.264,57,32S56.616,20.625,56.177,16.832z M36,32c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,29.791,36,32z M36,45c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,42.791,36,45z M36,19c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,16.791,36,19z" fill="#000000" />
-                                        </svg>
-                                    </button>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
+                                        </div>
+                                    </td>
+                                    <td><?= $applicantInfo['date_applied'] ?></td>
+                                    <td>To be review</td>
+                                    <td>
+                                        <button class="btn" data-bs-toggle="modal" data-bs-target="#ApplicantModal">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
+                                                <path d="M56.177,16.832c-0.547-4.731-4.278-8.462-9.009-9.009C43.375,7.384,38.264,7,32,7S20.625,7.384,16.832,7.823c-4.731,0.547-8.462,4.278-9.009,9.009C7.384,20.625,7,25.736,7,32s0.384,11.375,0.823,15.168c0.547,4.731,4.278,8.462,9.009,9.009C20.625,56.616,25.736,57,32,57s11.375-0.384,15.168-0.823c4.731-0.547,8.462-4.278,9.009-9.009C56.616,43.375,57,38.264,57,32S56.616,20.625,56.177,16.832z M36,32c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,29.791,36,32z M36,45c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,42.791,36,45z M36,19c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,16.791,36,19z" fill="#000000" />
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
                         <?php endif; ?>
                     </tbody>
                     <tfoot>
@@ -573,4 +623,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             });
         });
     });
+    $(document).ready(function() {
+    $('button[data-bs-target="#ApplicantModal"]').click(function(e) {
+        e.preventDefault();
+
+        let businessId = $(this).closest('tr').find('#business_id').val(); // get the value of the hidden input in the same row
+        console.log(businessId);
+
+        $.ajax({
+            url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
+            type: 'post',
+            data: {
+                business_id: businessId
+            },
+            dataType: 'json', // Expect a JSON response
+            success: function(response) {
+                if (response.error === 'No data found.'){
+                    $('#ProjectTitle_fetch').val('');
+                    $('#Amount_fetch').val('');
+                    $('#Applied_fetch').val('');
+                    $('#evaluated_fetch').val('');
+                    console.log('No data found.');
+                } else {
+                    console.log(response);
+                    $('#ProjectTitle_fetch').val(response.ProjectTitle_fetch);
+                    $('#Amount_fetch').val(response.Amount_fetch);
+                    $('#Applied_fetch').val(response.Applied_fetch);
+                    $('#evaluated_fetch').val(response.evaluated_fetch);
+                }
+            }
+        });
+    });
+});
 </script>

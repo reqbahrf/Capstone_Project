@@ -94,7 +94,7 @@
                     </g>
                   </svg>
         </span>
-        <h1 class="headerText px-3">DOST-SETUP</h1>
+        <h1 class="headerText px-3">DOST-SETUP-SYS</h1>
       </a>
       <ul class="nav nav-pills align-items-center">
       <li class="nav-item"><a href="/" id="home" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'index.php') ? 'active' : ''; ?>" onclick="confirmRedirect()" data-toggle="modal" data-target="#confirmModal">Home</a></li>

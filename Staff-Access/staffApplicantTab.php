@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $projectTitle = $_POST['projectTitle'];
     $fundAmount = $_POST['fundAmount'];
 
-    $sql = "INSERT INTO `project_info`( `business_id`, `handled_by_id`, `project_title`, `amount_barrowed`) VALUES ('$b_ID','$staffID','$projectTitle','$fundAmount')";
+    $sql = "INSERT INTO `project_info`( `business_id`, `evaluated_by_id`, `project_title`, `fund_amount`) VALUES ('$b_ID','$staffID','$projectTitle','$fundAmount')";
 
     if (mysqli_query($conn, $sql)) {
         echo "New record created successfully";
