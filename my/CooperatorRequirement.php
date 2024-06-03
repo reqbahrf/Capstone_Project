@@ -3,8 +3,8 @@ $session_expiration = 300;
 
 // Check if the session is not active
 if (session_status() == PHP_SESSION_NONE) {
-    session_set_cookie_params($session_expiration);
-    session_start();
+  session_set_cookie_params($session_expiration);
+  session_start();
 }
 $conn = include_once '../db_connection/database_connection.php';
 
@@ -26,7 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
   } else {
     echo "No file uploaded or there was an error uploading the file.";
-  } exit();
+  }
+  exit();
 
   // Close the database connection
   mysqli_close($conn);
@@ -97,23 +98,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-primary">
-          <h5 class="modal-title" id="expenseReceiptModalLabel">Expense Receipt</h5>
+          <h5 class="modal-title text-white" id="expenseReceiptModalLabel">Expense Receipt</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <fieldset>
+          <fieldset class="mt-3">
             <legend class="w-auto">Receipt</legend>
-            <div id="expenseReceipt" class="alert alert-success alert-dismissible text-bg-success border-0 fade show mx-5 d-none" role="alert">
-              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-              <strong>Success - </strong> All data successfully inserted.
+            <div class="tContainer-Receipt">
+              <table class="table">
+                <thead class="table-primary">
+                  <tr>
+                    <th>Receipt</th>
+                    <th>Date Uploaded</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 
+                </tbody>
+              </table>
+              <hr>
             </div>
-            <div class="mb-3">
-              <label for="expenseReceipt" class="form-label">Expense Receipt</label>
-              <input type="file" class="form-control" id="expenseReceiptFile" name="expenseReceiptFile">
+            <div>
+              <div class="mb-4 d-flex justify-content-center position-relative" >
+                <button class="btn btn-danger btn-rounded position-absolute top-0 end-0" onclick="unselectImage()">X</button>
+                <img id="selectedImage" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg" alt="example placeholder" style="width: 100%;" />
+              </div>
+              <div class="d-flex justify-content-center">
+                <div data-mdb-ripple-init class="btn btn-primary btn-rounded">
+                  <label class="form-label text-white m-1" for="expenseReceiptFile">Choose file</label>
+                  <input type="file" class="form-control d-none" id="expenseReceiptFile" name="expenseReceiptFile" onchange="displaySelectedImage(event, 'selectedImage')" />
+                </div>
+              </div>
             </div>
           </fieldset>
         </div>
         <div class="modal-footer">
+        <div id="expenseReceipt" class="alert alert-success alert-dismissible text-bg-success border-0 fade show mx-2 d-none" role="alert">
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+              <strong>Success - </strong> Image successfully sent.
+            </div>
           <button type="submit" class="btn btn-primary submit-receipt">Submit</button>
         </div>
       </div>
@@ -171,33 +194,76 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   });
 </script>
 <script>
+   function unselectImage() {
+        const selectedImage = document.getElementById('selectedImage');
+        selectedImage.src = 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg';
+        // You can also reset any associated form input values here if needed
+    }
+  function displaySelectedImage(event, elementId) {
+    const selectedImage = document.getElementById(elementId);
+    const fileInput = event.target;
+
+    if (fileInput.files && fileInput.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        selectedImage.src = e.target.result;
+      };
+
+      reader.readAsDataURL(fileInput.files[0]);
+    }
+  }
+</script>
+<script>
   $(document).ready(function() {
     $('.submit-receipt').click(function(event) {
-      event.preventDefault(); // Prevent default button action
+        event.preventDefault(); // Prevent default button action
 
-      // Create a FormData object
-      var formData = new FormData();
-      formData.append('expenseReceipt', $('#expenseReceiptFile')[0].files[0]);
+        // Create a FormData object
+        var formData = new FormData();
+        formData.append('expenseReceipt', $('#expenseReceiptFile')[0].files[0]);
 
-      // Send form data using AJAX
-      $.ajax({
-        type: 'POST',
-        url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>', // Replace with your PHP file path
-        data: formData, // Send the FormData object
-        contentType: false, // The content type used when sending data to the server
-        cache: false, // To disable request pages to be cached
-        processData: false, // To send DOMDocument or non-processed data file it is set to false (i.e., data should not be in the form of string)
-        success: function(response) {
-          // Handle response if needed
-          console.log(response);
+        // Send form data using AJAX
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>', // Replace with your PHP file path
+            data: formData, // Send the FormData object
+            contentType: false, // The content type used when sending data to the server
+            cache: false, // To disable request pages to be cached
+            processData: false, // To send DOMDocument or non-processed data file it is set to false (i.e., data should not be in the form of string)
+            success: function(response) {
+                // Handle response if needed
+                console.log(response);
 
-          // Remove the 'd-none' class from the div
-          $('#expenseReceipt').removeClass('d-none');
-        },
-        error: function(xhr, status, error) {
-          // Handle any errors
-        }
-      });
+                // Remove the 'd-none' class from the div
+                $('#expenseReceipt').removeClass('d-none');
+
+                // Fetch updated table content
+                fetchTableContent();
+            },
+            error: function(xhr, status, error) {
+                // Handle any errors
+            }
+        });
     });
-  });
+
+    function fetchTableContent() {
+        $.ajax({
+            type: 'GET',
+            url: './outputs/fetchReceipt.php', // Create a separate PHP file to fetch the updated table content
+            success: function(response) {
+                // Update the table body with the fetched content
+                $('tbody').html(response);
+            },
+            error: function(xhr, status, error) {
+                // Handle any errors
+            }
+        });
+    }
+
+    // Call fetchTableContent when the modal is opened to load the current data
+    $('#expenseReceiptModal').on('show.bs.modal', function() {
+        fetchTableContent();
+    });
+});
 </script>
