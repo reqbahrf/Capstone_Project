@@ -1,52 +1,82 @@
+<?php
+session_start();
+ $conn = include_once '../db_connection/database_connection.php';
+
+ $user_id = $_SESSION['user_id'];
+
+// Prepare the SQL statement
+$stmt = $conn->prepare("SELECT personal_info.user_id, project_info.project_title, personal_info.f_name, personal_info.l_name, personal_info.designation, personal_info.landline, personal_info.mobile_number, personal_info.email_address, business_info.firm_name, business_info.B_address 
+FROM personal_info 
+INNER JOIN business_info ON business_info.user_info_id = personal_info.id
+INNER JOIN project_info ON project_info.business_id = business_info.id
+WHERE personal_info.user_id = ?;");
+
+// Bind the user id to the SQL statement
+$stmt->bind_param("i", $user_id);
+
+// Execute the SQL statement
+$stmt->execute();
+
+// Fetch the results
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+
+// Close the statement
+$stmt->close();
+
+// Close the database connection
+$conn->close();
+
+?>
 <div class="p-3">
   <h4>Dashboard</h4>
 </div>
 <div class="row g-3 mt-sm-2 ms-sm-2 me-sm-2 mb-sm-2 mb-md-4 p-sm-2 p-md-5 bg-white rounded-5 w-100">
   <fieldset>
     <legend class="w-auto">
-      <h5>Client Info:</h5>
+      <h5>Project Info:</h5>
     </legend>
     <div class="p-3">
       <div class="form-group row mt-2">
         <label for="project_title" class="col-12 col-sm-2"><strong>Project Title:</strong></label>
         <div class="col-12 col-sm-10">
-          <input type="text" class="form-control" id="project_title" value="[Project Title Value]" readonly>
+          <input type="text" class="form-control" id="project_title" value="<?= $row['project_title']; ?>" readonly>
         </div>
       </div>
       <div class="form-group row mt-2">
         <label for="firm_name" class="col-12 col-sm-2"><strong>Name of Firm:</strong></label>
         <div class="col-12 col-sm-10">
-          <input type="text" class="form-control" id="firm_name" value="[Firm Name Value]" readonly>
+          <input type="text" class="form-control" id="firm_name" value="<?= $row['firm_name']; ?>" readonly>
         </div>
       </div>
       <div class="form-group row mt-2">
         <label for="address" class="col-12 col-sm-2"><strong>Address:</strong></label>
         <div class="col-12 col-sm-10">
-          <input type="text" class="form-control" id="address" value="[Address Value]" readonly>
+          <input type="text" class="form-control" id="address" value="<?= $row['B_address']; ?>" readonly>
         </div>
       </div>
       <div class="form-group row mt-2">
         <label for="contact_person" class="col-12 col-sm-2"><strong>Contact Person:</strong></label>
         <div class="col-12 col-sm-4">
-          <input type="text" class="form-control" id="contact_person" value="[Contact Person Value]" readonly>
+          <input type="text" class="form-control" id="contact_person" value="<?= $row['f_name'] . ' ' . $row['l_name']; ?>" readonly>
         </div>
         <label for="designation" class="col-12 col-sm-2"><strong>Designation:</strong></label>
         <div class="col-12 col-sm-4">
-          <input type="text" class="form-control" id="designation" value="[Designation Value]" readonly>
+          <input type="text" class="form-control" id="designation" value="<?= $row['designation']; ?>" readonly>
         </div>
       </div>
       <div class="form-group row mt-2">
         <label for="landline" class="col-12 col-sm-2"><strong>Landline:</strong></label>
         <div class="col-12 col-sm-2">
-          <input type="text" class="form-control" id="landline" value="[Landline Value]" readonly>
+          <input type="text" class="form-control" id="landline" value="<?= $row['landline']; ?>" readonly>
         </div>
         <label for="mobile_phone" class="col-12 col-sm-2"><strong>Mobile Phone:</strong></label>
         <div class="col-12 col-sm-2">
-          <input type="text" class="form-control" id="mobile_phone" value="[Mobile Phone Value]" readonly>
+          <input type="text" class="form-control" id="mobile_phone" value="<?= $row['mobile_number']; ?>" readonly>
         </div>
         <label for="email" class="col-12 col-sm-2"><strong>Email Address:</strong></label>
         <div class="col-12 col-sm-2">
-          <input type="text" class="form-control" id="email" value="[Email Address Value]" readonly>
+          <input type="text" class="form-control" id="email" value="<?= $row['email_address']; ?>" readonly>
         </div>
       </div>
     </div>

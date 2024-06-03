@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
   } else {
     echo "No file uploaded or there was an error uploading the file.";
-  }
+  } exit();
 
   // Close the database connection
   mysqli_close($conn);
