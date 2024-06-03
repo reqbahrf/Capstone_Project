@@ -297,6 +297,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     #smartwizard {
       font-size: 15px;
     }
+
+    textarea {
+      height: 200px !important;
+    }
   </style>
 
 </head>
@@ -443,7 +447,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   </div>
                 </div>
               </div>
-              <div class="col-12">
+              <div class="col-12 col-md-8 mx-auto">
+  
                 <div class="form-floating mb-3">
                   <input type="text" name="Address" id="Address" class="form-control" placeholder="123 Main St" required>
                   <div class="invalid-feedback">
@@ -451,6 +456,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   </div>
                   <label for="Address">Address:</label>
                 </div>
+  
               </div>
             </div>
             <div class="row mb-2 mt-3">
@@ -632,14 +638,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     Market Outlet
                   </legend>
                   <div class="form-floating mb-3">
-                    <textarea name="Export" id="ExportMar" class="form-control" placeholder="Export" required></textarea>
+                    <textarea name="Export" id="ExportMar" class="form-control" placeholder="Export" required required data-bs-toggle="tooltip" data-bs-placement="top" title="Export Market Example: Japan, China, USA, etc."></textarea>
                     <div class="invalid-feedback">
                       Please enter the Export Market Outlet
                     </div>
                     <label for="Export">Export:</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <textarea name="Local" id="LocalMar" class="form-control" placeholder="Local" required></textarea>
+                    <textarea name="Local" id="LocalMar" class="form-control" placeholder="Local" required data-bs-toggle="tooltip" data-bs-placement="top" title="Local Market Example: Tagum, Carmen, Panabo, etc."></textarea>
                     <div class="invalid-feedback">
                       Please enter the Local Market Outlet
                     </div>
