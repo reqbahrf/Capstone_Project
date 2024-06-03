@@ -1,5 +1,11 @@
 <?php
-session_start();
+$session_expiration = 300;
+
+// Check if the session is not active
+if (session_status() == PHP_SESSION_NONE) {
+    session_set_cookie_params($session_expiration);
+    session_start();
+}
  $conn = include_once '../db_connection/database_connection.php';
 
  $user_id = $_SESSION['user_id'];
