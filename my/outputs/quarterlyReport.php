@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO ongoing_project_quarterly_report (Q1, ongoing_project_id) VALUES (?, ?)";
 
     if($stmt = $conn->prepare($sql)){
-      // Bind the variables to the prepared statement
+      // Bind the letiables to the prepared statement
       $stmt->bind_param("si", $rawData, $ongoing_project_id);
 
       // Execute the prepared statement
@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </fieldset>
       </div>
       <div id="step-2" class="tab-pane" role="tabpanel" aria-labelledby="step-2">
-        <fieldset class="mt-4">
+        <fieldset class="mt-4" id="employment">
           <legend class="w-auto">
             2.0 EMPLOYMENT FOR THE QUARTER
           </legend>
@@ -257,7 +257,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <th scope="col">Net Sales</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="ExportData">
                           <tr>
                             <td><input type="text" class="form-control" id="productName" name="productName"></td>
                             <td><textarea class="form-control" id="packingDetails" name="packingDetails"></textarea></td>
@@ -307,7 +307,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <th scope="col">Net Sales</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="LocalData">
                           <tr>
                             <td><input type="text" class="form-control" id="productName" name="productName"></td>
                             <td><textarea class="form-control" id="packingDetails" name="packingDetails"></textarea></td>
@@ -351,42 +351,80 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </div>
 </form>
 <script>
+$(document).ready(function() {
+// Select the input fields
+$('#BuildingAsset, #Equipment, #WorkingCapital').on('input', function() {
+  // Remove any non-digit characters
+  let value = $(this).val().replace(/[^0-9]/g, '');
+
+  // Add commas every three digits
+  value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  // Set the new value to the input field
+  $(this).val(value);
+});
+
+$('#employment input').on('input', function() {
+        // Remove any non-digit characters
+        let value = $(this).val().replace(/[^0-9]/g, '');
+
+        // Set the new value to the input field
+        $(this).val(value);
+    });
+
+$('.ExportData, .LocalData').on('input', 'tr td:nth-child(n+3):nth-child(-n+6) input', function() {
+        // Remove any non-digit characters
+        let value = $(this).val().replace(/[^0-9]/g, '');
+
+        // Add commas every three digits
+        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+        // Set the new value to the input field
+        $(this).val(value);
+    });
+
+});
+</script>
+<script>
   $(document).ready(function() {
-    var counterExport = 0;
-    var counterLocal = 0;
+    let counters = {
+        export: 0,
+        local: 0
+    };
 
-    function addRow(buttonSelector, tableSelector, counter, identifier) {
-      $(buttonSelector).click(function() {
-        counter++;
+    function addRow(buttonSelector, tableSelector, identifier) {
+        $(buttonSelector).click(function() {
+            counters[identifier]++;
 
-        var newRow = `
-          <tr>
-            <td><input type="text" class="form-control" name="${identifier}ProductName${counter}"></td>
-            <td><textarea class="form-control" name="${identifier}PackingDetails${counter}"></textarea></td>
-            <td><input type="text" class="form-control" name="${identifier}VolumeOfProduction${counter}"></td>
-            <td><input type="text" class="form-control" name="${identifier}GrossSales${counter}"></td>
-            <td><input type="text" class="form-control" name="${identifier}EstimatedCostOfProduction${counter}"></td>
-            <td><input type="text" class="form-control" name="${identifier}NetSales${counter}"></td>
-          </tr>
-        `;
+            let newRow = `
+            <tr>
+                <td><input type="text" class="form-control" name="${identifier}ProductName${counters[identifier]}"></td>
+                <td><textarea class="form-control" name="${identifier}PackingDetails${counters[identifier]}"></textarea></td>
+                <td><input type="text" class="form-control" name="${identifier}VolumeOfProduction${counters[identifier]}"></td>
+                <td><input type="text" class="form-control" name="${identifier}GrossSales${counters[identifier]}"></td>
+                <td><input type="text" class="form-control" name="${identifier}EstimatedCostOfProduction${counters[identifier]}"></td>
+                <td><input type="text" class="form-control" name="${identifier}NetSales${counters[identifier]}"></td>
+            </tr>
+            `;
 
-        $(tableSelector).append(newRow);
-        updateDeleteButtonState();
-      });
+            $(tableSelector).append(newRow);
+            updateDeleteButtonState();
+        });
     }
 
-    function deleteRow(buttonSelector, tableSelector) {
-      $(document).on('click', buttonSelector, function() {
-        if ($(tableSelector + ' tr').length > 1) {
-          $(tableSelector + ' tr:last').remove();
-          updateDeleteButtonState();
-        }
-      });
+    function deleteRow(buttonSelector, identifier, tableSelector) {
+        $(document).on('click', buttonSelector, function() {
+            if ($(tableSelector + ' tr').length > 1) {
+                $(tableSelector + ' tr:last').remove();
+                updateDeleteButtonState();
+            }
+            counters[identifier]--;
+        });
     }
 
     function updateDeleteButtonState() {
       ['.deleteExportRow', '.deleteLocalRow'].forEach(function(buttonSelector) {
-        var tableSelector = buttonSelector === '.deleteExportRow' ? '.Export-Outlet tbody' : '.local-Outlet tbody';
+        let tableSelector = buttonSelector === '.deleteExportRow' ? '.Export-Outlet tbody' : '.local-Outlet tbody';
         if ($(tableSelector + ' tr').length <= 1) {
           $(buttonSelector).prop('disabled', true);
         } else {
@@ -395,11 +433,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       });
     }
 
-    addRow('#addExportRow', '.Export-Outlet tbody', counterExport, 'export');
-    deleteRow('.deleteExportRow', '.Export-Outlet tbody');
+    addRow('#addExportRow', '.Export-Outlet tbody', 'export');
+    deleteRow('.deleteExportRow', 'export', '.Export-Outlet tbody');
 
-    addRow('#addLocalRow', '.local-Outlet tbody', counterLocal, 'local');
-    deleteRow('.deleteLocalRow', '.local-Outlet tbody');
+    addRow('#addLocalRow', '.local-Outlet tbody', 'local');
+    deleteRow('.deleteLocalRow', 'local', '.local-Outlet tbody');
 
     updateDeleteButtonState();
   });
@@ -421,7 +459,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       },
     });
     $("#smartwizard").on("showStep", function(e, anchorObject, stepIndex, stepDirection, stepPosition) {
-      var totalSteps = $('#smartwizard').find('ul li').length;
+      let totalSteps = $('#smartwizard').find('ul li').length;
       // console.log("Step: ", stepNumber);
       console.log("Total Steps:", totalSteps);
 
@@ -445,8 +483,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       event.preventDefault(); // Prevent default form submission
 
       // Convert form data to JSON
-      var formData = $(this).serializeArray();
-      var dataObject = {};
+      let formData = $(this).serializeArray();
+      let dataObject = {};
       $.each(formData, function(i, v) {
         dataObject[v.name] = v.value;
       });
