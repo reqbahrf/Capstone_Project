@@ -14,20 +14,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt = $conn->prepare("INSERT INTO cooperator_users (user_name, password) VALUES (?, ?)");
   $stmt->bind_param("ss", $username, $hashedPassword);
 
-if ($stmt->execute()) {
+  if ($stmt->execute()) {
     // Start the session if it's not already started
     if (session_status() == PHP_SESSION_NONE) {
-        session_start();
+      session_start();
     }
 
     // Store the ID in the session
     $_SESSION['user_id'] = $conn->insert_id;
 
     echo "New record created successfully";
-} else {
+  } else {
     echo "Error: " . $stmt->error;
-}
-$stmt->close();
+  }
+  $stmt->close();
 }
 ?>
 
@@ -80,7 +80,7 @@ $stmt->close();
         </g>
       </svg>
     </div>
-    <div class="card p-4 p-sm-0 p-md-2 rounded-3 shadow">
+    <div class="card p-4 p-sm-0 p-md-2 rounded-5 shadow">
       <div class="card-body">
         <div class="card-header w-100 px-5 d-flex justify-content-center align-items-center">
           <a href="index.php">
@@ -113,10 +113,9 @@ $stmt->close();
               </svg>
             </span>
           </a>
-          <h3 class="px-4 mb-0">DOST-SETUP</h3>
+          <h3 class="px-4 mb-0 mx-auto">DOST-SETUP-SYS</h3>
         </div>
-        <h4 class="header-title my-3">Sign up</h4>
-
+        <h4 class="header-title my-3 text-center">Sign up</h4>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="g-3">
           <div class="row">
             <div class="col-12 d-flex justify-content-center mb-3 p-1 p-sm-0 p-md-2 p-lg-2 ">
@@ -143,13 +142,14 @@ $stmt->close();
                   <div class="form-floating">
                     <input type="password" id="confirm1" name="confirm1" class="form-control" placeholder="Confirm Password">
                     <label for="confirm1">Re Password</label>
-                    <div class="invalid-feedback">
-                      Please confirm your password.
-                    </div>
+                    <div id="Invalid-feedbackPass" class="invalid-feedback" style="display: none;">Passwords do not match.</div>
                   </div>
                 </div>
                 <div class="col-12 p-md-3 p-2">
                   <button type="submit" class="btn btn-primary w-100">Sign-up</button>
+                </div>
+                <div class="text-center">
+                  <a href="index.php" class="text-decoration-none text-reset text-primary">home</a>
                 </div>
               </div>
 
@@ -159,7 +159,7 @@ $stmt->close();
       </div>
     </div>
   </div> <!-- end card-body -->
-  <div id="info-header-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="info-header-modalLabel" aria-hidden="true">
+  <div id="requirements-modal" class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="info-header-modalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-info">
@@ -179,7 +179,7 @@ $stmt->close();
           </p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-info" data-bs-dismiss="modal">Proceed</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Proceed</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -187,34 +187,42 @@ $stmt->close();
 
   <script>
     $(document).ready(function() {
-      $('form').on('submit', function(e) { 
+      $('#requirements-modal').modal('show');
+      $('form').on('submit', function(e) {
 
         e.preventDefault(); // prevent the form from being submitted
 
+        var isValid = true;
+
         $('input').each(function() {
-            if ($(this).val() === '') {
-                isValid = false;
-                $(this).addClass('is-invalid'); // add 'is-invalid' class to show validation feedback
-            } else {
-                $(this).removeClass('is-invalid'); // remove 'is-invalid' class if the field is valid
-            }
+          if ($(this).val() === '') {
+            isValid = false;
+            $(this).addClass('is-invalid'); // add 'is-invalid' class to show validation feedback
+          } else {
+            $(this).removeClass('is-invalid'); // remove 'is-invalid' class if the field is valid
+          }
         });
 
         var password = $('#password1').val();
         var confirmPassword = $('#confirm1').val();
 
         if (confirmPassword === '') {
-            $('#confirm1').addClass('is-invalid'); // add 'is-invalid' class to confirm password field
-            $('#confirm1').next('.invalid-feedback').text('Please confirm your password.'); // show error message
+          // Handle empty confirm password field
+          $('#confirm1').addClass('is-invalid'); // add 'is-invalid' class to confirm password field
+          $('#Invalid-feedbackPass').text('Please enter a password'); // update error message
+          $('#Invalid-feedbackPass').show(); // show error message
+          isValid = false;
         } else if (password !== confirmPassword) {
-            $('#confirm1').addClass('is-invalid'); // add 'is-invalid' class to confirm password field
-            $('#confirm1').next('.invalid-feedback').text('Passwords do not match.'); // show error message
+          $('#confirm1').addClass('is-invalid'); // add 'is-invalid' class to confirm password field
+          $('#Invalid-feedbackPass').text('Passwords do not match'); // update error message
+          $('#Invalid-feedbackPass').show(); // show error message
+          isValid = false;
         } else {
-            $('#confirm1').removeClass('is-invalid'); // remove 'is-invalid' class if passwords match
-            isValid = true;
+          $('#confirm1').removeClass('is-invalid'); // remove 'is-invalid' class if passwords match
+          $('#Invalid-feedbackPass').hide(); // hide error message if passwords match
         }
 
-       
+
 
         if (isValid) {
           // form is valid
