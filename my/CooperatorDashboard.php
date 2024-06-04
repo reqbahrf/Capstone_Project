@@ -1,5 +1,5 @@
 <?php
-$session_expiration = 300;
+$session_expiration = 3600;
 session_set_cookie_params($session_expiration);
 session_start();
 

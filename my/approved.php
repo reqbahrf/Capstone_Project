@@ -1,5 +1,5 @@
 <?php 
-$session_expiration = 300;
+$session_expiration = 3600;
 
 // Check if the session is not active
 if (session_status() == PHP_SESSION_NONE) {
