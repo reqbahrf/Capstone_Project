@@ -26,8 +26,8 @@
 <div class="modal fade" id="handleProjectModal" tabindex="-1" aria-labelledby="handleProjectModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="handleProjectModalLabel">Handled Project</h5>
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="handleProjectModalLabel">Handled Project</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -35,7 +35,7 @@
             <p class="ps-2">Imploving the Business.....</p>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-info" id="dashboardLink" onclick="loadPage('/org-access/viewCooperatorInfo.php','projectLink');" data-bs-dismiss="modal">View</button>
+                <button class="btn btn-primary" id="dashboardLink" onclick="loadPage('/org-access/viewCooperatorInfo.php','projectLink');" data-bs-dismiss="modal">View</button>
                 <button class="btn btn-secondary">Edit</button>
             </div>
         </div>

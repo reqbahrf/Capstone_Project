@@ -280,7 +280,7 @@
 
         <fieldset class="mt-4">
           <legend class="w-auto">
-            <h2>Project Information Sheet:</h2>
+            <h5>Project Information Sheet:</h5>
           </legend>
           <form action="">
             <div class="ps-4 pe-2 pt-2">
@@ -295,23 +295,31 @@
             </div>
             <div class="container">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <fieldset class="mt-3">
                     <legend class="w-auto">
-                      <h5>CONTACT PERSON:</h5>
+                      <h6>CONTACT PERSON:</h6>
                     </legend>
                     <div class="ps-4 pe-2 pt-2">
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="name" placeholder="Name">
-                        <label for="name">Name:</label>
-                      </div>
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="gender" placeholder="Gender">
-                        <label for="gender">Gender:</label>
-                      </div>
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="age" placeholder="Age">
-                        <label for="age">Age:</label>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="name" placeholder="Name">
+                            <label for="name">Name:</label>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="gender" placeholder="Gender">
+                            <label for="gender">Gender:</label>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="age" placeholder="Age">
+                            <label for="age">Age:</label>
+                          </div>
+                        </div>
                       </div>
                       <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="organizationType" placeholder="Type of Organization/Enterprise">
@@ -324,10 +332,12 @@
                     </div>
                   </fieldset>
                 </div>
+              </div>
+              <div class="row">
                 <div class="col-md-6">
                   <fieldset class="mt-3">
                     <legend class="w-auto">
-                      <h5>CONTACT DETAILS:</h5>
+                      <h6>CONTACT DETAILS:</h6>
                     </legend>
                     <div class="ps-4 pe-2 pt-2">
                       <div class="form-floating mb-3">
@@ -349,9 +359,86 @@
                     </div>
                   </fieldset>
                 </div>
+                <div class="col-md-6">
+                  <fieldset class="mt-3">
+                    <legend>
+                      <h6>ASSISTANCE OBTAINED FROM DOST</h6>
+                    </legend>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="productionTechnology">
+                      <label class="form-check-label" for="productionTechnology">
+                        A1 Production Technology
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="process">
+                      <label class="form-check-label px-2" for="process">
+                        A.1.1 Process
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="equipment">
+                      <label class="form-check-label px-2" for="equipment">
+                        A.1.2 Equipment
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="qualityControl">
+                      <label class="form-check-label px-2" for="qualityControl">
+                        A.1.3 Quality Control/Laboratory Testing/Analysis
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="productionTechnology1">
+                      <label class="form-check-label px-4" for="productionTechnology1">
+                        1.3.1 Production Technology
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="packagingLabeling">
+                      <label class="form-check-label" for="packagingLabeling">
+                        A2 Packaging/Labeling
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="postHarvest">
+                      <label class="form-check-label" for="postHarvest">
+                        A3 Post-Harvest
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="marketAssistance">
+                      <label class="form-check-label" for="marketAssistance">
+                        A4 Market Assistance
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="humanResourceTraining">
+                      <label class="form-check-label" for="humanResourceTraining">
+                        A5 Human Resource training
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="consultanceServices">
+                      <label class="form-check-label" for="consultanceServices">
+                        A6 Consultance Services
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="otherServices">
+                      <label class="form-check-label" for="otherServices">
+                        A7 other Services (FDA Permit, LGU Registration, Barcoding)
+                      </label>
+                    </div>
+                  </fieldset>
+                </div>
+
               </div>
+
             </div>
-            <button type="submit" id="createSheetButtonInfo" class="btn btn-primary">Create Sheet</button>
+            <div class="text-end">
+              <button type="submit" id="createSheetButtonInfo" class="btn btn-primary">Create Sheet</button>
+            </div>
           </form>
         </fieldset>
         </form>
@@ -806,7 +893,9 @@
             <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
         </div>
-        <button type="submit" id="createSheetButton" class="btn btn-info">Create Sheet</button>
+        <div class="text-end">
+          <button type="submit" id="createSheetButton" class="btn btn-primary">Create Sheet</button>
+        </div>
       </div>
 
 
@@ -839,7 +928,7 @@
             </tr>
           `;
 
-         
+
 
           $(tableSelector).append(newRow);
           updateDeleteButtonState();

@@ -268,7 +268,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-success">Draft</button>
                     <button type="submit" id="submitProject" class="btn btn-primary">Submit</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
