@@ -13,10 +13,11 @@
     /*--------------------------------------------------------------
     # Hero Section
     --------------------------------------------------------------*/
-   body{
-    position: relative;
-    z-index: -2;
-   }
+    body {
+      position: relative;
+      z-index: -2;
+    }
+
     #hero {
       width: 100%;
       height: 90vh;
@@ -237,24 +238,8 @@
       color: #3498db;
     }
 
-    .about .icon-boxes {
-      padding-top: 10px;
-    }
-
-    .about .icon-boxes h4 {
-      font-size: 20px;
-      font-weight: 700;
-      margin-top: 5px;
-    }
-
-    .about .icon-boxes i {
-      font-size: 48px;
-      color: #3498db;
-    }
-
-    .about .icon-boxes p {
-      font-size: 15px;
-      color: #848484;
+    .text-justify {
+      text-align: justify;
     }
   </style>
 </head>
@@ -291,7 +276,6 @@
             <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
           </div>
         </div>
-
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
           <div class="icon-box">
             <div class="icon"><i class="bx bx-tachometer"></i></div>
@@ -305,28 +289,26 @@
   <section id="about" class="about">
     <div class="container">
       <div class="row">
-        <div class="col-lg-6">
+        <!-- <div class="col-lg-6">
           <img src="" class="img-fluid" alt="">
-        </div>
-        <div class="col-lg-6 pt-4 pt-lg-0">
+        </div> -->
+        <div class="col-lg-12 pt-4 pt-lg-0">
           <h3>About Us</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          <p class="text-justify m-2">
+            DOST Small Enterprise Technology Upgrading Program (SETUP), we're a government agency dedicated to supporting qualified businesses and sectors. We provide technical and financial assistance to help them thrive. To ensure our programs are effective, we closely monitor all the assistance we offer. We create progress reports for each business, allowing us to gauge the impact of our support. As part of the government, we prioritize maintaining strong relationships with our stakeholders. This commitment is reflected in our core values: our mandate, vision, and mission, which you'll find below.
           </p>
-          <ul>
-            <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-            <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-          </ul>
-          <div class="row icon-boxes">
+          <div class="row">
             <div class="col-md-6">
-              <i class="bx bx-receipt"></i>
-              <h4>Corporis voluptates sit</h4>
-              <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+              <h4>Vision</h4>
+              <p class="text-center">DOST XI envisions an agile and proactive organization with performance excellence in providing public service through Science, Engineering, Technology, and Innovation (SETI) for inclusive and sustainable development of the Philippines by 2025.
+                The vision of DOST is to ensure the performance excellence in providing public service through SETI, which means that all their stakeholders who want to seek help for their assistance will be assisted by the DOST to ensure and provide good quality of services of the specific organization. This will be both beneficial to the organization as well as to their stakeholders.
+              </p>
             </div>
             <div class="col-md-6 mt-4 mt-md-0">
-              <i class="bx bx-cube-alt"></i>
-              <h4>Ullamco laboris nisi</h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+              <h4>Mission</h4>
+              <p class="text-center">To inspire and transform communities through Science, Engineering, Technology, and Innovation (SETI).
+                The mission of the DOST is to assist sectors to upgrade their process in providing services through the use of technology. To easily provide an output or product that will be beneficial to the country.
+              </p>
             </div>
           </div>
         </div>

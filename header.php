@@ -32,7 +32,7 @@
   }
 
   .headerText {
-    font-family: 'arial';
+    font-family: 'Segoe UI';
     font-size: 40px;
     font-weight: 500;
     display: flex;
