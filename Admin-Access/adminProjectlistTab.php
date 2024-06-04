@@ -187,11 +187,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <label for="ProjectTitle_fetch">Project Title:</label>
                                     <input type="text" id="ProjectTitle_fetch" class="form-control" readonly value="">
                                     <div class="row my-2">
-                                        <div class="col-md-6">
+                                        <div class="col-md-8">
                                             <label for="Amount_fetch">Amount:</label>
                                             <input type="text" id="Amount_fetch" class="form-control" readonly value="">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <label for="Applied_fetch">Date Applied:</label>
                                             <input type="text" id="Applied_fetch" class="form-control" readonly value="">
                                         </div>
@@ -220,6 +220,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </div>
             <div class="modal-footer">
+                <div id="approvedAlert" class="alert alert-success alert-dismissible text-bg-success border-0 fade show my-2 mx-5 d-none" role="alert">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <strong>Success - </strong> Project Approved.
+                </div>
                 <button id="approveButton" class="btn btn-primary">Approve</button>
                 <button class="btn btn-danger">Delete</button>
             </div>
@@ -619,40 +623,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 success: function(response) {
                     // Do something with the response from the server
                     console.log(response);
+                    if (response === 'success') {
+                        $('#approvedAlert').removeClass('d-none');
+                    }
                 }
             });
         });
     });
     $(document).ready(function() {
-    $('button[data-bs-target="#ApplicantModal"]').click(function(e) {
-        e.preventDefault();
+        $('button[data-bs-target="#ApplicantModal"]').click(function(e) {
+            e.preventDefault();
 
-        let businessId = $(this).closest('tr').find('#business_id').val(); // get the value of the hidden input in the same row
-        console.log(businessId);
+            let businessId = $(this).closest('tr').find('#business_id').val(); // get the value of the hidden input in the same row
+            console.log(businessId);
 
-        $.ajax({
-            url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
-            type: 'post',
-            data: {
-                business_id: businessId
-            },
-            dataType: 'json', // Expect a JSON response
-            success: function(response) {
-                if (response.error === 'No data found.'){
-                    $('#ProjectTitle_fetch').val('');
-                    $('#Amount_fetch').val('');
-                    $('#Applied_fetch').val('');
-                    $('#evaluated_fetch').val('');
-                    console.log('No data found.');
-                } else {
-                    console.log(response);
-                    $('#ProjectTitle_fetch').val(response.ProjectTitle_fetch);
-                    $('#Amount_fetch').val(response.Amount_fetch);
-                    $('#Applied_fetch').val(response.Applied_fetch);
-                    $('#evaluated_fetch').val(response.evaluated_fetch);
+            $.ajax({
+                url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
+                type: 'post',
+                data: {
+                    business_id: businessId
+                },
+                dataType: 'json', // Expect a JSON response
+                success: function(response) {
+                    if (response.error === 'No data found.') {
+                        $('#ProjectTitle_fetch').val('');
+                        $('#Amount_fetch').val('');
+                        $('#Applied_fetch').val('');
+                        $('#evaluated_fetch').val('');
+                        console.log('No data found.');
+                    } else {
+                        console.log(response);
+                        $('#ProjectTitle_fetch').val(response.ProjectTitle_fetch);
+                        $('#Amount_fetch').val(parseFloat(response.Amount_fetch).toLocaleString('en-US', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }));
+                        $('#Applied_fetch').val(response.Applied_fetch);
+                        $('#evaluated_fetch').val(response.evaluated_fetch);
+                    }
                 }
-            }
+            });
         });
     });
-});
 </script>
