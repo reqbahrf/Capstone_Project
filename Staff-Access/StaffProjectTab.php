@@ -1,3 +1,28 @@
+<?php 
+$conn = include_once '../db_connection/database_connection.php';
+
+$sql = "SELECT cooperator_users.id, personal_info.f_name, personal_info.l_name, personal_info.designation, personal_info.mobile_number, personal_info.email_address, personal_info.landline, business_info.firm_name, business_info.B_address, business_info.enterprise_type, business_info.enterprise_level, assets.building_value, assets.equipment_value, assets.working_capital, pi.project_title, pi.fund_amount, pi.date_approved, org_users.full_name, application_info.application_status
+FROM cooperator_users
+INNER JOIN personal_info ON personal_info.user_id = cooperator_users.id
+INNER JOIN business_info ON business_info.user_info_id = personal_info.id
+INNER JOIN assets ON assets.business_id = business_info.id
+INNER JOIN project_info AS pi ON pi.business_id = business_info.id
+LEFT JOIN org_users ON pi.handled_by_id = org_users.id
+INNER JOIN application_info ON application_info.business_id = business_info.id
+WHERE application_info.application_status ='approved';";
+
+$approved = mysqli_query($conn, $sql);
+
+if (!$approved) {
+    echo "Error: " . mysqli_error($conn);
+} else {
+    while ($row = mysqli_fetch_assoc($approved)) {
+        // Access the data in $row
+    }
+}
+
+
+?>
 <style>
   ul#myTab li.nav-item button.tab-Nav.active {
     background-color: #318791 !important;
@@ -116,107 +141,73 @@
             </tr>
           </thead>
           <tbody id="tableBody">
-            <tr>
-              <td>1</td>
-              <td>John Doe</td>
-              <td>Manager</td>
-              <td>XYZ company</td>
-              <td>
-                <p><strong>Business Address:</strong> tagum, Davao Del Norte <br> <strong>Type of Enterprise:</strong> Sole Proprietorship</p>
-                <p>
-                  <Strong>
-                    Assets:
-                  </Strong> <br>
-                  <span class="ps-2">Land: 100,000</span><br>
-                  <span class="ps-2">Building: 100,000</span> <br>
-                  <span class="ps-2">Equipment: 100,000</span>
-                </p>
-                <strong>Contact Details:</strong>
-                <p><strong class="p-2">Landline:</strong> 1234567 <br><Strong class="p-2">Mobile Phone:</Strong> 09123456789</p>
-              </td>
-              <td>
-                <p>
-                  <strong>
-                    Title of the Project:
-                  </strong> <br>
-                  <span class="ps-2"> "Imploving the business processes of LCC company"</span>
-                  <br>
-                  <strong>
-                    Approved fund:
-                  </strong>
-                  <br>
-                  <span class="ps-2">1,000,000</span><br>
-                  <Strong>
-                    Approved Date:
-                  </Strong><br>
-                  <span class="ps-2">5/05/2024</span>
-                  <br><br>
-                  <strong>
-                    Assinged Staff:
-                  </strong>
-                  <br>
-                  <span class="ps-2">Josh Nikly</span>
-                </p>
-              </td>
-              <td>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn" id="modalButton" data-bs-toggle="modal" data-bs-target="#ApplicationModal">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
-                    <path d="M56.177,16.832c-0.547-4.731-4.278-8.462-9.009-9.009C43.375,7.384,38.264,7,32,7S20.625,7.384,16.832,7.823c-4.731,0.547-8.462,4.278-9.009,9.009C7.384,20.625,7,25.736,7,32s0.384,11.375,0.823,15.168c0.547,4.731,4.278,8.462,9.009,9.009C20.625,56.616,25.736,57,32,57s11.375-0.384,15.168-0.823c4.731-0.547,8.462-4.278,9.009-9.009C56.616,43.375,57,38.264,57,32S56.616,20.625,56.177,16.832z M36,32c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,29.791,36,32z M36,45c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,42.791,36,45z M36,19c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,16.791,36,19z" fill="#000000" />
-                  </svg>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Sam Son</td>
-              <td>Owner</td>
-              <td>LCC company</td>
-              <td>
-                <p><strong>Business Address:</strong> Carmen, Davao Del Norte <br> <strong>Type of Enterprise:</strong> Sole Proprietorship</p>
-                <p>
-                  <Strong>
-                    Assets:
-                  </Strong> <br>
-                  <span class="ps-2">Land: 144,000</span><br>
-                  <span class="ps-2">Building: 122,000</span> <br>
-                  <span class="ps-2">Equipment: 143,000</span>
-                </p>
-                <strong>Contact Details:</strong>
-                <p><strong class="p-2">Landline:</strong> 1234567 <br><Strong class="p-2">Mobile Phone:</Strong> 09123456789</p>
-              </td>
-              <td>
-                <p>
-                  <strong>
-                    Title of the Project:
-                  </strong> <br>
-                  <span class="ps-2"> "Imploving the business processes of LCC company"</span>
-                  <br>
-                  <strong>
-                    Approved fund:
-                  </strong>
-                  <br>
-                  <span class="ps-2">1,000,000</span>
-                  <br>
-                  <Strong>
-                    Approved Date:
-                  </Strong><br>
-                  <span class="ps-2">5/05/2024</span>
-                  <br><br>
-                  <strong>
-                    Assinged Staff:
-                  </strong> <br>
-                  <span class="ps-2">Josh Nikly</span>
-                </p>
-              </td>
-              <td>
-                <button type="button" class="btn" id="modalButton" data-bs-toggle="modal" data-bs-target="#ApplicationModal" disabled>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
-                    <path d="M56.177,16.832c-0.547-4.731-4.278-8.462-9.009-9.009C43.375,7.384,38.264,7,32,7S20.625,7.384,16.832,7.823c-4.731,0.547-8.462,4.278-9.009,9.009C7.384,20.625,7,25.736,7,32s0.384,11.375,0.823,15.168c0.547,4.731,4.278,8.462,9.009,9.009C20.625,56.616,25.736,57,32,57s11.375-0.384,15.168-0.823c4.731-0.547,8.462-4.278,9.009-9.009C56.616,43.375,57,38.264,57,32S56.616,20.625,56.177,16.832z M36,32c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,29.791,36,32z M36,45c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,42.791,36,45z M36,19c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,16.791,36,19z" fill="#000000" />
-                  </svg>
-                </button>
-              </td>
-            </tr>
+            <?php if (isset($approved) && mysqli_num_rows($approved) > 0) : ?>
+              <?php  foreach ($approved as $item)  : ?>
+                <tr>
+                  <td><?= $item['id']; ?></td>
+                  <td><?= $item['f_name'] . ' ' . $item['l_name']; ?></td>
+                  <td><?= $item['designation']; ?></td>
+                  <td><?= $item['firm_name']; ?></td>
+                  <td>
+                  <div>
+                  <strong>Business Address:</strong> <?= $item['B_address']; ?> <br> 
+                  <strong>Type of Enterprise:</strong> <?= $item['enterprise_type']; ?> <br>
+                  <strong>Level of Enterprise:</strong> <?= $item['enterprise_level']; ?>
+                   </div>
+                   <br>
+                    <div>
+                      <Strong>
+                        Assets:
+                      </Strong> <br>
+                      <span class="ps-2">Land: <?= number_format($item['building_value'], 2); ?></span><br>
+                      <span class="ps-2">Building: <?= number_format($item['equipment_value'], 2); ?></span> <br>
+                      <span class="ps-2">Equipment: <?= number_format($item['working_capital'], 2); ?></span>
+                    </div>
+                    <br>
+                    <div>
+                    <strong>Contact Details:</strong>
+                    <br>
+                      <Span class="p-2">Mobile Phone:</Span> <?= $item['mobile_number']; ?> <br>
+                      <span class="p-2">Email:</span> <?= $item['email_address']; ?> <br>
+                      <span class="p-2">Landline:</span> <?= $item['landline']; ?> 
+                      <br>
+                    </div>
+                  </td>
+                  <td>
+                    <p>
+                      <strong>
+                        Title of the Project:
+                      </strong> <br>
+                      <span class="ps-2"> <?= $item['project_title']; ?></span>
+                      <br>
+                      <strong>
+                        Approved fund:
+                      </strong>
+                      <br>
+                      <span class="ps-2"><?= number_format($item['fund_amount'], 2); ?></span><br>
+                      <Strong>
+                        Approved Date:
+                      </Strong><br>
+                      <span class="ps-2"><?= $item['date_approved']; ?></span>
+                      <br><br>
+                      <strong>
+                        Assigned Staff:
+                      </strong>
+                      <br>
+                      <span class="ps-2"><?= $item['full_name']; ?></span>
+                    </p>
+                  </td>
+                  <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn" id="modalButton" data-bs-toggle="modal" data-bs-target="#ApplicationModal">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30">
+                        <path d="M56.177,16.832c-0.547-4.731-4.278-8.462-9.009-9.009C43.375,7.384,38.264,7,32,7S20.625,7.384,16.832,7.823c-4.731,0.547-8.462,4.278-9.009,9.009C7.384,20.625,7,25.736,7,32s0.384,11.375,0.823,15.168c0.547,4.731,4.278,8.462,9.009,9.009C20.625,56.616,25.736,57,32,57s11.375-0.384,15.168-0.823c4.731-0.547,8.462-4.278,9.009-9.009C56.616,43.375,57,38.264,57,32S56.616,20.625,56.177,16.832z M36,32c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,29.791,36,32z M36,45c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,42.791,36,45z M36,19c0,2.209-1.791,4-4,4s-4-1.791-4-4s1.791-4,4-4S36,16.791,36,19z" fill="#000000" />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
+            <?php endif; ?>
           </tbody>
           <tfoot>
             <tr>
