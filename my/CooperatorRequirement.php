@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <th>Date Uploaded</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="receiptTable">
                  
                 </tbody>
               </table>
@@ -253,7 +253,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             url: './outputs/fetchReceipt.php', // Create a separate PHP file to fetch the updated table content
             success: function(response) {
                 // Update the table body with the fetched content
-                $('tbody').html(response);
+                $('#receiptTable').html(response);
             },
             error: function(xhr, status, error) {
                 // Handle any errors
