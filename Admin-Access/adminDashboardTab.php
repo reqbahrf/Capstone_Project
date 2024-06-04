@@ -58,10 +58,9 @@
         <div class="modal fade" id="applicantModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <div class="modal-header d-flex justify-content-between">
-                        <h5 class="modal-title" id="myModalLabel">Applicant</h5>
-                        <button id="closeApplicant" type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                    <div class="modal-header d-flex justify-content-between bg-primary">
+                        <h5 class="modal-title text-white" id="myModalLabel">Applicant</h5>
+                        <button id="closeApplicant" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         </button>
                     </div>
                     <div class="modal-body">
@@ -79,10 +78,10 @@
         <div class="modal fade" id="ongoingModal" tabindex="-1" role="dialog" aria-labelledby="ongoingModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <div class="modal-header d-flex justify-content-between">
-                        <h5 class="modal-title" id="ongoingModalLabel">Ongoing</h5>
-                        <button id="closeOngoing" type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                    <div class="modal-header d-flex justify-content-between bg-primary">
+                        <h5 class="modal-title text-white" id="ongoingModalLabel">Ongoing</h5>
+                        <button id="closeOngoing" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            
                         </button>
                     </div>
                     <div class="modal-body">
@@ -101,10 +100,9 @@
         <div class="modal fade" id="completedModal" tabindex="-1" role="dialog" aria-labelledby="completedModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <div class="modal-header d-flex justify-content-between">
-                        <h5 class="modal-title" id="completedModalLabel">Completed</h5>
-                        <button id="closeComple" type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                    <div class="modal-header d-flex justify-content-between bg-primary">
+                        <h5 class="modal-title text-white" id="completedModalLabel">Completed</h5>
+                        <button id="closeComple" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         </button>
                     </div>
                     <div class="modal-body">

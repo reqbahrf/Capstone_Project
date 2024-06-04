@@ -14,8 +14,8 @@
   <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="userModalLabel">User Details</h5>
+        <div class="modal-header bg-primary">
+          <h5 class="modal-title text-white" id="userModalLabel">User Details</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -30,7 +30,7 @@
         </div>
         <div class="modal-footer">
           <h6>Action To Perform:</h6>
-          <button class="btn btn-info">Toggle Acess</button>
+          <button class="btn btn-primary">Toggle Acess</button>
           <button class="btn btn-danger">Delete</button>
         </div>
       </div>
@@ -41,8 +41,8 @@
   <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addUserModalLabel">Add User</h5>
+        <div class="modal-header bg-primary">
+          <h5 class="modal-title text-white" id="addUserModalLabel">Add User</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -57,7 +57,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-info">Add</button>
+          <button type="button" class="btn btn-primary">Add</button>
         </div>
       </div>
     </div>
