@@ -164,6 +164,44 @@ if (session_status() == PHP_SESSION_NONE) {
   }
 </style>
 
+  <!-- Modal -->
+  <div class="modal fade" id="logoutModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="logoutModalLabel">Account</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <div class="d-flex align-items-center">
+          <img src="../assets/img/raf,360x360,075,t,fafafa_ca443f4786.jpg" class="rounded-circle border border-1 border-white account" height="150" width="150">
+          <h6 class="ms-3">{USER NAME}</h6>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmLogoutModal">Logout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="confirmLogoutModal" tabindex="-1" aria-labelledby="confirmLogoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmLogoutModalLabel">Confirm Logout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to logout?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal">cancel</button>
+                <button type="button" class="btn btn-danger" onclick="window.location.href='../index.php'">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
 <nav class="sidenav">
   <ul class="navbar-nav">
     <li class="nav-item mb-2 minimize">
@@ -195,7 +233,7 @@ if (session_status() == PHP_SESSION_NONE) {
       </a>
     </li>
     <li class="nav-item mb-2">
-      <a href="#" class="mb-2 d-flex align-items-center">
+      <a href="#" class="mb-2 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#logoutModal">
         <img src="../assets/img/raf,360x360,075,t,fafafa_ca443f4786.jpg" class="rounded-circle border border-1 border-white my-profile">
         <span class="nav-text ps-2">Account</span>
       </a>
