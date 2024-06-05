@@ -301,6 +301,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     textarea {
       height: 200px !important;
     }
+
+    span.requiredFields {
+      color: red;
+    }
+    p.legend-notice {
+      font-size: 1rem;
+      color: black;
+      font-weight: bold;
+    }
   </style>
 
 </head>
@@ -338,6 +347,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </ul>
 
         <div class="tab-content">
+          <p class="legend-notice">"<span class="requiredFields">*</span>" Required</p>
           <div id="step-1" class="tab-pane" role="tabpanel" aria-labelledby="step-1" style="position: static; left: 0px; display: block;">
             <!-- Where Personal Info Displayed -->
             <h3>Personal Info:</h3>
@@ -348,7 +358,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <div class="invalid-feedback">
                     Please enter your first name.
                   </div>
-                  <label for="f_name">First Name:</label>
+                  <label for="f_name">First Name: <span class="requiredFields"> *</span></label>
                 </div>
               </div>
               <div class="col-12 col-md-6 p-md-3 p-2">
@@ -357,7 +367,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <div class="invalid-feedback">
                     Please enter your last name.
                   </div>
-                  <label for="l_name">Last Name:</label>
+                  <label for="l_name">Last Name: <span class="requiredFields"> *</span></label>
                 </div>
               </div>
               <div class="col-12 p-md-3 p-2">
@@ -368,7 +378,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       <div class="invalid-feedback">
                         Please enter your Birth Date.
                       </div>
-                      <label for="b_date">Birth Date:</label>
+                      <label for="b_date">Birth Date: <span class="requiredFields"> *</span></label>
                     </div>
                   </div>
                 </div>
@@ -381,7 +391,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       <div class="invalid-feedback">
                         Please enter your Designation.
                       </div>
-                      <label for="designation">Designation:</label>
+                      <label for="designation">Designation: <span class="requiredFields"> *</span></label>
                     </div>
                   </div>
                 </div>
@@ -395,7 +405,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       <div class="invalid-feedback">
                         Please enter a valid mobile number.
                       </div>
-                      <label for="Mobile_no">Mobile Number:</label>
+                      <label for="Mobile_no">Mobile Number: <span class="requiredFields"> *</span></label>
                     </div>
                   </div>
                   <div class="col-12 col-md-4 p-2">
@@ -404,7 +414,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       <div class="invalid-feedback">
                         Please enter a valid email address.
                       </div>
-                      <label for="email_add">Email Address:</label>
+                      <label for="email_add">Email Address: <span class="requiredFields"> *</span></label>
                     </div>
                   </div>
                   <div class="col-12 col-md-4 p-2">
@@ -430,7 +440,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <div class="invalid-feedback">
                     Please enter the name of the firm.
                   </div>
-                  <label for="firm_name">Name of firm:</label>
+                  <label for="firm_name">Name of firm: <span class="requiredFields"> *</span></label>
                 </div>
               </div>
               <div class="col-12 col-md-6">
@@ -441,7 +451,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <option value="Partnership">Partnership</option>
                     <option value="Corporation">Corporation</option>
                   </select>
-                  <label for="enterpriseType">Type Of Enterprise</label>
+                  <label for="enterpriseType">Type Of Enterprise <span class="requiredFields"> *</span></label>
                   <div class="invalid-feedback">
                     Please select a type of enterprise.
                   </div>
@@ -454,7 +464,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <div class="invalid-feedback">
                     Please enter the address.
                   </div>
-                  <label for="Address">Address:</label>
+                  <label for="Address">Address: <span class="requiredFields"> *</span></label>
                 </div>
   
               </div>
@@ -470,25 +480,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="invalid-feedback">
                       Please enter the value of buildings.
                     </div>
-                    <label for="buildings">Buildings:</label>
+                    <label for="buildings">Buildings: <span class="requiredFields"> *</span></label>
                   </div>
                   <div class="form-floating mb-3">
                     <input type="text" name="equipments" id="equipments" class="form-control" placeholder="Value in p" required>
                     <div class="invalid-feedback">
                       Please enter the value of equipments.
                     </div>
-                    <label for="equipments">Equipments:</label>
+                    <label for="equipments">Equipments: <span class="requiredFields"> *</span></label>
                   </div>
                   <div class="form-floating mb-3">
                     <input type="text" name="working_capital" id="working_capital" class="form-control" placeholder="Value in p" required>
                     <div class="invalid-feedback">
                       Please enter the value of working capital.
                     </div>
-                    <label for="working_capital">Working Capital:</label>
+                    <label for="working_capital">Working Capital: <span class="requiredFields"> *</span></label>
                   </div>
-                  <p>Total Assets: <span id="to_Assets"></span></p>
-                  <p>Enterprise Level: <span id="Enterprise_Level"></span></p>
-                  <p>Estimated funds that can be acquired:</p>
+                  <p class="fw-semibold">Total Assets: <span id="to_Assets"></span></p>
+                  <p class="fw-semibold">Enterprise Level: <span id="Enterprise_Level"></span></p>
+                  <p class="fw-semibold">Estimated funds that can be acquired:</p>
                   <div class="text-center">
                     <span id="EstimatedFund" class="p-2"></span> <br>
                     <span id="EstimationNotice" hidden>*Note that this estimation is still subject to further business evaluation.</span>
@@ -506,8 +516,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                           <th scope="col" colspan="2" class="text-center table-primary">Regular</th>
                         </tr>
                         <tr>
-                          <th scope="col">Male:</th>
-                          <th scope="col">Female:</th>
+                          <th scope="col">Male:<span class="requiredFields"> *</span></th>
+                          <th scope="col">Female:<span class="requiredFields"> *</span></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -537,8 +547,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                           <th scope="col" colspan="2" class="text-center table-primary">Part-time</th>
                         </tr>
                         <tr>
-                          <th scope="col">Male:</th>
-                          <th scope="col">Female:</th>
+                          <th scope="col">Male:<span class="requiredFields"> *</span></th>
+                          <th scope="col">Female:<span class="requiredFields"> *</span></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -573,8 +583,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                           <th scope="col" colspan="2" class="text-center table-primary">Regular</th>
                         </tr>
                         <tr>
-                          <th scope="col">Male:</th>
-                          <th scope="col">Female:</th>
+                          <th scope="col">Male:<span class="requiredFields"> *</span></th>
+                          <th scope="col">Female:<span class="requiredFields"> *</span></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -604,8 +614,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                           <th scope="col" colspan="2" class="text-center table-primary">Part-time</th>
                         </tr>
                         <tr>
-                          <th scope="col">Male:</th>
-                          <th scope="col">Female:</th>
+                          <th scope="col">Male:<span class="requiredFields"> *</span></th>
+                          <th scope="col">Female:<span class="requiredFields"> *</span></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -642,14 +652,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="invalid-feedback">
                       Please enter the Export Market Outlet
                     </div>
-                    <label for="Export">Export:</label>
+                    <label for="Export">Export: <span class="requiredFields"> *</span></label>
                   </div>
                   <div class="form-floating mb-3">
                     <textarea name="Local" id="LocalMar" class="form-control" placeholder="Local" required data-bs-toggle="tooltip" data-bs-placement="top" title="Local Market Example: Tagum, Carmen, Panabo, etc."></textarea>
                     <div class="invalid-feedback">
                       Please enter the Local Market Outlet
                     </div>
-                    <label for="Local">Local:</label>
+                    <label for="Local">Local: <span class="requiredFields"> *</span></label>
                   </div>
                 </fieldset>
 
@@ -662,21 +672,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h3>Upload the Following Requirments:</h3>
             <div class="row mb-12 p-5">
               <div class="mb-3">
-                <label for="IntentFile" class="form-label">Letter of Intent:<span>*</span></label>
+                <label for="IntentFile" class="form-label">Letter of Intent:<span class="requiredFields"> *</span></label>
                 <input class="form-control" type="file" name="IntentFile" id="IntentFile" required>
                 <div class="invalid-feedback">
                   Please upload the Letter of Intent.
                 </div>
               </div>
               <div class="mb-3">
-                <label for="dtiFile" class="form-label">DTI/SEC/CDA: <span>*</span></label>
+                <label for="dtiFile" class="form-label">DTI/SEC/CDA: <span class="requiredFields"> *</span></label>
                 <input class="form-control" type="file" name="dtiFile" id="dtiFile" required>
                 <div class="invalid-feedback">
                   Please upload the DTI/SEC/CDA document.
                 </div>
               </div>
               <div class="mb-3">
-                <label for="businessPermitFile" class="form-label">Business Permit: <span>*</span></label>
+                <label for="businessPermitFile" class="form-label">Business Permit: <span class="requiredFields"> *</span></label>
                 <input class="form-control" type="file" name="businessPermitFile" id="businessPermitFile" required>
                 <div class="invalid-feedback">
                   Please upload the Business Permit.
@@ -687,27 +697,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input class="form-control" type="file" name="fdaLtoFile" id="fdaLtoFile">
               </div>
               <div class="mb-3">
-                <label for="receiptFile" class="form-label">Official Receipt of the Business: <span>*</span></label>
+                <label for="receiptFile" class="form-label">Official Receipt of the Business: <span class="requiredFields"> *</span></label>
                 <input class="form-control" type="file" name="receiptFile" id="receiptFile" required>
                 <div class="invalid-feedback">
                   Please upload the Official Receipt of the Business.
                 </div>
               </div>
               <div class="mb-3">
-                <label for="govIdFile" class="form-label">Copy of Government Valid ID: <span>*</span></label>
+                <label for="govIdFile" class="form-label">Copy of Government Valid ID: <span class="requiredFields"> *</span></label>
                 <input class="form-control" type="file" name="govIdFile" id="govIdFile" required>
                 <div class="invalid-feedback">
                   Please upload the Copy of Government Valid ID.
                 </div>
               </div>
-            </div>
-            <div class="col-md-12 px-5">
-              <div class="form-check">
+              <div class="form-check my-4">
                 <input type="checkbox" name="agree_terms" id="agree_terms" class="form-check-input" required>
                 <div class="invalid-feedback">
-                  You must agree to the terms and conditions.
+                  You must agree to the terms and conditions .
                 </div>
-                <label for="agree_terms" class="form-check-label">Agree to Terms and Conditions</label>
+                <label for="agree_terms" class="form-check-label">Agree to <a href="">terms</a> and <a href="">conditions</a></label>
               </div>
             </div>
           </div>
