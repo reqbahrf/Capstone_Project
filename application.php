@@ -669,7 +669,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
           <div id="step-3" class="tab-pane" role="tabpanel" aria-labelledby="step-3" style="position: static; left: 0px; display: none;">
             <!-- Where the requirements uploaded -->
-            <h3>Upload the Following Requirments:</h3>
+            <h3>Upload the Following Requirements:</h3>
             <div class="row mb-12 p-5">
               <div class="mb-3">
                 <label for="IntentFile" class="form-label">Letter of Intent:<span class="requiredFields"> *</span></label>
